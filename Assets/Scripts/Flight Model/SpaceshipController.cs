@@ -40,6 +40,24 @@ public class SpaceshipController : MonoBehaviour
 
     private Rigidbody rb;
 
+    private float throttleInput;
+    public float ThrottleInput
+    {
+        get { return throttleInput; }
+        set { throttleInput = Mathf.Clamp01(value); }
+    }
+
+    private Vector3 stickInput;
+    public Vector3 StickInput
+    {
+        get { return stickInput; }
+        set { stickInput = new Vector3(
+            Mathf.Clamp(value.x, -1, 1), 
+            Mathf.Clamp(value.y, -1, 1), 
+            Mathf.Clamp(value.z, -1, 1)); 
+        }
+    }
+
     public UnityEngine.UI.Slider throttleIndicator;
     public UnityEngine.UI.Slider speedIndicator;
     public UnityEngine.UI.Text speedText;
@@ -75,7 +93,6 @@ public class SpaceshipController : MonoBehaviour
         if (acceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will not move!");
         if (lateralAcceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will be super slidey!");
         if (minSpeed > maxSpeed) Debug.LogWarning("Min speed is greater than maxspeed! Throttle will be backwards!");
-        if (rb == null) Debug.LogWarning("No rigidbody on spaceship!");
     }
 
     private void HandleVelocity()
