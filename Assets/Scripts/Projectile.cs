@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine;
 /**
  * Class defining basic projectile parameters and methods
  */
