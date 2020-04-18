@@ -163,5 +163,10 @@ public class SpaceshipController : MonoBehaviour
     {
         HandleVelocity();
         HandleRotation();
+        if (Input.GetKeyDown("p")) {
+            SceneController.instance.LoseGame();
+        } else if (Input.GetKeyDown("o")) {
+            SceneController.instance.WinGame();
+        }
     }
 }
