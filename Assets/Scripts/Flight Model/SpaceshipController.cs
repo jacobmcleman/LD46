@@ -67,7 +67,7 @@ public class SpaceshipController : MonoBehaviour
         throttleIndicator.interactable = false;
         speedIndicator.interactable = false;
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void DoDumbConfigChecks()
@@ -121,18 +121,34 @@ public class SpaceshipController : MonoBehaviour
     private void HandleRotation()
     {
         // Process the unity inputs to get the mouse behavior to better behave like a joystick
-        float mousePitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
-        float mouseYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
+        curPitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
+        curYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
 
-        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouseYaw * 400, mousePitch * -400);
-        
-        curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
-        curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
-        float curRoll = Input.GetAxis("Roll");
+        float effectivePitch = Input.GetAxis("Pitch");
+        if (effectivePitch == 0)
+        {
+            effectivePitch = curPitch;
+        }
+        else
+        {
+            curPitch = 0;
+        }
+        float effectiveYaw = Input.GetAxis("Yaw");
+        if (effectiveYaw == 0)
+        {
+            effectiveYaw = curYaw;
+        }
+        else
+        {
+            curYaw = 0;
+        }
+        float effectiveRoll = Input.GetAxis("Roll");
 
-        pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (curPitch * pitchDelta)), -maxPitchRate, maxPitchRate);
-        yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (curYaw * yawDelta)), -maxYawRate, maxYawRate);
-        rollRate = Mathf.Clamp((1 - steerGravity) * (rollRate + (curRoll * rollDelta)), -maxRollRate, maxRollRate);
+        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 400, effectivePitch * -400);
+
+        pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (effectivePitch * pitchDelta)), -maxPitchRate, maxPitchRate);
+        yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (effectiveYaw * yawDelta)), -maxYawRate, maxYawRate);
+        rollRate = Mathf.Clamp((1 - steerGravity) * (rollRate + (effectiveRoll * rollDelta)), -maxRollRate, maxRollRate);
 
         float yawChange = Time.deltaTime * yawRate;
         float pitchChange = Time.deltaTime * pitchRate;
