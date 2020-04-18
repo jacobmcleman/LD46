@@ -74,6 +74,13 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(DisplayMenuAfterDelay(baseMenuPrefab));
     }
 
+    //This player didn't try to rename their whale, let them continue to the menu
+    public void ContinueToMenu ()
+    {
+        //Just change scene ez
+        DisplayMenu(baseMenuPrefab);
+    }
+
     //*
     //// Private Methods
     //*
@@ -88,10 +95,15 @@ public class MainMenu : MonoBehaviour
         }
         //Enable the new one
         menu.SetActive(true);
+        Debug.Log(menu.gameObject.name);
         //If its the base menu scene, upate the sub header with the whale name
         if (menu.gameObject.name == "BaseMenu")
         {
             GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
+            //Also add this method from the scene controller onto our start game button
+            //We can't assign this manually in scene because the scene controller gets 
+            //Instantiated in the previous scene
+            GameObject.Find("Go").GetComponent<Button>().onClick.AddListener(SceneController.instance.LoadIntroCinematic);
         }
     }
 

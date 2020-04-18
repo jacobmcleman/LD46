@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
@@ -10,7 +11,7 @@ public class SceneController : MonoBehaviour
     //*
 
     //Singleton isntance
-    public static SceneController instance { get; private set; }
+    public static SceneController instance;
 
     //*
     //// Unity Methods
@@ -26,7 +27,7 @@ public class SceneController : MonoBehaviour
             instance = this;
             //Don't destroy the game object when we load new scenes
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(InitMenu());
+            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
         }
         else
         {
@@ -44,15 +45,21 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(newScene);
     }
 
+    public void LoadIntroCinematic ()
+    {
+        ChangeScene("Intro");
+        StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
+    }
+
     //*
     //// Private Methods
     //*
 
     //Called on startup after singleton instance is set
-    private IEnumerator InitMenu ()
+    private IEnumerator ChangeSceneAfterDelay (string sceneName, int delay)
     {
-        //Wait for splash screen video to play
-        yield return new WaitForSeconds(7);
-        ChangeScene("Main Menu");
+        //Change scene after delay
+        yield return new WaitForSeconds(delay);
+        ChangeScene(sceneName);
     }
 }
