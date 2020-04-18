@@ -38,6 +38,6 @@ public class ShipCam : MonoBehaviour
         Vector3 lookDir = (lookPoint - followTransform.position).normalized;
 
         transform.position = followTransform.position - (lookDistance * lookDir) + (followTransform.up * verticalOffset);
-        transform.LookAt(followTransform, followTransform.up);
+        transform.LookAt(lookPoint, followTransform.up);
     }
 }
