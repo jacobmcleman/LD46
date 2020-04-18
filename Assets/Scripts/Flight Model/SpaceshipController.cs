@@ -15,11 +15,24 @@ public class SpaceshipController : MonoBehaviour
     // Value from 0-1 where 0 is trying to reach minSpeed and 1 is trying to reach maxSpeed
     private float throttleValue;
 
-    public float pitchRate = 30.0f;
-    public float yawRate = 10.0f;
-    public float rollRate = 45.0f;
+    // Maximum rate that the vehicle can pitch at (degrees per second)
+    public float maxPitchRate = 30.0f;
+    public float maxYawRate = 10.0f;
+    public float maxRollRate = 45.0f;
+
+    // How many degrees per second each rate 
+    public float pitchDelta = 60.0f;
+    public float yawDelta = 20.0f;
+    public float rollDelta = 90.0f;
+
+    public float steerGravity = 0.1f;
+
+    private float pitchRate;
+    private float yawRate;
+    private float rollRate;
 
     public float mouseSensitivity = 0.01f;
+    public float mouseDeadzone = 0.05f;
 
     private float curPitch;
     private float curYaw;
@@ -32,21 +45,27 @@ public class SpaceshipController : MonoBehaviour
     public UnityEngine.UI.Slider speedIndicator;
     public UnityEngine.UI.Text speedText;
 
-    void Start()
+    private void Awake()
     {
         DoDumbConfigChecks();
 
         throttleValue = 0;
         velocity = Vector3.zero;
 
+        curPitch = 0.0f;
+        curYaw = 0.0f;
+
+        pitchRate = 0.0f;
+        yawRate = 0.0f;
+        rollRate = 0.0f;
+    }
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
 
         throttleIndicator.interactable = false;
         speedIndicator.interactable = false;
-
-        curPitch = 0.0f;
-        curYaw = 0.0f;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -72,7 +91,7 @@ public class SpaceshipController : MonoBehaviour
         Vector3 vertVel = Vector3.Project(curVel, transform.up);
         Vector3 strafeVel = Vector3.Project(curVel, transform.right);
 
-        float curForwardSpeed = Vector3.Dot(transform.forward, curVel);
+        float curForwardSpeed = forwardVel.magnitude;
         float forwardSpeedChange = Mathf.MoveTowards(curForwardSpeed, curTargetSpeed, acceleration * Time.deltaTime) - curForwardSpeed;
 
         float curVerticalSpeed = vertVel.magnitude;
@@ -95,12 +114,23 @@ public class SpaceshipController : MonoBehaviour
 
     private void HandleRotation()
     {
-        curPitch = Input.GetAxis("Pitch") == 0 ? Mathf.Clamp(curPitch + Input.GetAxis("MousePitch") * mouseSensitivity, -1, 1) : Input.GetAxis("Pitch");
-        curYaw = Input.GetAxis("Yaw") == 0 ? Mathf.Clamp(curYaw + Input.GetAxis("MouseYaw") * mouseSensitivity, -1, 1) : Input.GetAxis("Yaw");
+        // Process the unity inputs to get the mouse behavior to better behave like a joystick
+        float mousePitch = Mathf.Clamp(curPitch + Input.GetAxis("MousePitch") * mouseSensitivity, -1, 1);
+        float mouseYaw = Mathf.Clamp(curYaw + Input.GetAxis("MouseYaw") * mouseSensitivity, -1, 1);
+        if (Mathf.Abs(mousePitch) < mouseDeadzone) mousePitch = 0.0f;
+        if (Mathf.Abs(mouseYaw) < mouseDeadzone) mouseYaw = 0.0f;
 
-        float yawChange = curYaw * Time.deltaTime * yawRate;
-        float pitchChange = curPitch * Time.deltaTime * pitchRate;
-        float rollChange = Input.GetAxis("Roll") * Time.deltaTime * -rollRate;
+        curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
+        curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
+        float curRoll = Input.GetAxis("Roll");
+
+        pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (curPitch * pitchDelta)), -maxPitchRate, maxPitchRate);
+        yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (curYaw * yawDelta)), -maxYawRate, maxYawRate);
+        rollRate = Mathf.Clamp((1 - steerGravity) * (rollRate + (curRoll * rollDelta)), -maxRollRate, maxRollRate);
+
+        float yawChange = Time.deltaTime * yawRate;
+        float pitchChange = Time.deltaTime * pitchRate;
+        float rollChange = Time.deltaTime * -rollRate;
 
         Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
 
