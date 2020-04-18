@@ -27,8 +27,6 @@ public class SpaceshipController : MonoBehaviour
 
     public float steerGravity = 0.1f;
 
-    public AnimationCurve mouseStickInputCurve = AnimationCurve.Linear(0, 1, 0, 1);
-
     private float pitchRate;
     private float yawRate;
     private float rollRate;
@@ -70,7 +68,7 @@ public class SpaceshipController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
     private void DoDumbConfigChecks()
     {
         if (acceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will not move!");
@@ -113,13 +111,19 @@ public class SpaceshipController : MonoBehaviour
         speedIndicator.value = (curForwardSpeed - minSpeed) / (maxSpeed - minSpeed);
     }
 
+    private float GetMouseStickAxis(string axis)
+    {
+        float baseValue = Input.GetAxis(axis);
+        return baseValue * mouseSensitivity;
+    }
+
     private void HandleRotation()
     {
-        // Process the unity inputs to get the mouse behavior to better behave like a joystick
-        float mousePitch = Mathf.Clamp(curPitch + Input.GetAxis("MousePitch") * mouseSensitivity, -1, 1);
-        float mouseYaw = Mathf.Clamp(curYaw + Input.GetAxis("MouseYaw") * mouseSensitivity, -1, 1);
-        
 
+        // Process the unity inputs to get the mouse behavior to better behave like a joystick
+        float mousePitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
+        float mouseYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
+        
         curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
         curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
         float curRoll = Input.GetAxis("Roll");
