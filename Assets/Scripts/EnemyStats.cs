@@ -8,7 +8,7 @@ public struct EnemyStats
     public float speed;
     public float damage;
 }
-public class EnemyStats : MonoBehaviour
+public class EnemyStatsClass : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
