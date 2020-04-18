@@ -43,6 +43,7 @@ public class SpaceshipController : MonoBehaviour
     public UnityEngine.UI.Slider throttleIndicator;
     public UnityEngine.UI.Slider speedIndicator;
     public UnityEngine.UI.Text speedText;
+    public GameObject mouseUI;
 
     private void Awake()
     {
@@ -119,10 +120,11 @@ public class SpaceshipController : MonoBehaviour
 
     private void HandleRotation()
     {
-
         // Process the unity inputs to get the mouse behavior to better behave like a joystick
         float mousePitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
         float mouseYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
+
+        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouseYaw * 400, mousePitch * -400);
         
         curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
         curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
