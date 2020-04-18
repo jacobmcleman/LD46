@@ -43,6 +43,7 @@ public class SpaceshipController : MonoBehaviour
     public UnityEngine.UI.Slider throttleIndicator;
     public UnityEngine.UI.Slider speedIndicator;
     public UnityEngine.UI.Text speedText;
+<<<<<<< HEAD
 
     private void Awake()
     {
@@ -57,6 +58,23 @@ public class SpaceshipController : MonoBehaviour
         pitchRate = 0.0f;
         yawRate = 0.0f;
         rollRate = 0.0f;
+=======
+    public GameObject mouseUI;
+
+    private void Awake()
+    {
+        DoDumbConfigChecks();
+
+        throttleValue = 0;
+        velocity = Vector3.zero;
+
+        curPitch = 0.0f;
+        curYaw = 0.0f;
+
+        pitchRate = 0.0f;
+        yawRate = 0.0f;
+        rollRate = 0.0f;
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
     }
     void Start()
     {
@@ -64,6 +82,7 @@ public class SpaceshipController : MonoBehaviour
         rb.isKinematic = false;
 
         throttleIndicator.interactable = false;
+<<<<<<< HEAD
         speedIndicator.interactable = false;
 
         //Cursor.lockState = CursorLockMode.Locked;
@@ -79,6 +98,23 @@ public class SpaceshipController : MonoBehaviour
 
     private void HandleVelocity()
     {
+=======
+        speedIndicator.interactable = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void DoDumbConfigChecks()
+    {
+        if (acceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will not move!");
+        if (lateralAcceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will be super slidey!");
+        if (minSpeed > maxSpeed) Debug.LogWarning("Min speed is greater than maxspeed! Throttle will be backwards!");
+        if (rb == null) Debug.LogWarning("No rigidbody on spaceship!");
+    }
+
+    private void HandleVelocity()
+    {
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
         float throttleChange = Input.GetAxis("Throttle");
         throttleValue += throttleChange * Time.deltaTime * throttleChangeRate;
         throttleValue = Mathf.Clamp01(throttleValue);
@@ -108,6 +144,7 @@ public class SpaceshipController : MonoBehaviour
 
         speedText.text = "Speed: " + velocity.magnitude;
         throttleIndicator.value = throttleValue;
+<<<<<<< HEAD
         speedIndicator.value = (curForwardSpeed - minSpeed) / (maxSpeed - minSpeed);
     }
 
@@ -139,16 +176,53 @@ public class SpaceshipController : MonoBehaviour
         Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
 
         transform.Rotate(rotationEulers, Space.Self);
+=======
+        speedIndicator.value = (curForwardSpeed - minSpeed) / (maxSpeed - minSpeed);
+    }
+
+    private float GetMouseStickAxis(string axis)
+    {
+        float baseValue = Input.GetAxis(axis);
+        return baseValue * mouseSensitivity;
+    }
+
+    private void HandleRotation()
+    {
+        // Process the unity inputs to get the mouse behavior to better behave like a joystick
+        float mousePitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
+        float mouseYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
+
+        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouseYaw * 400, mousePitch * -400);
+        
+        curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
+        curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
+        float curRoll = Input.GetAxis("Roll");
+
+        pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (curPitch * pitchDelta)), -maxPitchRate, maxPitchRate);
+        yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (curYaw * yawDelta)), -maxYawRate, maxYawRate);
+        rollRate = Mathf.Clamp((1 - steerGravity) * (rollRate + (curRoll * rollDelta)), -maxRollRate, maxRollRate);
+
+        float yawChange = Time.deltaTime * yawRate;
+        float pitchChange = Time.deltaTime * pitchRate;
+        float rollChange = Time.deltaTime * -rollRate;
+
+        Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
+
+        transform.Rotate(rotationEulers, Space.Self);
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
     }
 
     void Update()
     {
         HandleVelocity();
         HandleRotation();
+<<<<<<< HEAD
         if (Input.GetKeyDown("p")) {
             SceneController.instance.LoseGame();
         } else if (Input.GetKeyDown("o")) {
             SceneController.instance.WinGame();
         }
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
     }
 }

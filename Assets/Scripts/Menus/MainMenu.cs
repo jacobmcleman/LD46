@@ -95,6 +95,10 @@ public class MainMenu : MonoBehaviour
         }
         //Enable the new one
         menu.SetActive(true);
+<<<<<<< HEAD
+=======
+        Debug.Log(menu.gameObject.name);
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
         //If its the base menu scene, upate the sub header with the whale name
         if (menu.gameObject.name == "BaseMenu")
         {

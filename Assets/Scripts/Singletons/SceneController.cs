@@ -29,8 +29,11 @@ public class SceneController : MonoBehaviour
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
             StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
+<<<<<<< HEAD
             //Add scene loaded callback function
             SceneManager.sceneLoaded += OnSceneLoaded;
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
         }
         else
         {
@@ -48,13 +51,17 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(newScene);
     }
 
+<<<<<<< HEAD
     //Play the intro cinematic and change scene to fly
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
         StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
     }
 
+<<<<<<< HEAD
     //Go to the winner screen
     public void WinGame ()
     {
@@ -81,6 +88,8 @@ public class SceneController : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
     //*
     //// Private Methods
     //*
@@ -92,6 +101,7 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         ChangeScene(sceneName);
     }
+<<<<<<< HEAD
 
     //Add callback for when a scene is loaded, maybe want scene specific callback system
     private void OnSceneLoaded (Scene scene, LoadSceneMode mode)
@@ -102,4 +112,6 @@ public class SceneController : MonoBehaviour
             GameObject.Find("Quit").GetComponent<Button>().onClick.AddListener(instance.QuitGame);
         }
     }
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
 }
