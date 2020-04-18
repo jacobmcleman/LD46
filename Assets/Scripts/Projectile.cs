@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 /**
  * Class defining basic projectile parameters and methods
  */
-public class Projectile : MonoBehavoiur
+public class Projectile : MonoBehaviour
 {
     private void Start()
     {
@@ -14,12 +17,12 @@ public class Projectile : MonoBehavoiur
     {
         if (hasHit) return;
 
-        transform.forward = direction;
-        Vector3 nextPosition = tranform.position + (speed * Time.deltaTime) * direction;
+        this.transform.forward = direction;
+        Vector3 nextPosition = this.transform.position + (speed * Time.deltaTime) * direction;
 
         if (!DoCollisionSweep(nextPosition))
         {
-            transform.position = nextPosition;
+            this.transform.position = nextPosition;
         }
 
     }
@@ -33,11 +36,12 @@ public class Projectile : MonoBehavoiur
     private bool DoCollisionSweep(Vector3 nextPosition)
     {
         float distance = (speed * Time.deltaTime) * 1.5f;
-        Vector3 direction = (nextPosition - tranform.postition).normalized;
+        Vector3 direction = (nextPosition - this.transform.position).normalized;
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, distance, ~0, Q))
+        if (Physics.Raycast(this.transform.position, direction, 
+            out hit, distance, ~0, QueryTriggerInteraction.Ignore))
         {
-            OnHitSomething(hit.tranform.gameObject, hit.point);
+            OnHitSomething(hit.transform.gameObject, hit.point);
             return true;
         }
         return false;
@@ -51,18 +55,19 @@ public class Projectile : MonoBehavoiur
     {
         // At point of writing, assuming object has TakeDamage method that 
         // triggers sound and other things 
-        bool isDead = other.TakeDamage(this, hitPoint, projectileDamage);
+        // bool isDead = other.TakeDamage(this, hitPoint, projectileDamage);
+        bool isDead = false;
         if (isDead)
         {
             Debug.Log("Target Destroyed");
         }
         _speed = 0;
         _hasHit = true;
-        transform.postition = hitPoint;
+        this.transform.position = hitPoint;
         GetComponent<MeshRenderer>().enabled = false;
         Destroy(gameObject, persistAfterHitTime);
     }
-    public IWeapon shooter;
+    // public IWeapon shooter;
     public Vector3 direction;
     public float Timeout = 30;
     public float persistAfterHitTime = 1.0f;
@@ -71,8 +76,8 @@ public class Projectile : MonoBehavoiur
     {
         get => _speed;
     }
-    private float _hasHit = false;
-    public float _hasHit
+    private bool _hasHit = false;
+    public bool hasHit
     {
         get => _hasHit;
     }
