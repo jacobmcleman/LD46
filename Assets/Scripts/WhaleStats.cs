@@ -2,41 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BigWhale {
-    public struct Whale
+public class WhaleStats : MonoBehaviour
+{
+    IHealth wHealth;
+    public float blood;
+    public float armor;
+    public float totalWhaleHealth = wHealth.Health.get() * blood * armor;
+
+    public float fireRate; // projectils per second
+    public float projectileDmg; // damage of projectile
+    
+    void Start()
     {
-        public float health;
-        public float blood; // velocity meters per second
-        public float armor;
-        public float fireRate; // projectils per second
-        public float projectileDmg; // damage of projectile
+
     }
-    public struct HealthChangeEvent
-    {
 
+    void Update()
+    {
+        TakeDamage();
     }
-    public class WhaleStats : MonoBehaviour
+
+
+    public void TakeDamage(float amount)
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-        void HealthUpdate()
-        {
-            
-        }
-
-        public void TakeDamage(float amount)
-        {
-
-        }
-
+        return totalWhaleHealth - amount;
     }
 }
