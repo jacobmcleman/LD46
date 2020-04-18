@@ -88,6 +88,11 @@ public class MainMenu : MonoBehaviour
         }
         //Enable the new one
         menu.SetActive(true);
+        //If its the base menu scene, upate the sub header with the whale name
+        if (menu.gameObject.name == "BaseMenu")
+        {
+            GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
+        }
     }
 
     //Display menu after delay
