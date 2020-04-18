@@ -27,12 +27,13 @@ public class SpaceshipController : MonoBehaviour
 
     public float steerGravity = 0.1f;
 
+    public AnimationCurve mouseStickInputCurve = AnimationCurve.Linear(0, 1, 0, 1);
+
     private float pitchRate;
     private float yawRate;
     private float rollRate;
 
     public float mouseSensitivity = 0.01f;
-    public float mouseDeadzone = 0.05f;
 
     private float curPitch;
     private float curYaw;
@@ -117,12 +118,7 @@ public class SpaceshipController : MonoBehaviour
         // Process the unity inputs to get the mouse behavior to better behave like a joystick
         float mousePitch = Mathf.Clamp(curPitch + Input.GetAxis("MousePitch") * mouseSensitivity, -1, 1);
         float mouseYaw = Mathf.Clamp(curYaw + Input.GetAxis("MouseYaw") * mouseSensitivity, -1, 1);
-        if (Mathf.Abs(mousePitch) < mouseDeadzone) mousePitch = 0.0f;
-        else if (mousePitch > 0) Mathf.Lerp(mouseDeadzone, 1.0f, mousePitch);
-        else if (mousePitch < 0) Mathf.Lerp(-mouseDeadzone, -1.0f, -mousePitch);
-        if (Mathf.Abs(mouseYaw) < mouseDeadzone) mouseYaw = 0.0f;
-        else if (mouseYaw > 0) Mathf.Lerp(mouseDeadzone, 1.0f, mouseYaw);
-        else if (mouseYaw < 0) Mathf.Lerp(-mouseDeadzone, -1.0f, -mouseYaw);
+        
 
         curPitch = Input.GetAxis("Pitch") == 0 ? mousePitch : Input.GetAxis("Pitch");
         curYaw = Input.GetAxis("Yaw") == 0 ? mouseYaw : Input.GetAxis("Yaw");
