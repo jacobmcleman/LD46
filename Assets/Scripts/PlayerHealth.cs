@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IHealth
 {
-    public float MaxHealth { get; set; }
+    public float _MaxHealth = 100;
+
+    public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
     public float Health { get { return health; } }
+
     private float health;
 
     public void TakeDamage(float damage)
