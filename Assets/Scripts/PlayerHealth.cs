@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         if (health - damage <= 0)
         {
             //Die
+            Destroy(gameObject);
         }
         else
         {
