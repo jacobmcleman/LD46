@@ -29,6 +29,8 @@ public class SceneController : MonoBehaviour
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
             StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
+            //Add scene loaded callback function
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -46,10 +48,37 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(newScene);
     }
 
+    //Play the intro cinematic and change scene to fly
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
         StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
+    }
+
+    //Go to the winner screen
+    public void WinGame ()
+    {
+        ChangeScene("Winner");
+    }
+
+    //Go to the loser screen
+    public void LoseGame ()
+    {
+        ChangeScene("Loser");
+    }
+
+    //Quit game ez
+    public void QuitGame ()
+    {
+        //Quitting is different in editor vs in game, so check to see what to do
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        } 
+        else
+        {
+            Application.Quit();
+        }
     }
 
     //*
@@ -62,5 +91,15 @@ public class SceneController : MonoBehaviour
         //Change scene after delay
         yield return new WaitForSeconds(delay);
         ChangeScene(sceneName);
+    }
+
+    //Add callback for when a scene is loaded, maybe want scene specific callback system
+    private void OnSceneLoaded (Scene scene, LoadSceneMode mode)
+    {
+        //If it is loser or winner scene, add the needed listeners to the buttons
+        if (scene.name == "Loser" || scene.name == "Winner") {
+            GameObject.Find("Menu").GetComponent<Button>().onClick.AddListener(() => instance.ChangeScene("Main Menu"));
+            GameObject.Find("Quit").GetComponent<Button>().onClick.AddListener(instance.QuitGame);
+        }
     }
 }
