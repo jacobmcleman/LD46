@@ -167,6 +167,6 @@ public class SpaceshipController : MonoBehaviour
             SceneController.instance.LoseGame();
         } else if (Input.GetKeyDown("o")) {
             SceneController.instance.WinGame();
-        }
+        } 
     }
 }
