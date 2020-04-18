@@ -26,8 +26,9 @@ public class SceneController : MonoBehaviour
             //Set the instance to this and trigger switch to main menu from startup scene
             instance = this;
             //Don't destroy the game object when we load new scenes
+            //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
+            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
         }
         else
         {
