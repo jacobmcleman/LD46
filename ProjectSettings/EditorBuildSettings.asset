@@ -5,7 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: Assets/Scenes/samplescene.unity
     guid: cbfe36cfddfde964d9dfce63a355d5dd
+  - enabled: 1
+    path: Assets/Scenes/Menus/Startup.unity
+    guid: 4c0a039d41e134e4f8b17ab915ae3d8b
+  - enabled: 1
+    path: Assets/Scenes/Menus/Main Menu.unity
+    guid: 1f205451e87e6bf46b02fa21ebdcc4a0
+<<<<<<< HEAD
+  - enabled: 1
+    path: Assets/Scenes/spaceship_test1.unity
+    guid: 04d51363dc587fc44ae6561928ed3a33
+  - enabled: 1
+    path: Assets/Scenes/Menus/Intro.unity
+    guid: 34de352ed52890b4a9ddaa0fd4b6eb5b
+  - enabled: 1
+    path: Assets/Scenes/Menus/Loser.unity
+    guid: 7252c8b57f682e548b9242ad367ef450
+  - enabled: 1
+    path: Assets/Scenes/Menus/Winner.unity
+    guid: 03c217f8fd2b07c4dbb6ceb7e84c838b
+=======
+>>>>>>> 67ebef150b0df986a0877f2610d586f1ec3dc728
   m_configObjects: {}
