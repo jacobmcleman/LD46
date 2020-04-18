@@ -11,14 +11,36 @@ public class Pickupables : MonoBehaviour
         Health
     }
 
-    private PickupType pickType;
-    private int value = 10;
+    public PickupType pickType;
+    public int value = 10;
 
-    public int getValue() { return value; }
-    public PickupType getType() { return pickType; }
+    Inventory inventory;
 
-    public void Initialize(int _value)
+    private void Start()
     {
-        value = _value;
-    } 
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+    }  
+
+    private void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Collision with: " + col.gameObject.name);
+        if (col.transform.parent.tag == "Player")
+        {
+            switch (pickType)
+            {
+                case Pickupables.PickupType.Organic:
+                    inventory.Organics += value;
+                    Debug.Log("Picked up Organics");
+                    break;
+                case Pickupables.PickupType.Mechanical:
+                    inventory.Mechanicals += value;
+                    Debug.Log("Picked up Mechanicals");
+                    break;
+                case Pickupables.PickupType.Health:
+                    inventory.gameObject.GetComponent<PlayerHealth>().Heal(value);
+                    break;
+            }
+            Destroy(gameObject);
+        }
+    }
 }
