@@ -46,6 +46,9 @@ public class Inventory : MonoBehaviour
 
     private PlayerHealth h;
 
+    public float regurgitateCooldown = 0.7f;
+    private float regurgTimer;
+
     private void Start()
     {
         h = gameObject.GetComponent<PlayerHealth>();
@@ -54,17 +57,20 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) 
+        regurgTimer -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.F) && regurgTimer <= 0) 
         {
             Regurgitate();
+            regurgTimer = regurgitateCooldown;
         }
     }
 
     void Regurgitate()
     {
-        while (organics >= 0)
+        if (organics >= 0)
         {
-            if (organics <= chunkSize)
+            if (organics >= chunkSize)
             {
                 SpawnChunk(chunkSize, OrganicChunk);
                 organics -= chunkSize;
@@ -75,7 +81,7 @@ public class Inventory : MonoBehaviour
                 organics = 0;
             }
         }
-        while (mechanicals >= 0)
+        else if (mechanicals >= 0)
         {
             if (mechanicals >= chunkSize)
             {
@@ -90,11 +96,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void SpawnChunk(int amount, GameObject chunk)
+    void SpawnChunk(int amount, GameObject chunkPrefab)
     {
-        Instantiate(chunk, transform.position, transform.rotation);
+        GameObject chunk = Instantiate(chunkPrefab, (transform.position + transform.forward*5), transform.rotation);
         Pickupables chunkPickup = chunk.GetComponent<Pickupables>();
         chunkPickup.value = amount;
+        chunk.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
         chunk.AddComponent<VomitChunk>();
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
     }
