@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour, IInventory
 {
     private int chunkSize = 10;
 
@@ -68,12 +68,13 @@ public class Inventory : MonoBehaviour
 
     void Regurgitate()
     {
-        if (organics >= 0)
+        if (organics > 0)
         {
             if (organics >= chunkSize)
             {
                 SpawnChunk(chunkSize, OrganicChunk);
                 organics -= chunkSize;
+                Debug.Log("Organics -= 10. organics:" + organics);
             }
             else
             {
@@ -81,7 +82,7 @@ public class Inventory : MonoBehaviour
                 organics = 0;
             }
         }
-        else if (mechanicals >= 0)
+        else if (mechanicals > 0)
         {
             if (mechanicals >= chunkSize)
             {
@@ -102,7 +103,11 @@ public class Inventory : MonoBehaviour
         Pickupables chunkPickup = chunk.GetComponent<Pickupables>();
         chunkPickup.value = amount;
         chunk.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
-        chunk.AddComponent<VomitChunk>();
+        if (chunk.GetComponent<VomitChunk>() == null)
+        {
+            Debug.Log("Adding vomitChunk");
+            chunk.AddComponent<VomitChunk>();
+        }
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
     }
 }

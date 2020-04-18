@@ -14,30 +14,26 @@ public class Pickupables : MonoBehaviour
     public PickupType pickType;
     public int value = 10;
 
-    Inventory inventory;
-
-    private void Start()
+    private void OnTriggerEnter(Collider collider)
     {
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-    }  
-
-    private void OnTriggerEnter(Collider col)
-    {
-        Debug.Log("Collision with: " + col.gameObject.name);
-        if (col.transform.parent.tag == "Player")
+        Debug.Log("Collision with: " + collider.gameObject.name);
+        if (collider.transform.parent.tag == "Player" || collider.transform.tag == "Whale")
         {
+            GameObject col;
+            if (collider.transform.parent.tag == "Player") { col = collider.transform.parent.gameObject; }
+            else { col = collider.gameObject; }
             switch (pickType)
             {
                 case Pickupables.PickupType.Organic:
-                    inventory.Organics += value;
+                    col.GetComponent<IInventory>().Organics += value;
                     Debug.Log("Picked up Organics");
                     break;
                 case Pickupables.PickupType.Mechanical:
-                    inventory.Mechanicals += value;
+                    col.GetComponent<IInventory>().Mechanicals += value;
                     Debug.Log("Picked up Mechanicals");
                     break;
                 case Pickupables.PickupType.Health:
-                    inventory.gameObject.GetComponent<PlayerHealth>().Heal(value);
+                    col.GetComponent<IHealth>().Heal(value);
                     break;
             }
             Destroy(gameObject);

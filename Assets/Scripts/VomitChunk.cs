@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class VomitChunk : MonoBehaviour
 {
-    public float speed = 5;
-    public float rSpeed = 2;
+    public float maxSpeed = 20;
+    public float speed = 20;
+    public float rSpeed = 5;
 
     public float stopDistance = 10;
 
@@ -19,6 +20,8 @@ public class VomitChunk : MonoBehaviour
 
         float rStep;
         float step;
+
+        speed = maxSpeed;
 
         while (hunting)
         {
@@ -53,7 +56,7 @@ public class VomitChunk : MonoBehaviour
             {
                 step = speed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, stopPoint, step);
-                speed -= .1f;
+                speed = Mathf.Clamp(speed - .1f, 0, maxSpeed);
             }
 
              yield return null;
