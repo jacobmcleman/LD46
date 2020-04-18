@@ -21,7 +21,7 @@ MonoBehaviour:
     x: 941
     y: -133
     width: 425
-    height: 1946
+    height: 1986
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,18 +251,20 @@ VisualEffectResource:
       VFX_COLORMAPPING_DEFAULT 1\n\t\t#define IS_TRANSPARENT_PARTICLE 1\n\t\t#define
       USE_SOFT_PARTICLE 1\n\t\t#define VFX_BLENDMODE_ADD 1\n\t\t#define HDRP_LIT
       1\n\t\t#define HDRP_MATERIAL_TYPE_STANDARD 1\n\t\t#define HDRP_USE_BASE_COLOR_MAP
-      1\n\t\t#define HDRP_USE_BASE_COLOR_MAP_ALPHA 1\n\t\t#define HDRP_USE_BASE_COLOR
-      1\n\t\t#define FORCE_NORMAL_VARYING 1\n\t\t#define VFX_PRIMITIVE_QUAD 1\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t#define
+      1\n\t\t#define HDRP_USE_BASE_COLOR_MAP_ALPHA 1\n\t\t#define USE_NORMAL_MAP
+      1\n\t\t#define HDRP_USE_BASE_COLOR 1\n\t\t#define FORCE_NORMAL_VARYING 1\n\t\t#define
+      VFX_PRIMITIVE_QUAD 1\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t#define
       VFX_LOCAL_SPACE 1\n\t\t#include \"Packages/com.unity.render-pipelines.high-definition/Runtime/VFXGraph/Shaders/VFXDefines.hlsl\"\n\t\t\n\n\t\tCBUFFER_START(parameters)\n\t\t   
       float3 Color_c;\n\t\t    float Size_a;\n\t\t    float invSoftParticlesFadeDistance;\n\t\t   
-      float smoothness;\n\t\t    float metallic;\n\t\t    uint PADDING_0;\n\t\tCBUFFER_END\n\t\t\n\t\tstruct
+      float smoothness;\n\t\t    float metallic;\n\t\t    float normalScale;\n\t\tCBUFFER_END\n\t\t\n\t\tstruct
       Attributes\n\t\t{\n\t\t    float scaleX;\n\t\t    float scaleY;\n\t\t    float
       scaleZ;\n\t\t    float angleZ;\n\t\t    float3 position;\n\t\t    float3 color;\n\t\t   
       float alpha;\n\t\t    bool alive;\n\t\t    float3 axisX;\n\t\t    float3 axisY;\n\t\t   
       float3 axisZ;\n\t\t    float angleX;\n\t\t    float angleY;\n\t\t    float
       pivotX;\n\t\t    float pivotY;\n\t\t    float pivotZ;\n\t\t    float size;\n\t\t};\n\t\t\n\t\tstruct
       SourceAttributes\n\t\t{\n\t\t};\n\t\t\n\t\tTexture2D baseColorMap;\n\t\tSamplerState
-      samplerbaseColorMap;\n\t\tfloat4 baseColorMap_TexelSize;\n\t\t\n\t\t\n\n\t\t\n\t\t#define
+      samplerbaseColorMap;\n\t\tfloat4 baseColorMap_TexelSize;\n\t\t\n\t\tTexture2D
+      normalMap;\n\t\tSamplerState samplernormalMap;\n\t\tfloat4 normalMap_TexelSize;\n\t\t\n\t\t\n\n\t\t\n\t\t#define
       VFX_NEEDS_COLOR_INTERPOLATOR (VFX_USE_COLOR_CURRENT || VFX_USE_ALPHA_CURRENT)\n\t\t#if
       HAS_STRIPS\n\t\t#define VFX_OPTIONAL_INTERPOLATION \n\t\t#else\n\t\t#define
       VFX_OPTIONAL_INTERPOLATION nointerpolation\n\t\t#endif\n\t\t\n\t\tByteAddressBuffer
@@ -884,10 +886,10 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 1
-      - op: 31
+      - op: 1
         valueIndex: 9
-        data[0]: 0
-        data[1]: 1
+        data[0]: -1
+        data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 1
@@ -908,10 +910,10 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 1
-      - op: 1
+      - op: 31
         valueIndex: 13
-        data[0]: -1
-        data[1]: -1
+        data[0]: 1
+        data[1]: 2
         data[2]: -1
         data[3]: 1
       - op: 1
@@ -956,10 +958,10 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 1
-      - op: 1
+      - op: 31
         valueIndex: 21
-        data[0]: -1
-        data[1]: -1
+        data[0]: 3
+        data[1]: 0
         data[2]: -1
         data[3]: 1
       - op: 1
@@ -1010,114 +1012,144 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 1
-      - op: 27
-        valueIndex: 30
-        data[0]: 8
-        data[1]: 9
-        data[2]: -1
-        data[3]: 1
-      - op: 20
-        valueIndex: 31
-        data[0]: 23
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 20
-        valueIndex: 32
-        data[0]: 10
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 31
-        valueIndex: 33
-        data[0]: 18
-        data[1]: 19
-        data[2]: -1
-        data[3]: 1
       - op: 1
-        valueIndex: 34
+        valueIndex: 30
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 1
+        valueIndex: 31
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 32
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 33
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 7
+      - op: 20
+        valueIndex: 34
+        data[0]: 8
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 30
         valueIndex: 35
+        data[0]: 21
+        data[1]: 4
+        data[2]: -1
+        data[3]: 1
+      - op: 20
+        valueIndex: 36
+        data[0]: 11
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 37
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 7
+      - op: 3
+        valueIndex: 38
+        data[0]: 9
+        data[1]: 16
+        data[2]: 10
+        data[3]: -1
+      - op: 3
+        valueIndex: 41
+        data[0]: 15
+        data[1]: 17
+        data[2]: 32
+        data[3]: -1
+      - op: 1
+        valueIndex: 44
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 6
-        valueIndex: 36
+        valueIndex: 45
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: -1
       - op: 31
-        valueIndex: 37
-        data[0]: 3
-        data[1]: 19
-        data[2]: -1
-        data[3]: 1
-      - op: 3
-        valueIndex: 38
-        data[0]: 7
-        data[1]: 6
-        data[2]: 5
-        data[3]: -1
-      - op: 1
-        valueIndex: 41
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 42
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 3
-        valueIndex: 43
-        data[0]: 13
-        data[1]: 12
-        data[2]: 11
-        data[3]: -1
-      - op: 3
         valueIndex: 46
-        data[0]: 2
-        data[1]: 15
-        data[2]: 14
-        data[3]: -1
-      - op: 3
+        data[0]: 12
+        data[1]: 0
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 47
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 48
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
         valueIndex: 49
-        data[0]: 27
-        data[1]: 28
-        data[2]: 17
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 3
+        valueIndex: 50
+        data[0]: 5
+        data[1]: 6
+        data[2]: 7
         data[3]: -1
       - op: 3
-        valueIndex: 52
-        data[0]: 29
-        data[1]: 25
-        data[2]: 26
+        valueIndex: 53
+        data[0]: 19
+        data[1]: 26
+        data[2]: 18
         data[3]: -1
       - op: 3
-        valueIndex: 55
-        data[0]: 20
-        data[1]: 21
+        valueIndex: 56
+        data[0]: 28
+        data[1]: 29
+        data[2]: 30
+        data[3]: -1
+      - op: 3
+        valueIndex: 59
+        data[0]: 25
+        data[1]: 27
+        data[2]: 31
+        data[3]: -1
+      - op: 3
+        valueIndex: 62
+        data[0]: 22
+        data[1]: 23
         data[2]: 24
         data[3]: -1
-      - op: 3
-        valueIndex: 58
-        data[0]: 16
-        data[1]: 22
-        data[2]: 4
-        data[3]: -1
-      - op: 1
-        valueIndex: 61
-        data[0]: -1
-        data[1]: -1
+      - op: 27
+        valueIndex: 65
+        data[0]: 14
+        data[1]: 13
         data[2]: -1
-        data[3]: 7
+        data[3]: 1
+      - op: 31
+        valueIndex: 66
+        data[0]: 20
+        data[1]: 0
+        data[2]: -1
+        data[3]: 1
       m_NeedsLocalToWorld: 0
       m_NeedsWorldToLocal: 0
       m_NeededMainCameraBuffers: 0
@@ -1125,71 +1157,75 @@ VisualEffectResource:
       m_Float:
         m_Array:
         - m_ExpressionIndex: 0
-          m_Value: 1
+          m_Value: 0
         - m_ExpressionIndex: 1
-          m_Value: 0.001
+          m_Value: 1
         - m_ExpressionIndex: 2
-          m_Value: 0.333
+          m_Value: 0.001
         - m_ExpressionIndex: 3
           m_Value: 1
         - m_ExpressionIndex: 4
-          m_Value: 0
+          m_Value: 2
         - m_ExpressionIndex: 5
-          m_Value: 0
+          m_Value: 2.54
         - m_ExpressionIndex: 6
-          m_Value: 10
+          m_Value: 19.4
         - m_ExpressionIndex: 7
-          m_Value: -0.2
+          m_Value: 1
         - m_ExpressionIndex: 8
-          m_Value: 1
+          m_Value: 0.5
+        - m_ExpressionIndex: 9
+          m_Value: -0.2
         - m_ExpressionIndex: 10
-          m_Value: 1
+          m_Value: 0
         - m_ExpressionIndex: 11
           m_Value: 1
         - m_ExpressionIndex: 12
-          m_Value: 19.4
-        - m_ExpressionIndex: 13
-          m_Value: 2.54
+          m_Value: 1
         - m_ExpressionIndex: 14
-          m_Value: 0.333
+          m_Value: 1
         - m_ExpressionIndex: 15
           m_Value: 1
         - m_ExpressionIndex: 16
-          m_Value: 1
+          m_Value: 10
         - m_ExpressionIndex: 17
-          m_Value: -0.333
-        - m_ExpressionIndex: 18
-          m_Value: 20
-        - m_ExpressionIndex: 19
-          m_Value: 0
-        - m_ExpressionIndex: 20
-          m_Value: 0
-        - m_ExpressionIndex: 21
-          m_Value: 1
-        - m_ExpressionIndex: 22
           m_Value: 0.2088135
+        - m_ExpressionIndex: 18
+          m_Value: 0.333
+        - m_ExpressionIndex: 19
+          m_Value: 0.333
+        - m_ExpressionIndex: 20
+          m_Value: 20
+        - m_ExpressionIndex: 22
+          m_Value: 0
         - m_ExpressionIndex: 23
-          m_Value: 0.5
+          m_Value: 1
         - m_ExpressionIndex: 24
           m_Value: 0
         - m_ExpressionIndex: 25
-          m_Value: 3
+          m_Value: 2
         - m_ExpressionIndex: 26
-          m_Value: 2
+          m_Value: 1
         - m_ExpressionIndex: 27
-          m_Value: -0.333
+          m_Value: 3
         - m_ExpressionIndex: 28
-          m_Value: 0.8
+          m_Value: -0.333
         - m_ExpressionIndex: 29
+          m_Value: 0.8
+        - m_ExpressionIndex: 30
+          m_Value: -0.333
+        - m_ExpressionIndex: 31
           m_Value: 2
-        - m_ExpressionIndex: 34
-          m_Value: 0.3
-        - m_ExpressionIndex: 35
-          m_Value: 2
-        - m_ExpressionIndex: 39
+        - m_ExpressionIndex: 32
           m_Value: 0
         - m_ExpressionIndex: 40
+          m_Value: 2
+        - m_ExpressionIndex: 43
+          m_Value: 0
+        - m_ExpressionIndex: 44
           m_Value: 360
+        - m_ExpressionIndex: 45
+          m_Value: 0.3
       m_Vector2f:
         m_Array: []
       m_Vector3f:
@@ -1208,7 +1244,9 @@ VisualEffectResource:
         m_Array: []
       m_NamedObject:
         m_Array:
-        - m_ExpressionIndex: 47
+        - m_ExpressionIndex: 33
+          m_Value: {fileID: 0}
+        - m_ExpressionIndex: 37
           m_Value: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
       m_Bool:
         m_Array: []
@@ -1352,7 +1390,7 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Rate
-        index: 33
+        index: 52
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: -1
@@ -1373,9 +1411,9 @@ VisualEffectResource:
       index: 1
     values:
     - nameId: bounds_center
-      index: 45
+      index: 50
     - nameId: bounds_size
-      index: 44
+      index: 49
     tasks:
     - type: 536870912
       buffers:
@@ -1390,22 +1428,22 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: A_a
-        index: 43
+        index: 48
       - nameId: B_a
-        index: 42
+        index: 47
       - nameId: Scale_b
-        index: 41
+        index: 46
       - nameId: Lifetime_c
-        index: 34
+        index: 45
       - nameId: A_d
-        index: 40
+        index: 44
       - nameId: B_d
-        index: 39
+        index: 43
       params:
       - nameId: bounds_center
-        index: 45
+        index: 50
       - nameId: bounds_size
-        index: 44
+        index: 49
       processor: {fileID: 0}
       shaderSourceIndex: 0
     - type: 805306368
@@ -1419,9 +1457,9 @@ VisualEffectResource:
       - nameId: Velocity_a
         index: 38
       - nameId: Drag_a
-        index: 37
+        index: 42
       - nameId: deltaTime_a
-        index: 36
+        index: 41
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 1
@@ -1432,17 +1470,21 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Size_a
-        index: 35
+        index: 40
       - nameId: Color_c
-        index: 46
+        index: 39
       - nameId: invSoftParticlesFadeDistance
-        index: 30
+        index: 51
       - nameId: smoothness
-        index: 31
+        index: 34
       - nameId: metallic
-        index: 32
+        index: 36
+      - nameId: normalScale
+        index: 35
       - nameId: baseColorMap
-        index: 47
+        index: 37
+      - nameId: normalMap
+        index: 33
       params:
       - nameId: sortPriority
         index: 0
@@ -2479,6 +2521,8 @@ MonoBehaviour:
   - {fileID: 8926484042661614658}
   - {fileID: 8926484042661614694}
   - {fileID: 8926484042661614674}
+  - {fileID: 8926484042661614708}
+  - {fileID: 8926484042661614709}
   m_OutputSlots: []
   m_Label: 
   m_Data: {fileID: 8926484042661614568}
@@ -2512,7 +2556,7 @@ MonoBehaviour:
   multiplyThicknessWithAlpha: 0
   useBaseColorMap: 2
   useMaskMap: 0
-  useNormalMap: 0
+  useNormalMap: 1
   useEmissiveMap: 0
   colorMode: 1
   useEmissive: 0
@@ -3454,6 +3498,94 @@ MonoBehaviour:
       m_Max: Infinity
       m_Tooltip: Sets the drag coefficient. Higher drag leads to a stronger force
         influence over the particle velocity.
+      m_Regex: 
+      m_RegexMaxLength: 0
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661614708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a331b1d86cc8d4aa106ccbe0da5852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661614708}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661614657}
+    m_Value:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: 
+    m_Space: 2147483647
+  m_Property:
+    name: normalMap
+    m_serializedType:
+      m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    attributes:
+    - m_Type: 3
+      m_Min: -Infinity
+      m_Max: Infinity
+      m_Tooltip: Specifies the Normal map to obtain normals in tangent space for
+        the particle.
+      m_Regex: 
+      m_RegexMaxLength: 0
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661614709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661614709}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661614657}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 1
+    m_Space: 2147483647
+  m_Property:
+    name: normalScale
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+    attributes:
+    - m_Type: 0
+      m_Min: 0
+      m_Max: 2
+      m_Tooltip: 
+      m_Regex: 
+      m_RegexMaxLength: 0
+    - m_Type: 3
+      m_Min: -Infinity
+      m_Max: Infinity
+      m_Tooltip: Sets the scale of the normals. Larger values increase the impact
+        of the normals.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
