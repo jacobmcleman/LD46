@@ -50,7 +50,7 @@ public class Projectile : MonoBehavoiur
     private void OnHitSomething(GameObject other, Vector3 hitPoint)
     {
         // At point of writing, assuming object has TakeDamage method that 
-        // triggers sound and other things.
+        // triggers sound and other things
         bool isDead = other.TakeDamage(this, hitPoint, projectileDamage);
         if (isDead)
         {
