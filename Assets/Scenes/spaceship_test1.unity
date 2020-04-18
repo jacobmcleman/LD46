@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -21072,6 +21072,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2046305889}
+  - component: {fileID: 2046305892}
   - component: {fileID: 2046305888}
   - component: {fileID: 2046305887}
   - component: {fileID: 2046305890}
@@ -21129,7 +21130,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -21229,7 +21230,7 @@ MonoBehaviour:
     m_Anamorphism: 0
   flipYMode: 0
   fullscreenPassthrough: 0
-  allowDynamicResolution: 0
+  allowDynamicResolution: 1
   customRenderingSettings: 0
   invertFaceCulling: 0
   probeLayerMask:
@@ -21272,6 +21273,15 @@ MonoBehaviour:
   forwardWeight: 1
   forwardDistanceAhead: 0.5
   shipPositionWeight: 1
+--- !u!45 &2046305892
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046305886}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100008, guid: 46f48e5f14eff41f9add98c2a52817b5, type: 3}
 --- !u!1 &2063454772
 GameObject:
   m_ObjectHideFlags: 0
