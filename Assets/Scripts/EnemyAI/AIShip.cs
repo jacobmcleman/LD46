@@ -24,12 +24,13 @@ public class AIShip : MonoBehaviour
     public float yawSlowDown = 480;
 
     public bool doCollisionAvoidance = true;
-    public float lookAheadTime = 3.0f;
-    public float castRadius = 5.0f;
+    public float lookAheadTime = 4.0f;
+    public float castRadius = 6.0f;
 
-    public float safeDistanceValue = 1.0f;
-    public float onTargetValue = 1.0f;
+    public float safeDistanceValue = 2.0f;
+    public float onTargetValue = 10.0f;
     public float minimalSteerValue = 1.0f;
+    public float targetProxValue = 3.0f;
 
     public Vector3 TargetPosition
     {
@@ -89,9 +90,14 @@ public class AIShip : MonoBehaviour
 
     private Vector3 LookAheadCheck(Vector3 desiredForward)
     {
+        //if (TestPotentialPath(desiredForward) > shipControls.ForwardSpeed * lookAheadTime) return desiredForward;
+
         List<KeyValuePair<Vector3, float>> solutionScores = new List<KeyValuePair<Vector3, float>>();
         // Take a look at a few possibilities for where the ship could be in a few seconds
-        DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        DoSolutionScoring(desiredForward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        //DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        //DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
@@ -133,9 +139,11 @@ public class AIShip : MonoBehaviour
         float collisionDistance = TestPotentialPath(testVel);
         float closenessToDesiredDirection = -Vector3.Dot(testVel, desiredDirection);
         float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
+        float targetProx = -Vector3.Distance(transform.position + lookAheadTime * testVel, targetPosition) / 1000;
 
         return (closenessToDesiredDirection * onTargetValue) 
             + (collisionDistance * safeDistanceValue)
+            + (targetProx * targetProxValue)
             + (steeringEffort * minimalSteerValue);
     }
 
