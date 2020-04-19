@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealth
+public class WhaleHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
 
@@ -14,9 +14,10 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
-        if (team == attackerTeam) 
-        {
+        Debug.Log("HIT :: WhaleHealth");
+        if (team == attackerTeam) {
             // Friendly fire
+            Debug.Log("Friendly Hit :: WhaleHealth");
             return true;
         }
         if (health - damage <= 0)
