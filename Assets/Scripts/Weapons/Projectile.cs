@@ -7,6 +7,25 @@ using UnityEngine;
  */
 public class Projectile : MonoBehaviour
 {
+    public Vector3 direction;
+    public float Timeout = 30;
+    public float persistAfterHitTime = 1.0f;
+    public float speed = 150;
+    private bool _hasHit = false;
+    public bool hasHit
+    {
+        get => _hasHit;
+    }
+    public float projectileDamage;
+    private Teams _team = Teams.playerTeam;
+    public Teams team
+    {
+        get => _team;
+        set
+        {
+            _team = team;
+        }
+    }
     private void Start()
     {
         // Projectile should only live for timeout seconds
@@ -55,8 +74,12 @@ public class Projectile : MonoBehaviour
     {
         // At point of writing, assuming object has TakeDamage method that 
         // triggers sound and other things.
-        // bool isDead = other.TakeDamage(this, hitPoint, projectileDamage);
         bool isDead = false;
+        IHealth health = other.GetComponent<IHealth>();
+        if(health != null)
+        {
+            isDead = health.TakeDamage(projectileDamage, team);
+        }
         if (isDead)
         {
             Debug.Log("Target Destroyed");
@@ -67,15 +90,4 @@ public class Projectile : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
         Destroy(gameObject, persistAfterHitTime);
     }
-    // public IWeapon shooter;
-    public Vector3 direction;
-    public float Timeout = 30;
-    public float persistAfterHitTime = 1.0f;
-    public float speed = 150;
-    private bool _hasHit = false;
-    public bool hasHit
-    {
-        get => _hasHit;
-    }
-    public float projectileDamage;
 }
