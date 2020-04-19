@@ -12,31 +12,40 @@ public class AIAttackState : MonoBehaviour
 
     private float attackRange = 300f;
 
+    private AIShip shipAI;
+
     void Start() // set ship to start with Whale as target
     {
         whalePosition = GameObject.FindGameObjectWithTag("Whale").transform; 
-        GetComponent<AIShip>().TargetPosition = whalePosition.position;
+        shipAI = GetComponent<AIShip>();
+        shipAI.TargetPosition = whalePosition.position;
     }
 
     void Update()
     {
         whalePosition = GameObject.FindGameObjectWithTag("Whale").transform; //find Whale position
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
-        GetComponent<AIShip>().TargetPosition = whalePosition.position; //target Whale's postion
 
-        Debug.Log("whalePosition" + whalePosition.position);
+        float dist = Vector3.Distance(transform.position,playerPosition.position); //check distance from this Enemy to Player
 
-        float dist = Vector3.Distance(whalePosition.position,playerPosition.position); //check distance from AI Ship to Player
-
+        Debug.Log("dist from enemy to player" + dist);
 
         if (dist < attackRange) // pursue player instead of Whale
         {
-            GetComponent<AIShip>().TargetPosition = playerPosition.position;
+            //GetComponent<AIShip>().TargetPosition = playerPosition.position;
+            shipAI.TargetPosition = GetFollowPosition(playerPosition, 30);
+            shipAI.ApproachDirection = playerPosition.forward;
         }
         else
         {
-            GetComponent<AIShip>().TargetPosition = whalePosition.position;
-
+            //GetComponent<AIShip>().TargetPosition = whalePosition.position;
+            shipAI.TargetPosition = GetFollowPosition(whalePosition, 30);
+            shipAI.ApproachDirection = whalePosition.forward;
         }
+    }
+
+    private Vector3 GetFollowPosition(Transform target, float followDistance)
+    {
+        return target.position + (-target.forward * followDistance);
     }
 }

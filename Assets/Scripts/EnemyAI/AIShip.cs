@@ -78,13 +78,13 @@ public class AIShip : MonoBehaviour
         Vector3 realTargetPos = targetPosition;
 
         // Approach vector is normalized or zero, this is a quick check to see which it is
-        //if (approachDirection.sqrMagnitude > 0.1f)
-        //{
-        //    if (Vector3.Dot(approachDirection, toTarget) < (1 - acceptableApproachDirError))
-        //    {
-        //        realTargetPos = targetPosition - (distanceToTarget * approachDirection);
-        //    }
-        //}
+        if (approachDirection.sqrMagnitude > 0.1f)
+        {
+            if (Vector3.Dot(approachDirection, toTarget) < (1 - acceptableApproachDirError))
+            {
+                realTargetPos = targetPosition - (distanceToTarget * approachDirection);
+            }
+        }
 
         return Vector3.Normalize(realTargetPos - transform.position);
     }
