@@ -54,7 +54,7 @@ public class Targeting : MonoBehaviour
 
     private Transform GetNextTarget()
     {
-        if (enemyIndex < enemies.Length) { enemyIndex++; }
+        if (enemyIndex < enemies.Length - 1) { enemyIndex++; }
         else { enemyIndex = 0; }
 
         return enemies[enemyIndex].transform;
