@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5205907624439822301}
   - component: {fileID: 5205907624439822302}
   - component: {fileID: 855317569644099482}
+  - component: {fileID: 479608131559658001}
   m_Layer: 0
   m_Name: AI_Ship
   m_TagString: Untagged
@@ -111,6 +112,7 @@ MonoBehaviour:
   safeDistanceValue: 1
   onTargetValue: 1
   minimalSteerValue: 1
+  targetProxValue: 3
 --- !u!114 &855317569644099482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +125,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89f09363767eb146a9cde1aeba44ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  seekPoint: {fileID: 0}
+  whalePosition: {fileID: 0}
+  playerPostion: {fileID: 0}
+--- !u!114 &479608131559658001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5205907624439822288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84260b68e96f2ba42b941247a14a0759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MaxHealth: 100
+  resourceDrop: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
+    type: 3}
 --- !u!1 &5205907624518343071
 GameObject:
   m_ObjectHideFlags: 0

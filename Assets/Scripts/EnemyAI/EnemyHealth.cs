@@ -12,6 +12,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     private float health;
 
+    public GameObject resourceDrop;
+
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
         if (team == attackerTeam) 
@@ -25,6 +27,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
         {
             Debug.Log("Dead Hit :: EnemyHealth");
             //Die
+            Instantiate(resourceDrop, transform.position, transform.rotation);
+            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Enemies.Remove(gameObject); //Remove enemy from enemies list so spawner knows it ded
             Destroy(gameObject);
             return true;
         }
