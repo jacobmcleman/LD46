@@ -21,6 +21,7 @@ public class WhaleFollow : MonoBehaviour
     private bool coroutineAllowed;
 
     public float speedModifier;
+    public float turnRate = .01f;
 
     //Prepare to fly
     void Start ()
@@ -48,7 +49,7 @@ public class WhaleFollow : MonoBehaviour
         //Disable extra coroutine calls
         coroutineAllowed = false;
         //Increment through the curve positions
-        while (tParam < 1)
+        while (tParam <= 1)
         {
             //Set speed
             tParam += Time.deltaTime * speedModifier;
@@ -58,6 +59,9 @@ public class WhaleFollow : MonoBehaviour
             3 * (1 - tParam) * Mathf.Pow(tParam, 2) * routes[routeNumber].GetChild(2).position +
             Mathf.Pow(tParam, 3) * routes[routeNumber].GetChild(3).position;
             //Set position and wait for next tick
+            Vector3 targetDir = whalePosition - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, turnRate, 10f);
+            transform.rotation = Quaternion.LookRotation(newDir);
             transform.position = whalePosition;
             yield return new WaitForEndOfFrame();
         }
