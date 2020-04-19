@@ -8,27 +8,28 @@ public class EnemyFighter : MonoBehaviour
     public enum EnemyState {Patrol, Chase, Attack}
     public EnemyState currentState;
 
-    private Vector3 currentPosition;
-    public Vector3 distanceToWhale;
-
+    public Transform seekPoint;
+    
     void Start()
     {
-        currentPosition = transform.position;
+        GetComponent<AIShip>().TargetPosition = seekPoint.position;
+        CurrentPosition = transform.position;
         distanceToWhale = Vector3.zero;
     }
 
     void Update()
     {
+        GetComponent<AIShip>().TargetPosition = seekPoint.position;
         switch (currentState)
         {
-            case EnemyState.Patrol: // Generic move around
+            case EnemyState.Patrol: // Generic move around, move at whale at slow but random speed
             {
-                //TODO: go based on randomized values with SpaceshipController
-                break;
+                    
+                    break;
             }
             case EnemyState.Chase: // Follow Whale
             {
-/*                if (target == null) // resets state if player or whale is out of range
+                if (InRange()) // resets state if player or whale is out of range
                 {
                     currentState = EnemyState.Patrol;
                     return;
@@ -41,6 +42,8 @@ public class EnemyFighter : MonoBehaviour
                 //TODO: attack using projectile and machine guns
                 break;
             }
+            default:
+            { break; }
         }
     }
 }
