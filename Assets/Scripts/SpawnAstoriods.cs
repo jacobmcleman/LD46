@@ -70,6 +70,8 @@ public class SpawnAstoriods : MonoBehaviour
                 SpawnAsteriod(point);
             }
         }
+
+        Debug.Log("Spawned " + Asteriods.Count + " asteriods");
     }
 
     void SpawnAsteriod(Vector3 point)
@@ -79,5 +81,6 @@ public class SpawnAstoriods : MonoBehaviour
         GameObject roid = Instantiate(AsteroidPrefabs[prefabIndex], point, randRotate);
         roid.transform.parent = this.transform;
         Asteriods.Add(roid);
+        Avoids.Add(roid.transform);
     }
 }
