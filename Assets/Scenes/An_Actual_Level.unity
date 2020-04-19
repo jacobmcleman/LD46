@@ -4670,7 +4670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon1: {fileID: 287460788}
-  weapon2: {fileID: 0}
+  weapon2: {fileID: 296064645}
 --- !u!114 &1885469766
 MonoBehaviour:
   m_ObjectHideFlags: 0
