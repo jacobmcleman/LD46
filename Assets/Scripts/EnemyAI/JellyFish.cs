@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemies : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
-    public GameObject[] EnemyPrefabs;
-    public int[] Waves;
-
     // Start is called before the first frame update
     void Start()
     {
