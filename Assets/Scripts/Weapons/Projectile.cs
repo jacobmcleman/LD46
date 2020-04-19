@@ -72,12 +72,14 @@ public class Projectile : MonoBehaviour
      */
     private void OnHitSomething(GameObject other, Vector3 hitPoint)
     {
+        Debug.Log("HIT");
         // At point of writing, assuming object has TakeDamage method that 
         // triggers sound and other things.
         bool isDead = false;
         IHealth health = other.GetComponent<IHealth>();
         if(health != null)
         {
+            Debug.Log("takin damag");
             isDead = health.TakeDamage(projectileDamage, team);
         }
         if (isDead)

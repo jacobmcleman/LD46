@@ -3153,6 +3153,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327863583}
   m_CullTransparentMesh: 0
+--- !u!1 &1365683163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6698890646241457336, guid: a22537addfdf44c4096580b86233cfb6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1779918432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365683165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365683163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 7832407414506477246, guid: 7fcd69e795cbb2b4d9dd009ca1a75c34,
+    type: 3}
+  cooldownTime: 0.25
 --- !u!1 &1391045247
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,6 +4599,7 @@ GameObject:
   - component: {fileID: 1885469762}
   - component: {fileID: 1885469763}
   - component: {fileID: 1885469764}
+  - component: {fileID: 1885469765}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -4698,6 +4720,19 @@ MonoBehaviour:
     type: 3}
   Whale: {fileID: 0}
   regurgitateCooldown: 0.7
+--- !u!114 &1885469765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885469758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon1: {fileID: 1365683163}
 --- !u!1 &1946204207
 GameObject:
   m_ObjectHideFlags: 0
