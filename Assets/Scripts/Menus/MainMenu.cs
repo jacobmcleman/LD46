@@ -91,11 +91,14 @@ public class MainMenu : MonoBehaviour
         //Disable all current menu items
         foreach (Transform t in GameObject.Find("Canvas").transform)
         {
-            t.gameObject.SetActive(false);
+            if (t.gameObject.name != "background_image")
+            {
+                t.gameObject.SetActive(false);
+            }
+          
         }
         //Enable the new one
         menu.SetActive(true);
-        Debug.Log(menu.gameObject.name);
         //If its the base menu scene, upate the sub header with the whale name
         if (menu.gameObject.name == "BaseMenu")
         {
