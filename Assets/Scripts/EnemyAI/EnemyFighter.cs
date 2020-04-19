@@ -2,17 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship : MonoBehaviour
+[RequireComponent(typeof(SpaceshipController))]
+public class EnemyFighter : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public enum EnemyState {Patrol, Chase, Attack}
+    public EnemyState currentState;
+
+    private Vector3 currentPosition;
+    public Vector3 DistanceToWhale(){}
+
     void Start()
     {
-        
+        currentPosition = transform.position;
+        distanceToWhale = Vector3.zero;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        switch (currentState)
+        {
+            case EnemyState.Patrol: // Generic move around
+            {
+                //TODO: go based on randomized values with SpaceshipController
+            }
+            case EnemyState.Chase: // Follow Whale
+            {
+                if (target == null) // resets state if player or whale is out of range
+                {
+                    currentState = EnemyState.Patrol;
+                    return;
+                }
+                
+            }
+            case EnemyState.Attack: // Attack Fighter
+            {
+                //TODO: attack using projectile and machine guns
+            }
+        }
     }
 }
