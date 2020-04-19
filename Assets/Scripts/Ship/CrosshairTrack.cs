@@ -36,18 +36,20 @@ public class CrosshairTrack : MonoBehaviour
      */
     private void RotateToCrosshair()
     {
+        Vector2 canvasPoint = mouseUI.GetComponent<Transform>().position;
+        Debug.LogFormat("Mouse at {0}", canvasPoint);
+        Vector3 screenPoint = new Vector3(canvasPoint.x, canvasPoint.y, 1);
+        Vector3 toHitPoint = camera.transform.position - camera.ScreenToWorldPoint(screenPoint);
+        //Debug.Log(toHitPoint);
+
         RaycastHit hit;
+        if (Physics.Raycast(camera.transform.position, toHitPoint, out hit, maxWeaponAimAdjustRange, ~(1 << 9)))
+        {
+            Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
+            toHitPoint = (hit.point - gameObject.transform.position).normalized;
+        }
+        Debug.Log(toHitPoint);
 
-        Vector3 forward = stick.RotationEulers;
-        Vector3 toHitPoint = stick.RotationEulers;
-
-        // if(Physics.Raycast(gameObject.transform.position, forward, out hit, maxWeaponAimAdjustRange, ~(1 << 9)))
-        // {
-        //     toHitPoint = (hit.point - gameObject.transform.position).normalized;
-        // }
-        // Debug.Log(toHitPoint);
-        Vector3 screenPoint = mouseUI.GetComponent<RectTransform>().anchoredPosition;
-        toHitPoint = camera.transform.position - camera.ScreenToWorldPoint(screenPoint);
-        gameObject.transform.forward = toHitPoint;
+        gameObject.transform.forward = -toHitPoint;
     }
 }
