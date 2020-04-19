@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptableApproachDirError: 0.2
-  largeDeflectionThreshold: 0
+  largeDeflectionThreshold: 45
   acceptableRollWindow: 25
   rollAttack: 30
   pitchAttack: 20
@@ -106,12 +106,13 @@ MonoBehaviour:
   rollSlowDown: 180
   pitchSlowDown: 90
   yawSlowDown: 240
+  magicThreshold: 0.1
   doCollisionAvoidance: 1
-  lookAheadTime: 5
-  castRadius: 5
-  safeDistanceValue: 1
-  onTargetValue: 1
-  minimalSteerValue: 1
+  lookAheadTime: 4
+  castRadius: 6
+  safeDistanceValue: 2
+  onTargetValue: 10
+  minimalSteerValue: 0
   targetProxValue: 3
 --- !u!114 &855317569644099482
 MonoBehaviour:
