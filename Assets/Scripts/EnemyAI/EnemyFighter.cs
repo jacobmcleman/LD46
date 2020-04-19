@@ -24,7 +24,7 @@ public class EnemyFighter : MonoBehaviour
         playerPostion = GameObject.FindGameObjectWithTag("Player").transform;
         GetComponent<AIShip>().TargetPosition = whalePosition.position; //target Whale's postion
 
-        Debug.Log("whalePosition" + whalePosition.position);
+        //Debug.Log("whalePosition" + whalePosition.position);
 
         float dist = Vector3.Distance(whalePosition.position,playerPostion.position); //check distance from AI Ship to Player
 
