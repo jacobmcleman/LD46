@@ -2,25 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealth
+public class EnemyHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
 
     public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
     public float Health { get { return health; } }
+    public Teams team { get { return Teams.enemyTeam; } }
 
     private float health;
 
-    public void TakeDamage(float damage)
+    public GameObject resourceDrop;
+
+    public bool TakeDamage(float damage, Teams attackerTeam)
     {
+        if (team == attackerTeam) 
+        {
+            Debug.Log("Friendly Hit :: EnemyHealth");
+
+            // Friendly fire
+            return false;
+        }
         if (health - damage <= 0)
         {
+            Debug.Log("Dead Hit :: EnemyHealth");
             //Die
+            Instantiate(resourceDrop, transform.position, transform.rotation);
+            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Enemies.Remove(gameObject); //Remove enemy from enemies list so spawner knows it ded
             Destroy(gameObject);
+            return true;
         }
         else
         {
+            Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
+            return false;
         }
     }
 
