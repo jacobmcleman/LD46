@@ -42,6 +42,7 @@ public class Projectile : MonoBehaviour
             out hit, distance, ~0, QueryTriggerInteraction.Ignore))
         {
             OnHitSomething(hit.transform.gameObject, hit.point);
+            Debug.Log("HIT");
             return true;
         }
         return false;
@@ -61,7 +62,7 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Target Destroyed");
         }
-        _speed = 0;
+        speed = 0;
         _hasHit = true;
         this.transform.position = hitPoint;
         GetComponent<MeshRenderer>().enabled = false;
@@ -71,11 +72,7 @@ public class Projectile : MonoBehaviour
     public Vector3 direction;
     public float Timeout = 30;
     public float persistAfterHitTime = 1.0f;
-    private float _speed;
-    public float speed
-    {
-        get => _speed;
-    }
+    public float speed = 150;
     private bool _hasHit = false;
     public bool hasHit
     {
