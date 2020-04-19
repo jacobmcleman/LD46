@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] EnemyPrefabs;
+    public int[] Waves;
+
     void Start()
     {
-        
+        if (EnemyPrefabs.Length == 0)
+        {
+            Debug.LogError("There are no Enemy Prefabs dummy");
+        }
     }
 
     // Update is called once per frame
