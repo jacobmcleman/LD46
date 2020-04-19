@@ -19,7 +19,6 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     {
         if (Input.GetButton("Fire1"))
         {
-            Debug.Log("letsago");
             Fire(this);
         }
         

@@ -42,7 +42,6 @@ public class Projectile : MonoBehaviour
             out hit, distance, ~0, QueryTriggerInteraction.Ignore))
         {
             OnHitSomething(hit.transform.gameObject, hit.point);
-            Debug.Log("HIT");
             return true;
         }
         return false;
