@@ -69,6 +69,11 @@ public class SpaceshipController : MonoBehaviour
         get { return Vector3.Dot(velocity, transform.forward); }
     }
 
+    public Vector3 Velocity
+    {
+        get { return velocity; }
+    }
+
     private void Awake()
     {
         DoDumbConfigChecks();
