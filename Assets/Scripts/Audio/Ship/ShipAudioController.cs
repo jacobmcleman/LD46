@@ -43,7 +43,7 @@ public class ShipAudioController : MonoBehaviour
             max = 0.07f;
         }
         //Set the max power track volume equal to our current max speed percentage (divided by 2 because was too loud)
-        maxSrc.volume = max / 2;
+        maxSrc.volume = max;
         //Set the idle track equal volume equal to remaining potential speed (divded by 2 because was too loud)
         idleSrc.volume = 1f - (max / 2);
     }
