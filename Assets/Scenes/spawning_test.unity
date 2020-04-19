@@ -1459,7 +1459,7 @@ Transform:
   m_LocalScale: {x: 12.249999, y: 16.929895, z: 13.903827}
   m_Children: []
   m_Father: {fileID: 490435692}
-  m_RootOrder: 40
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &196917887
 BoxCollider:
@@ -2017,7 +2017,7 @@ Transform:
   m_LocalScale: {x: 12.25, y: 23.365545, z: 10.452}
   m_Children: []
   m_Father: {fileID: 490435692}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &223678698
 BoxCollider:
@@ -3293,7 +3293,7 @@ Transform:
   m_LocalScale: {x: 12.25, y: 23.365545, z: 10.452}
   m_Children: []
   m_Father: {fileID: 490435692}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &331796093
 BoxCollider:
@@ -4895,10 +4895,10 @@ Transform:
   - {fileID: 652415260}
   - {fileID: 1059236035}
   - {fileID: 525604340}
+  - {fileID: 196917886}
   - {fileID: 2016944109}
   - {fileID: 223678697}
   - {fileID: 331796092}
-  - {fileID: 196917886}
   - {fileID: 552246742}
   - {fileID: 130061324}
   - {fileID: 856398678}
@@ -9410,9 +9410,10 @@ GameObject:
   - component: {fileID: 959693804}
   - component: {fileID: 959693803}
   - component: {fileID: 959693806}
+  - component: {fileID: 959693807}
   m_Layer: 0
   m_Name: DUDER
-  m_TagString: Untagged
+  m_TagString: Whale
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9507,7 +9508,21 @@ MonoBehaviour:
   routes:
   - {fileID: 407794992}
   - {fileID: 1185707383}
-  speedModifier: 0.05
+  speedModifier: 0.5
+--- !u!114 &959693807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959693801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61676c9559a70cd4cb73814d6ac45211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxOrganics: 100
+  MaxMechanicals: 100
 --- !u!1 &959870852
 GameObject:
   m_ObjectHideFlags: 0
@@ -19016,6 +19031,59 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740837497}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1754360127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754360129}
+  - component: {fileID: 1754360128}
+  m_Layer: 0
+  m_Name: SpawnerBoi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1754360128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754360127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AsteroidPrefabs:
+  - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
+  MaxAsteriods: 1000
+  avoidDistance: 25
+  MapXMin: -1000
+  MapXMax: 1000
+  MapYMin: -1000
+  MapYMax: 1000
+  MapZMin: -1000
+  MapZMax: 1000
+--- !u!4 &1754360129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754360127}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 89.653824, y: 222.86266, z: 212.3344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765479811
 GameObject:
   m_ObjectHideFlags: 0
@@ -20661,7 +20729,6 @@ GameObject:
   - component: {fileID: 1885469760}
   - component: {fileID: 1885469759}
   - component: {fileID: 1885469762}
-  - component: {fileID: 1885469763}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -20694,6 +20761,11 @@ MonoBehaviour:
   yawDelta: 10
   rollDelta: 100
   steerGravity: 0.1
+  mouseSensitivity: 0.05
+  throttleIndicator: {fileID: 726751843}
+  speedIndicator: {fileID: 1211028274}
+  speedText: {fileID: 818531366}
+  mouseUI: {fileID: 1327863583}
 --- !u!54 &1885469760
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20706,7 +20778,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.3
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -20745,23 +20817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHealth: 100
---- !u!114 &1885469763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885469758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ea7520f7b87eb4ca36b8599af354db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throttleIndicator: {fileID: 726751843}
-  speedIndicator: {fileID: 1211028274}
-  speedText: {fileID: 818531366}
-  mouseUI: {fileID: 1327863583}
-  mouseSensitivity: 0.01
 --- !u!1 &1888708769
 GameObject:
   m_ObjectHideFlags: 0
@@ -22657,7 +22712,7 @@ Transform:
   m_LocalScale: {x: 12.249999, y: 16.929895, z: 13.903827}
   m_Children: []
   m_Father: {fileID: 490435692}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2016944110
 BoxCollider:
