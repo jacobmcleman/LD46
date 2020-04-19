@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Ship
+public struct ShipStats
 {
     public float health;
     public float speed; // velocity meters per second
