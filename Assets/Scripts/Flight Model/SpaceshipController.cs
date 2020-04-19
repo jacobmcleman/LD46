@@ -35,14 +35,10 @@ public class SpaceshipController : MonoBehaviour
 
     private float curPitch;
     private float curYaw;
-    public float rollTimeConstant = 2; // seconds
-    /** modifier for instantatneous roll */
-    public float instantaneousRollThrust; 
 
     private Vector3 velocity;
 
     private Rigidbody rb;
-    private float instantaneousThrustModifier = 0;
 
     public UnityEngine.UI.Slider throttleIndicator;
     public UnityEngine.UI.Slider speedIndicator;
@@ -137,21 +133,12 @@ public class SpaceshipController : MonoBehaviour
         pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (curPitch * pitchDelta)), -maxPitchRate, maxPitchRate);
         yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (curYaw * yawDelta)), -maxYawRate, maxYawRate);
         rollRate = Mathf.Clamp((1 - steerGravity) * (rollRate + (curRoll * rollDelta)), -maxRollRate, maxRollRate);
-        if (rollRate > 1e-10) {
-        // if (false) {
-            instantaneousThrustModifier =  instantaneousRollThrust * (1 - Mathf.Abs((rollRate - instantaneousThrustModifier)/maxRollRate));
-            Debug.Log(instantaneousThrustModifier);
-        } else {
-            instantaneousThrustModifier = 0;
-        }
-        // Debug.Log(instantaneousThrustModifier);
 
         float yawChange = Time.deltaTime * yawRate;
         float pitchChange = Time.deltaTime * pitchRate;
         float rollChange = Time.deltaTime * -rollRate;
 
-        Vector3 rotationEulers = new Vector3(pitchChange, yawChange, 
-            rollChange + instantaneousThrustModifier);
+        Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
 
         transform.Rotate(rotationEulers, Space.Self);
     }
