@@ -436,6 +436,7 @@ MonoBehaviour:
   safeDistanceValue: 2
   onTargetValue: 1
   minimalSteerValue: 1
+  targetProxValue: 3
 --- !u!114 &113001468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4453,7 +4454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7832407414506477246, guid: 7fcd69e795cbb2b4d9dd009ca1a75c34,
+  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
     type: 3}
   cooldownTime: 0.25
 --- !u!1 &1374786840
