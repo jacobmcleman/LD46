@@ -53,7 +53,7 @@ public class SceneController : MonoBehaviour
     {
         ChangeScene("Intro");
         MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
+        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
     }
 
     //Go to the winner screen
