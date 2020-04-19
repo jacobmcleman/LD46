@@ -170,9 +170,14 @@ public class AIShip : MonoBehaviour
         {
             // For significany deflections the ship should roll to allow the maneuver to be completed with pitch
             Vector3 currentUp = transform.up;
-            Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward).normalized;
+            Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward);
+            float neededRollAngle = 0;
+            if(desiredRollUp.sqrMagnitude > 1 * Time.deltaTime)
+            {
+                desiredRollUp.Normalize();
+                neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
+            }
 
-            float neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
             roll = -1 * neededRollAngle / rollAttack;
             throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
 
