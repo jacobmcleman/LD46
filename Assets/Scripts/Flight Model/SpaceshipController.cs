@@ -99,6 +99,7 @@ public class SpaceshipController : MonoBehaviour
 
     private void HandleVelocity()
     {
+        float oldThrottle = throttleValue;
         throttleValue += throttleInput * Time.deltaTime * throttleChangeRate;
         throttleValue = Mathf.Clamp01(throttleValue);
 
