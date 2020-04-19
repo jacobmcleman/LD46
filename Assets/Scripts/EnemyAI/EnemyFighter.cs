@@ -13,8 +13,8 @@ public class EnemyFighter : MonoBehaviour
     void Start()
     {
         GetComponent<AIShip>().TargetPosition = seekPoint.position;
-        CurrentPosition = transform.position;
-        distanceToWhale = Vector3.zero;
+        //CurrentPosition = transform.position;
+        //distanceToWhale = Vector3.zero;
     }
 
     void Update()
