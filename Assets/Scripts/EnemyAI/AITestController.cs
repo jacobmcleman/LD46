@@ -11,4 +11,9 @@ public class AITestController : MonoBehaviour
     {
         GetComponent<AIShip>().TargetPosition = seekPoint.position;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(seekPoint.position, 1.0f);
+    }
 }
