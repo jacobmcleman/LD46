@@ -2,45 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpaceshipController))]
+[RequireComponent(typeof(AIShip))]
 public class EnemyFighter : MonoBehaviour
 {
-    public enum EnemyState {Patrol, Chase, Attack}
-    public EnemyState currentState;
+//    public enum EnemyState {Patrol, Chase, Attack}
+//    public EnemyState currentState;
+    public Transform whalePosition;
+    public Transform playerPostion;
+   
+    bool attackPlayer;
 
-    private Vector3 currentPosition;
-    public Vector3 distanceToWhale;
-
-    void Start()
+    void Start() // set ship to start with Whale as target
     {
-        currentPosition = transform.position;
-        distanceToWhale = Vector3.zero;
+        whalePosition = GameObject.FindGameObjectWithTag("Whale").transform; 
+        GetComponent<AIShip>().TargetPosition = whalePosition.position;
     }
 
     void Update()
     {
-        switch (currentState)
+        whalePosition = GameObject.FindGameObjectWithTag("Whale").transform; //find Whale position
+        playerPostion = GameObject.FindGameObjectWithTag("Player").transform;
+        GetComponent<AIShip>().TargetPosition = whalePosition.position; //target Whale's postion
+
+        Debug.Log("whalePosition" + whalePosition.position);
+
+        float dist = Vector3.Distance(whalePosition.position,playerPostion.position); //check distance from AI Ship to Player
+
+
+        if (dist < 200f) // pursue player instead of Whale
         {
-            case EnemyState.Patrol: // Generic move around
-            {
-                //TODO: go based on randomized values with SpaceshipController
-                break;
-            }
-            case EnemyState.Chase: // Follow Whale
-            {
-/*                if (target == null) // resets state if player or whale is out of range
-                {
-                    currentState = EnemyState.Patrol;
-                    return;
-                }
-                */
-                break;
-            }
-            case EnemyState.Attack: // Attack Fighter
-            {
-                //TODO: attack using projectile and machine guns
-                break;
-            }
+            GetComponent<AIShip>().TargetPosition = playerPostion.position;
+            attackPlayer = true;
         }
+        else
+        {
+            attackPlayer = false;
+        }
+
+       
     }
 }

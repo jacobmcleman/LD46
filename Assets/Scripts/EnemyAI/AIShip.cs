@@ -11,7 +11,7 @@ public class AIShip : MonoBehaviour
     private SpaceshipController shipControls;
 
     public float acceptableApproachDirError = 0.2f;
-    public float largeDeflectionThreshold = 0.5f;
+    public float largeDeflectionThreshold = 30.0f;
     public float acceptableRollWindow = 25.0f;
 
     public float rollAttack = 30;
@@ -19,9 +19,18 @@ public class AIShip : MonoBehaviour
     public float yawAttack = 20;
 
     // Amount of desired deflection at which the throttle input with be -1
-    public float rollSlowDown = 180;
-    public float pitchSlowDown = 90;
-    public float yawSlowDown = 240;
+    public float rollSlowDown = 360;
+    public float pitchSlowDown = 180;
+    public float yawSlowDown = 480;
+
+    public bool doCollisionAvoidance = true;
+    public float lookAheadTime = 4.0f;
+    public float castRadius = 6.0f;
+
+    public float safeDistanceValue = 2.0f;
+    public float onTargetValue = 10.0f;
+    public float minimalSteerValue = 1.0f;
+    public float targetProxValue = 3.0f;
 
     public Vector3 TargetPosition
     {
@@ -46,6 +55,19 @@ public class AIShip : MonoBehaviour
 
     private void Update()
     {
+        Vector3 desiredForward = GetIdealDirection();
+        if(doCollisionAvoidance) desiredForward = LookAheadCheck(desiredForward);
+        SteerTowardsDirection(desiredForward);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(targetPosition, 1.0f);
+        Gizmos.DrawRay(targetPosition, -approachDirection);
+    }
+
+    private Vector3 GetIdealDirection()
+    {
         Vector3 toTarget = (targetPosition - transform.position);
         float distanceToTarget = toTarget.magnitude;
         toTarget = toTarget.normalized;
@@ -62,12 +84,82 @@ public class AIShip : MonoBehaviour
             }
         }
 
+
+        return Vector3.Normalize(realTargetPos - transform.position);
+    }
+
+    private Vector3 LookAheadCheck(Vector3 desiredForward)
+    {
+        //if (TestPotentialPath(desiredForward) > shipControls.ForwardSpeed * lookAheadTime) return desiredForward;
+
+        List<KeyValuePair<Vector3, float>> solutionScores = new List<KeyValuePair<Vector3, float>>();
+        // Take a look at a few possibilities for where the ship could be in a few seconds
+        DoSolutionScoring(desiredForward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        //DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        //DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (-transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+
+        // Pick the maximum score
+        float maxScore = float.MinValue;
+        Vector3 bestDirection = desiredForward;
+
+        foreach(KeyValuePair<Vector3, float> solution in solutionScores)
+        {
+            if(solution.Value > maxScore)
+            {
+                maxScore = solution.Value;
+                bestDirection = solution.Key;
+            }
+        }
+
+        return bestDirection;
+    }
+
+    private float TestPotentialPath(Vector3 testVel)
+    {
+        Vector3 toTarget = targetPosition - transform.position;
+
+        float distanceToTarget = toTarget.magnitude;
+        float curSpeed = testVel.magnitude;
+
+        float castLength = Mathf.Min(distanceToTarget, lookAheadTime * curSpeed);
+
+        RaycastHit hit;
+        bool didHit = Physics.SphereCast(transform.position, castRadius, testVel.normalized, out hit, castLength, ~(1 << 9));
+        return didHit ? hit.distance : (castLength + castRadius); // Can't guarantee an option is good beyond as far as we looked
+    }
+
+    private float ScoreSolution(Vector3 testVel, Vector3 desiredDirection)
+    {
+        float collisionDistance = TestPotentialPath(testVel);
+        float closenessToDesiredDirection = -Vector3.Dot(testVel, desiredDirection);
+        float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
+        float targetProx = -Vector3.Distance(transform.position + lookAheadTime * testVel, targetPosition) / 1000;
+
+        return (closenessToDesiredDirection * onTargetValue) 
+            + (collisionDistance * safeDistanceValue)
+            + (targetProx * targetProxValue)
+            + (steeringEffort * minimalSteerValue);
+    }
+
+    private void DoSolutionScoring(Vector3 testVel, Vector3 desiredDirection, ref List<KeyValuePair<Vector3, float>> solutionScores)
+    {
+        solutionScores.Add(new KeyValuePair<Vector3, float>(testVel, ScoreSolution(testVel, desiredDirection)));
+    }
+
+    private void SteerTowardsDirection(Vector3 desiredForward)
+    {
         Vector3 currentForward = transform.forward;
-        Vector3 desiredForward = Vector3.Normalize(realTargetPos - transform.position);
 
         float deflectionAmount = Mathf.Abs(Vector3.Dot(currentForward, desiredForward));
+        float angleFromTarget = Vector3.Angle(currentForward, desiredForward);
 
-        bool isSignificantDeflection = deflectionAmount > largeDeflectionThreshold;
+        bool isSignificantDeflection = angleFromTarget > largeDeflectionThreshold;
 
         float pitch = 0;
         float yaw = 0;
@@ -76,55 +168,39 @@ public class AIShip : MonoBehaviour
 
         if (isSignificantDeflection)
         {
-            Debug.LogFormat("Significant deflection needed ({0})", deflectionAmount);
-
             // For significany deflections the ship should roll to allow the maneuver to be completed with pitch
             Vector3 currentUp = transform.up;
             Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward).normalized;
 
-            float neededRollAngle = Mathf.Sign(Vector3.Dot(currentUp, desiredRollUp)) * Vector3.Angle(currentUp, desiredRollUp);
-            roll = neededRollAngle / rollAttack;
-            throttle -= Mathf.Abs(rollSlowDown / neededRollAngle);
+            float neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
+            roll = -1 * neededRollAngle / rollAttack;
+            throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
 
             if (Mathf.Abs(neededRollAngle) < acceptableRollWindow)
             {
-                Debug.Log("Up direction matched, pitching");
-                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right).normalized;
-                float neededPitchAngle = Mathf.Sign(Vector3.Dot(currentForward, pitchDesForward)) * Vector3.Angle(currentForward, pitchDesForward);
+                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
+                float neededPitchAngle = Vector3.SignedAngle(currentForward, pitchDesForward, transform.right);
                 pitch = neededPitchAngle / pitchAttack;
-                throttle -= Mathf.Abs(pitchSlowDown / neededPitchAngle);
-            }
-            else
-            {
-                Debug.LogFormat("More roll needed, current defletion = {0}", neededRollAngle);
+                throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
             }
         }
         else
         {
-            Debug.Log("Minor adjustments only");
             Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, transform.up);
             Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
 
-            float neededYawAngle = Mathf.Sign(Vector3.Dot(yawDesForward, currentForward)) * Vector3.Angle(yawDesForward, currentForward);
-            float neededPitchAngle = Mathf.Sign(Vector3.Dot(pitchDesForward, currentForward)) * Vector3.Angle(pitchDesForward, currentForward);
+            float neededYawAngle = Vector3.SignedAngle(yawDesForward, currentForward, transform.up);
+            float neededPitchAngle = Vector3.SignedAngle(pitchDesForward, currentForward, transform.right);
 
             pitch = neededPitchAngle / pitchAttack;
             yaw = neededYawAngle / yawAttack;
 
             throttle += 1;
-            throttle -= Mathf.Abs(pitchSlowDown / neededPitchAngle);
-            throttle -= Mathf.Abs(yawSlowDown / neededYawAngle);
+            throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
+            throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
         }
-
-        Debug.LogFormat("AI flight inputs: \nThrottle: {0}\nPitch: {1}\nYaw: {2}\nRoll: {3}", throttle, pitch, yaw, roll);
 
         shipControls.StickInput = new Vector3(pitch, yaw, roll);
         shipControls.ThrottleInput = throttle;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(targetPosition, 1.0f);
-        Gizmos.DrawRay(targetPosition, -approachDirection);
     }
 }

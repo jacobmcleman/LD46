@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IHealth
+public class EnemyHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
 
     public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
     public float Health { get { return health; } }
-    public Teams team { get { return Teams.playerTeam; } }
+    public Teams team { get { return Teams.enemyTeam; } }
 
     private float health;
 
@@ -16,17 +16,21 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         if (team == attackerTeam) 
         {
+            Debug.Log("Friendly Hit :: EnemyHealth");
+
             // Friendly fire
             return true;
         }
         if (health - damage <= 0)
         {
+            Debug.Log("Dead Hit :: EnemyHealth");
             //Die
             Destroy(gameObject);
             return false;
         }
         else
         {
+            Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
             return true;
         }
