@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -204,6 +204,10 @@ public class AIShip : MonoBehaviour
         }
 
         shipControls.StickInput = new Vector3(pitch, yaw, roll);
-        shipControls.ThrottleInput = throttle;
+
+        if(shipControls.Throttle + throttle < maxThrottle)
+        {
+            shipControls.ThrottleInput = throttle;
+        }
     }
 }
