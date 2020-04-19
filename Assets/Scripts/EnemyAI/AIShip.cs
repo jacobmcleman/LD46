@@ -23,6 +23,8 @@ public class AIShip : MonoBehaviour
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
 
+    public float maxThrottle = 1.0f;
+
     public float magicThreshold = 0.1f;
 
     public bool doCollisionAvoidance = true;
@@ -204,6 +206,10 @@ public class AIShip : MonoBehaviour
         }
 
         shipControls.StickInput = new Vector3(pitch, yaw, roll);
-        shipControls.ThrottleInput = throttle;
+
+        if(shipControls.Throttle + throttle < maxThrottle)
+        {
+            shipControls.ThrottleInput = throttle;
+        }
     }
 }
