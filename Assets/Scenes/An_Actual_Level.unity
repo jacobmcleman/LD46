@@ -436,6 +436,7 @@ MonoBehaviour:
   safeDistanceValue: 2
   onTargetValue: 1
   minimalSteerValue: 1
+  targetProxValue: 3
 --- !u!114 &113001468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5939,7 +5940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefabs: []
+  EnemyPrefabs:
+  - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
   AsteroidPrefabs:
   - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
   MaxAsteriods: 300
