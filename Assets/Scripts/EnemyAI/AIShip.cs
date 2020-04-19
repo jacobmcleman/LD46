@@ -23,7 +23,13 @@ public class AIShip : MonoBehaviour
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
 
-    public float lookAheadTime = 5.0f;
+    public bool doCollisionAvoidance = true;
+    public float lookAheadTime = 3.0f;
+    public float castRadius = 5.0f;
+
+    public float safeDistanceValue = 1.0f;
+    public float onTargetValue = 1.0f;
+    public float minimalSteerValue = 1.0f;
 
     public Vector3 TargetPosition
     {
@@ -49,6 +55,7 @@ public class AIShip : MonoBehaviour
     private void Update()
     {
         Vector3 desiredForward = GetIdealDirection();
+        if(doCollisionAvoidance) desiredForward = LookAheadCheck(desiredForward);
         SteerTowardsDirection(desiredForward);
     }
 
@@ -78,6 +85,63 @@ public class AIShip : MonoBehaviour
 
 
         return Vector3.Normalize(realTargetPos - transform.position);
+    }
+
+    private Vector3 LookAheadCheck(Vector3 desiredForward)
+    {
+        List<KeyValuePair<Vector3, float>> solutionScores = new List<KeyValuePair<Vector3, float>>();
+        // Take a look at a few possibilities for where the ship could be in a few seconds
+        DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        DoSolutionScoring(shipControls.Velocity + (-transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+
+        // Pick the maximum score
+        float maxScore = float.MinValue;
+        Vector3 bestDirection = desiredForward;
+
+        foreach(KeyValuePair<Vector3, float> solution in solutionScores)
+        {
+            if(solution.Value > maxScore)
+            {
+                maxScore = solution.Value;
+                bestDirection = solution.Key;
+            }
+        }
+
+        return bestDirection;
+    }
+
+    private float TestPotentialPath(Vector3 testVel)
+    {
+        Vector3 toTarget = targetPosition - transform.position;
+
+        float distanceToTarget = toTarget.magnitude;
+        float curSpeed = testVel.magnitude;
+
+        float castLength = Mathf.Min(distanceToTarget, lookAheadTime * curSpeed);
+
+        RaycastHit hit;
+        bool didHit = Physics.SphereCast(transform.position, castRadius, testVel.normalized, out hit, castLength, ~(1 << 9));
+        return didHit ? hit.distance : (castLength + castRadius); // Can't guarantee an option is good beyond as far as we looked
+    }
+
+    private float ScoreSolution(Vector3 testVel, Vector3 desiredDirection)
+    {
+        float collisionDistance = TestPotentialPath(testVel);
+        float closenessToDesiredDirection = -Vector3.Dot(testVel, desiredDirection);
+        float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
+
+        return (closenessToDesiredDirection * onTargetValue) 
+            + (collisionDistance * safeDistanceValue)
+            + (steeringEffort * minimalSteerValue);
+    }
+
+    private void DoSolutionScoring(Vector3 testVel, Vector3 desiredDirection, ref List<KeyValuePair<Vector3, float>> solutionScores)
+    {
+        solutionScores.Add(new KeyValuePair<Vector3, float>(testVel, ScoreSolution(testVel, desiredDirection)));
     }
 
     private void SteerTowardsDirection(Vector3 desiredForward)
