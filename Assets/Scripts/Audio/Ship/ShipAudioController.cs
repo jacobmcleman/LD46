@@ -35,7 +35,7 @@ public class ShipAudioController : MonoBehaviour
         //Get current speed
         float speed = spaceshipController.ForwardSpeed;
         //Get current percentage of maximum potential speed, and round down to 1f
-        float max = ((speed / (spaceshipController.maxSpeed - spaceshipController.minSpeed)) * 100f)  * 0.01f;
+        float max = spaceshipController.Throttle;
         //Make sure we don't set the levels too low
         if (max < 0.1f)
         {
@@ -51,7 +51,7 @@ public class ShipAudioController : MonoBehaviour
     private void PlayUpDown ()
     {
         //Check if player is currently throttling up with the sound playing
-        if (Input.GetAxis("Throttle") > 0f && !upSrc.isPlaying && !playedUp)
+        if (spaceshipController.ThrottleInput > 0f && !upSrc.isPlaying && !playedUp)
         {
             //Denote that sound has been started
             playedUp = true;
@@ -64,7 +64,7 @@ public class ShipAudioController : MonoBehaviour
             }
         }
         //Check if player is currently throwwling down without the sound playing 
-        else if (Input.GetAxis("Throttle") < 0f && !downSrc.isPlaying && !playedDown)
+        else if (spaceshipController.ThrottleInput < 0f && !downSrc.isPlaying && !playedDown)
         {
             //Denote that sound has been started
             playedDown = true;
@@ -78,7 +78,7 @@ public class ShipAudioController : MonoBehaviour
         
         }
         //Check if player is currently giving no throttle input while a throttle sound is playing
-        else if (Input.GetAxis("Throttle") == 0f && (upSrc.isPlaying || downSrc.isPlaying)) 
+        else if (spaceshipController.ThrottleInput == 0f && (upSrc.isPlaying || downSrc.isPlaying)) 
         {
             //Fade out throttle sounds since no input is being made
             StartCoroutine(FadeOut(upSrc, "up"));
@@ -87,7 +87,7 @@ public class ShipAudioController : MonoBehaviour
         //Check if player is holding down button so we don't loop throttle sounds
         else if (   
             //Check if throttle is maxed out in any direction
-            (Input.GetAxis("Throttle") == 1f  || Input.GetAxis("Throttle") == -1f) && 
+            (spaceshipController.ThrottleInput == 1f  || spaceshipController.ThrottleInput == -1f) && 
             //Wait for the clip to be almost done playing
             (downSrc.time > downSrc.clip.length - 1f) || 
             (upSrc.time > upSrc.clip.length -1f))
