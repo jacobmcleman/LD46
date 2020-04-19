@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5205907624439822302}
   - component: {fileID: 855317569644099482}
   - component: {fileID: 479608131559658001}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AI_Ship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptableApproachDirError: 0.2
-  largeDeflectionThreshold: 0.5
+  largeDeflectionThreshold: 0
   acceptableRollWindow: 25
   rollAttack: 30
   pitchAttack: 20
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 5205907624518343067}
   - component: {fileID: 5205907624518343068}
   - component: {fileID: 5205907624518343069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 5205907624619316124}
   - component: {fileID: 5205907624619316122}
   - component: {fileID: 5205907624619316123}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 5205907624725632707}
   - component: {fileID: 5205907624725632705}
   - component: {fileID: 5205907624725632706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Smokefx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 5205907624834636510}
   - component: {fileID: 5205907624834636511}
   - component: {fileID: 5205907624834636496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 5205907624910590338}
   - component: {fileID: 5205907624910590339}
   - component: {fileID: 5205907624910590340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5205907625190818555}
   - component: {fileID: 5205907625190818554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5205907625253981817}
   - component: {fileID: 5205907625253981816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5205907625260402073}
   - component: {fileID: 5205907625260402072}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trail (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 5205907625299589836}
   - component: {fileID: 5205907625299589837}
   - component: {fileID: 5205907625299589838}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5205907625387235422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 5205907625409005898}
   - component: {fileID: 5205907625409005896}
   - component: {fileID: 5205907625409005897}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 5205907626038236420}
   - component: {fileID: 5205907626038236421}
   - component: {fileID: 5205907626038236422}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1611,7 +1611,7 @@ GameObject:
   - component: {fileID: 5205907626057987914}
   - component: {fileID: 5205907626057987912}
   - component: {fileID: 5205907626057987913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Thruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
