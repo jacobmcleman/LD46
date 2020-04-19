@@ -52,6 +52,7 @@ public class SceneController : MonoBehaviour
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
+        MusicController.instance.PlayBloodSacrificeNextSound();
         StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
     }
 
