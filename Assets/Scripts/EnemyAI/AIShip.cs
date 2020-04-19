@@ -11,7 +11,7 @@ public class AIShip : MonoBehaviour
     private SpaceshipController shipControls;
 
     public float acceptableApproachDirError = 0.2f;
-    public float largeDeflectionThreshold = 0.5f;
+    public float largeDeflectionThreshold = 30.0f;
     public float acceptableRollWindow = 25.0f;
 
     public float rollAttack = 30;
@@ -19,9 +19,9 @@ public class AIShip : MonoBehaviour
     public float yawAttack = 20;
 
     // Amount of desired deflection at which the throttle input with be -1
-    public float rollSlowDown = 180;
-    public float pitchSlowDown = 90;
-    public float yawSlowDown = 240;
+    public float rollSlowDown = 360;
+    public float pitchSlowDown = 180;
+    public float yawSlowDown = 480;
 
     public Vector3 TargetPosition
     {
@@ -66,8 +66,9 @@ public class AIShip : MonoBehaviour
         Vector3 desiredForward = Vector3.Normalize(realTargetPos - transform.position);
 
         float deflectionAmount = Mathf.Abs(Vector3.Dot(currentForward, desiredForward));
+        float angleFromTarget = Vector3.Angle(currentForward, desiredForward);
 
-        bool isSignificantDeflection = deflectionAmount > largeDeflectionThreshold;
+        bool isSignificantDeflection = angleFromTarget > largeDeflectionThreshold;
 
         float pitch = 0;
         float yaw = 0;
@@ -76,44 +77,45 @@ public class AIShip : MonoBehaviour
 
         if (isSignificantDeflection)
         {
-            Debug.LogFormat("Significant deflection needed ({0})", deflectionAmount);
+            Debug.LogFormat("Significant deflection needed ({0})", angleFromTarget);
 
             // For significany deflections the ship should roll to allow the maneuver to be completed with pitch
             Vector3 currentUp = transform.up;
             Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward).normalized;
 
-            float neededRollAngle = Mathf.Sign(Vector3.Dot(currentUp, desiredRollUp)) * Vector3.Angle(currentUp, desiredRollUp);
-            roll = neededRollAngle / rollAttack;
-            throttle -= Mathf.Abs(rollSlowDown / neededRollAngle);
+            float neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
+            roll = -1 * neededRollAngle / rollAttack;
+            throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
 
             if (Mathf.Abs(neededRollAngle) < acceptableRollWindow)
             {
-                Debug.Log("Up direction matched, pitching");
-                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right).normalized;
-                float neededPitchAngle = Mathf.Sign(Vector3.Dot(currentForward, pitchDesForward)) * Vector3.Angle(currentForward, pitchDesForward);
+                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
+                float neededPitchAngle = Vector3.SignedAngle(currentForward, pitchDesForward, transform.right);
+                Debug.LogFormat("Up direction matched, pitch offset: {0}", neededPitchAngle);
                 pitch = neededPitchAngle / pitchAttack;
-                throttle -= Mathf.Abs(pitchSlowDown / neededPitchAngle);
+                throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
             }
             else
             {
-                Debug.LogFormat("More roll needed, current defletion = {0}", neededRollAngle);
+                Debug.LogFormat("More roll needed, current deflection = {0}", neededRollAngle);
             }
         }
         else
         {
-            Debug.Log("Minor adjustments only");
+            Debug.LogFormat("Minor adjustments only ({0})", deflectionAmount);
             Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, transform.up);
             Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
 
-            float neededYawAngle = Mathf.Sign(Vector3.Dot(yawDesForward, currentForward)) * Vector3.Angle(yawDesForward, currentForward);
-            float neededPitchAngle = Mathf.Sign(Vector3.Dot(pitchDesForward, currentForward)) * Vector3.Angle(pitchDesForward, currentForward);
+            float neededYawAngle = Vector3.SignedAngle(yawDesForward, currentForward, transform.up);
+            float neededPitchAngle = Vector3.SignedAngle(pitchDesForward, currentForward, transform.right);
+            Debug.LogFormat("Yaw Error: {0}, Pitch Error: {1}", neededYawAngle, neededPitchAngle);
 
             pitch = neededPitchAngle / pitchAttack;
             yaw = neededYawAngle / yawAttack;
 
             throttle += 1;
-            throttle -= Mathf.Abs(pitchSlowDown / neededPitchAngle);
-            throttle -= Mathf.Abs(yawSlowDown / neededYawAngle);
+            throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
+            throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
         }
 
         Debug.LogFormat("AI flight inputs: \nThrottle: {0}\nPitch: {1}\nYaw: {2}\nRoll: {3}", throttle, pitch, yaw, roll);
