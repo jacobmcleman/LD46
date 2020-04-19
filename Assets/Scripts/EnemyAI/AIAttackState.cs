@@ -10,6 +10,8 @@ public class AIAttackState : MonoBehaviour
     public Transform whalePosition;
     public Transform playerPosition;
 
+    private float attackRange = 300f;
+
     void Start() // set ship to start with Whale as target
     {
         whalePosition = GameObject.FindGameObjectWithTag("Whale").transform; 
@@ -27,7 +29,7 @@ public class AIAttackState : MonoBehaviour
         float dist = Vector3.Distance(whalePosition.position,playerPosition.position); //check distance from AI Ship to Player
 
 
-        if (dist < 200f) // pursue player instead of Whale
+        if (dist < attackRange) // pursue player instead of Whale
         {
             GetComponent<AIShip>().TargetPosition = playerPosition.position;
         }
