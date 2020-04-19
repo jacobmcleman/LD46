@@ -97,8 +97,7 @@ public class AIShip : MonoBehaviour
         // Take a look at a few possibilities for where the ship could be in a few seconds
         DoSolutionScoring(desiredForward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
         //DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        //DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
+        DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
@@ -138,7 +137,7 @@ public class AIShip : MonoBehaviour
     private float ScoreSolution(Vector3 testVel, Vector3 desiredDirection)
     {
         float collisionDistance = TestPotentialPath(testVel);
-        float closenessToDesiredDirection = -Vector3.Dot(testVel, desiredDirection);
+        float closenessToDesiredDirection = Vector3.Dot(testVel, desiredDirection);
         float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
         float targetProx = -Vector3.Distance(transform.position + lookAheadTime * testVel, targetPosition) / 1000;
 
