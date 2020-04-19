@@ -23,6 +23,8 @@ public class AIShip : MonoBehaviour
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
 
+    public float lookAheadTime = 5.0f;
+
     public Vector3 TargetPosition
     {
         get { return targetPosition; }
@@ -46,6 +48,18 @@ public class AIShip : MonoBehaviour
 
     private void Update()
     {
+        Vector3 desiredForward = GetIdealDirection();
+        SteerTowardsDirection(desiredForward);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(targetPosition, 1.0f);
+        Gizmos.DrawRay(targetPosition, -approachDirection);
+    }
+
+    private Vector3 GetIdealDirection()
+    {
         Vector3 toTarget = (targetPosition - transform.position);
         float distanceToTarget = toTarget.magnitude;
         toTarget = toTarget.normalized;
@@ -62,8 +76,13 @@ public class AIShip : MonoBehaviour
             }
         }
 
+
+        return Vector3.Normalize(realTargetPos - transform.position);
+    }
+
+    private void SteerTowardsDirection(Vector3 desiredForward)
+    {
         Vector3 currentForward = transform.forward;
-        Vector3 desiredForward = Vector3.Normalize(realTargetPos - transform.position);
 
         float deflectionAmount = Mathf.Abs(Vector3.Dot(currentForward, desiredForward));
         float angleFromTarget = Vector3.Angle(currentForward, desiredForward);
@@ -77,8 +96,6 @@ public class AIShip : MonoBehaviour
 
         if (isSignificantDeflection)
         {
-            Debug.LogFormat("Significant deflection needed ({0})", angleFromTarget);
-
             // For significany deflections the ship should roll to allow the maneuver to be completed with pitch
             Vector3 currentUp = transform.up;
             Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward).normalized;
@@ -91,24 +108,17 @@ public class AIShip : MonoBehaviour
             {
                 Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
                 float neededPitchAngle = Vector3.SignedAngle(currentForward, pitchDesForward, transform.right);
-                Debug.LogFormat("Up direction matched, pitch offset: {0}", neededPitchAngle);
                 pitch = neededPitchAngle / pitchAttack;
                 throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
-            }
-            else
-            {
-                Debug.LogFormat("More roll needed, current deflection = {0}", neededRollAngle);
             }
         }
         else
         {
-            Debug.LogFormat("Minor adjustments only ({0})", deflectionAmount);
             Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, transform.up);
             Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
 
             float neededYawAngle = Vector3.SignedAngle(yawDesForward, currentForward, transform.up);
             float neededPitchAngle = Vector3.SignedAngle(pitchDesForward, currentForward, transform.right);
-            Debug.LogFormat("Yaw Error: {0}, Pitch Error: {1}", neededYawAngle, neededPitchAngle);
 
             pitch = neededPitchAngle / pitchAttack;
             yaw = neededYawAngle / yawAttack;
@@ -118,15 +128,7 @@ public class AIShip : MonoBehaviour
             throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
         }
 
-        Debug.LogFormat("AI flight inputs: \nThrottle: {0}\nPitch: {1}\nYaw: {2}\nRoll: {3}", throttle, pitch, yaw, roll);
-
         shipControls.StickInput = new Vector3(pitch, yaw, roll);
         shipControls.ThrottleInput = throttle;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(targetPosition, 1.0f);
-        Gizmos.DrawRay(targetPosition, -approachDirection);
     }
 }
