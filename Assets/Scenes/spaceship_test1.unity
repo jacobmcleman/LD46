@@ -20671,7 +20671,6 @@ MonoBehaviour:
   showAdditionalSettings: 0
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
-<<<<<<< HEAD
 --- !u!1 &1954676998
 GameObject:
   m_ObjectHideFlags: 0
@@ -20795,8 +20794,6 @@ Transform:
   m_Father: {fileID: 407794992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
->>>>>>> 6cabe72d2b9f0eea4de2de15e1e25ad9e68bfad8
 --- !u!1 &1966598780
 GameObject:
   m_ObjectHideFlags: 0
