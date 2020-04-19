@@ -12,8 +12,6 @@ public class SpaceshipController : MonoBehaviour
     public float maxSpeed = 100.0f;
 
     public float throttleChangeRate = 0.5f;
-    // Value from 0-1 where 0 is trying to reach minSpeed and 1 is trying to reach maxSpeed
-    private float throttleValue;
 
     // Maximum rate that the vehicle can pitch at (degrees per second)
     public float maxPitchRate = 30.0f;
@@ -31,6 +29,8 @@ public class SpaceshipController : MonoBehaviour
     private float yawRate;
     private float rollRate;
 
+    private float throttleValue;
+
     private Vector3 velocity;
 
     private Rigidbody rb;
@@ -39,7 +39,7 @@ public class SpaceshipController : MonoBehaviour
     public float ThrottleInput
     {
         get { return throttleInput; }
-        set { throttleInput = Mathf.Clamp01(value); }
+        set { throttleInput = Mathf.Clamp(value, -1, 1); }
     }
 
     public float Throttle
@@ -94,7 +94,6 @@ public class SpaceshipController : MonoBehaviour
 
     private void HandleVelocity()
     {
-        Debug.LogFormat("Throttle input: {0}", throttleInput);
         throttleValue += throttleInput * Time.deltaTime * throttleChangeRate;
         throttleValue = Mathf.Clamp01(throttleValue);
 
