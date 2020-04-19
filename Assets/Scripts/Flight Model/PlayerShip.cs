@@ -9,8 +9,7 @@ public class PlayerShip : MonoBehaviour
     public UnityEngine.UI.Text speedText;
     public GameObject mouseUI;
 
-    private SpaceshipController _stick;
-    public SpaceshipController stick { get => _stick; }
+    private SpaceshipController stick;
 
     private float curPitch;
     private float curYaw;
@@ -82,7 +81,7 @@ public class PlayerShip : MonoBehaviour
         }
         float effectiveRoll = Input.GetAxis("Roll");
 
-        _stick.StickInput = new Vector3(effectivePitch, effectiveYaw, effectiveRoll);
+        stick.StickInput = new Vector3(effectivePitch, effectiveYaw, effectiveRoll);
 
         mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 100, effectivePitch * -100);
     }
