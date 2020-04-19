@@ -9,6 +9,8 @@ public class AIShip : MonoBehaviour
     private Vector3 approachDirection = Vector3.zero;
 
     private SpaceshipController shipControls;
+    
+    public float maxThrottle = 1.0f;
 
     public float acceptableApproachDirError = 0.2f;
     public float largeDeflectionThreshold = 30.0f;
