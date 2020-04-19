@@ -91,7 +91,11 @@ public class MainMenu : MonoBehaviour
         //Disable all current menu items
         foreach (Transform t in GameObject.Find("Canvas").transform)
         {
-            t.gameObject.SetActive(false);
+            if (t.gameObject.name != "background_image")
+            {
+                t.gameObject.SetActive(false);
+            }
+          
         }
         //Enable the new one
         menu.SetActive(true);
