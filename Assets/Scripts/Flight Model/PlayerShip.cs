@@ -5,13 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpaceshipController))]
 public class PlayerShip : MonoBehaviour
 {
-    public UnityEngine.UI.Slider throttleIndicator;
-    public UnityEngine.UI.Slider speedIndicator;
+    public UnityEngine.UI.Slider speedSlider;
     public UnityEngine.UI.Text speedText;
     public GameObject mouseUI;
 
-    private SpaceshipController _stick;
-    public SpaceshipController stick { get => _stick; }
+    private SpaceshipController stick;
 
     private float curPitch;
     private float curYaw;
@@ -21,10 +19,6 @@ public class PlayerShip : MonoBehaviour
     void Start()
     {
         _stick = GetComponent<SpaceshipController>();
-
-        throttleIndicator.interactable = false;
-        speedIndicator.interactable = false;
-
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -46,9 +40,8 @@ public class PlayerShip : MonoBehaviour
 
     private void DoHud()
     {
-        speedText.text = "Speed: " + stick.ForwardSpeed;
-        throttleIndicator.value = stick.Throttle;
-        speedIndicator.value = stick.SpeedRatio;
+        speedText.text = ((int)stick.ForwardSpeed).ToString();
+        speedSlider.value = stick.SpeedRatio;
     }
 
     private void HandleThrottleInput()
@@ -88,8 +81,8 @@ public class PlayerShip : MonoBehaviour
         }
         float effectiveRoll = Input.GetAxis("Roll");
 
-        _stick.StickInput = new Vector3(effectivePitch, effectiveYaw, effectiveRoll);
+        stick.StickInput = new Vector3(effectivePitch, effectiveYaw, effectiveRoll);
 
-        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 400, effectivePitch * -400);
+        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 100, effectivePitch * -100);
     }
 }
