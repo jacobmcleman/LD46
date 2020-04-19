@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public GameObject WhaleRail;
+
     public GameObject[] EnemyPrefabs;
     public GameObject[] AsteroidPrefabs;
 
@@ -36,7 +38,7 @@ public class Spawner : MonoBehaviour
         }
 
         //Add all the whale route points to the list of points to avoid spawning near
-        foreach (Transform route in GameObject.FindGameObjectWithTag("Whale").GetComponent<WhaleFollow>().routes)
+        foreach (Transform route in WhaleRail.GetComponent<WhaleRail>().RailPoints)
         {
             foreach (Transform point in route)
             {
