@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpaceshipController))]
+[RequireComponent(typeof(AIShip))]
 public class EnemyFighter : MonoBehaviour
 {
     public enum EnemyState {Patrol, Chase, Attack}
@@ -19,17 +19,17 @@ public class EnemyFighter : MonoBehaviour
 
     void Update()
     {
-        GetComponent<AIShip>().TargetPosition = seekPoint.position;
+        
         switch (currentState)
         {
             case EnemyState.Patrol: // Generic move around, move at whale at slow but random speed
             {
-                    
-                    break;
+                GetComponent<AIShip>().TargetPosition = seekPoint.position;
+                break;
             }
             case EnemyState.Chase: // Follow Whale
             {
-                if (InRange()) // resets state if player or whale is out of range
+/*                if (InRange()) // resets state if player or whale is out of range
                 {
                     currentState = EnemyState.Patrol;
                     return;
