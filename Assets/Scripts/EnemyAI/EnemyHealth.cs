@@ -19,20 +19,20 @@ public class EnemyHealth : MonoBehaviour, IHealth
             Debug.Log("Friendly Hit :: EnemyHealth");
 
             // Friendly fire
-            return true;
+            return false;
         }
         if (health - damage <= 0)
         {
             Debug.Log("Dead Hit :: EnemyHealth");
             //Die
             Destroy(gameObject);
-            return false;
+            return true;
         }
         else
         {
             Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
-            return true;
+            return false;
         }
     }
 
