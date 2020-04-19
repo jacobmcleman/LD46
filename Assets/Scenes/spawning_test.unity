@@ -4208,10 +4208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyPrefabs:
+  - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
   AsteroidPrefabs:
   - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
-  MaxAsteriods: 2000
-  avoidDistance: 100
+  MaxAsteriods: 500
+  avoidDistance: 150
   retryAmount: 10
   MapXMin: -1000
   MapXMax: 1000
@@ -4219,6 +4221,10 @@ MonoBehaviour:
   MapYMax: 1000
   MapZMin: -1000
   MapZMax: 1000
+  Waves: 03000000050000000a000000
+  CurWave: 0
+  Asteriods: []
+  Enemies: []
 --- !u!4 &1754360129
 Transform:
   m_ObjectHideFlags: 0
@@ -4608,11 +4614,6 @@ MonoBehaviour:
   yawDelta: 10
   rollDelta: 100
   steerGravity: 0.1
-  mouseSensitivity: 0.05
-  throttleIndicator: {fileID: 726751843}
-  speedIndicator: {fileID: 1211028274}
-  speedText: {fileID: 818531366}
-  mouseUI: {fileID: 1327863583}
 --- !u!54 &1885469760
 Rigidbody:
   m_ObjectHideFlags: 0
