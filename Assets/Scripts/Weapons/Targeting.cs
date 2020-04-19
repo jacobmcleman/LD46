@@ -14,7 +14,6 @@ public class Targeting : MonoBehaviour
     private void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag(TargetTag);
-        Target = enemies[0].transform;
     }
 
     private void Update()
@@ -29,7 +28,7 @@ public class Targeting : MonoBehaviour
         }
         if (Target == null)
         {
-            GetNextTarget();
+            Target = GetNextTarget();
         }
     }
 
@@ -54,9 +53,10 @@ public class Targeting : MonoBehaviour
 
     private Transform GetNextTarget()
     {
-        if (enemyIndex < enemies.Length - 1) { enemyIndex++; }
+        enemies = GameObject.FindGameObjectsWithTag(TargetTag);
+        if (enemyIndex < enemies.Length) { enemyIndex++; }
         else { enemyIndex = 0; }
-
+        //Debug.Log("Enemy Index: " + enemyIndex);
         return enemies[enemyIndex].transform;
     }
 }
