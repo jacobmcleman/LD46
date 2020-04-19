@@ -6,7 +6,7 @@ public class WhaleFollow : MonoBehaviour
 {
     //All routes we ride hard on mud boggin
     [SerializeField]
-    private Transform[] routes;
+    public Transform[] routes;
     
     //Next route to follow
     private int routeToGo;
