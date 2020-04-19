@@ -4407,7 +4407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhaleRail: {fileID: 917961801}
+  WhaleRail: {fileID: 0}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
   AsteroidPrefabs:
@@ -5529,8 +5529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon1: {fileID: 287460788}
-  weapon2: {fileID: 0}
+  weapon1: {fileID: 296064645}
+  weapon2: {fileID: 287460788}
 --- !u!1 &2046305886
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,6 +5839,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1885469761}
     m_Modifications:
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6896857795331627134, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
       propertyPath: m_Name
