@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AIShip))]
-public class EnemyFighter : MonoBehaviour
+public class AIAttackState : MonoBehaviour
 {
 //    public enum EnemyState {Patrol, Chase, Attack}
 //    public EnemyState currentState;
     public Transform whalePosition;
     public Transform playerPostion;
-   
-    bool attackPlayer;
 
     void Start() // set ship to start with Whale as target
     {
@@ -24,7 +22,7 @@ public class EnemyFighter : MonoBehaviour
         playerPostion = GameObject.FindGameObjectWithTag("Player").transform;
         GetComponent<AIShip>().TargetPosition = whalePosition.position; //target Whale's postion
 
-        //Debug.Log("whalePosition" + whalePosition.position);
+        Debug.Log("whalePosition" + whalePosition.position);
 
         float dist = Vector3.Distance(whalePosition.position,playerPostion.position); //check distance from AI Ship to Player
 
@@ -32,13 +30,10 @@ public class EnemyFighter : MonoBehaviour
         if (dist < 200f) // pursue player instead of Whale
         {
             GetComponent<AIShip>().TargetPosition = playerPostion.position;
-            attackPlayer = true;
         }
         else
         {
-            attackPlayer = false;
-        }
 
-       
+        }
     }
 }
