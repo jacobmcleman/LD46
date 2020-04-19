@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpaceshipController))]
 public class ShipAudioController : MonoBehaviour
 {
     //Get the four audio sources: throttle up, throttle down, idle, max power
@@ -20,7 +21,7 @@ public class ShipAudioController : MonoBehaviour
 
     void Start ()
     {
-        spaceshipController = GameObject.FindWithTag("Player").GetComponent<SpaceshipController>();
+        spaceshipController = GetComponent<SpaceshipController>();
     }
 
     void Update ()
