@@ -25,6 +25,8 @@ public interface IFireable
 
     /** Name to display to user */
     string name { get; }
+    /** Team weapon belongs to */
+    Teams team { get; set; }
 }
 public enum FireableType
 {
