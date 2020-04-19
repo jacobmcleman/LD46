@@ -12,8 +12,6 @@ public class SpaceshipController : MonoBehaviour
     public float maxSpeed = 100.0f;
 
     public float throttleChangeRate = 0.5f;
-    // Value from 0-1 where 0 is trying to reach minSpeed and 1 is trying to reach maxSpeed
-    private float throttleValue;
 
     // Maximum rate that the vehicle can pitch at (degrees per second)
     public float maxPitchRate = 30.0f;
@@ -31,19 +29,45 @@ public class SpaceshipController : MonoBehaviour
     private float yawRate;
     private float rollRate;
 
-    public float mouseSensitivity = 0.01f;
-
-    private float curPitch;
-    private float curYaw;
+    private float throttleValue;
 
     private Vector3 velocity;
 
     private Rigidbody rb;
 
-    public UnityEngine.UI.Slider throttleIndicator;
-    public UnityEngine.UI.Slider speedIndicator;
-    public UnityEngine.UI.Text speedText;
-    public GameObject mouseUI;
+    private float throttleInput;
+    public float ThrottleInput
+    {
+        get { return throttleInput; }
+        set { throttleInput = Mathf.Clamp(value, -1, 1); }
+    }
+
+    public float Throttle
+    {
+        get { return throttleValue; }
+    }
+
+    private Vector3 stickInput;
+    // Pitch, Yaw, Roll input in that order
+    public Vector3 StickInput
+    {
+        get { return stickInput; }
+        set { stickInput = new Vector3(
+            Mathf.Clamp(value.x, -1, 1), 
+            Mathf.Clamp(value.y, -1, 1), 
+            Mathf.Clamp(value.z, -1, 1)); 
+        }
+    }
+
+    public float SpeedRatio
+    {
+        get { return (ForwardSpeed - minSpeed) / (maxSpeed - minSpeed); }
+    }
+
+    public float ForwardSpeed
+    {
+        get { return Vector3.Dot(velocity, transform.forward); }
+    }
 
     private void Awake()
     {
@@ -52,9 +76,6 @@ public class SpaceshipController : MonoBehaviour
         throttleValue = 0;
         velocity = Vector3.zero;
 
-        curPitch = 0.0f;
-        curYaw = 0.0f;
-
         pitchRate = 0.0f;
         yawRate = 0.0f;
         rollRate = 0.0f;
@@ -62,12 +83,6 @@ public class SpaceshipController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = false;
-
-        throttleIndicator.interactable = false;
-        speedIndicator.interactable = false;
-
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void DoDumbConfigChecks()
@@ -75,13 +90,12 @@ public class SpaceshipController : MonoBehaviour
         if (acceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will not move!");
         if (lateralAcceleration == 0.0f) Debug.LogWarning("No acceleration set! Ship will be super slidey!");
         if (minSpeed > maxSpeed) Debug.LogWarning("Min speed is greater than maxspeed! Throttle will be backwards!");
-        if (rb == null) Debug.LogWarning("No rigidbody on spaceship!");
     }
 
     private void HandleVelocity()
     {
-        float throttleChange = Input.GetAxis("Throttle");
-        throttleValue += throttleChange * Time.deltaTime * throttleChangeRate;
+        float oldThrottle = throttleValue;
+        throttleValue += throttleInput * Time.deltaTime * throttleChangeRate;
         throttleValue = Mathf.Clamp01(throttleValue);
 
         float curTargetSpeed = Mathf.Lerp(minSpeed, maxSpeed, throttleValue);
@@ -105,46 +119,14 @@ public class SpaceshipController : MonoBehaviour
         velocity += strafeSpeedChange * strafeVel.normalized;
 
         rb.velocity = velocity;
-        //transform.position += velocity * Time.deltaTime;
-
-        speedText.text = "Speed: " + velocity.magnitude;
-        throttleIndicator.value = throttleValue;
-        speedIndicator.value = (curForwardSpeed - minSpeed) / (maxSpeed - minSpeed);
     }
 
-    private float GetMouseStickAxis(string axis)
-    {
-        float baseValue = Input.GetAxis(axis);
-        return baseValue * mouseSensitivity;
-    }
-
+    
     private void HandleRotation()
     {
-        // Process the unity inputs to get the mouse behavior to better behave like a joystick
-        curPitch = Mathf.Clamp(curPitch + GetMouseStickAxis("MousePitch"), -1, 1);
-        curYaw = Mathf.Clamp(curYaw + GetMouseStickAxis("MouseYaw"), -1, 1);
-
-        float effectivePitch = Input.GetAxis("Pitch");
-        if (effectivePitch == 0)
-        {
-            effectivePitch = curPitch;
-        }
-        else
-        {
-            curPitch = 0;
-        }
-        float effectiveYaw = Input.GetAxis("Yaw");
-        if (effectiveYaw == 0)
-        {
-            effectiveYaw = curYaw;
-        }
-        else
-        {
-            curYaw = 0;
-        }
-        float effectiveRoll = Input.GetAxis("Roll");
-
-        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 400, effectivePitch * -400);
+        float effectivePitch = StickInput.x;
+        float effectiveYaw = StickInput.y;
+        float effectiveRoll = StickInput.z;
 
         pitchRate = Mathf.Clamp((1 - steerGravity) * (pitchRate + (effectivePitch * pitchDelta)), -maxPitchRate, maxPitchRate);
         yawRate = Mathf.Clamp((1 - steerGravity) * (yawRate + (effectiveYaw * yawDelta)), -maxYawRate, maxYawRate);
