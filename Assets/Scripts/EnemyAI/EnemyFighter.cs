@@ -9,7 +9,7 @@ public class EnemyFighter : MonoBehaviour
     public EnemyState currentState;
 
     private Vector3 currentPosition;
-    public Vector3 DistanceToWhale(){}
+    public Vector3 distanceToWhale;
 
     void Start()
     {
@@ -24,19 +24,22 @@ public class EnemyFighter : MonoBehaviour
             case EnemyState.Patrol: // Generic move around
             {
                 //TODO: go based on randomized values with SpaceshipController
+                break;
             }
             case EnemyState.Chase: // Follow Whale
             {
-                if (target == null) // resets state if player or whale is out of range
+/*                if (target == null) // resets state if player or whale is out of range
                 {
                     currentState = EnemyState.Patrol;
                     return;
                 }
-                
+                */
+                break;
             }
             case EnemyState.Attack: // Attack Fighter
             {
                 //TODO: attack using projectile and machine guns
+                break;
             }
         }
     }
