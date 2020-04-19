@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Pickup
   - Whale
+  - Spawner
   layers:
   - Default
   - TransparentFX
