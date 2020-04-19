@@ -28,8 +28,6 @@ public class AIAttackState : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position,playerPosition.position); //check distance from this Enemy to Player
 
-        Debug.Log("dist from enemy to player" + dist);
-
         if (dist < attackRange) // pursue player instead of Whale
         {
             //GetComponent<AIShip>().TargetPosition = playerPosition.position;
