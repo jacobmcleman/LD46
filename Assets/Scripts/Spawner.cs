@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     public int MapZMin = -1000;
     public int MapZMax = 1000;
 
-    public int[] Waves;
+    public List<int> Waves = new List<int>();
     public int CurWave = 0;
 
     private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 

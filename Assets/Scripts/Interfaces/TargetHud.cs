@@ -36,8 +36,8 @@ public class TargetHud : MonoBehaviour
                 OnScreenIndicator.SetActive(false);
                 OffScreenIndicator.SetActive(true);
 
-                hudPos = ScreenEdgeObjPos;
-                float angle = Vector2.Angle(CamBounds.center - hudPos, Vector2.up);
+                hudPos = ScreenSpaceObjPos;
+                float angle = -Vector2.SignedAngle(CamBounds.center - hudPos, Vector2.down);
                 OffScreenIndicator.transform.eulerAngles = new Vector3(0, 0, angle);
             }
 
@@ -61,11 +61,21 @@ public class TargetHud : MonoBehaviour
         get => IsPointVisible(Target.position);
     }
 
+    private float BehindMultiplier
+    {
+        get
+        {
+            Camera cam = Camera.main;
+            Vector3 toTarget = Target.position - cam.transform.position;
+            return Mathf.Sign(Vector3.Dot(toTarget, cam.transform.forward));
+        }
+    }
+
     private Vector2 ScreenSpaceObjPos
     {
         get {
             Camera cam = Camera.main;
-            Vector3 screenPos3 = cam.WorldToScreenPoint(Target.position);
+            Vector3 screenPos3 = BehindMultiplier * cam.WorldToScreenPoint(Target.position);
             Vector2 screenPos = new Vector2(screenPos3.x, screenPos3.y);
             return moveToScreen(screenPos);
         }
@@ -106,6 +116,7 @@ public class TargetHud : MonoBehaviour
 
     private bool AboveLine(Vector2 testPoint, Vector2 linePointA, Vector2 linePointB)
     {
+
         return testPoint.y > (((linePointB.y - linePointA.y) / (linePointB.x - linePointA.x)) * (testPoint.x - linePointA.x) + linePointA.y);
     }
 
