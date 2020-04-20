@@ -34,9 +34,12 @@ public class Spawner : MonoBehaviour
 
     private IInventory WhaleInventory;
 
+    private bool won;
+
     // Start is called before the first frame update
     void Start()
     {
+        won = false;
         CurWave = 0;
         Whale = GameObject.FindGameObjectWithTag("Whale");
 
@@ -106,17 +109,33 @@ public class Spawner : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().name != "Level1") //No More waves
             {
-                //Level won!
-                SetWhaleStats();
-                Debug.Log("That's all folks!!!");
-                if (SceneController.instance != null)
+                if (!won) { wonlevel(); }
+                else
                 {
-                    Debug.Log("Added stuff to whale stats");
-                    SceneController.instance.WinLevel();
+                    if (Input.GetKeyDown("g"))
+                    {
+                        SetWhaleStats();
+                        Debug.Log("Added stuff to whale stats");
+                        SceneController.instance.WinLevel();
+                    }
                 }
-                else { Debug.Log("That's all folks!!! No SceneController"); }
+                
             }
         }
+    }
+
+    private void wonlevel()
+    {
+        //Level won!
+        Debug.Log("That's all folks!!!");
+        if (SceneController.instance != null)
+        {
+            UIManager.instance.DisplayToolTip("Waves Clear! Hit G to continue...", 0.5f);
+            
+        }
+        else { Debug.Log("That's all folks!!! No SceneController"); }
+
+        won = true;
     }
 
     public void SetWhaleStats()

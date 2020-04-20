@@ -90,7 +90,8 @@ public class PlayerInventory : MonoBehaviour, IInventory
             }
             else if (mechanicals > 0)
             {
-                Whale.GetComponent<IInventory>().Mechanicals += organics;
+                Whale.GetComponent<IInventory>().Mechanicals += mechanicals;
+                Debug.Log("Feed " + mechanicals + " to whale now " + Whale.GetComponent<IInventory>().Mechanicals);
                 Mechanicals = 0;
             }
         }
