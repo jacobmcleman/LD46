@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  damage: 20
+  damage: 200
   breakoffAngle: 30
   trackingGiveUpTime: 15
   noTargetGiveUp: 3

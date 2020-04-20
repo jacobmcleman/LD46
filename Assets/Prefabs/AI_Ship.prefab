@@ -194,12 +194,12 @@ MonoBehaviour:
   minSpeed: 10
   maxSpeed: 40
   throttleChangeRate: 0.75
-  maxPitchRate: 60
-  maxYawRate: 30
-  maxRollRate: 120
-  pitchDelta: 60
+  maxPitchRate: 40
+  maxYawRate: 20
+  maxRollRate: 70
+  pitchDelta: 40
   yawDelta: 10
-  rollDelta: 100
+  rollDelta: 80
   steerGravity: 0.1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &5205907624439822302
