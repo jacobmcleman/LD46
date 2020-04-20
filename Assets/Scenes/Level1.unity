@@ -944,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  targettingHud: {fileID: 0}
   TargetTag: Enemy
 --- !u!114 &190703254
 MonoBehaviour:

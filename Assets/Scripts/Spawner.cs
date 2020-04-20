@@ -90,7 +90,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if ((Enemies.Count == 0 && CurWave >= (Waves.Count() - 1)) && SceneManager.GetActiveScene().name != "Level1")
+        if ((Enemies.Count == 0 && CurWave >= (Waves.Count - 1)) && SceneManager.GetActiveScene().name != "Level1")
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
