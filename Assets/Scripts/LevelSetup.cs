@@ -25,5 +25,12 @@ public class LevelSetup : MonoBehaviour
         Whale.transform.rotation = Quaternion.FromToRotation(RailPoints[RailIndex].position, RailPoints[RailIndex + 1].position);
         Player.transform.position = Whale.transform.GetChild(0).transform.position;
         Player.transform.rotation = Whale.transform.rotation;
+
+        Spawner sp = gameObject.GetComponent<Spawner>();
+        sp.Waves.Add(sp.Waves[sp.Waves.Count - 1]);
+        for (int i = 0; i < sp.Waves.Count; i++)
+        {
+            sp.Waves[i] += Random.Range(0, 2);
+        }
     }
 }

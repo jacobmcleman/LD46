@@ -28,4 +28,9 @@ public class WhaleUpgradeMenu : MonoBehaviour
     {
         SceneController.instance.NextLevel();
     }
+
+    public void FinalLevel()
+    {
+        SceneController.instance.FinalLevel();
+    }
 }

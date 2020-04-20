@@ -75,7 +75,12 @@ public class SceneController : MonoBehaviour
 
     public void NextLevel()
     {
-        ChangeScene("The_Level");
+        ChangeScene("The_Other_Level");
+    }
+
+    public void FinalLevel()
+    {
+        ChangeScene("Final_Level");
     }
 
     //Quit game ez

@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     public int MapZMin = -1000;
     public int MapZMax = 1000;
 
-    public int[] Waves;
+    public List<int> Waves = new List<int>();
     public int CurWave = 0;
 
     private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
@@ -89,7 +89,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (Enemies.Count == 0 && CurWave >= (Waves.Length - 1))
+        if (Enemies.Count == 0 && CurWave >= (Waves.Count - 1))
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
