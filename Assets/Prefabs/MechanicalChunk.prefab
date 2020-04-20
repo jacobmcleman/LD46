@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5467819497891814796}
   m_Layer: 0
   m_Name: MechanicalChunk
-  m_TagString: Untagged
+  m_TagString: Lootz
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickType: 1
-  value: 10
+  myvalue: 10
+  ui: {fileID: 0}
 --- !u!54 &5467819497891814796
 Rigidbody:
   m_ObjectHideFlags: 0
