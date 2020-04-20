@@ -52,6 +52,11 @@ public class UIManager : MonoBehaviour
     //Singleton isntance
     public static UIManager instance;
 
+    public bool Paused
+    {
+        get { return pauseToggle; }
+    }
+
     //*
     //// Unity Methods
     //*

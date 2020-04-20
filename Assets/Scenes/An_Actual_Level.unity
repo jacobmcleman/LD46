@@ -1948,23 +1948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1885469760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885469758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialTargetTag: Lootz
-  uiElementSize: 100
-  IndicatorUI: {fileID: 380433520}
-  LeadPip: 0
-  projPrefab: {fileID: 0}
 --- !u!1 &1946204207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,6 +2397,8 @@ MonoBehaviour:
   forwardDistanceAhead: 5
   shipPositionWeight: 1
   adjustRate: 240
+  orbitSpeed: 30
+  curMode: 0
 --- !u!114 &2046305892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2482,6 +2467,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 73.502075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -106.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -105
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344528725726259326, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 5344528725782740797, guid: e741e9954991b094f8b3ed3456f15df3,
         type: 3}
@@ -2688,6 +2703,11 @@ PrefabInstance:
       propertyPath: IndicatorUI
       value: 
       objectReference: {fileID: 2082814931}
+    - target: {fileID: 182130676186911423, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: IndicatorUI
+      value: 
+      objectReference: {fileID: 380433520}
     - target: {fileID: 7136200531599415437, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: m_Name
@@ -2758,11 +2778,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7136200531599415540, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: closeDebrisHud
-      value: 
-      objectReference: {fileID: 1885469760}
     - target: {fileID: 7136200532907075633, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: mouseUI
