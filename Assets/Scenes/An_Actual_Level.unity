@@ -5355,10 +5355,10 @@ MonoBehaviour:
   whaleOrganic: {fileID: 1528466089}
   shipInorganic: {fileID: 466515163}
   shipOrganic: {fileID: 1303496226}
-  toolTipText: {fileID: 1025148235}
-  playerHealthSlider: {fileID: 35880058}
-  whaleHealthSlider: {fileID: 449368426}
-  toolTipAnimator: {fileID: 816670302}
+  toolTipText: {fileID: 0}
+  playerHealthSlider: {fileID: 874526034}
+  whaleHealthSlider: {fileID: 2134258100}
+  toolTipAnimator: {fileID: 0}
   organicPickupAnimator: {fileID: 0}
   organicPickupText: {fileID: 0}
   metalPickupAnimator: {fileID: 0}
