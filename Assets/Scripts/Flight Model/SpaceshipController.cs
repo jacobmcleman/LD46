@@ -5,6 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SpaceshipController : MonoBehaviour
 {
+    public bool Bouncer = true; //Enable bouncing on collisions
+    public float bounceModifier = 2f;
+    public float bounceAngularDrag = 20f;
+
     public float acceleration = 30.0f;
     public float lateralAcceleration = 20.0f;
     public float verticalAcceleration = 50.0f;
@@ -29,11 +33,15 @@ public class SpaceshipController : MonoBehaviour
     private float yawRate;
     private float rollRate;
 
+    private float oldAD;
+
     private float throttleValue;
 
     private Vector3 velocity;
 
     private Rigidbody rb;
+    
+    public Vector3 RotationEulers;
 
     private float throttleInput;
     public float ThrottleInput
@@ -74,6 +82,11 @@ public class SpaceshipController : MonoBehaviour
         get { return velocity; }
     }
 
+    public float SlipAmount
+    {
+        get { return 1 - (Vector3.Dot(transform.forward, Velocity) / 2) + 0.5f;  }
+    }
+
     private void Awake()
     {
         DoDumbConfigChecks();
@@ -88,6 +101,7 @@ public class SpaceshipController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        oldAD = rb.angularDrag;
     }
 
     private void DoDumbConfigChecks()
@@ -141,19 +155,36 @@ public class SpaceshipController : MonoBehaviour
         float pitchChange = Time.deltaTime * pitchRate;
         float rollChange = Time.deltaTime * -rollRate;
 
-        Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
+        RotationEulers = new Vector3(pitchChange, yawChange, rollChange);
 
-        transform.Rotate(rotationEulers, Space.Self);
+        transform.Rotate(RotationEulers, Space.Self);
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (Bouncer)
+        {
+            velocity += col.contacts[0].normal * col.relativeVelocity.magnitude * bounceModifier;
+            StartCoroutine("AngularDragModifier");
+        }
+    }
+
+    IEnumerator AngularDragModifier()
+    {
+        rb.angularDrag = bounceAngularDrag;
+
+        yield return new WaitForSeconds(.25f);
+
+        while (rb.angularDrag > oldAD)
+        {
+            rb.angularDrag -= .1f;
+            yield return null;
+        }
     }
 
     void Update()
     {
         HandleVelocity();
         HandleRotation();
-        if (Input.GetKeyDown("p")) {
-            SceneController.instance.LoseGame();
-        } else if (Input.GetKeyDown("o")) {
-            SceneController.instance.WinGame();
-        } 
     }
 }
