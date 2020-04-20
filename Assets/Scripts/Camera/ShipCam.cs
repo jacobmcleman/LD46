@@ -24,6 +24,15 @@ public class ShipCam : MonoBehaviour
     private Vector3 curUp;
     public float adjustRate = 140f;
 
+    public float orbitSpeed = 30.0f;
+
+    public enum CameraState
+    {
+        FollowShip,
+        Orbit
+    }
+
+    public CameraState curMode;
 
     private void Start()
     {
@@ -34,6 +43,30 @@ public class ShipCam : MonoBehaviour
     }
 
     void Update()
+    {
+        switch (curMode)
+        {
+            case CameraState.FollowShip:
+                CamFollowUpdate();
+                break;
+            case CameraState.Orbit:
+                OrbitCamUpdate();
+                break;
+        }
+    }
+
+    private void OrbitCamUpdate()
+    {
+        curLookDir = Quaternion.AngleAxis(orbitSpeed * Time.unscaledDeltaTime, curUp) * curLookDir;
+        curUp = Vector3.RotateTowards(curUp, followTransform.up, Mathf.Deg2Rad * adjustRate * Time.deltaTime, 1);
+
+        transform.position = followTransform.position - (lookDistance * curLookDir) + (followTransform.up * verticalOffset);
+        transform.LookAt(followTransform.position, curUp);
+
+        if (!UIManager.instance.Paused) curMode = CameraState.FollowShip;
+    }
+
+    private void CamFollowUpdate()
     {
         float totalWeight = velocityWeight + forwardWeight + shipPositionWeight;
 
@@ -49,5 +82,8 @@ public class ShipCam : MonoBehaviour
 
         transform.position = followTransform.position - (lookDistance * curLookDir) + (followTransform.up * verticalOffset);
         transform.LookAt(lookPoint, curUp);
+
+        if (UIManager.instance.Paused) curMode = CameraState.Orbit;
+
     }
 }
