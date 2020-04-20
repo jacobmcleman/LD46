@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &234770849870082881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433522412288846402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.304761, y: 1.2147124, z: 4.7381535}
+  m_Center: {x: 0, y: -0.000000029802322, z: 0}
 --- !u!1 &7136200531579236139
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  targettingHud: {fileID: 0}
   TargetTag: Enemy
 --- !u!114 &7136200531599415547
 MonoBehaviour:
@@ -3148,6 +3162,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7136200531599415538}
     m_Modifications:
+    - target: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerCol
+      objectReference: {fileID: 0}
     - target: {fileID: 6896857795331627134, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
       propertyPath: m_Name
@@ -3231,6 +3250,12 @@ Transform:
 --- !u!4 &785093995512054469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7632992545013164653, guid: 588015fe0e105944797e0ad197ebfc86,
+    type: 3}
+  m_PrefabInstance: {fileID: 7136200531793356968}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5433522412288846402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
     type: 3}
   m_PrefabInstance: {fileID: 7136200531793356968}
   m_PrefabAsset: {fileID: 0}
