@@ -634,8 +634,8 @@ MonoBehaviour:
   finished: 0
   coroutineRunning: 0
   neededInputs:
-  - w
-  - s
+  - Left Shift
+  - Left Ctrl
   - a
   - d
   - Fire1
@@ -643,8 +643,8 @@ MonoBehaviour:
   - 1
   - KillEnemy
   inputTips:
-  - Press W to speed up
-  - Press S to slow down
+  - Press Shift to speed up
+  - Press Ctrl to slow down
   - Press A to roll left
   - Press D to roll right
   - Left Click to fire your lazerz
