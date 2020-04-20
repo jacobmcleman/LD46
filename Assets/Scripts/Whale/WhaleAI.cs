@@ -20,7 +20,7 @@ public class WhaleAI : MonoBehaviour
         flightController = gameObject.GetComponent<AIShip>();
         WhaleMouth = GameObject.FindGameObjectWithTag("WhaleMouth").transform;
 
-        curPoint = 0;
+        curPoint = GameObject.FindGameObjectWithTag("Spawner").GetComponent<LevelSetup>().RailIndex + 1;
         flightController.TargetPosition = RailPoints[curPoint].position;
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Targeting : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Targeting : MonoBehaviour
         {
             Target = GetNextTarget();
         }
-        if (Target == null)
+        if (Target == null && SceneManager.GetActiveScene().name != "Level1")
         {
             Target = GetNextTarget();
         }

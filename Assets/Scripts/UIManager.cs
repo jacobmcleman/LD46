@@ -24,9 +24,21 @@ public class UIManager : MonoBehaviour
     public Text whaleOrganic;
     public Text shipInorganic;
     public Text shipOrganic;
+    public Text toolTipText;
 
     public Slider playerHealthSlider;
     public Slider whaleHealthSlider;
+
+    public Animator toolTipAnimator;
+    private bool isToolTipping;
+
+    public Animator organicPickupAnimator;
+    public Text organicPickupText;
+    private bool isOrganPickuping;
+
+    public Animator metalPickupAnimator;
+    public Text metalPickupText;
+    private bool isMetalPickuping;
 
     //Singleton isntance
     public static UIManager instance;
@@ -76,8 +88,47 @@ public class UIManager : MonoBehaviour
         playerHealthSlider.value = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.value = WhaleHealth.Health;
-        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Length}";
+        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
+        if (Input.GetKeyDown("j")) {
+            PickupMetal("14");
+        } else if (Input.GetKeyDown("k")) {
+            PickupOrganic("6");
+        }
+    }
+
+    public void DisplayToolTip (string tip, float durationMultiplier)
+    {
+        if (!toolTipAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            toolTipAnimator.ResetTrigger("DisplayMessage");
+            toolTipAnimator.SetTrigger("Restart");
+        } 
+        toolTipText.text = tip;
+        toolTipAnimator.SetFloat("Duration", durationMultiplier);
+        toolTipAnimator.SetTrigger("DisplayMessage");
+    }
+
+    public void PickupOrganic (string amount)
+    {
+        if (!organicPickupAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            organicPickupAnimator.ResetTrigger("Play");
+            organicPickupAnimator.SetTrigger("Restart");
+        } 
+        organicPickupText.text = "+" + amount;
+        organicPickupAnimator.SetTrigger("Play");
+    }
+
+    public void PickupMetal (string amount)
+    {
+        if (!metalPickupAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            metalPickupAnimator.ResetTrigger("Play");
+            metalPickupAnimator.SetTrigger("Restart");
+        }
+        metalPickupText.text = "+" + amount;
+        metalPickupAnimator.SetTrigger("Play");
     }
 
     public void HandleRocketLaunch (float cooldown)
