@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
     public Text metalPickupText;
     private bool isMetalPickuping;
 
+    public GameObject pauseMenu;
+    public GameObject notPauseMenu;
+
+    private bool pauseToggle = false;
+
     //Singleton isntance
     public static UIManager instance;
 
@@ -94,6 +99,22 @@ public class UIManager : MonoBehaviour
             PickupMetal("14");
         } else if (Input.GetKeyDown("k")) {
             PickupOrganic("6");
+        } else if (Input.GetKeyDown("l")) {
+            DisplayToolTip("I am a teapot I am a teapot Hello", 0.3f);
+        } else if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (pauseToggle)
+            {
+                pauseMenu.SetActive(false);
+                notPauseMenu.SetActive(true);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                notPauseMenu.SetActive(false);
+                Time.timeScale = 0;
+            }
+            pauseToggle = !pauseToggle;
         }
     }
 
