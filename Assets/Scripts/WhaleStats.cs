@@ -14,7 +14,7 @@ public class WhaleStats : MonoBehaviour
 
     public int MaxLevel;
 
-    public int Organicis;
+    public int Organics;
     public int Mechanicals;
 
     public static WhaleStats instance;

@@ -99,7 +99,7 @@ public class Spawner : MonoBehaviour
             if (SceneController.instance != null)
             {
                 SceneController.instance.WinLevel();
-                WhaleStats.instance.Organicis += Whale.GetComponent<IInventory>().Organics;
+                WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
                 WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
             }
             else { Debug.Log("That's all folks!!!"); }
