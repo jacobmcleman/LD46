@@ -26,6 +26,8 @@ public class Spawner : MonoBehaviour
     public List<int> Waves = new List<int>();
     public int CurWave = 0;
 
+    public bool startedSpawningEnemy = false;
+
     public List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Asteriods = new List<GameObject>();
@@ -92,29 +94,40 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if ((Enemies.Count == 0 && CurWave >= (Waves.Count - 1)) && SceneManager.GetActiveScene().name != "Level1")
+        if (Enemies.Count == 0 && startedSpawningEnemy) //No more enemies
         {
-            //Level won?!
-            Debug.Log("That's all folks!!!");
-            if (SceneController.instance != null)
+            Debug.Log("No More Enemies curwave: " + CurWave + " waves.count " + Waves.Count);
+            if (CurWave < (Waves.Count)) //Still more waves
             {
-                SceneController.instance.WinLevel();
-                WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
-                WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
-                WhaleStats.instance.Waves = Waves;
+
+                SpawnEnemyWave();
             }
-            else { Debug.Log("That's all folks!!!"); }
+            else if (SceneManager.GetActiveScene().name != "Level1") //No More waves
+            {
+                //Level won!
+                Debug.Log("That's all folks!!!");
+                if (SceneController.instance != null)
+                {
+                    Debug.Log("Added stuff to whale stats");
+                    SceneController.instance.WinLevel();
+                }
+                else { Debug.Log("That's all folks!!! No SceneController"); }
+            }
         }
-        else if (Enemies.Count == 0 && SceneManager.GetActiveScene().name != "Level1")
-        {
-            CurWave++;
-            SpawnEnemyWave();
-        }
+    }
+
+    public void SetWhaleStats()
+    {
+        WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
+        WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+        WhaleStats.instance.Waves = Waves;
     }
 
     public void SpawnTutBot ()
     {
+        Debug.Log("Spawntutbot");
         SpawnEnemyWave();
+        startedSpawningEnemy = true;
     }
 
     //Spawing the Asterriod
@@ -180,6 +193,7 @@ public class Spawner : MonoBehaviour
                 SpawnEnemy(point);
             }
         }
+        CurWave++;
     }
 
     void SpawnEnemy(Vector3 point)
