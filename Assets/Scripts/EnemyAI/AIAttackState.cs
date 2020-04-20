@@ -30,9 +30,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
     }
     private AIState curState;
 
-    private float attackRange = 200f;
+    public float attackRange = 200f;
     public float runRange = 150f;
-    private float breakOffRange = 600f;
+    public float breakOffRange = 600f;
 
     private AIShip shipAI;
     public GameObject weapon1;
