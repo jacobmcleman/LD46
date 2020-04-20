@@ -279,12 +279,14 @@ MonoBehaviour:
   playerPosition: {fileID: 0}
   fireDistance: 100
   fireAngle: 30
+  runRange: 150
   weapon1: {fileID: 6490679688381138777}
   weapon2: {fileID: 8173604626163043024}
   notPlayerPrefab: {fileID: 1636438497980443139, guid: 4eca8efb85be80540ba96536ac2737a1,
     type: 3}
-  chaseTime: 0
-  runTime: 0
+  chaseTime: 100
+  runTime: 100
+  runAngle: 135
 --- !u!114 &479608131559658001
 MonoBehaviour:
   m_ObjectHideFlags: 0
