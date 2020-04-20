@@ -31,6 +31,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
     private AIState curState;
 
     private float attackRange = 200f;
+    public float runRange = 150f;
     private float breakOffRange = 600f;
 
     private AIShip shipAI;
@@ -41,7 +42,17 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     private GameObject Whale;
     private GameObject Player;
+
+    public GameObject notPlayerPrefab;
+
     private float decoyTimer;
+    private float chaseTimer;
+    private float runTimer;
+    public float chaseTime;
+    public float runTime = 100;
+
+    public float runAngle = 135f;
+
 
     void Start() // set ship to start with Whale as target
     {
@@ -53,6 +64,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
         weaponScript1.team = team;
         weaponScript2 = weapon2.GetComponent<IFireable>();
         weaponScript2.team = team;
+
+        chaseTimer = 0;
+        runTimer = 0;
 
         if (WhaleStats.instance != null) { decoyTimer = WhaleStats.instance.DecoyLevel * 5; }
         else { decoyTimer = 0; }
@@ -81,40 +95,62 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 if (distToPlayer < attackRange) // pursue player instead of Whale
                 {
                     curState = AIState.ChasingPlayer;
+                    Debug.Log("Enemy State now: " + curState);
                 }
                 else
                 {
                     //GetComponent<AIShip>().TargetPosition = whalePosition.position;
-                    shipAI.TargetPosition = GetFollowPosition(whalePosition, 30);
-                    shipAI.ApproachDirection = whalePosition.forward;
-                    float angle = Vector3.Angle(transform.position, whalePosition.position);
-                    float checkDist = Vector3.Distance(transform.position, whalePosition.position);
-                    CheckFire(checkDist, angle);
+                    ChaseThing(whalePosition.position, whalePosition.forward);
                     //Debug.Log("Target: Whale " + GetFollowPosition(whalePosition, 30));
                 }
                 break;
             case AIState.ChasingPlayer:
+                //chaseTimer = chaseTime;
                 if (distToPlayer < breakOffRange) // pursue player instead of Whale
                 {
-                    //GetComponent<AIShip>().TargetPosition = playerPosition.position;
-                    shipAI.TargetPosition = GetFollowPosition(playerPosition, 30);
-                    shipAI.ApproachDirection = playerPosition.forward;
-                    float angle = Vector3.Angle(transform.position, playerPosition.position);
-                    float checkDist = Vector3.Distance(transform.position, playerPosition.position);
-                    CheckFire(checkDist, angle);
-                    //Debug.Log("Target: Player " + GetFollowPosition(playerPosition, 30));
+                    if (Vector3.Angle(transform.forward, playerPosition.position - transform.position) > runAngle && distToPlayer < runRange)
+                    {
+                        curState = AIState.RunningFromPlayer;
+                        runTimer = runTime;
+                        Debug.Log("Enemy State now: " + curState);
+                    }
+                    else
+                    {
+                        ChaseThing(playerPosition.position, playerPosition.forward);
+                    }
                 }
                 else
                 {
                     curState = AIState.AttackingWhale;
+                    Debug.Log("Enemy State now: " + curState);
                 }
                 break;
             case AIState.RunningFromPlayer:
+                
+                if (runTimer > 0)
+                {
+                    ChaseThing((playerPosition.position - transform.position) * 100, Vector3.zero);
+                    runTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    curState = AIState.AttackingWhale;
+                    Debug.Log("Enemy State now: " + curState);
+                }
                 break;
-        }
-        
-        
+        }  
     }
+
+    private void ChaseThing(Vector3 thing, Vector3 forwardDir)
+    {
+        shipAI.TargetPosition = thing + (-forwardDir * 30);
+        shipAI.ApproachDirection = forwardDir;
+        float angle = Vector3.Angle(transform.position, thing);
+        float checkDist = Vector3.Distance(transform.position, thing);
+        CheckFire(checkDist, angle);
+    }
+
+
 
     private Vector3 GetFollowPosition(Transform target, float followDistance)
     {

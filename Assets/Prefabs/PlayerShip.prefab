@@ -15186,13 +15186,14 @@ MonoBehaviour:
   minSpeed: 20
   maxSpeed: 50
   throttleChangeRate: 0.75
-  maxPitchRate: 60
-  maxYawRate: 30
-  maxRollRate: 120
+  maxPitchRate: 90
+  maxYawRate: 40
+  maxRollRate: 140
   pitchDelta: 60
   yawDelta: 10
   rollDelta: 100
   steerGravity: 0.1
+  collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &7136200531599415537
 MonoBehaviour:
@@ -15318,7 +15319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTarget: {fileID: 0}
+  InitialTargetTag: Whale
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 0
@@ -15336,7 +15337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTarget: {fileID: 0}
+  InitialTargetTag: 
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 1

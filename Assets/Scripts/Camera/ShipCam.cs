@@ -22,7 +22,7 @@ public class ShipCam : MonoBehaviour
 
     private Vector3 curLookDir;
     private Vector3 curUp;
-    public float adjustRate = 0.5f;
+    public float adjustRate = 140f;
 
 
     private void Start()
@@ -44,8 +44,8 @@ public class ShipCam : MonoBehaviour
 
         Vector3 lookDir = (lookPoint - followTransform.position).normalized;
 
-        curLookDir = (adjustRate * lookDir) + ((1 - adjustRate) * curLookDir);
-        curUp = (adjustRate * followTransform.up) + ((1 - adjustRate) * curUp);
+        curLookDir = Vector3.RotateTowards(curLookDir, lookDir, Mathf.Deg2Rad * adjustRate * Time.deltaTime, 1);
+        curUp = Vector3.RotateTowards(curUp, followTransform.up, Mathf.Deg2Rad * adjustRate * Time.deltaTime, 1);
 
         transform.position = followTransform.position - (lookDistance * curLookDir) + (followTransform.up * verticalOffset);
         transform.LookAt(lookPoint, curUp);

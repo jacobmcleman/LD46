@@ -74,9 +74,11 @@ public class PlayerShip : MonoBehaviour
         }
         float effectiveRoll = Input.GetAxis("Roll");
 
-        float smoothedPitch = Mathf.Sign(effectivePitch) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectivePitch));
-        float smoothedYaw = Mathf.Sign(effectiveYaw) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectiveYaw));
-        float smoothedRoll = Mathf.Sign(effectiveRoll) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectiveRoll));
+        EasingFunction.Ease easeType = EasingFunction.Ease.EaseInQuad;
+        EasingFunction.Function easeFunction = EasingFunction.GetEasingFunction(easeType);
+        float smoothedPitch = Mathf.Sign(effectivePitch) * easeFunction(0, 1, Mathf.Abs(effectivePitch));
+        float smoothedYaw = Mathf.Sign(effectiveYaw) * easeFunction(0, 1, Mathf.Abs(effectiveYaw));
+        float smoothedRoll = Mathf.Sign(effectiveRoll) * easeFunction(0, 1, Mathf.Abs(effectiveRoll));
 
         stick.StickInput = new Vector3(smoothedPitch, smoothedYaw, smoothedRoll);
 
