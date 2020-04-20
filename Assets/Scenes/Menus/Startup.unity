@@ -497,6 +497,9 @@ MonoBehaviour:
   overheatSounds:
   - {fileID: 8300000, guid: 58713f43268d5de409475d8f4a2fa5e3, type: 3}
   - {fileID: 8300000, guid: d9a8ecad5a9763940980d80d4a900d91, type: 3}
+  missileSounds:
+  - {fileID: 8300000, guid: 9a983df56488695449b276e3da3d96be, type: 3}
+  - {fileID: 8300000, guid: 8b37309f5f103ca4d9a4d867c340bcd5, type: 3}
   gunSounds:
   - {fileID: 8300000, guid: 10a1f9e20b8030741901fc2bb767ffd2, type: 3}
   - {fileID: 8300000, guid: cda281dfa13d931499b55069fe566a46, type: 3}

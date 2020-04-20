@@ -406,6 +406,7 @@ MonoBehaviour:
   yawDelta: 20
   rollDelta: 240
   steerGravity: 0.1
+  collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &1523545946267039160
 MonoBehaviour:
@@ -467,7 +468,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3123723270253507364, guid: 9136029f821104b4fa786e9bd8f47946,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: affb33a94fb879a44bd817d847fce214, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8b37309f5f103ca4d9a4d867c340bcd5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.71
   m_Pitch: 1
@@ -480,7 +481,7 @@ AudioSource:
   MinDistance: 30
   MaxDistance: 500.05
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0

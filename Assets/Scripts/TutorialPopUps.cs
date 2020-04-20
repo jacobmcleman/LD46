@@ -18,6 +18,7 @@ public class TutorialPopUps : MonoBehaviour
     void Start()
     {
         sp = FindObjectOfType<Spawner>();
+        sp.SpawnTutBot();
         StartCoroutine(Begin());
     }
 
@@ -32,12 +33,12 @@ public class TutorialPopUps : MonoBehaviour
         while (!finished)
         {
             yield return null;
-            if (step == neededInputs.Length)
+            if (step == neededInputs.Length + 3)
             {
                 finished = true;
 
             } 
-            else if (neededInputs[step] == "Fire1" || neededInputs[step] == "Fire2")
+            else if ( step < neededInputs.Length && (neededInputs[step] == "Fire1" || neededInputs[step] == "Fire2"))
             {
                 if (Input.GetButtonDown(neededInputs[step]))
                 {
@@ -54,29 +55,46 @@ public class TutorialPopUps : MonoBehaviour
                     step++;
                     if (step == 7)
                     {   
-                        UIManager.instance.DisplayToolTip((inputTips[step] + " " + PlayerPrefs.GetString("whale_name") + " safe!"), 0.000000000004f);
-                        sp.SpawnTutBot();
+
+                        UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy. Destroy all enemies to continue.", 0.000000000004f);
                     }
                     else
                     {
                         UIManager.instance.DisplayToolTip(inputTips[step], 0.000000000004f);
                     }
-                    if (step == 2)
-                    {
-                        MusicController.instance.PlayBloodSacrificeNextSound();
-                    }
+
                     Debug.Log("there ya go, nextx one nowww");
                     coroutineRunning = false;
                 }
             }
-            else if (step == 7)
+            else
             {
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true)
+                Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 7)
                 {
-                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!", 0.000000000004f);
+                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
                     step++;
                     sp.SetWhaleStats();
-                    SceneController.instance.ChangeScene("WhaleUpgrade");
+                }
+                else if (GameObject.FindGameObjectsWithTag("Resource").Length == 0 && step == 8)
+                {
+                    UIManager.instance.DisplayToolTip("Finally, drop off the resources at " + PlayerPrefs.GetString("whale_name"), 0.000000000004f);
+                    step++;
+                }
+                else if (step == 9)
+                {
+                    if (GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Mechanicals == 0 && GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Organics == 0)
+                    {
+                        UIManager.instance.DisplayToolTip("You have completed the tutorial!  Press G to continue to the upgrade screen.", 0.000000000004f);
+                        step++;
+                    }
+                }
+                else if (step == 10)
+                {
+                    if (Input.GetKeyDown("g"))
+                    {
+                        SceneController.instance.WinLevel();
+                    }
                 }
             }
         }

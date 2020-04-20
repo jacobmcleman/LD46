@@ -8,15 +8,17 @@ public class Targeting : MonoBehaviour
     public Transform Target;
 
     public TargetHud targettingHud;
+    public TargetHud closeDebrisHud;
 
     public string TargetTag = "Enemy";
+    public string DebrisTag = "Lootz";
 
-    private GameObject[] enemies;
+    private GameObject[] loots;
     private int enemyIndex = 0;
 
     private void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag(TargetTag);
+        loots = GameObject.FindGameObjectsWithTag(TargetTag);
     }
 
     private void Update()
@@ -34,24 +36,47 @@ public class Targeting : MonoBehaviour
             Target = GetNextTarget();
         }
 
-        if(targettingHud != null)
+        if (targettingHud != null)
         {
             targettingHud.Target = Target;
         }
+        if (closeDebrisHud != null)
+        {
+            closeDebrisHud.Target = GetClosestDebris();
+        }
+    }
+
+    private Transform GetClosestDebris()
+    {
+        loots = GameObject.FindGameObjectsWithTag(DebrisTag);
+        float bestTargetVal = float.MaxValue;
+        Transform bestTarget = null;
+        for (int i = 0; i < loots.Length; i++)
+        {
+            float distance = Vector3.Distance(loots[i].transform.position, transform.position);
+            if (distance < bestTargetVal)
+            {
+                bestTargetVal = distance;
+                bestTarget = loots[i].transform;
+                enemyIndex = i;
+            }
+        }
+
+        return bestTarget;
     }
 
     private Transform GetBestTarget()
     {
-        enemies = GameObject.FindGameObjectsWithTag(TargetTag);
+        loots = GameObject.FindGameObjectsWithTag(TargetTag);
         float bestTargetVal = float.MinValue;
         Transform bestTarget = null;
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < loots.Length; i++)
         {
-            float forwardNess = Vector3.Dot((enemies[i].transform.position - transform.position).normalized, transform.forward);
+            float forwardNess = Vector3.Dot((loots[i].transform.position - transform.position).normalized, transform.forward);
             if (forwardNess > bestTargetVal)
             {
                 bestTargetVal = forwardNess;
-                bestTarget = enemies[i].transform;
+                bestTarget = loots[i].transform;
                 enemyIndex = i;
             }
         }
@@ -61,10 +86,10 @@ public class Targeting : MonoBehaviour
 
     private Transform GetNextTarget()
     {
-        enemies = GameObject.FindGameObjectsWithTag(TargetTag);
-        if (enemyIndex < enemies.Length - 1) { enemyIndex++; }
+        loots = GameObject.FindGameObjectsWithTag(TargetTag);
+        if (enemyIndex < loots.Length - 1) { enemyIndex++; }
         else { enemyIndex = 0; }
         Debug.Log("Enemy Index: " + enemyIndex);
-        return enemies[enemyIndex].transform;
+        return loots[enemyIndex].transform;
     }
 }
