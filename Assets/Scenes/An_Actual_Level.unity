@@ -2901,8 +2901,9 @@ GameObject:
   - component: {fileID: 816670299}
   - component: {fileID: 816670301}
   - component: {fileID: 816670300}
+  - component: {fileID: 816670302}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2935,7 +2936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816670298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2964,6 +2965,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816670298}
   m_CullTransparentMesh: 0
+--- !u!95 &816670302
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816670298}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a18288b710eaec743b024678eb7ca355, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &823054322
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,8 +3752,9 @@ GameObject:
   - component: {fileID: 1025148234}
   - component: {fileID: 1025148236}
   - component: {fileID: 1025148235}
+  - component: {fileID: 1025148237}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ToolTipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3771,7 +3792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3798,6 +3819,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025148233}
   m_CullTransparentMesh: 0
+--- !u!114 &1025148237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025148233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 3.99, y: 3.83}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1031552156
 GameObject:
   m_ObjectHideFlags: 0
@@ -8795,8 +8831,10 @@ MonoBehaviour:
   whaleOrganic: {fileID: 1528466089}
   shipInorganic: {fileID: 466515163}
   shipOrganic: {fileID: 1303496226}
+  toolTipText: {fileID: 1025148235}
   playerHealthSlider: {fileID: 35880058}
   whaleHealthSlider: {fileID: 449368426}
+  toolTipAnimator: {fileID: 816670302}
 --- !u!114 &2058266833
 MonoBehaviour:
   m_ObjectHideFlags: 0
