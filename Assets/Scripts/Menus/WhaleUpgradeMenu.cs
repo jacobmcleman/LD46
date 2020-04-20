@@ -9,24 +9,30 @@ public class WhaleUpgradeMenu : MonoBehaviour
     public Text inorganicsText;
 
     // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
         GameObject.Find("Header").GetComponent<Text>().text += PlayerPrefs.GetString("whale_name");
         Cursor.lockState = CursorLockMode.None;
     }
 
+    void Update ()
+    {
+        organicsText.text = WhaleStats.instance.Organics.ToString();
+        inorganicsText.text = WhaleStats.instance.Mechanicals.ToString();
+    }
+
     public void UpgradeThing(string up)
     {
-        Debug.Log(up);
-        //Debug.Log(cost);
-        // if (WhaleStats.instance.UpgradeLevel(up))
-        // {
-        //     //Successful upgrade color change or some shit
-        // }
-        // else
-        // {
-        //     //Cannot upgrade full level sad noise :(
-        // }
+        if (WhaleStats.instance.UpgradeLevel(up))
+        {
+            //Successful upgrade color change or some shit
+               Debug.Log("Upgraded");
+        }
+        else
+        {
+            //Cannot upgrade full level sad noise :(
+                Debug.Log("Not Upgraded");
+        }
     }
 
     public void NextLevel()
