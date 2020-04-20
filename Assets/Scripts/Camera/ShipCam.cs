@@ -27,6 +27,7 @@ public class ShipCam : MonoBehaviour
 
     private void Start()
     {
+        followShip = GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceshipController>();
         followRb = followShip.GetComponent<Rigidbody>();
         followTransform = followShip.GetComponent<Transform>();
         curLookDir = transform.forward;

@@ -391,9 +391,9 @@ MonoBehaviour:
   Bouncer: 1
   bounceModifier: 2
   bounceAngularDrag: 20
-  acceleration: 60
-  lateralAcceleration: 60
-  verticalAcceleration: 60
+  acceleration: 90
+  lateralAcceleration: 90
+  verticalAcceleration: 90
   minSpeed: 60
   maxSpeed: 90
   throttleChangeRate: 0.5
@@ -419,11 +419,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxThrottle: 1
   acceptableApproachDirError: 0.2
-  largeDeflectionThreshold: 0
+  largeDeflectionThreshold: 90
   acceptableRollWindow: 25
   rollAttack: 90
   pitchAttack: 45
-  yawAttack: 20
+  yawAttack: 45
   rollSlowDown: 360
   pitchSlowDown: 180
   yawSlowDown: 480

@@ -7,6 +7,8 @@ public class Targeting : MonoBehaviour
 {
     public Transform Target;
 
+    public TargetHud targettingHud;
+
     public string TargetTag = "Enemy";
 
     private GameObject[] enemies;
@@ -30,6 +32,11 @@ public class Targeting : MonoBehaviour
         if (Target == null && SceneManager.GetActiveScene().name != "Level1")
         {
             Target = GetNextTarget();
+        }
+
+        if(targettingHud != null)
+        {
+            targettingHud.Target = Target;
         }
     }
 
@@ -55,9 +62,9 @@ public class Targeting : MonoBehaviour
     private Transform GetNextTarget()
     {
         enemies = GameObject.FindGameObjectsWithTag(TargetTag);
-        if (enemyIndex < enemies.Length) { enemyIndex++; }
+        if (enemyIndex < enemies.Length - 1) { enemyIndex++; }
         else { enemyIndex = 0; }
-        //Debug.Log("Enemy Index: " + enemyIndex);
+        Debug.Log("Enemy Index: " + enemyIndex);
         return enemies[enemyIndex].transform;
     }
 }
