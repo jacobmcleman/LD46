@@ -29,6 +29,8 @@ public class SpaceshipController : MonoBehaviour
 
     public float steerGravity = 0.1f;
 
+    public float collisionDamageMult = 1.0f;
+
     private float pitchRate;
     private float yawRate;
     private float rollRate;
@@ -166,8 +168,10 @@ public class SpaceshipController : MonoBehaviour
        //SFXController.instance.PlayRNGCrashNoise();
         if (Bouncer)
         {
-            velocity += col.contacts[0].normal * col.relativeVelocity.magnitude * bounceModifier;
-            StartCoroutine("AngularDragModifier");
+            Vector3 collisionNormal = col.contacts[0].normal;
+            velocity = Vector3.Reflect(velocity * bounceModifier, collisionNormal);
+            transform.forward = velocity;
+            //StartCoroutine("AngularDragModifier");
         }
     }
 
