@@ -108,6 +108,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     if (chaseTimer > 0)
                     {
                         ChaseThing(playerPosition);
+                        chaseTimer -= Time.deltaTime;
                     }
                     else
                     {
@@ -126,6 +127,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 if (runTimer > 0)
                 {
                     ChaseThing(Instantiate(notPlayerPrefab, (playerPosition.position - transform.position) * 100, playerPosition.rotation).transform);
+                    runTimer -= Time.deltaTime;
                 }
                 else
                 {
