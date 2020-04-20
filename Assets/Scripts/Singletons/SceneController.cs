@@ -53,7 +53,7 @@ public class SceneController : MonoBehaviour
     {
         ChangeScene("Intro");
         MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("Level1", 7));
+        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
     }
 
     public void WinLevel()
@@ -89,7 +89,7 @@ public class SceneController : MonoBehaviour
         //Quitting is different in editor vs in game, so check to see what to do
         if (Application.isEditor)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+           // UnityEditor.EditorApplication.isPlaying = false;
         } 
         else
         {

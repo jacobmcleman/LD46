@@ -38,22 +38,12 @@ public class MusicController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             DontDestroyOnLoad(this.gameObject);
             loop = 0;
-            PlayBloodSacrificeNextSound();
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
-    void Update ()
-    {
-        if (Input.GetKeyDown("l"))
-        {
-            PlayBloodSacrificeNextSound();
-        }
-    }
-
     //* Public Methods
     //// 
     //*

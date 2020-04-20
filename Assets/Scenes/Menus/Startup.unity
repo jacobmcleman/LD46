@@ -927,16 +927,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67f3f7ec0ab45d449ab9efbab269d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoolLevel: 0
-  RegenLevel: 0
-  DecoyLevel: 0
-  ArmorLevel: 0
-  TurretsLevel: 0
-  TeslaLevel: 0
+  HealthPoolLevel: 1
+  RegenLevel: 1
+  DecoyLevel: 1
+  ArmorLevel: 1
+  TurretsLevel: 1
+  TeslaLevel: 1
   MaxLevel: 1
   Organics: 0
   Mechanicals: 0
-  Waves: 
+  Waves: 01000000
 --- !u!4 &1465698364
 Transform:
   m_ObjectHideFlags: 0

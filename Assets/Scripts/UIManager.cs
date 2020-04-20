@@ -97,10 +97,10 @@ public class UIManager : MonoBehaviour
         //playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.Fill = WhaleHealth.Health;
-        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";
+        waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
         if (Input.GetKeyDown("j")) {
-            PickupMetal("14");
+            WhaleHealth.TakeDamage(10f, Teams.enemyTeam);
         } else if (Input.GetKeyDown("k")) {
             PickupOrganic("6");
         } else if (Input.GetKeyDown("l")) {
