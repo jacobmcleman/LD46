@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class WhaleUpgradeMenu : MonoBehaviour
 {
-    
+    public Text organicsText;
+    public Text inorganicsText;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class WhaleUpgradeMenu : MonoBehaviour
     public void UpgradeThing(string up)
     {
         Debug.Log(up);
+        //Debug.Log(cost);
         // if (WhaleStats.instance.UpgradeLevel(up))
         // {
         //     //Successful upgrade color change or some shit
