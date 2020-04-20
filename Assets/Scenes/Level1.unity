@@ -2866,6 +2866,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d9f18fe9cc2064f89177d846264cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finished: 0
+  coroutineRunning: 0
+  neededInputs:
+  - w
+  - s
+  - a
+  - d
+  - Fire1
+  - Fire2
+  - 1
+  - KillEnemy
+  inputTips:
+  - Press W to speed up
+  - Press S to slow down
+  - Press A to roll left
+  - Press D to roll right
+  - Left Click to fire your lazerz
+  - Right Click to fire a homing miss-eye-le
+  - Press 1 to lock on to nearest target.  Press 2 to cycle targets.
+  - Kill enemies to keep
 --- !u!4 &726613147
 Transform:
   m_ObjectHideFlags: 0
@@ -5001,7 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WhaleRail: {fileID: 1080593154}
   EnemyPrefabs:
-  - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
+  - {fileID: 1173651754834060176, guid: 40de33d43e2194b4f8e5cc58e955d3c8, type: 3}
   AsteroidWeighting: []
   AsteroidPrefabs:
   - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
@@ -5014,7 +5034,7 @@ MonoBehaviour:
   MapYMax: 1000
   MapZMin: -1000
   MapZMax: 1000
-  Waves: 030000000500000008000000
+  Waves: 01000000
   CurWave: 0
   Enemies: []
   Asteriods: []

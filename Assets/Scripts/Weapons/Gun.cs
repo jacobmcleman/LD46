@@ -63,7 +63,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
 
     public bool CanFire() 
     {
-        Debug.Log(heatClock);
+        //Debug.Log(heatClock);
         return (fireClock >= firePeriod) 
             && (heatClock <= 0);
     }
