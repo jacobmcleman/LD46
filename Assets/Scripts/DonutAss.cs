@@ -20,14 +20,12 @@ public class DonutAss : MonoBehaviour
     
     private float curT_ = 0.0f;
 
-    private Image progressBarUI_;
+    public Image progressBarUI_;
 
     // Start is called before the first frame update
     void Start()
     {
         float curT_ = 0.0f;
-
-        progressBarUI_ = GetComponent<Image>();
 
         progressBarUI_.fillAmount = curT_;
     }

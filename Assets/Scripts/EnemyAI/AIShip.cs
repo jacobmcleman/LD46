@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,8 @@ public class AIShip : MonoBehaviour
     private Vector3 approachDirection = Vector3.zero;
 
     private SpaceshipController shipControls;
+    
+    public float maxThrottle = 1.0f;
 
     public float acceptableApproachDirError = 0.2f;
     public float largeDeflectionThreshold = 30.0f;
@@ -22,8 +24,6 @@ public class AIShip : MonoBehaviour
     public float rollSlowDown = 360;
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
-
-    public float maxThrottle = 1.0f;
 
     public float magicThreshold = 0.1f;
 
@@ -80,13 +80,13 @@ public class AIShip : MonoBehaviour
         Vector3 realTargetPos = targetPosition;
 
         // Approach vector is normalized or zero, this is a quick check to see which it is
-        //if (approachDirection.sqrMagnitude > 0.1f)
-        //{
-        //    if (Vector3.Dot(approachDirection, toTarget) < (1 - acceptableApproachDirError))
-        //    {
-        //        realTargetPos = targetPosition - (distanceToTarget * approachDirection);
-        //    }
-        //}
+        if (approachDirection.sqrMagnitude > 0.1f)
+        {
+            if (Vector3.Dot(approachDirection, toTarget) < (1 - acceptableApproachDirError))
+            {
+                realTargetPos = targetPosition - (distanceToTarget * approachDirection);
+            }
+        }
 
         return Vector3.Normalize(realTargetPos - transform.position);
     }
