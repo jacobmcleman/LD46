@@ -66,20 +66,24 @@ public class SFXController : MonoBehaviour
         source.Play();
     }
 
-    public void PlayRNGGunShot (AudioSource source, float pitch)
+    public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)
     {
-        source.Stop();
         int rand = Random.Range(0, 1);
-        source.clip = gunSounds[rand];
         mixer.SetFloat("GunPitch", pitch);
-        source.Play();
+        source.PlayOneShot(gunSounds[rand], .75f);
     }
 
     public void PlayGunOverheat (AudioSource source)
     {
         source.Stop();
         source.clip = overheatSounds[0];
+        mixer.SetFloat("GunPitch", 1f);
         source.Play();
+    }
+
+    public void PlayOverheatWarning (AudioSource source, Vector3 position)
+    {
+        AudioSource.PlayClipAtPoint(overheatSounds[1], position, 1.3f);
     }
 
     private IEnumerator PlayAfterDelay (AudioSource source, float delay)

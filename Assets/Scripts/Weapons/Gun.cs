@@ -31,6 +31,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     public float firePeriod = 0.25f;
 
     private AudioSource sfxAudio;
+    private bool warned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,9 +51,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
                 firing = false;
                 SFXController.instance.PlayGunOverheat(sfxAudio);
             }
-            else if (heat > maxHeat - 6)
+            else if (heat == maxHeat - 6 && !warned)
             {
-                //SFXController.instance.PlayOverheatWarning(sfxAudio);
+                warned = true;
+                SFXController.instance.PlayOverheatWarning(sfxAudio, transform.position);
             }
         }
         else
@@ -69,6 +71,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             {
                 heatClock = 0;
                 heat = 0;
+                warned = false;
             }
         
         }
@@ -108,7 +111,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float maxHeatMod = maxHeat;
         float pitchBend = heatMod / maxHeatMod;
         Debug.Log(pitchBend);
-        SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend);
+        SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }
 }
