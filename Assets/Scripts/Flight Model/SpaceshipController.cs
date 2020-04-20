@@ -34,6 +34,8 @@ public class SpaceshipController : MonoBehaviour
     private Vector3 velocity;
 
     private Rigidbody rb;
+    
+    public Vector3 RotationEulers;
 
     private float throttleInput;
     public float ThrottleInput
@@ -141,9 +143,9 @@ public class SpaceshipController : MonoBehaviour
         float pitchChange = Time.deltaTime * pitchRate;
         float rollChange = Time.deltaTime * -rollRate;
 
-        Vector3 rotationEulers = new Vector3(pitchChange, yawChange, rollChange);
+        RotationEulers = new Vector3(pitchChange, yawChange, rollChange);
 
-        transform.Rotate(rotationEulers, Space.Self);
+        transform.Rotate(RotationEulers, Space.Self);
     }
 
     void Update()
