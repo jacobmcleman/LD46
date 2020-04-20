@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Art/Menus/PauseMenu.meta~4d4c5378b7d2e9a66e1c0190d88fdabe1a6471eb
 guid: e56e0d7caf8be3d4ca4643877546e6dc
+=======
+guid: 6a0824503855ffa4e8c4981d07ca77e4
+>>>>>>> d243faa46daf17b6530d466b7f47b3795f7c30fd:Assets/Art/Materials/Assteroids.meta
+=======
+guid: e56e0d7caf8be3d4ca4643877546e6dc
+>>>>>>> d243faa46daf17b6530d466b7f47b3795f7c30fd
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
