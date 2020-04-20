@@ -26,8 +26,8 @@ public class UIManager : MonoBehaviour
     public Text shipOrganic;
     public Text toolTipText;
 
-    public Slider playerHealthSlider;
-    public Slider whaleHealthSlider;
+    public DonutAss playerHealthSlider;
+    public DonutAss whaleHealthSlider;
 
     public Animator toolTipAnimator;
     private bool isToolTipping;
@@ -85,9 +85,9 @@ public class UIManager : MonoBehaviour
         whaleInorganic.text = $"{WhaleInventory.Mechanicals}";
         whaleOrganic.text = $"{WhaleInventory.Organics}";
         playerHealthText.text = $"{PlayerHealth.Health}/{PlayerHealth.MaxHealth}";
-        playerHealthSlider.value = PlayerHealth.Health;
+        playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
-        whaleHealthSlider.value = WhaleHealth.Health;
+        whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
         if (Input.GetKeyDown("j")) {
