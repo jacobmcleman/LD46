@@ -72,6 +72,11 @@ public class PlayerInventory : MonoBehaviour, IInventory
             Regurgitate();
             regurgTimer = regurgitateCooldown;
         }
+
+        if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance)
+        {
+            //TODO: Notify player they're in range to feeeeeeed
+        }
     }
 
     void Regurgitate()
