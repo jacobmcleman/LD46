@@ -9,8 +9,8 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
     public float maxHeat = 15;
-    public float heatDecayRate = 3;
-    public float shotHeatCost = 1;
+    public float heatDecayRate = 0.5f;
+    public float shotHeatCost = 0.6f;
     private float heatClock = 0;
     public float maxCooldownTime = 1f;
     public float spread = .01f;
