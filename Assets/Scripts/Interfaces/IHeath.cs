@@ -32,5 +32,7 @@ public enum Teams
     /** The player's team */
     playerTeam,
     /** The enemy's team */
-    enemyTeam
+    enemyTeam,
+    /** environmental damage */
+    giantMeteor
 }

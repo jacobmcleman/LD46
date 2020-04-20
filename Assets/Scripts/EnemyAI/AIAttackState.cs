@@ -150,6 +150,8 @@ public class AIAttackState : MonoBehaviour, IWieldable
         CheckFire(checkDist, angle);
     }
 
+
+
     private Vector3 GetFollowPosition(Transform target, float followDistance)
     {
         return target.position + (-target.forward * followDistance);
