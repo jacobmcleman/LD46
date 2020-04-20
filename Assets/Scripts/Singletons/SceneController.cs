@@ -28,7 +28,7 @@ public class SceneController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
+            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
             //Add scene loaded callback function
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -52,8 +52,7 @@ public class SceneController : MonoBehaviour
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
-        MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
+        StartCoroutine(ChangeSceneAfterDelay("Level1", 14));
     }
 
     public void WinLevel()
