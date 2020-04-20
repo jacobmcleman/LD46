@@ -106,7 +106,7 @@ public class ShipAudioController : MonoBehaviour
     //Fade in an audio source
     private IEnumerator FadeOut (AudioSource source, string dir)
     {
-        float FadeTime = 1f;
+        float FadeTime = 3f;
         //Make sure we start at whatever our current volume level is
         float startVolume = source.volume;
         while (source.volume > 0.01f) {
