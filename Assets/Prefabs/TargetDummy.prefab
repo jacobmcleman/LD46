@@ -54,11 +54,11 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173651754834060176}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.3
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -90,6 +90,7 @@ MonoBehaviour:
   yawDelta: 10
   rollDelta: 100
   steerGravity: 0.1
+  collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &1173651754834060190
 MonoBehaviour:
@@ -137,8 +138,13 @@ MonoBehaviour:
   playerPosition: {fileID: 0}
   fireDistance: 100
   fireAngle: 30
+  runRange: 150
   weapon1: {fileID: 2682636325513320193}
   weapon2: {fileID: 6793382931171956205}
+  notPlayerPrefab: {fileID: 0}
+  chaseTime: 0
+  runTime: 100
+  runAngle: 135
 --- !u!114 &6832337112124016209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1827,7 +1833,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 20
+  heatDecayRate: 0.5
+  shotHeatCost: 0.6
   maxCooldownTime: 2
+  spread: 0.01
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.1
@@ -1938,7 +1947,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 20
+  heatDecayRate: 0.5
+  shotHeatCost: 0.6
   maxCooldownTime: 2
+  spread: 0.01
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.1

@@ -15289,7 +15289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   targettingHud: {fileID: 1885469770}
+  closeDebrisHud: {fileID: 1885469760}
   TargetTag: Enemy
+  DebrisTag: Lootz
 --- !u!114 &7136200531599415547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16442,6 +16444,14 @@ PrefabInstance:
       propertyPath: shotHeatCost
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1587413145, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 7136200531599415436}
+    - target: {fileID: 2010228980, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: stick
+      value: 
+      objectReference: {fileID: 7136200531599415436}
     - target: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
       propertyPath: m_TagString
