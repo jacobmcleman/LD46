@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
             Debug.LogError("No asteroids you dummy");
         }
 
-        if (AsteroidPrefabs.Length != AsteroidWeighting.Length) { Debug.LogError("EnemyPrefab should be same lenght as EnemyWheighting"); }
+        //if (AsteroidPrefabs.Length != AsteroidWeighting.Length) { Debug.LogError("EnemyPrefab should be same lenght as EnemyWheighting"); }
 
         //Add all the whale route points to the list of points to avoid spawning near
         foreach (Transform route in WhaleRail.GetComponent<WhaleRail>().RailPoints)
