@@ -9,6 +9,11 @@ TagManager:
   - Whale
   - Spawner
   - WhaleMouth
+  - PlayerCol
+  - WhaleCol
+  - Canvas
+  - Lootz
+  - Resource
   layers:
   - Default
   - TransparentFX
