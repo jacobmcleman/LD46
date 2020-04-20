@@ -9,7 +9,7 @@ public class PlayerShip : MonoBehaviour
     public UnityEngine.UI.Text speedText;
     public GameObject mouseUI;
 
-    private SpaceshipController stick;
+    public SpaceshipController stick;
 
     private float curPitch;
     private float curYaw;
@@ -26,7 +26,6 @@ public class PlayerShip : MonoBehaviour
     {
         HandleThrottleInput();
         HandleRotationInput();
-        DoHud();
 
         if (Input.GetKeyDown("p"))
         {
@@ -36,12 +35,6 @@ public class PlayerShip : MonoBehaviour
         {
             SceneController.instance.WinGame();
         }
-    }
-
-    private void DoHud()
-    {
-        speedText.text = ((int)stick.ForwardSpeed).ToString();
-        speedSlider.value = stick.SpeedRatio;
     }
 
     private void HandleThrottleInput()
