@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
-{ 
+{
     //*
     //// Fields
     //*
@@ -71,6 +71,11 @@ public class SceneController : MonoBehaviour
     public void LoseGame ()
     {
         ChangeScene("Loser");
+    }
+
+    public void NextLevel()
+    {
+        ChangeScene("The_Level");
     }
 
     //Quit game ez
