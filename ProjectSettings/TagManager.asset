@@ -12,6 +12,7 @@ TagManager:
   - PlayerCol
   - WhaleCol
   - Canvas
+  - Lootz
   layers:
   - Default
   - TransparentFX

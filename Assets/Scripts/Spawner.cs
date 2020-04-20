@@ -98,7 +98,7 @@ public class Spawner : MonoBehaviour
     {
         if (Enemies.Count == 0 && startedSpawningEnemy) //No more enemies
         {
-            Debug.Log("No More Enemies curwave: " + CurWave + " waves.count " + Waves.Count);
+            //Debug.Log("No More Enemies curwave: " + CurWave + " waves.count " + Waves.Count);
             if (CurWave < (Waves.Count)) //Still more waves
             {
 
