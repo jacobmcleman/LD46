@@ -35,7 +35,7 @@ public class CrosshairTrack : MonoBehaviour
     private void RotateToCrosshair()
     {
         Vector2 canvasPoint = mouseUI.GetComponent<Transform>().position;
-        Debug.LogFormat("Mouse at {0}", canvasPoint);
+        //Debug.LogFormat("Mouse at {0}", canvasPoint);
         Vector3 screenPoint = new Vector3(canvasPoint.x, canvasPoint.y, 1);
         Vector3 toHitPoint = camera.transform.position - camera.ScreenToWorldPoint(screenPoint);
         //Debug.Log(toHitPoint);
@@ -43,7 +43,7 @@ public class CrosshairTrack : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, toHitPoint, out hit, maxWeaponAimAdjustRange, ~(1 << 9)))
         {
-            Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
+            //Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
             toHitPoint = (hit.point - gameObject.transform.position).normalized;
         }
 
