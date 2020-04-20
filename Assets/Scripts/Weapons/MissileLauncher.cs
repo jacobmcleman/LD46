@@ -15,6 +15,8 @@ public class MissileLauncher : MonoBehaviour
 
     private bool canFire = false;
 
+    public float additionalFireSpeed = 10.0f;
+
     void Start ()
     {
         StartCoroutine(EnableFiring());
@@ -65,7 +67,7 @@ public class MissileLauncher : MonoBehaviour
         Rigidbody myRb = GetComponent<Rigidbody>();
         if(myRb != null)
         {
-            missile.GetComponent<Rigidbody>().velocity = myRb.velocity;
+            missile.GetComponent<SpaceshipController>().Velocity = myRb.velocity + (transform.forward * additionalFireSpeed);
         }
     }
 }
