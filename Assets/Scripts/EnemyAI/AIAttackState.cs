@@ -31,6 +31,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
     private AIState curState;
 
     private float attackRange = 200f;
+    public float runRange = 150f;
     private float breakOffRange = 600f;
 
     private AIShip shipAI;
@@ -48,7 +49,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
     private float chaseTimer;
     private float runTimer;
     public float chaseTime;
-    public float runTime;
+    public float runTime = 100;
+
+    public float runAngle = 135f;
 
 
     void Start() // set ship to start with Whale as target
@@ -97,23 +100,23 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 else
                 {
                     //GetComponent<AIShip>().TargetPosition = whalePosition.position;
-                    ChaseThing(whalePosition);
+                    ChaseThing(whalePosition.position, whalePosition.forward);
                     //Debug.Log("Target: Whale " + GetFollowPosition(whalePosition, 30));
                 }
                 break;
             case AIState.ChasingPlayer:
-                chaseTimer = chaseTime;
+                //chaseTimer = chaseTime;
                 if (distToPlayer < breakOffRange) // pursue player instead of Whale
                 {
-                    if (chaseTimer > 0)
+                    if (Vector3.Angle(transform.forward, playerPosition.position - transform.position) > runAngle && distToPlayer < runRange)
                     {
-                        ChaseThing(playerPosition);
-                        chaseTimer -= Time.deltaTime;
+                        curState = AIState.RunningFromPlayer;
+                        runTimer = runTime;
+                        Debug.Log("Enemy State now: " + curState);
                     }
                     else
                     {
-                        curState = AIState.RunningFromPlayer;
-                        Debug.Log("Enemy State now: " + curState);
+                        ChaseThing(playerPosition.position, playerPosition.forward);
                     }
                 }
                 else
@@ -123,10 +126,10 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 }
                 break;
             case AIState.RunningFromPlayer:
-                runTimer = runTime;
+                
                 if (runTimer > 0)
                 {
-                    ChaseThing(Instantiate(notPlayerPrefab, (playerPosition.position - transform.position) * 100, playerPosition.rotation).transform);
+                    ChaseThing((playerPosition.position - transform.position) * 100, Vector3.zero);
                     runTimer -= Time.deltaTime;
                 }
                 else
@@ -134,17 +137,16 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     curState = AIState.AttackingWhale;
                     Debug.Log("Enemy State now: " + curState);
                 }
-                Instantiate(notPlayerPrefab, (playerPosition.position - transform.position)*100, playerPosition.rotation);
                 break;
         }  
     }
 
-    private void ChaseThing(Transform thing)
+    private void ChaseThing(Vector3 thing, Vector3 forwardDir)
     {
-        shipAI.TargetPosition = GetFollowPosition(thing, 30);
-        shipAI.ApproachDirection = thing.forward;
-        float angle = Vector3.Angle(transform.position, thing.position);
-        float checkDist = Vector3.Distance(transform.position, thing.position);
+        shipAI.TargetPosition = thing + (-forwardDir * 30);
+        shipAI.ApproachDirection = forwardDir;
+        float angle = Vector3.Angle(transform.position, thing);
+        float checkDist = Vector3.Distance(transform.position, thing);
         CheckFire(checkDist, angle);
     }
 
