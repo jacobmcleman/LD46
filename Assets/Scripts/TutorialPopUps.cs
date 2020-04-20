@@ -91,7 +91,10 @@ public class TutorialPopUps : MonoBehaviour
                 }
                 else if (step == 10)
                 {
-                    
+                    if (Input.GetKeyDown("g"))
+                    {
+                        SceneController.instance.WinLevel();
+                    }
                 }
             }
         }
