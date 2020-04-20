@@ -5891,6 +5891,10 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 35880058}
   whaleHealthSlider: {fileID: 449368426}
   toolTipAnimator: {fileID: 816670302}
+  organicPickupAnimator: {fileID: 0}
+  organicPickupText: {fileID: 0}
+  metalPickupAnimator: {fileID: 0}
+  metalPickupText: {fileID: 0}
 --- !u!114 &2058266833
 MonoBehaviour:
   m_ObjectHideFlags: 0
