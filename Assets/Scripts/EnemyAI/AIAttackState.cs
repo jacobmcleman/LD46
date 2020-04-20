@@ -41,7 +41,15 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     private GameObject Whale;
     private GameObject Player;
+
+    public GameObject notPlayerPrefab;
+
     private float decoyTimer;
+    private float chaseTimer;
+    private float runTimer;
+    public float chaseTime;
+    public float runTime;
+
 
     void Start() // set ship to start with Whale as target
     {
@@ -53,6 +61,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
         weaponScript1.team = team;
         weaponScript2 = weapon2.GetComponent<IFireable>();
         weaponScript2.team = team;
+
+        chaseTimer = 0;
+        runTimer = 0;
 
         if (WhaleStats.instance != null) { decoyTimer = WhaleStats.instance.DecoyLevel * 5; }
         else { decoyTimer = 0; }
@@ -85,24 +96,22 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 else
                 {
                     //GetComponent<AIShip>().TargetPosition = whalePosition.position;
-                    shipAI.TargetPosition = GetFollowPosition(whalePosition, 30);
-                    shipAI.ApproachDirection = whalePosition.forward;
-                    float angle = Vector3.Angle(transform.position, whalePosition.position);
-                    float checkDist = Vector3.Distance(transform.position, whalePosition.position);
-                    CheckFire(checkDist, angle);
+                    ChaseThing(whalePosition);
                     //Debug.Log("Target: Whale " + GetFollowPosition(whalePosition, 30));
                 }
                 break;
             case AIState.ChasingPlayer:
+                chaseTimer = chaseTime;
                 if (distToPlayer < breakOffRange) // pursue player instead of Whale
                 {
-                    //GetComponent<AIShip>().TargetPosition = playerPosition.position;
-                    shipAI.TargetPosition = GetFollowPosition(playerPosition, 30);
-                    shipAI.ApproachDirection = playerPosition.forward;
-                    float angle = Vector3.Angle(transform.position, playerPosition.position);
-                    float checkDist = Vector3.Distance(transform.position, playerPosition.position);
-                    CheckFire(checkDist, angle);
-                    //Debug.Log("Target: Player " + GetFollowPosition(playerPosition, 30));
+                    if (chaseTimer > 0)
+                    {
+                        ChaseThing(playerPosition);
+                    }
+                    else
+                    {
+                        curState = AIState.RunningFromPlayer;
+                    }
                 }
                 else
                 {
@@ -110,10 +119,23 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 }
                 break;
             case AIState.RunningFromPlayer:
+                runTimer = runTime;
+                if (runTimer > 0)
+                {
+                    ChaseThing(Instantiate(notPlayerPrefab, (playerPosition.position - transform.position) * 100, playerPosition.rotation).transform);
+                }
+                Instantiate(notPlayerPrefab, (playerPosition.position - transform.position)*100, playerPosition.rotation);
                 break;
-        }
-        
-        
+        }  
+    }
+
+    private void ChaseThing(Transform thing)
+    {
+        shipAI.TargetPosition = GetFollowPosition(thing, 30);
+        shipAI.ApproachDirection = thing.forward;
+        float angle = Vector3.Angle(transform.position, thing.position);
+        float checkDist = Vector3.Distance(transform.position, thing.position);
+        CheckFire(checkDist, angle);
     }
 
     private Vector3 GetFollowPosition(Transform target, float followDistance)
