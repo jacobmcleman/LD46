@@ -7143,9 +7143,20 @@ MonoBehaviour:
   WhaleRail: {fileID: 917961801}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
-  AsteroidWeighting: []
+  AsteroidWeighting:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.4
+  - 0.4
+  - 0.8
   AsteroidPrefabs:
-  - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
+  - {fileID: 2984760203345598082, guid: 92d3937ed6e529d439873ee5f6a533bf, type: 3}
+  - {fileID: 8989813784418862995, guid: 99d453ade4b75204eb755f7b37921ac6, type: 3}
+  - {fileID: 436342458225984883, guid: 39bd50e43e50b234ebd19278ef650bca, type: 3}
+  - {fileID: 8762644204968777843, guid: a9146906af23aff479f19561432b06ce, type: 3}
+  - {fileID: 7083207110491829505, guid: ceb227c5507a3584a83a1d0341abcfd7, type: 3}
+  - {fileID: 4100497184121897712, guid: a225953b0d78d80469de9c128a0553e7, type: 3}
   MaxAsteriods: 300
   avoidDistance: 200
   retryAmount: 20
@@ -8389,7 +8400,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 60
   orthographic: 0
   orthographic size: 5
