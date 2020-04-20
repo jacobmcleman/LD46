@@ -40,6 +40,14 @@ public class WhaleStats : MonoBehaviour
             Organics = 0;
             Mechanicals = 0;
             DontDestroyOnLoad(this.gameObject);
+            if (GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Waves != null)
+            {
+                Waves = GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Waves;
+            }
+            else
+            {
+                Waves.Add(3);
+            }
         }
     }
 
