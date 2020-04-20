@@ -76,6 +76,11 @@ public class SpaceshipController : MonoBehaviour
         get { return velocity; }
     }
 
+    public float SlipAmount
+    {
+        get { return 1 - (Vector3.Dot(transform.forward, Velocity) / 2) + 0.5f;  }
+    }
+
     private void Awake()
     {
         DoDumbConfigChecks();
