@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8050097014841028805}
   - component: {fileID: 3424269064070619108}
   m_Layer: 0
-  m_Name: projectile
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,5 +109,5 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   Timeout: 30
   persistAfterHitTime: 1
-  speed: 150
+  speed: 10
   projectileDamage: 10
