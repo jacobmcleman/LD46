@@ -12,28 +12,38 @@ public class Pickupables : MonoBehaviour
     }
 
     public PickupType pickType;
-    public int value = 10;
+    public int myvalue = 10;
+
+    public UIManager ui;
+
+    private void Start()
+    {
+        ui = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>();
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
+        //This is super fucking jank, I'm sorry
         Debug.Log("Collision with: " + collider.gameObject.name);
-        if (collider.transform.tag == "Player" || collider.transform.tag == "Whale")
+        if (collider.tag == "PlayerCol" || collider.tag == "WhaleCol")
         {
             GameObject col;
-            if (collider.transform.parent.tag == "Player") { col = collider.transform.parent.gameObject; }
-            else { col = collider.gameObject; }
+            if (collider.tag == "PlayerCol") { col = GameObject.FindGameObjectWithTag("Player"); }
+            else { col = GameObject.FindGameObjectWithTag("Whale"); }
             switch (pickType)
             {
                 case Pickupables.PickupType.Organic:
-                    col.GetComponent<IInventory>().Organics += value;
+                    col.GetComponent<IInventory>().Organics += myvalue;
+                    if (col.tag == "Player") { ui.PickupOrganic(myvalue.ToString()); }
                     Debug.Log("Picked up Organics");
                     break;
                 case Pickupables.PickupType.Mechanical:
-                    col.GetComponent<IInventory>().Mechanicals += value;
+                    col.GetComponent<IInventory>().Mechanicals += myvalue;
+                    if (col.tag == "Player") { ui.PickupMetal(myvalue.ToString()); }
                     Debug.Log("Picked up Mechanicals");
                     break;
                 case Pickupables.PickupType.Health:
-                    col.GetComponent<IHealth>().Heal(value);
+                    col.GetComponent<IHealth>().Heal(myvalue);
                     break;
             }
             Destroy(gameObject);

@@ -15,6 +15,12 @@ public class TutorialPopUps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Begin());
+    }
+
+    private IEnumerator Begin () 
+    {
+        yield return new WaitForSeconds(1);
         UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
     }
 
@@ -52,7 +58,7 @@ public class TutorialPopUps : MonoBehaviour
                     {
                         UIManager.instance.DisplayToolTip(inputTips[step], 0.000000000004f);
                     }
-                    if (step > 4)
+                    if (step == 2)
                     {
                         MusicController.instance.PlayBloodSacrificeNextSound();
                     }

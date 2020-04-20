@@ -17,6 +17,8 @@ public class SFXController : MonoBehaviour
 
     public AudioClip[] collisions;
 
+    public UnityEngine.Audio.AudioMixer mixer;
+
     //On awake, assign the singleton instance
     private void Awake ()
     {
@@ -53,6 +55,37 @@ public class SFXController : MonoBehaviour
     {
         source.Stop();
         source.clip = combatSounds[1];
+        StartCoroutine(PlayAfterDelay(source, 1f));
+    }
+
+    public void PlayRocketExplosionSFX (AudioSource source)
+    {
+        source.Stop();
+        int rand = Random.Range(0, 4);
+        source.clip = inorganicExplosions[rand];
+        source.Play();
+    }
+
+    public void PlayRNGGunShot (AudioSource source, float pitch)
+    {
+        source.Stop();
+        int rand = Random.Range(0, 1);
+        source.clip = gunSounds[rand];
+        mixer.SetFloat("GunPitch", pitch);
+        source.Play();
+    }
+
+    public void PlayGunOverheat (AudioSource source)
+    {
+        source.Stop();
+        source.clip = overheatSounds[0];
+        source.Play();
+    }
+
+    private IEnumerator PlayAfterDelay (AudioSource source, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        source.Play();
     }
 
 }

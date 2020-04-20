@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     public List<int> Waves = new List<int>();
     public int CurWave = 0;
 
-    private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
+    public List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Asteriods = new List<GameObject>();
 
@@ -101,11 +101,13 @@ public class Spawner : MonoBehaviour
                 SceneController.instance.WinLevel();
                 WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
                 WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+                WhaleStats.instance.Waves = Waves;
             }
             else { Debug.Log("That's all folks!!!"); }
         }
         else if (Enemies.Count == 0 && SceneManager.GetActiveScene().name != "Level1")
         {
+            CurWave++;
             SpawnEnemyWave();
         }
     }

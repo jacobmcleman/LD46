@@ -9,6 +9,9 @@ TagManager:
   - Whale
   - Spawner
   - WhaleMouth
+  - PlayerCol
+  - WhaleCol
+  - Canvas
   layers:
   - Default
   - TransparentFX

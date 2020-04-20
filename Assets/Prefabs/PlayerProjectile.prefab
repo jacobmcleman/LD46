@@ -236,7 +236,7 @@ MonoBehaviour:
   persistAfterHitTime: 0
   speed: 150
   IgnoreLayerName: Player
-  projectileDamage: 10
+  projectileDamage: 30
 --- !u!135 &3831360824465651122
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class LevelSetup : MonoBehaviour
         Player.transform.rotation = Whale.transform.rotation;
 
         Spawner sp = gameObject.GetComponent<Spawner>();
+        sp.Waves = WhaleStats.instance.Waves;
         sp.Waves.Add(sp.Waves[sp.Waves.Count - 1]);
         for (int i = 0; i < sp.Waves.Count; i++)
         {
