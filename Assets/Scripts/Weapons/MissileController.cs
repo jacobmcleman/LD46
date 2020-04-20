@@ -57,17 +57,7 @@ public class MissileController : MonoBehaviour
             }
             else
             {
-                Rigidbody targetRb = target.GetComponent<Rigidbody>();
-                if(targetRb != null)
-                {
-                    Rigidbody myRb = GetComponent<Rigidbody>();
-                    float distanceToTarget = (target.transform.position - transform.position).magnitude;
-                    float relativeSpeed = Vector3.Dot(myRb.velocity, targetRb.velocity);
-                }
-                else
-                { 
-                    shipAI.TargetPosition = target.position;
-                }
+                shipAI.TargetPosition = target.position;
             }
         }
         else

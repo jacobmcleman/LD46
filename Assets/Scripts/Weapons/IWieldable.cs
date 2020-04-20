@@ -6,4 +6,5 @@ public interface IWieldable
 {
     /** team of object */
     Teams team { get; set; }
+    
 }
