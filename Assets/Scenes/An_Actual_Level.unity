@@ -3643,8 +3643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AzimuthMinRotation: -35
-  AzimuthMaxRotation: 35
+  mouseUI: {fileID: 0}
   maxWeaponAimAdjustRange: 100
   stick: {fileID: 0}
 --- !u!1 &1664935375
@@ -4195,6 +4194,7 @@ MonoBehaviour:
   yawDelta: 10
   rollDelta: 100
   steerGravity: 0.1
+  RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!54 &1885469760
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4262,7 +4262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ea7520f7b87eb4ca36b8599af354db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedSlider: {fileID: 117253247}
+  speedSlider: {fileID: 0}
   speedText: {fileID: 818531366}
   mouseUI: {fileID: 1327863583}
   mouseSensitivity: 0.01
@@ -4299,6 +4299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon1: {fileID: 287460788}
+  weapon2: {fileID: 0}
 --- !u!114 &1885469766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5132,8 +5133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AzimuthMinRotation: -35
-  AzimuthMaxRotation: 35
+  mouseUI: {fileID: 0}
   maxWeaponAimAdjustRange: 100
   stick: {fileID: 0}
 --- !u!1 &2012868500
@@ -5268,7 +5268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon1: {fileID: 287460788}
+  weapon1: {fileID: 296064645}
+  weapon2: {fileID: 287460788}
 --- !u!1 &2044796083
 GameObject:
   m_ObjectHideFlags: 0
@@ -5607,6 +5608,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1885469761}
     m_Modifications:
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6896857795331627134, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
       propertyPath: m_Name
