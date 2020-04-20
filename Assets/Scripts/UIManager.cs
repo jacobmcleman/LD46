@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
         whaleInorganic.text = $"{WhaleInventory.Mechanicals}";
         whaleOrganic.text = $"{WhaleInventory.Organics}";
         playerHealthText.text = $"{PlayerHealth.Health}/{PlayerHealth.MaxHealth}";
-        playerHealthSlider.Fill = PlayerHealth.Health;
+        //playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";

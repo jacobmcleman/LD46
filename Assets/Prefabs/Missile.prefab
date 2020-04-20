@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxThrottle: 1
-  acceptableApproachDirError: 0.2
+  acceptableApproachDirError: 0.6
   largeDeflectionThreshold: 90
   acceptableRollWindow: 25
   rollAttack: 90
