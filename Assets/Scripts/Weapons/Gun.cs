@@ -51,8 +51,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         if (proj == null) Debug.LogError("Tried to shoot not a projectile");
         projectile.transform.position = transform.position + transform.forward;
         proj.team = team;
+        float parentSpeed = gameObject.GetComponentInParent<SpaceshipController>()
+            .Velocity.magnitude;
         proj.direction = fireVec;
-        proj.speed += 30;
+        proj.speed += parentSpeed;
 
         cooldownClock = 0;
 
