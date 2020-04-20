@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public GameObject WhaleRail;
+    private GameObject Whale;
 
     public GameObject[] EnemyPrefabs;
     public float[] AsteroidWeighting;
@@ -33,6 +34,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         CurWave = 0;
+        Whale = GameObject.FindGameObjectWithTag("Whale");
 
         if (AsteroidPrefabs.Length == 0)
         {
@@ -94,7 +96,12 @@ public class Spawner : MonoBehaviour
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
-            if (SceneController.instance != null) { SceneController.instance.WinLevel(); }
+            if (SceneController.instance != null)
+            {
+                SceneController.instance.WinLevel();
+                WhaleStats.instance.Organicis += Whale.GetComponent<IInventory>().Organics;
+                WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+            }
             else { Debug.Log("That's all folks!!!"); }
         }
         else if (Enemies.Count == 0 && SceneManager.GetActiveScene().name != "Level1")
