@@ -8,8 +8,6 @@ public class CrosshairTrack : MonoBehaviour
     private float curYaw;
 
     public GameObject mouseUI;
-    public float AzimuthMinRotation = -35f;
-    public float AzimuthMaxRotation = 35f;
     public float maxWeaponAimAdjustRange = 100f;
 
     public SpaceshipController stick;
@@ -48,7 +46,6 @@ public class CrosshairTrack : MonoBehaviour
             Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
             toHitPoint = (hit.point - gameObject.transform.position).normalized;
         }
-        Debug.Log(toHitPoint);
 
         gameObject.transform.forward = -toHitPoint;
     }
