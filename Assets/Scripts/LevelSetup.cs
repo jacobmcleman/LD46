@@ -33,7 +33,7 @@ public class LevelSetup : MonoBehaviour
             sp.Waves[i] += Random.Range(0, 2);
         }
 
-        Whale.GetComponent<IInventory>().Organics = WhaleStats.instance.Organicis;
+        Whale.GetComponent<IInventory>().Organics = WhaleStats.instance.Organics;
         Whale.GetComponent<IInventory>().Mechanicals = WhaleStats.instance.Mechanicals;
     }
 }
