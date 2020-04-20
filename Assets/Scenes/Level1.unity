@@ -1212,6 +1212,7 @@ MonoBehaviour:
   MapZMax: 1000
   Waves: 01000000
   CurWave: 0
+  startedSpawningEnemy: 0
   Avoids: []
   Enemies: []
   Asteriods: []
@@ -2277,6 +2278,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1489255417278353486, guid: e741e9954991b094f8b3ed3456f15df3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5344528726582188622, guid: e741e9954991b094f8b3ed3456f15df3,
         type: 3}
       propertyPath: m_AnchorMax.y
