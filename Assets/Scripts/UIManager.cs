@@ -161,7 +161,7 @@ public class UIManager : MonoBehaviour
         }
         metalPickupText.text = "+" + amount;
         metalPickupAnimator.SetTrigger("Play");
-        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
+        if(SFXController.instance) SFXController.instance.PlayResourcePickupSFX(sfxAudio);
     }
 
     public void HandleRocketLaunch (float cooldown)
@@ -177,7 +177,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {
-        //SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
+        if (SFXController.instance) SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
         rocketFill.Fill = 0.0f;
         while (rocketFill.Fill < 1f)
         {
