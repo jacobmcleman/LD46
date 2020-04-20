@@ -56,7 +56,7 @@ public class TutorialPopUps : MonoBehaviour
                     if (step == 7)
                     {   
 
-                        UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy, and the blue indicator  points to " + PlayerPrefs.GetString("whale_name") + ". Destroy all enemies to continue.", 0.000000000004f);
+                        UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy. Destroy all enemies to continue.", 0.000000000004f);
                     }
                     else
                     {
@@ -72,7 +72,7 @@ public class TutorialPopUps : MonoBehaviour
                 Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 7)
                 {
-                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Green indicators point to resource pickups.", 0.000000000004f);
+                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
                     step++;
                     sp.SetWhaleStats();
                 }
@@ -91,7 +91,10 @@ public class TutorialPopUps : MonoBehaviour
                 }
                 else if (step == 10)
                 {
-                    
+                    if (Input.GetKeyDown("g"))
+                    {
+                        SceneController.instance.WinLevel();
+                    }
                 }
             }
         }
