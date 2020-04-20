@@ -121,7 +121,7 @@ public class MusicController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         source.Stop();
         source.clip = clip;
-        source.Play();
+        //source.Play();
         staged = false;
     }
 
@@ -132,7 +132,7 @@ public class MusicController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         source.Stop();
         source.clip = clip;
-        source.Play();
+        //source.Play();
         staged = false;
         if (curSong == "bloodsack") {
             PlayBloodSacrificeNextSound();

@@ -35,7 +35,7 @@ public class WhaleStats : MonoBehaviour
         else
         {
             instance = this;
-            Organicis = 0;
+            Organics = 0;
             Mechanicals = 0;
         }
     }
