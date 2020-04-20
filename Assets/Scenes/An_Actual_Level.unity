@@ -4407,7 +4407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhaleRail: {fileID: 0}
+  WhaleRail: {fileID: 917961801}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
   AsteroidPrefabs:
@@ -4670,7 +4670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon1: {fileID: 287460788}
-  weapon2: {fileID: 0}
+  weapon2: {fileID: 296064645}
 --- !u!114 &1885469766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4700,6 +4700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  TargetTag: Enemy
 --- !u!1 &1899350936
 GameObject:
   m_ObjectHideFlags: 0
