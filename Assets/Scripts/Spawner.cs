@@ -101,6 +101,7 @@ public class Spawner : MonoBehaviour
                 SceneController.instance.WinLevel();
                 WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
                 WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+                WhaleStats.instance.Waves = Waves;
             }
             else { Debug.Log("That's all folks!!!"); }
         }

@@ -14,7 +14,8 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
-        damage = damage * (1 - (.1f * (float)WhaleStats.instance.ArmorLevel));
+        if (WhaleStats.instance != null) { damage = damage * (1 - (.1f * (float)WhaleStats.instance.ArmorLevel)); }
+        
         Debug.Log("HIT :: WhaleHealth");
         if (team == attackerTeam) {
             // Friendly fire
