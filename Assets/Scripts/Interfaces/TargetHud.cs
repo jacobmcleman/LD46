@@ -8,6 +8,8 @@ public class TargetHud : MonoBehaviour
     private SpaceshipController targetShip;
     private SpaceshipController myShip;
 
+    public Transform InitialTarget;
+
     public Transform Target
     {
         get { return target; }
@@ -29,6 +31,7 @@ public class TargetHud : MonoBehaviour
 
     private void Start()
     {
+        Target = InitialTarget;
         OnScreenIndicator = IndicatorUI.transform.Find("OnScreenIndicator").gameObject;
         OffScreenIndicator = IndicatorUI.transform.Find("OffScreenDirection").gameObject;
         TargetLeadIndicator = IndicatorUI.transform.Find("LeadPip").gameObject;
