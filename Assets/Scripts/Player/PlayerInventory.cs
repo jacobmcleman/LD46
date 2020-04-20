@@ -12,6 +12,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public int MaxOrganics = 100;
     public int MaxMechanicals = 100;
 
+    [SerializeField]
     public int Organics
     {
         get { return organics; }
@@ -25,6 +26,8 @@ public class PlayerInventory : MonoBehaviour, IInventory
             else { organics = value; }
         }
     }
+
+    [SerializeField]
     public int Mechanicals
     {
         get { return mechanicals; }
@@ -35,7 +38,10 @@ public class PlayerInventory : MonoBehaviour, IInventory
                 mechanicals = MaxMechanicals;
                 //TODO: tell player max has been hit
             }
-            else { mechanicals = value; }
+            else {
+                mechanicals = value;
+                Debug.Log("Mechanicals: " + mechanicals + " pickedup: " + value);
+            }
         }
     } 
 
@@ -101,7 +107,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
     {
         GameObject chunk = Instantiate(chunkPrefab, (transform.position + transform.forward*5), transform.rotation);
         Pickupables chunkPickup = chunk.GetComponent<Pickupables>();
-        chunkPickup.value = amount;
+        chunkPickup.myvalue = amount;
         chunk.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
         if (chunk.GetComponent<VomitChunk>() == null)
         {

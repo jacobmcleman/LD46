@@ -19,6 +19,8 @@ public class WhaleStats : MonoBehaviour
 
     public static WhaleStats instance;
 
+    public List<int> Waves = new List<int>();
+
     public enum Upgrade
     {
         HealthPool,

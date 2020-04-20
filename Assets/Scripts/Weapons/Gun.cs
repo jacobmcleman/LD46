@@ -10,7 +10,8 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     /** effectively the number of consecutive shots the weapon can fire */
     public int maxHeat = 15;
     private float heatClock = 0;
-    public float maxCooldownTime = 2f;
+    public float maxCooldownTime = 1f;
+    public float spread = .01f;
     public Teams team 
     {
         get => _team;
@@ -29,9 +30,12 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     /** "time" it takes to fire one shot. */
     public float firePeriod = 0.25f;
 
+    private AudioSource sfxAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        sfxAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +48,11 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             {
                 heatClock = maxCooldownTime;
                 firing = false;
+                SFXController.instance.PlayGunOverheat(sfxAudio);
+            }
+            else if (heat > maxHeat - 6)
+            {
+                //SFXController.instance.PlayOverheatWarning(sfxAudio);
             }
         }
         else
@@ -51,6 +60,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             if (heatClock > 0)
             {
                 heatClock -= Time.deltaTime;
+            }
+            if (heatClock > 10 && heatClock < 12)
+            {
+
             }
             if (heatClock <= 0)
             {
@@ -84,11 +97,18 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float parentSpeed = gameObject.GetComponentInParent<SpaceshipController>()
             .Velocity.magnitude;
         proj.direction = fireVec;
+        proj.direction.x += Random.Range(-spread, spread);
+        proj.direction.y += Random.Range(-spread, spread);
+        proj.direction.z += Random.Range(-spread, spread);
         proj.speed += parentSpeed;
 
         heat++;
         fireClock = 0;
-
+        float heatMod = heat;
+        float maxHeatMod = maxHeat;
+        float pitchBend = heatMod / maxHeatMod;
+        Debug.Log(pitchBend);
+        SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend);
         return true;
     }
 }

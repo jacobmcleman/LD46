@@ -476,7 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120e6da2a4542ae4b98318c82330a032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   beeps:
   - {fileID: 8300000, guid: d642744084da07e469c26730a8f16779, type: 3}
   - {fileID: 8300000, guid: e35ce9c81255d76429ceb44f791fdef5, type: 3}
@@ -495,11 +494,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a70274d5737bf6429352d0b2ba614e0, type: 3}
   - {fileID: 8300000, guid: 2d1b764973b213547be56c5d96353b02, type: 3}
   - {fileID: 8300000, guid: 447ff82b7e2cb1e4ea9aa46f0231ccb3, type: 3}
-  overheatSounds: []
-  gunSounds: []
+  overheatSounds:
+  - {fileID: 8300000, guid: 58713f43268d5de409475d8f4a2fa5e3, type: 3}
+  - {fileID: 8300000, guid: d9a8ecad5a9763940980d80d4a900d91, type: 3}
+  gunSounds:
+  - {fileID: 8300000, guid: 10a1f9e20b8030741901fc2bb767ffd2, type: 3}
+  - {fileID: 8300000, guid: cda281dfa13d931499b55069fe566a46, type: 3}
   organicExplosions: []
-  inorganicExplosions: []
+  inorganicExplosions:
+  - {fileID: 8300000, guid: ecb9e607ec551f74dbb156adf39bdafd, type: 3}
+  - {fileID: 8300000, guid: 26a656aa94a38df43ad35503f6b0af24, type: 3}
+  - {fileID: 8300000, guid: 4209da6028354a347bf98ccf480055c2, type: 3}
+  - {fileID: 8300000, guid: 830a1a90864f1ae499cb8ad5d89805e0, type: 3}
+  - {fileID: 8300000, guid: 4b080ece91853e140bb15a5ac3a596e3, type: 3}
   collisions: []
+  mixer: {fileID: 24100000, guid: 9136029f821104b4fa786e9bd8f47946, type: 2}
 --- !u!1 &671462426
 GameObject:
   m_ObjectHideFlags: 1
@@ -924,6 +933,7 @@ MonoBehaviour:
   MaxLevel: 1
   Organics: 0
   Mechanicals: 0
+  Waves: 
 --- !u!4 &1465698364
 Transform:
   m_ObjectHideFlags: 0

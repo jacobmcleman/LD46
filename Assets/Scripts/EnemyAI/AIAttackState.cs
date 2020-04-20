@@ -75,6 +75,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
             float angle = Vector3.Angle(transform.position, playerPosition.position);
             float checkDist = Vector3.Distance(transform.position, playerPosition.position);
             CheckFire(checkDist, angle);
+            //Debug.Log("Target: Player " + GetFollowPosition(playerPosition, 30));
         }
         else
         {
@@ -84,7 +85,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
             float angle = Vector3.Angle(transform.position, whalePosition.position);
             float checkDist = Vector3.Distance(transform.position, whalePosition.position);
             CheckFire(checkDist, angle);
+            //Debug.Log("Target: Whale " + GetFollowPosition(whalePosition, 30));
         }
+        
     }
 
     private Vector3 GetFollowPosition(Transform target, float followDistance)
