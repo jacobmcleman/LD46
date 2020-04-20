@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 5cf2b82fc6c7a994181cd67f9bc3c160,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1834.79
+      value: -1819.13
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5cf2b82fc6c7a994181cd67f9bc3c160,
         type: 3}
@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 74188d5c01fa7114fb66f1fbe1f0a2eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1843.85
+      value: -1836.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 74188d5c01fa7114fb66f1fbe1f0a2eb,
         type: 3}
@@ -353,8 +353,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Version: 7
   m_ObsoleteRenderingPath: 0
   m_ObsoleteFrameSettings:
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cc21138ffb23eaa4b9299a9c4ecf2c22,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1783.63
+      value: -1706.62
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cc21138ffb23eaa4b9299a9c4ecf2c22,
         type: 3}
@@ -526,7 +526,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 428b960e6546d844a8ac1ee28c111991,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1741.11
+      value: -1607.5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 428b960e6546d844a8ac1ee28c111991,
         type: 3}
@@ -595,7 +595,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cc09f8c86a13feb4486f37137687f1b1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1857.38
+      value: -1862.32
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cc09f8c86a13feb4486f37137687f1b1,
         type: 3}
@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 7632992545013164653, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1862.8
+      value: -1867.74
       objectReference: {fileID: 0}
     - target: {fileID: 7632992545013164653, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
@@ -802,7 +802,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 72232f6c45593d742bfc1da881037bd5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1813.51
+      value: -1770
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 72232f6c45593d742bfc1da881037bd5,
         type: 3}
@@ -889,8 +889,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Version: 10
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
