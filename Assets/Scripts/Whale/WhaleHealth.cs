@@ -14,6 +14,8 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
+        if (WhaleStats.instance != null) { damage = damage * (1 - (.1f * (float)WhaleStats.instance.ArmorLevel)); }
+        
         Debug.Log("HIT :: WhaleHealth");
         if (team == attackerTeam) {
             // Friendly fire
@@ -47,20 +49,13 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     void Awake()
     {
+        if (WhaleStats.instance != null) { MaxHealth = WhaleStats.instance.HealthPoolLevel * MaxHealth; }
+        else { MaxHealth = 100; }
         health = MaxHealth;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (WhaleStats.instance != null) { Heal(WhaleStats.instance.RegenLevel * Time.deltaTime); }
     }
-
-
 }

@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
             //Die
             Instantiate(resourceDrop, transform.position, transform.rotation);
             GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Enemies.Remove(gameObject); //Remove enemy from enemies list so spawner knows it ded
+            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Avoids.Remove(gameObject.transform); //Remove enemy from enemies list so spawner knows it ded
             Destroy(gameObject);
             return true;
         }

@@ -24,9 +24,28 @@ public class UIManager : MonoBehaviour
     public Text whaleOrganic;
     public Text shipInorganic;
     public Text shipOrganic;
+    public Text toolTipText;
 
-    public Slider playerHealthSlider;
-    public Slider whaleHealthSlider;
+    public DonutAss playerHealthSlider;
+    public DonutAss whaleHealthSlider;
+
+    public Animator toolTipAnimator;
+    private bool isToolTipping;
+
+    public Animator organicPickupAnimator;
+    public Text organicPickupText;
+    private bool isOrganPickuping;
+
+    public Animator metalPickupAnimator;
+    public Text metalPickupText;
+    private bool isMetalPickuping;
+
+    public GameObject pauseMenu;
+    public GameObject notPauseMenu;
+
+    private bool pauseToggle = false;
+
+    private AudioSource sfxAudio;
 
     //Singleton isntance
     public static UIManager instance;
@@ -62,7 +81,7 @@ public class UIManager : MonoBehaviour
         PlayerHealth = Player.GetComponent<IHealth>();
         WhaleHealth = Whale.GetComponent<IHealth>();
         SpawnerCS = Spawner.GetComponent<Spawner>();
-
+        sfxAudio = GameObject.Find("OtherSFX").GetComponent<AudioSource>();
         StartCoroutine(StartRocketCooldown(2f));
     }
 
@@ -73,11 +92,69 @@ public class UIManager : MonoBehaviour
         whaleInorganic.text = $"{WhaleInventory.Mechanicals}";
         whaleOrganic.text = $"{WhaleInventory.Organics}";
         playerHealthText.text = $"{PlayerHealth.Health}/{PlayerHealth.MaxHealth}";
-        playerHealthSlider.value = PlayerHealth.Health;
+        //playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
-        whaleHealthSlider.value = WhaleHealth.Health;
-        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Length}";
+        whaleHealthSlider.Fill = WhaleHealth.Health;
+        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
+        if (Input.GetKeyDown("j")) {
+            PickupMetal("14");
+        } else if (Input.GetKeyDown("k")) {
+            PickupOrganic("6");
+        } else if (Input.GetKeyDown("l")) {
+            DisplayToolTip("I am a teapot I am a teapot Hello", 0.3f);
+        } else if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (pauseToggle)
+            {
+                pauseMenu.SetActive(false);
+                notPauseMenu.SetActive(true);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                notPauseMenu.SetActive(false);
+                Time.timeScale = 0;
+            }
+            pauseToggle = !pauseToggle;
+        }
+    }
+
+    public void DisplayToolTip (string tip, float durationMultiplier)
+    {
+        if (!toolTipAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            toolTipAnimator.ResetTrigger("DisplayMessage");
+            toolTipAnimator.SetTrigger("Restart");
+        } 
+        toolTipText.text = tip;
+        toolTipAnimator.SetFloat("Duration", durationMultiplier);
+        toolTipAnimator.SetTrigger("DisplayMessage");
+        SFXController.instance.PlayToolTipSFX(sfxAudio);
+    }
+
+    public void PickupOrganic (string amount)
+    {
+        if (!organicPickupAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            organicPickupAnimator.ResetTrigger("Play");
+            organicPickupAnimator.SetTrigger("Restart");
+        } 
+        organicPickupText.text = "+" + amount;
+        organicPickupAnimator.SetTrigger("Play");
+        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
+    }
+
+    public void PickupMetal (string amount)
+    {
+        if (!metalPickupAnimator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
+            metalPickupAnimator.ResetTrigger("Play");
+            metalPickupAnimator.SetTrigger("Restart");
+        }
+        metalPickupText.text = "+" + amount;
+        metalPickupAnimator.SetTrigger("Play");
+        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
     }
 
     public void HandleRocketLaunch (float cooldown)
@@ -93,6 +170,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {
+        SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
         rocketFill.Fill = 0.0f;
         while (rocketFill.Fill < 1f)
         {
