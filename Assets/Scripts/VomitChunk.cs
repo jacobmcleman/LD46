@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VomitChunk : MonoBehaviour
 {
-    public float maxSpeed = 20;
+    public float maxSpeed = 50;
     public float speed = 20;
     public float rSpeed = 5;
 

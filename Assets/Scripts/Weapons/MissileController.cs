@@ -88,5 +88,6 @@ public class MissileController : MonoBehaviour
         GameObject explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
         Destroy(explosion, 15f);
         Destroy(gameObject);
+        if(SFXController.instance) SFXController.instance.PlayRocketExplosionSFX(explosion.GetComponent<AudioSource>());
     }
 }

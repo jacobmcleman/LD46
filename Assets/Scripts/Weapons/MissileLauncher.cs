@@ -41,20 +41,7 @@ public class MissileLauncher : MonoBehaviour
 
     private Transform GetBestTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(TargetTag);
-        float bestTargetVal = float.MinValue;
-        Transform bestTarget = null;
-        foreach (GameObject enemy in enemies)
-        {
-            float forwardNess = Vector3.Dot((enemy.transform.position - transform.position).normalized, transform.forward);
-            if (forwardNess > bestTargetVal)
-            {
-                bestTargetVal = forwardNess;
-                bestTarget = enemy.transform;
-            }
-        }
-
-        return bestTarget;
+        return GetComponent<Targeting>().Target;
     }
 
 
