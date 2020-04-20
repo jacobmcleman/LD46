@@ -171,6 +171,12 @@ public class SpaceshipController : MonoBehaviour
             Vector3 collisionNormal = col.contacts[0].normal;
             velocity = Vector3.Reflect(velocity * bounceModifier, collisionNormal);
             transform.forward = velocity;
+            
+            IHealth health = GetComponent<IHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(collisionDamageMult * col.relativeVelocity.magnitude, Teams.giantMeteor);
+            }
             //StartCoroutine("AngularDragModifier");
         }
     }
