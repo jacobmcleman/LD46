@@ -74,7 +74,7 @@ public class TutorialPopUps : MonoBehaviour
                 {
                     UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
                     step++;
-                    sp.SetWhaleStats();
+                    
                 }
                 else if (GameObject.FindGameObjectsWithTag("Resource").Length == 0 && step == 8)
                 {
@@ -93,6 +93,8 @@ public class TutorialPopUps : MonoBehaviour
                 {
                     if (Input.GetKeyDown("g"))
                     {
+                        step++;
+                        sp.SetWhaleStats();
                         SceneController.instance.WinLevel();
                     }
                 }
