@@ -56,6 +56,11 @@ public class SceneController : MonoBehaviour
         StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
     }
 
+    public void WinLevel()
+    {
+        ChangeScene("WhaleUpgrade");
+    }
+
     //Go to the winner screen
     public void WinGame ()
     {

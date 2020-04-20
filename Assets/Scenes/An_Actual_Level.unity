@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bouncer: 1
+  Bouncer: 0
   bounceModifier: 2
   bounceAngularDrag: 20
   acceleration: 10
@@ -7335,6 +7335,7 @@ MonoBehaviour:
   WhaleRail: {fileID: 917961801}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
+  AsteroidWeighting: []
   AsteroidPrefabs:
   - {fileID: 1807748132241992460, guid: 1c1472c0b26c0f34f9a66b3d4db86367, type: 3}
   MaxAsteriods: 300
@@ -7348,8 +7349,8 @@ MonoBehaviour:
   MapZMax: 1000
   Waves: 030000000500000008000000
   CurWave: 0
-  Asteriods: []
   Enemies: []
+  Asteriods: []
 --- !u!4 &1783636511
 Transform:
   m_ObjectHideFlags: 0
