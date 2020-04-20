@@ -58,7 +58,7 @@ public class Projectile : MonoBehaviour
         Vector3 direction = (nextPosition - this.transform.position).normalized;
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, direction, 
-            out hit, distance, ~0, QueryTriggerInteraction.Ignore))
+            out hit, distance, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore))
         {
             OnHitSomething(hit.transform.gameObject, hit.point);
             return true;

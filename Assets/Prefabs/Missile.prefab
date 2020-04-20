@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1523545945453378567}
   - component: {fileID: 1523545945453378564}
   - component: {fileID: 1523545945453378565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1523545945575141146}
   - component: {fileID: 1523545945575141147}
   - component: {fileID: 1523545945575141144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1523545945637138436}
   - component: {fileID: 1523545945637138439}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 1523545946267039163}
   - component: {fileID: 1523545946267039160}
   - component: {fileID: 1523545946267039161}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,6 +388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bouncer: 1
+  bounceModifier: 2
+  bounceAngularDrag: 20
   acceleration: 60
   lateralAcceleration: 60
   verticalAcceleration: 60
@@ -401,6 +404,7 @@ MonoBehaviour:
   yawDelta: 20
   rollDelta: 240
   steerGravity: 0.1
+  RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &1523545946267039160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c056d81f54bed0448ad56c742bfa885a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxThrottle: 1
   acceptableApproachDirError: 0.2
   largeDeflectionThreshold: 0
   acceptableRollWindow: 25
@@ -422,6 +427,7 @@ MonoBehaviour:
   rollSlowDown: 360
   pitchSlowDown: 180
   yawSlowDown: 480
+  magicThreshold: 0.1
   doCollisionAvoidance: 0
   lookAheadTime: 4
   castRadius: 6
