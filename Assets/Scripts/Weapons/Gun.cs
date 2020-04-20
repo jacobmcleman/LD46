@@ -6,9 +6,11 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
 {
     private Teams _team = Teams.playerTeam;
     private bool firing;
-    private int heat;
+    private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
-    public int maxHeat = 15;
+    public float maxHeat = 15;
+    public float heatDecayRate = 3;
+    public float shotHeatCost = 1;
     private float heatClock = 0;
     public float maxCooldownTime = 1f;
     public float spread = .01f;
@@ -43,29 +45,33 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     void Update()
     {
         fireClock += Time.deltaTime;
+
+        if(heat > 0) heat -= Time.deltaTime * heatDecayRate;
+        
         if(firing)
         {
             if(heat > maxHeat)
             {
                 heatClock = maxCooldownTime;
                 firing = false;
-                SFXController.instance.PlayGunOverheat(sfxAudio);
+                if(SFXController.instance) SFXController.instance.PlayGunOverheat(sfxAudio);
             }
-            else if (heat == maxHeat - 6 && !warned)
+            else if (heat > maxHeat - 6 && !warned)
             {
                 warned = true;
-                SFXController.instance.PlayOverheatWarning(sfxAudio, transform.position);
+                if (SFXController.instance) SFXController.instance.PlayOverheatWarning(sfxAudio, transform.position);
             }
         }
         else
         {
+
             if (heatClock > 0)
             {
                 heatClock -= Time.deltaTime;
             }
             if (heatClock > 10 && heatClock < 12)
             {
-
+                heatClock -= Time.deltaTime;
             }
             if (heatClock <= 0)
             {
@@ -105,7 +111,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         proj.direction.z += Random.Range(-spread, spread);
         proj.speed += parentSpeed;
 
-        heat++;
+        heat += shotHeatCost;
         fireClock = 0;
         float heatMod = heat;
         float maxHeatMod = maxHeat;

@@ -5354,10 +5354,10 @@ Light:
   m_GameObject: {fileID: 1946204207}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 16777216
+  m_Color: {r: 0.7971698, g: 0.9655253, b: 1, a: 1}
+  m_Intensity: 20
   m_Range: 2846.18
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5403,7 +5403,7 @@ Light:
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 2846.18}
-  m_UseBoundingSphereOverride: 1
+  m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1946204209
@@ -5437,16 +5437,16 @@ MonoBehaviour:
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
-  m_PointlightHDType: 1
+  m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 27
+  m_Intensity: 20
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 4
+  m_LightUnit: 2
   m_FadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
@@ -6275,6 +6275,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136200532042802462, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: heatDecayRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7136200532051017263, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: heatDecayRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7136200532298944980, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
