@@ -32,7 +32,12 @@ public class WhaleStats : MonoBehaviour
     private void Awake()
     {
         if (instance != null) { Destroy(gameObject); }
-        else { instance = this; }
+        else
+        {
+            instance = this;
+            Organicis = 0;
+            Mechanicals = 0;
+        }
     }
 
     public bool UpgradeLevel (Upgrade up)
