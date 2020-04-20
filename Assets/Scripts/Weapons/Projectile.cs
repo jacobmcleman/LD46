@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         // Projectile should only live for timeout seconds
+        this.transform.forward = direction;
         _hasHit = false;
     }
 
