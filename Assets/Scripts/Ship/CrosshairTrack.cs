@@ -43,7 +43,7 @@ public class CrosshairTrack : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, toHitPoint, out hit, maxWeaponAimAdjustRange, ~(1 << 9)))
         {
-            Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
+            //Debug.LogFormat("Aiming at {0} which is {1} away", hit.collider.gameObject.name, hit.distance);
             toHitPoint = (hit.point - gameObject.transform.position).normalized;
         }
 
