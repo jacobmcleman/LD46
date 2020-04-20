@@ -31,7 +31,7 @@ public class LevelSetup : MonoBehaviour
         sp.Waves.Add(sp.Waves[sp.Waves.Count - 1]);
         for (int i = 0; i < sp.Waves.Count; i++)
         {
-            sp.Waves[i] += Random.Range(0, 2);
+            sp.Waves[i] += Random.Range(i, i+2);
         }
         sp.SpawnTutBot();
 
