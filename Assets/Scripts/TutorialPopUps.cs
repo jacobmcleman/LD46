@@ -2,29 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutoralPopUps : MonoBehaviour
+public class TutorialPopUps : MonoBehaviour
 {
-    string throttleUp = "Press W to go faster";
-    string throttleDown = "Press S to go slower";
-    string rollLeft = "Press A to roll left";
-    string rollRight= "Press D to roll right";
-    string yawLeft = "Press W to yaw left";
-    string yawRight = "Press S to yaw right";
-    string leftClick = "Left click to use machine gun";
-    string rightClick= "Right click to use missles";
-    string leftShift= "Left Shift to boost";
+    private int step = 0;
+    public bool finished = false;
+    public bool coroutineRunning = false;
+
+    public string[] neededInputs;
+    public string[] inputTips;
 
     float durationMultiplier = 3;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(Begin());
+    }
+
+    private IEnumerator Begin () 
+    {
+        yield return new WaitForSeconds(1);
+        UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
+    }
+
+    private IEnumerator IncrementTutorial ()
+    {
+        while (!finished)
+        {
+            yield return null;
+            if (step == neededInputs.Length)
+            {
+                finished = true;
+
+            } 
+            else if (neededInputs[step] == "Fire1" || neededInputs[step] == "Fire2")
+            {
+                if (Input.GetButtonDown(neededInputs[step]))
+                {
+                    step++;
+                    UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
+                    Debug.Log("there ya go, nextx one nowww");
+                    coroutineRunning = false;
+                }
+            }
+            else if (step < 7)
+            {
+                if (Input.GetKeyDown(neededInputs[step]))
+                {
+                    step++;
+                    if (step == 7)
+                    {   
+                        UIManager.instance.DisplayToolTip((inputTips[step] + " " + PlayerPrefs.GetString("whale_name") + " safe!"), 0.000000000004f);
+                        FindObjectsOfType<Spawner>()[0].SpawnTutBot();
+                    }
+                    else
+                    {
+                        UIManager.instance.DisplayToolTip(inputTips[step], 0.000000000004f);
+                    }
+                    if (step == 2)
+                    {
+                        MusicController.instance.PlayBloodSacrificeNextSound();
+                    }
+                    Debug.Log("there ya go, nextx one nowww");
+                    coroutineRunning = false;
+                }
+            }
+            else if (step == 7)
+            {
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                {
+                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!", 0.000000000004f);
+                    step++;
+                    SceneController.instance.ChangeScene("WhaleUpgrade");
+                }
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (!coroutineRunning && !finished)
+        {
+            StartCoroutine(IncrementTutorial());
+            coroutineRunning = true;
+        }
+        
 /*
         while (!Input.GetKeyDown(KeyCode.W))
         {

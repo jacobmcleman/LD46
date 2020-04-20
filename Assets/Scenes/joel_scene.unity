@@ -9116,8 +9116,14 @@ MonoBehaviour:
   whaleOrganic: {fileID: 1528466089}
   shipInorganic: {fileID: 466515163}
   shipOrganic: {fileID: 1303496226}
+  toolTipText: {fileID: 0}
   playerHealthSlider: {fileID: 35880058}
   whaleHealthSlider: {fileID: 449368426}
+  toolTipAnimator: {fileID: 0}
+  organicPickupAnimator: {fileID: 0}
+  organicPickupText: {fileID: 0}
+  metalPickupAnimator: {fileID: 0}
+  metalPickupText: {fileID: 0}
 --- !u!114 &2058266833
 MonoBehaviour:
   m_ObjectHideFlags: 0

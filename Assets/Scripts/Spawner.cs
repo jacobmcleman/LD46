@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject WhaleRail;
+    private GameObject Whale;
 
     public GameObject[] EnemyPrefabs;
     public float[] AsteroidWeighting;
@@ -21,10 +23,10 @@ public class Spawner : MonoBehaviour
     public int MapZMin = -1000;
     public int MapZMax = 1000;
 
-    public int[] Waves;
+    public List<int> Waves = new List<int>();
     public int CurWave = 0;
 
-    private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
+    public List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Asteriods = new List<GameObject>();
 
@@ -32,13 +34,14 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         CurWave = 0;
+        Whale = GameObject.FindGameObjectWithTag("Whale");
 
         if (AsteroidPrefabs.Length == 0)
         {
             Debug.LogError("No asteroids you dummy");
         }
 
-        if (AsteroidPrefabs.Length != AsteroidWeighting.Length) { Debug.LogError("EnemyPrefab should be same lenght as EnemyWheighting"); }
+        //if (AsteroidPrefabs.Length != AsteroidWeighting.Length) { Debug.LogError("EnemyPrefab should be same lenght as EnemyWheighting"); }
 
         //Add all the whale route points to the list of points to avoid spawning near
         foreach (Transform route in WhaleRail.GetComponent<WhaleRail>().RailPoints)
@@ -89,17 +92,29 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (Enemies.Count == 0 && CurWave >= (Waves.Length - 1))
+        if ((Enemies.Count == 0 && CurWave >= (Waves.Count - 1)) && SceneManager.GetActiveScene().name != "Level1")
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
-            if (SceneController.instance != null) { SceneController.instance.WinLevel(); }
+            if (SceneController.instance != null)
+            {
+                SceneController.instance.WinLevel();
+                WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
+                WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+                WhaleStats.instance.Waves = Waves;
+            }
             else { Debug.Log("That's all folks!!!"); }
         }
-        else if (Enemies.Count == 0)
+        else if (Enemies.Count == 0 && SceneManager.GetActiveScene().name != "Level1")
         {
+            CurWave++;
             SpawnEnemyWave();
         }
+    }
+
+    public void SpawnTutBot ()
+    {
+        SpawnEnemyWave();
     }
 
     //Spawing the Asterriod

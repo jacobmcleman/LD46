@@ -6,11 +6,14 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
 {
     private Teams _team = Teams.playerTeam;
     private bool firing;
-    private int heat;
+    private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
-    public int maxHeat = 15;
+    public float maxHeat = 15;
+    public float heatDecayRate = 3;
+    public float shotHeatCost = 1;
     private float heatClock = 0;
-    public float maxCooldownTime = 2f;
+    public float maxCooldownTime = 1f;
+    public float spread = .01f;
     public Teams team 
     {
         get => _team;
@@ -29,26 +32,44 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     /** "time" it takes to fire one shot. */
     public float firePeriod = 0.25f;
 
+    private AudioSource sfxAudio;
+    private bool warned = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        sfxAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         fireClock += Time.deltaTime;
+
+        if(heat > 0) heat -= Time.deltaTime * heatDecayRate;
+        
         if(firing)
         {
             if(heat > maxHeat)
             {
                 heatClock = maxCooldownTime;
                 firing = false;
+                if(SFXController.instance) SFXController.instance.PlayGunOverheat(sfxAudio);
+            }
+            else if (heat > maxHeat - 6 && !warned)
+            {
+                warned = true;
+                if (SFXController.instance) SFXController.instance.PlayOverheatWarning(sfxAudio, transform.position);
             }
         }
         else
         {
+
             if (heatClock > 0)
+            {
+                heatClock -= Time.deltaTime;
+            }
+            if (heatClock > 10 && heatClock < 12)
             {
                 heatClock -= Time.deltaTime;
             }
@@ -56,6 +77,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             {
                 heatClock = 0;
                 heat = 0;
+                warned = false;
             }
         
         }
@@ -63,7 +85,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
 
     public bool CanFire() 
     {
-        Debug.Log(heatClock);
+        //Debug.Log(heatClock);
         return (fireClock >= firePeriod) 
             && (heatClock <= 0);
     }
@@ -84,11 +106,18 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float parentSpeed = gameObject.GetComponentInParent<SpaceshipController>()
             .Velocity.magnitude;
         proj.direction = fireVec;
+        proj.direction.x += Random.Range(-spread, spread);
+        proj.direction.y += Random.Range(-spread, spread);
+        proj.direction.z += Random.Range(-spread, spread);
         proj.speed += parentSpeed;
 
-        heat++;
+        heat += shotHeatCost;
         fireClock = 0;
-
+        float heatMod = heat;
+        float maxHeatMod = maxHeat;
+        float pitchBend = heatMod / maxHeatMod;
+        Debug.Log(pitchBend);
+        SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }
 }
