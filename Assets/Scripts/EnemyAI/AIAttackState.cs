@@ -92,6 +92,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 if (distToPlayer < attackRange) // pursue player instead of Whale
                 {
                     curState = AIState.ChasingPlayer;
+                    Debug.Log("Enemy State now: " + curState);
                 }
                 else
                 {
@@ -111,11 +112,13 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     else
                     {
                         curState = AIState.RunningFromPlayer;
+                        Debug.Log("Enemy State now: " + curState);
                     }
                 }
                 else
                 {
                     curState = AIState.AttackingWhale;
+                    Debug.Log("Enemy State now: " + curState);
                 }
                 break;
             case AIState.RunningFromPlayer:
@@ -123,6 +126,11 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 if (runTimer > 0)
                 {
                     ChaseThing(Instantiate(notPlayerPrefab, (playerPosition.position - transform.position) * 100, playerPosition.rotation).transform);
+                }
+                else
+                {
+                    curState = AIState.AttackingWhale;
+                    Debug.Log("Enemy State now: " + curState);
                 }
                 Instantiate(notPlayerPrefab, (playerPosition.position - transform.position)*100, playerPosition.rotation);
                 break;
