@@ -43,7 +43,7 @@ public class ShipAudioController : MonoBehaviour
             max = 0.07f;
         }
         //Set the max power track volume equal to our current max speed percentage (divided by 2 because was too loud)
-        maxSrc.volume = max / 2;
+        maxSrc.volume = max;
         //Set the idle track equal volume equal to remaining potential speed (divded by 2 because was too loud)
         idleSrc.volume = 1f - (max / 2);
     }
@@ -106,7 +106,7 @@ public class ShipAudioController : MonoBehaviour
     //Fade in an audio source
     private IEnumerator FadeOut (AudioSource source, string dir)
     {
-        float FadeTime = 1f;
+        float FadeTime = 3f;
         //Make sure we start at whatever our current volume level is
         float startVolume = source.volume;
         while (source.volume > 0.01f) {
