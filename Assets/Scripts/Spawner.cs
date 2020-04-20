@@ -32,6 +32,8 @@ public class Spawner : MonoBehaviour
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Asteriods = new List<GameObject>();
 
+    private IInventory WhaleInventory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,9 +121,10 @@ public class Spawner : MonoBehaviour
 
     public void SetWhaleStats()
     {
-        Debug.Log("Adding Organics: " + Whale.GetComponent<IInventory>().Organics + " Adding Mechanics: " + Whale.GetComponent<IInventory>().Mechanicals);
-        WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
-        WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
+        WhaleInventory = Whale.GetComponent<IInventory>();
+        Debug.Log("Adding Organics: " + WhaleInventory.Organics + " Adding Mechanics: " + WhaleInventory.Mechanicals);
+        WhaleStats.instance.Organics += WhaleInventory.Organics;
+        WhaleStats.instance.Mechanicals += WhaleInventory.Mechanicals;
         WhaleStats.instance.Waves = Waves;
     }
 
