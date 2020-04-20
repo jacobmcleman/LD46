@@ -112,46 +112,6 @@ public class TutorialPopUps : MonoBehaviour
             coroutineRunning = true;
         }
         
-/*
-        while (!Input.GetKeyDown(KeyCode.W))
-        {
-            UIManager.instance.DisplayToolTip(string throttleUp, float durationMultiplier);
-        }
-        while (!Input.GetKeyDown(KeyCode.S))
-        {
-            UIManager.instance.DisplayToolTip(string throttleDown, float durationMultiplier);
-        }
-        while (!Input.GetKeyDown(KeyCode.A))
-        {
-            UIManager.instance.DisplayToolTip(string rollLeft, float durationMultiplier);
-        }
-        while (!Input.GetKeyDown(KeyCode.D))
-        {
-            UIManager.instance.DisplayToolTip(string rollRight, float durationMultiplier);
-        }
-        while (!Input.GetKeyDown(KeyCode.Q))
-        {
-            UIManager.instance.DisplayToolTip(string yawLeft, float durationMultiplier);
-        }
-        while (!Input.GetKeyDown(KeyCode.E))
-        {
-            UIManager.instance.DisplayToolTip(string yawRight, float durationMultiplier);
-        }
-        while (!Input.GetButtonDown("Fire1"))
-        {
-            UIManager.instance.DisplayToolTip(string leftClick, float durationMultiplier);
-        }
-        while (!Input.GetButtonDown("Fire2"))
-        {
-            UIManager.instance.DisplayToolTip(string rightClick, float durationMultiplier);
-        }
-        while (Input.GetKey(KeyCode.LeftShift))
-        {
-            UIManager.instance.DisplayToolTip(string leftShift, float durationMultiplier);
-        }
-*/
-
-
 /* commented out for debuging
 
         while (Input.GetKeyDown(KeyCode.t"))
