@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         if (health - damage <= 0)
         {
             //Die
-            Destroy(gameObject);
+            SceneController.instance.LoseGame();
             return false;
         }
         else
@@ -60,6 +60,4 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         
     }
-
-
 }
