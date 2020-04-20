@@ -12,6 +12,8 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public int MaxOrganics = 100;
     public int MaxMechanicals = 100;
 
+    public int feedDistance = 200;
+
     [SerializeField]
     public int Organics
     {
@@ -21,7 +23,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
             if (value >= MaxOrganics)
             {
                 organics = MaxOrganics;
-                //TODO: tell player max has been hit
+                UIManager.instance.DisplayToolTip("No more room for organic material, return to "+ PlayerPrefs.GetString("whale_name")+" to free up space", 0.5f);
             }
             else { organics = value; }
         }
@@ -36,7 +38,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
             if ( value >= MaxMechanicals)
             {
                 mechanicals = MaxMechanicals;
-                //TODO: tell player max has been hit
+                UIManager.instance.DisplayToolTip("No more room for mechanical material, return to " + PlayerPrefs.GetString("whale_name") + " to free up space", 0.5f);
             }
             else {
                 mechanicals = value;
@@ -70,36 +72,31 @@ public class PlayerInventory : MonoBehaviour, IInventory
             Regurgitate();
             regurgTimer = regurgitateCooldown;
         }
+
+        if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance)
+        {
+            //TODO: Notify player they're in range to feeeeeeed
+        }
     }
 
     void Regurgitate()
     {
-        if (organics > 0)
+        if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance)
         {
-            if (organics >= chunkSize)
+            if (organics > 0)
             {
-                SpawnChunk(chunkSize, OrganicChunk);
-                organics -= chunkSize;
-                Debug.Log("Organics -= 10. organics:" + organics);
+                Whale.GetComponent<IInventory>().Organics += organics;
+                Organics = 0;
             }
-            else
+            else if (mechanicals > 0)
             {
-                SpawnChunk(organics, OrganicChunk);
-                organics = 0;
+                Whale.GetComponent<IInventory>().Mechanicals += organics;
+                Mechanicals = 0;
             }
         }
-        else if (mechanicals > 0)
+        else
         {
-            if (mechanicals >= chunkSize)
-            {
-                SpawnChunk(chunkSize, MechanicalChunk);
-                mechanicals -= chunkSize;
-            }
-            else
-            {
-                SpawnChunk(mechanicals, MechanicalChunk);
-                mechanicals = 0;
-            }
+            UIManager.instance.DisplayToolTip("Get closer to "+PlayerPrefs.GetString("whale_name")+" to feed "+PlayerPrefs.GetString("whale_name"), 0.5f);
         }
     }
 

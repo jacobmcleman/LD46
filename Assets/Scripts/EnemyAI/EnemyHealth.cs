@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     public GameObject resourceDrop;
 
+    private bool hasSpawned;
+
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
         if (team == attackerTeam) 
@@ -27,9 +29,13 @@ public class EnemyHealth : MonoBehaviour, IHealth
         {
             Debug.Log("Dead Hit :: EnemyHealth");
             //Die
-            Instantiate(resourceDrop, transform.position, transform.rotation);
-            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Enemies.Remove(gameObject); //Remove enemy from enemies list so spawner knows it ded
-            GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Avoids.Remove(gameObject.transform); //Remove enemy from enemies list so spawner knows it ded
+            if (!hasSpawned)
+            {
+                Instantiate(resourceDrop, transform.position, transform.rotation);
+                GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Enemies.Remove(gameObject); //Remove enemy from enemies list so spawner knows it ded
+                GameObject.FindGameObjectWithTag("Spawner").GetComponent<Spawner>().Avoids.Remove(gameObject.transform); //Remove enemy from enemies list so spawner knows it ded
+                hasSpawned = true;
+            }
             Destroy(gameObject);
             return true;
         }
@@ -56,6 +62,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     void Awake()
     {
         health = MaxHealth;
+        hasSpawned = false;
     }
 
     // Start is called before the first frame update

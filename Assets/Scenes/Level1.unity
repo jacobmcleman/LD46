@@ -151,6 +151,12 @@ Transform:
   m_Father: {fileID: 1080593156}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &169103082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5554310319678813236, guid: e741e9954991b094f8b3ed3456f15df3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5344528726422064323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &176646485
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +232,11 @@ PrefabInstance:
       propertyPath: IndicatorUI
       value: 
       objectReference: {fileID: 1510593527}
+    - target: {fileID: 182130676186911423, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: IndicatorUI
+      value: 
+      objectReference: {fileID: 169103082}
     - target: {fileID: 7136200531599415437, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: m_Name
@@ -2005,6 +2016,8 @@ MonoBehaviour:
   forwardDistanceAhead: 5
   shipPositionWeight: 1
   adjustRate: 240
+  orbitSpeed: 30
+  curMode: 0
 --- !u!114 &2001440148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2141,7 +2154,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 3000
   field of view: 60
   orthographic: 0
   orthographic size: 5
