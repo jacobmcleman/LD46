@@ -74,7 +74,11 @@ public class PlayerShip : MonoBehaviour
         }
         float effectiveRoll = Input.GetAxis("Roll");
 
-        stick.StickInput = new Vector3(effectivePitch, effectiveYaw, effectiveRoll);
+        float smoothedPitch = Mathf.Sign(effectivePitch) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectivePitch));
+        float smoothedYaw = Mathf.Sign(effectiveYaw) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectiveYaw));
+        float smoothedRoll = Mathf.Sign(effectiveRoll) * EasingFunction.EaseInQuart(0, 1, Mathf.Abs(effectiveRoll));
+
+        stick.StickInput = new Vector3(smoothedPitch, smoothedYaw, smoothedRoll);
 
         mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 100, effectivePitch * -100);
     }
