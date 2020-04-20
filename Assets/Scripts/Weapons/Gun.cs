@@ -46,7 +46,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     {
         fireClock += Time.deltaTime;
 
-        if(heat > 0) heat -= Time.deltaTime * heatDecayRate;
+        if(heat > 0)
+        {
+            heat -= Time.deltaTime * heatDecayRate;
+        }
         
         if(firing)
         {
@@ -56,30 +59,31 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
                 firing = false;
                 if(SFXController.instance) SFXController.instance.PlayGunOverheat(sfxAudio);
             }
-            else if (heat > maxHeat - 6 && !warned)
+            else if (heat > maxHeat - 4 && !warned)
             {
                 warned = true;
                 if (SFXController.instance) SFXController.instance.PlayOverheatWarning(sfxAudio, transform.position);
+                UIManager.instance.UpdateOverheatUI(heat / maxHeat);
+            }
+            else
+            {
+                UIManager.instance.UpdateOverheatUI(heat / maxHeat);
             }
         }
         else
         {
-
             if (heatClock > 0)
             {
                 heatClock -= Time.deltaTime;
-            }
-            if (heatClock > 10 && heatClock < 12)
-            {
-                heatClock -= Time.deltaTime;
+
             }
             if (heatClock <= 0)
             {
                 heatClock = 0;
                 heat = 0;
                 warned = false;
+                UIManager.instance.UpdateOverheatUI(0);
             }
-        
         }
     }
 
@@ -110,12 +114,11 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         proj.direction.y += Random.Range(-spread, spread);
         proj.direction.z += Random.Range(-spread, spread);
         proj.speed += parentSpeed;
-
         heat += shotHeatCost;
         fireClock = 0;
         float heatMod = heat;
         float maxHeatMod = maxHeat;
-        float pitchBend = heatMod / maxHeatMod + 0.5f;
+        float pitchBend = heatMod / maxHeatMod + 0.3f;
         Debug.Log(pitchBend);
         SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
