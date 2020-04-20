@@ -33,6 +33,7 @@ public class LevelSetup : MonoBehaviour
         {
             sp.Waves[i] += Random.Range(0, 2);
         }
+        sp.SpawnTutBot();
 
         Whale.GetComponent<IInventory>().Organics = WhaleStats.instance.Organics;
         Whale.GetComponent<IInventory>().Mechanicals = WhaleStats.instance.Mechanicals;

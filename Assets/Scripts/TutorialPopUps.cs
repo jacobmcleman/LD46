@@ -11,10 +11,13 @@ public class TutorialPopUps : MonoBehaviour
     public string[] neededInputs;
     public string[] inputTips;
 
+    private Spawner sp;
+
     float durationMultiplier = 3;
     // Start is called before the first frame update
     void Start()
     {
+        sp = FindObjectOfType<Spawner>();
         StartCoroutine(Begin());
     }
 
@@ -52,7 +55,7 @@ public class TutorialPopUps : MonoBehaviour
                     if (step == 7)
                     {   
                         UIManager.instance.DisplayToolTip((inputTips[step] + " " + PlayerPrefs.GetString("whale_name") + " safe!"), 0.000000000004f);
-                        FindObjectsOfType<Spawner>()[0].SpawnTutBot();
+                        sp.SpawnTutBot();
                     }
                     else
                     {
@@ -68,10 +71,11 @@ public class TutorialPopUps : MonoBehaviour
             }
             else if (step == 7)
             {
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true)
                 {
                     UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!", 0.000000000004f);
                     step++;
+                    sp.SetWhaleStats();
                     SceneController.instance.ChangeScene("WhaleUpgrade");
                 }
             }
