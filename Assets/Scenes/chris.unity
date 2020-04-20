@@ -1129,9 +1129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
   projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
     type: 3}
-  cooldownTime: 0.25
+  firePeriod: 0.25
 --- !u!1 &296064645 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7758920711715663526, guid: 588015fe0e105944797e0ad197ebfc86,
@@ -1156,9 +1158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
   projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
     type: 3}
-  cooldownTime: 0.25
+  firePeriod: 0.25
 --- !u!1 &319348714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6166,6 +6170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612fb6ce7e07e524292422f9af87aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhaleRail: {fileID: 1265421368}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
   AsteroidPrefabs:
@@ -6280,6 +6285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bouncer: 1
+  bounceModifier: 2
+  bounceAngularDrag: 20
   acceleration: 30
   lateralAcceleration: 30
   verticalAcceleration: 70
