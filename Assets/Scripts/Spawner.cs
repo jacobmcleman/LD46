@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject WhaleRail;
 
     public GameObject[] EnemyPrefabs;
+    public float[] AsteroidWeighting;
     public GameObject[] AsteroidPrefabs;
 
     public int MaxAsteriods;
@@ -23,9 +24,9 @@ public class Spawner : MonoBehaviour
     public int[] Waves;
     public int CurWave = 0;
 
-    private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near
-    public List<GameObject> Asteriods = new List<GameObject>();
+    private List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
     public List<GameObject> Enemies = new List<GameObject>();
+    public List<GameObject> Asteriods = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,8 @@ public class Spawner : MonoBehaviour
         {
             Debug.LogError("No asteroids you dummy");
         }
+
+        if (AsteroidPrefabs.Length != AsteroidWeighting.Length) { Debug.LogError("EnemyPrefab should be same lenght as EnemyWheighting"); }
 
         //Add all the whale route points to the list of points to avoid spawning near
         foreach (Transform route in WhaleRail.GetComponent<WhaleRail>().RailPoints)
@@ -100,7 +103,24 @@ public class Spawner : MonoBehaviour
     //Spawing the Asterriod
     void SpawnAsteriod(Vector3 point)
     {
-        int prefabIndex = Random.Range(0, AsteroidPrefabs.Length); //Select prefab
+        //Select prefab
+        int prefabIndex = 0;
+        float totalWeight = 0;
+        for (int i = 0; i < AsteroidWeighting.Length; i++)
+        {
+            totalWeight += AsteroidWeighting[i];
+        }
+        float rand = Random.Range(0, totalWeight);
+        for (int i = 0; i < AsteroidWeighting.Length; i++)
+        {
+            if (rand <= AsteroidWeighting[i])
+            {
+                prefabIndex = i;
+                break;
+            }
+            rand -= AsteroidWeighting[i];
+        }
+
         Quaternion randRotate = Quaternion.Euler(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)); //Make a random rotation
         GameObject roid = Instantiate(AsteroidPrefabs[prefabIndex], point, randRotate); //Instantiate that bitch
         roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that 
