@@ -16427,11 +16427,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: shotHeatCost
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: shotHeatCost
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
