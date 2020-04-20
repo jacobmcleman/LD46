@@ -8,6 +8,7 @@ TagManager:
   - Pickup
   - Whale
   - Spawner
+  - WhaleMouth
   layers:
   - Default
   - TransparentFX

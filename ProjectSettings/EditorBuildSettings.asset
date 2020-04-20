@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Winner.unity
     guid: 03c217f8fd2b07c4dbb6ceb7e84c838b
+  - enabled: 1
+    path: Assets/Scenes/An_Actual_Level.unity
+    guid: f84b38a787f376a4cb8026ee236d3e37
   m_configObjects: {}

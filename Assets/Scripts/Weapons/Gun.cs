@@ -5,6 +5,12 @@ using UnityEngine;
 public class Gun : MonoBehaviour, IFireable, IWieldable
 {
     private Teams _team = Teams.playerTeam;
+    private bool firing;
+    private int heat;
+    /** effectively the number of consecutive shots the weapon can fire */
+    public int maxHeat = 15;
+    private float heatClock = 0;
+    public float maxCooldownTime = 2f;
     public Teams team 
     {
         get => _team;
@@ -18,43 +24,70 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     public FireableType type { get { return FireableType.Gun; } }
     public string name { get { return "name"; } }
     
-    private float cooldownClock = 0f;
-    public float cooldownTime = 0.25f;
+    /** clock that limits the fire rate */
+    private float fireClock = 0f;
+    /** "time" it takes to fire one shot. */
+    public float firePeriod = 0.25f;
 
     // Start is called before the first frame update
     void Start()
     {
-        cooldownClock = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        cooldownClock += Time.deltaTime;
+        fireClock += Time.deltaTime;
+        if(firing)
+        {
+            if(heat > maxHeat)
+            {
+                heatClock = maxCooldownTime;
+                firing = false;
+            }
+        }
+        else
+        {
+            if (heatClock > 0)
+            {
+                heatClock -= Time.deltaTime;
+            }
+            if (heatClock <= 0)
+            {
+                heatClock = 0;
+                heat = 0;
+            }
+        
+        }
     }
 
     public bool CanFire() 
     {
-        return cooldownClock >= cooldownTime;
+        Debug.Log(heatClock);
+        return (fireClock >= firePeriod) 
+            && (heatClock <= 0);
     }
 
     public bool Fire(IWieldable firer) 
     {
         if(!CanFire())
         {  
-            // do stuff
             return false;
         }
+        firing = true;
         Vector3 fireVec = transform.forward;
         GameObject projectile = GameObject.Instantiate(projectilePrefab);
         Projectile proj = projectile.GetComponent<Projectile>();
         if (proj == null) Debug.LogError("Tried to shoot not a projectile");
         projectile.transform.position = transform.position + transform.forward;
         proj.team = team;
+        float parentSpeed = gameObject.GetComponentInParent<SpaceshipController>()
+            .Velocity.magnitude;
         proj.direction = fireVec;
-        proj.speed += 30;
+        proj.speed += parentSpeed;
 
-        cooldownClock = 0;
+        heat++;
+        fireClock = 0;
 
         return true;
     }
