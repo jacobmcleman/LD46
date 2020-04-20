@@ -4,39 +4,26 @@ using UnityEngine;
 
 public class MissileLauncher : MonoBehaviour
 {
-    private Transform Target;
     public Transform missileAppearPoint;
 
     public GameObject Missile;
 
-    public string TargetTag = "Enemy";
+    private Transform Target;
+    private Targeting targeting;
+
+    private void Start()
+    {
+        targeting = GameObject.FindGameObjectWithTag("Player").GetComponent<Targeting>();
+    }
 
     void Update()
     {
         if(Input.GetButtonDown("Fire2"))
         {
-            Target = GetBestTarget();
+            Target = targeting.Target;
 
             LaunchMissile();
         }
-    }
-
-    private Transform GetBestTarget()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(TargetTag);
-        float bestTargetVal = float.MinValue;
-        Transform bestTarget = null;
-        foreach (GameObject enemy in enemies)
-        {
-            float forwardNess = Vector3.Dot((enemy.transform.position - transform.position).normalized, transform.forward);
-            if (forwardNess > bestTargetVal)
-            {
-                bestTargetVal = forwardNess;
-                bestTarget = enemy.transform;
-            }
-        }
-
-        return bestTarget;
     }
 
     private void LaunchMissile()
