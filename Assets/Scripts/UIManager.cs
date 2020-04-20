@@ -76,7 +76,6 @@ public class UIManager : MonoBehaviour
         SpawnerCS = Spawner.GetComponent<Spawner>();
 
         StartCoroutine(StartRocketCooldown(2f));
-        DisplayToolTip("Sex w/ a man", 0.7f);
     }
 
     private void Update()

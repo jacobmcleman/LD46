@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -89,17 +90,22 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (Enemies.Count == 0 && CurWave >= (Waves.Length - 1))
+        if ((Enemies.Count == 0 && CurWave >= (Waves.Length - 1)) && SceneManager.GetActiveScene().name != "Level1")
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
             if (SceneController.instance != null) { SceneController.instance.WinLevel(); }
             else { Debug.Log("That's all folks!!!"); }
         }
-        else if (Enemies.Count == 0)
+        else if (Enemies.Count == 0 && SceneManager.GetActiveScene().name != "Level1")
         {
             SpawnEnemyWave();
         }
+    }
+
+    public void SpawnTutBot ()
+    {
+        SpawnEnemyWave();
     }
 
     //Spawing the Asterriod
