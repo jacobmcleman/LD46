@@ -27,6 +27,7 @@ public interface IFireable
     string name { get; }
     /** Team weapon belongs to */
     Teams team { get; set; }
+    /** Starts cooldown */
 }
 public enum FireableType
 {
