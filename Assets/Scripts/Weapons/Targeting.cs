@@ -63,7 +63,7 @@ public class Targeting : MonoBehaviour
     {
         enemies = GameObject.FindGameObjectsWithTag(TargetTag);
         if (enemyIndex < enemies.Length - 1) { enemyIndex++; }
-        else if (enemies.Length > 0) { enemyIndex = 0; }
+        else { enemyIndex = 0; }
         Debug.Log("Enemy Index: " + enemyIndex);
         return enemies[enemyIndex].transform;
     }
