@@ -188,11 +188,11 @@ MonoBehaviour:
   Bouncer: 1
   bounceModifier: 2
   bounceAngularDrag: 20
-  acceleration: 30
+  acceleration: 15
   lateralAcceleration: 30
   verticalAcceleration: 70
   minSpeed: 10
-  maxSpeed: 100
+  maxSpeed: 40
   throttleChangeRate: 0.75
   maxPitchRate: 60
   maxYawRate: 30
