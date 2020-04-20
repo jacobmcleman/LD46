@@ -106,7 +106,8 @@ public class TargetHud : MonoBehaviour
 
     private bool AboveLine(Vector2 testPoint, Vector2 linePointA, Vector2 linePointB)
     {
-        return testPoint.y > (((linePointB.y - linePointA.y) / (linePointB.x - linePointA.x)) * (testPoint.x - linePointA.x) + linePointA.y);
+
+        //return testPoint.y > (((linePointB.y - linePointA.y) / (linePointB.x - linePointA.x)) * (testPoint.x - linePointA.x) + linePointA.y);
     }
 
     private Vector2 moveToScreenEdge(Vector2 point)
