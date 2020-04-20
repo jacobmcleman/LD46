@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
     public float persistAfterHitTime = 1.0f;
     public float speed = 150;
     private bool _hasHit = false;
+    public string IgnoreLayerName = "Player";
+
     public bool hasHit
     {
         get => _hasHit;
@@ -58,7 +60,7 @@ public class Projectile : MonoBehaviour
         Vector3 direction = (nextPosition - this.transform.position).normalized;
         RaycastHit hit;
         if (Physics.Raycast(this.transform.position, direction, 
-            out hit, distance, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore))
+            out hit, distance, ~LayerMask.GetMask(IgnoreLayerName), QueryTriggerInteraction.Ignore))
         {
             OnHitSomething(hit.transform.gameObject, hit.point);
             return true;
