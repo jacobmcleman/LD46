@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 374321365770957423}
   - component: {fileID: 549135841021761640}
   - component: {fileID: 3807110357248871912}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerShip_MainShipBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,8 @@ GameObject:
   - component: {fileID: 2178788254064661626}
   - component: {fileID: 3257534220859562160}
   - component: {fileID: 2605307420922841905}
-  m_Layer: 0
+  - component: {fileID: 1587413145}
+  m_Layer: 12
   m_Name: MachineGun_Right_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,6 +183,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1587413145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047190959772228814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseUI: {fileID: 0}
+  maxWeaponAimAdjustRange: 100
+  stick: {fileID: 0}
 --- !u!1 &5686654876562381692
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +209,8 @@ GameObject:
   - component: {fileID: 5325621160211845362}
   - component: {fileID: 7977718775401663692}
   - component: {fileID: 3725747741579157018}
-  m_Layer: 0
+  - component: {fileID: 287460790}
+  m_Layer: 12
   m_Name: PlayerShip_MachineGun_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,6 +279,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &287460790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686654876562381692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeat: 20
+  maxCooldownTime: 2
+  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
+    type: 3}
+  firePeriod: 0.1
 --- !u!1 &6896857795331627134
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,8 +305,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7632992545013164653}
-  m_Layer: 0
-  m_Name: SM_PlayerShip
+  - component: {fileID: 2026137911}
+  m_Layer: 12
+  m_Name: SM_PlayerShip_Rotating_Gimbals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,6 +330,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2026137911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896857795331627134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon1: {fileID: 7758920711715663526}
+  weapon2: {fileID: 5686654876562381692}
 --- !u!1 &7451524507074600802
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +356,8 @@ GameObject:
   - component: {fileID: 7778078947019680772}
   - component: {fileID: 3539502680342640632}
   - component: {fileID: 2774766533252470509}
-  m_Layer: 0
+  - component: {fileID: 2010228980}
+  m_Layer: 12
   m_Name: MachineGun_Left_Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,14 +371,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7451524507074600802}
-  m_LocalRotation: {x: 0, y: -0.30320156, z: 0, w: 0.95292646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.233656, y: 0.35456848, z: 1.5909536}
   m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
   m_Children:
   - {fileID: 2328415680011962929}
   m_Father: {fileID: 7632992545013164653}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -35.3, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7778078947019680772
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -389,6 +439,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2010228980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451524507074600802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseUI: {fileID: 0}
+  maxWeaponAimAdjustRange: 100
+  stick: {fileID: 0}
 --- !u!1 &7758920711715663526
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +465,8 @@ GameObject:
   - component: {fileID: 2328415680011962929}
   - component: {fileID: 6724712168606859486}
   - component: {fileID: 5896235656045015930}
-  m_Layer: 0
+  - component: {fileID: 296064647}
+  m_Layer: 12
   m_Name: PlayerShip_MachineGun_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,3 +535,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &296064647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7758920711715663526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeat: 20
+  maxCooldownTime: 2
+  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
+    type: 3}
+  firePeriod: 0.1
