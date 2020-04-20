@@ -36,7 +36,9 @@ public class TargetHud : MonoBehaviour
                 OnScreenIndicator.SetActive(false);
                 OffScreenIndicator.SetActive(true);
 
-                hudPos = ScreenSpaceObjPos;
+                hudPos = ScreenEdgeObjPos;
+                float angle = Vector2.Angle(CamBounds.center - hudPos, Vector2.up);
+                OffScreenIndicator.transform.eulerAngles = new Vector3(0, 0, angle);
             }
 
             Vector3 hudPos3 = new Vector3(hudPos.x, hudPos.y, IndicatorUI.transform.position.z);
@@ -104,6 +106,7 @@ public class TargetHud : MonoBehaviour
 
     private bool AboveLine(Vector2 testPoint, Vector2 linePointA, Vector2 linePointB)
     {
+
         return testPoint.y > (((linePointB.y - linePointA.y) / (linePointB.x - linePointA.x)) * (testPoint.x - linePointA.x) + linePointA.y);
     }
 
@@ -112,7 +115,7 @@ public class TargetHud : MonoBehaviour
         Rect camBounds = CamBounds;
 
         bool aboveA = AboveLine(point, camBounds.min, camBounds.max);
-        bool aboveB = AboveLine(point, camBounds.min, camBounds.max);
+        bool aboveB = AboveLine(point, new Vector2(camBounds.min.x, camBounds.max.y), new Vector2(camBounds.max.x, camBounds.min.y));
 
         if (aboveA == aboveB)
         {
