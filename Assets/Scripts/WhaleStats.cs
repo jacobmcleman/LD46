@@ -37,6 +37,7 @@ public class WhaleStats : MonoBehaviour
             instance = this;
             Organics = 0;
             Mechanicals = 0;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
@@ -46,42 +47,42 @@ public class WhaleStats : MonoBehaviour
         switch (up)
         {
             case "HealthPool":
-                if (HealthPoolLevel + 1 >= MaxLevel) { return false; }
+                if (HealthPoolLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     HealthPoolLevel++;
                     return true;
                 }
             case "Regen":
-                if (RegenLevel + 1 >= MaxLevel) { return false; }
+                if (RegenLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     RegenLevel++;
                     return true;
                 }
             case "Decoy":
-                if (DecoyLevel + 1 >= MaxLevel) { return false; }
+                if (DecoyLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     DecoyLevel++;
                     return true;
                 }
             case "Armor":
-                if (ArmorLevel + 1 >= MaxLevel) { return false; }
+                if (ArmorLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     ArmorLevel++;
                     return true;
                 }
             case "Turrets":
-                if (TurretsLevel + 1 >= MaxLevel) { return false; }
+                if (TurretsLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     TurretsLevel++;
                     return true;
                 }
             case "Tesla":
-                if (TeslaLevel + 1 >= MaxLevel) { return false; }
+                if (TeslaLevel + 1 > MaxLevel) { return false; }
                 else
                 {
                     TeslaLevel++;
