@@ -10,6 +10,7 @@ public class SFXController : MonoBehaviour
     public AudioClip[] cargoLauncherSounds;
     public AudioClip[] combatSounds;
     public AudioClip[] overheatSounds;
+    public AudioClip[] missileSounds;
 
     public AudioClip[] gunSounds;
     public AudioClip[] organicExplosions;
@@ -54,8 +55,9 @@ public class SFXController : MonoBehaviour
     public void PlayRocketLaunchCooldownSFX (AudioSource source)
     {
         source.Stop();
-        source.clip = combatSounds[1];
-        StartCoroutine(PlayAfterDelay(source, 1f));
+        source.clip = missileSounds[0];
+        source.Play();
+        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .5f));
     }
 
     public void PlayRocketExplosionSFX (AudioSource source)
@@ -64,6 +66,11 @@ public class SFXController : MonoBehaviour
         int rand = Random.Range(0, 4);
         source.clip = inorganicExplosions[rand];
         source.Play();
+    }
+
+    public void PlayUpgradedSound (AudioSource source)
+    {
+        source.PlayOneShot(beeps[11] , 1f);
     }
 
     public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)
@@ -92,10 +99,10 @@ public class SFXController : MonoBehaviour
         source.Play();
     }
 
-    private IEnumerator PlayAfterDelay (AudioSource source, float delay)
+    private IEnumerator PlayAfterDelay (AudioSource source, AudioClip clip, float delay, float vol)
     {
         yield return new WaitForSeconds(delay);
-        source.Play();
+        source.PlayOneShot(clip, vol);
     }
 
 }

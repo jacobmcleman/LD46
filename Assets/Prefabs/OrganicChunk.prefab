@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1234938370010617051}
   m_Layer: 0
   m_Name: OrganicChunk
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickType: 0
-  value: 10
+  myvalue: 10
+  ui: {fileID: 0}
 --- !u!54 &1234938370010617051
 Rigidbody:
   m_ObjectHideFlags: 0
