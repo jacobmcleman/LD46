@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject notPauseMenu;
 
+    public Slider overheatSlider;
+
     private bool pauseToggle = false;
 
     private AudioSource sfxAudio;
@@ -118,6 +120,11 @@ public class UIManager : MonoBehaviour
             }
             pauseToggle = !pauseToggle;
         }
+    }
+
+    public void UpdateOverheatUI (float value)
+    {
+        overheatSlider.value = value;
     }
 
     public void DisplayToolTip (string tip, float durationMultiplier)
