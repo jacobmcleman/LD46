@@ -211,8 +211,8 @@ MonoBehaviour:
   acceleration: 30
   lateralAcceleration: 30
   verticalAcceleration: 70
-  minSpeed: 10
-  maxSpeed: 100
+  minSpeed: 20
+  maxSpeed: 50
   throttleChangeRate: 0.75
   maxPitchRate: 60
   maxYawRate: 30
