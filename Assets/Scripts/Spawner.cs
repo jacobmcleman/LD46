@@ -93,6 +93,8 @@ public class Spawner : MonoBehaviour
         {
             //Level won?!
             Debug.Log("That's all folks!!!");
+            if (SceneController.instance != null) { SceneController.instance.WinLevel(); }
+            else { Debug.Log("That's all folks!!!"); }
         }
         else if (Enemies.Count == 0)
         {
