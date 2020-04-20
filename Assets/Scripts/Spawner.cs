@@ -105,6 +105,7 @@ public class Spawner : MonoBehaviour
             else if (SceneManager.GetActiveScene().name != "Level1") //No More waves
             {
                 //Level won!
+                SetWhaleStats();
                 Debug.Log("That's all folks!!!");
                 if (SceneController.instance != null)
                 {
@@ -118,6 +119,7 @@ public class Spawner : MonoBehaviour
 
     public void SetWhaleStats()
     {
+        Debug.Log("Adding Organics: " + Whale.GetComponent<IInventory>().Organics + " Adding Mechanics: " + Whale.GetComponent<IInventory>().Mechanicals);
         WhaleStats.instance.Organics += Whale.GetComponent<IInventory>().Organics;
         WhaleStats.instance.Mechanicals += Whale.GetComponent<IInventory>().Mechanicals;
         WhaleStats.instance.Waves = Waves;
