@@ -13,6 +13,7 @@ TagManager:
   - WhaleCol
   - Canvas
   - Lootz
+  - Resource
   layers:
   - Default
   - TransparentFX
