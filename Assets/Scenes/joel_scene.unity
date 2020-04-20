@@ -1892,7 +1892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &388818208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7555,6 +7555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  targettingHud: {fileID: 0}
   TargetTag: Enemy
 --- !u!114 &1885469768
 MonoBehaviour:
@@ -7572,6 +7573,7 @@ MonoBehaviour:
   Missile: {fileID: 1523545946267039166, guid: 14526ebb962668b4c930fff1c47128bc, type: 3}
   TargetTag: Enemy
   cooldown: 2
+  additionalFireSpeed: 10
 --- !u!1 &1899350936
 GameObject:
   m_ObjectHideFlags: 0
@@ -8662,6 +8664,7 @@ MonoBehaviour:
   forwardWeight: 4
   forwardDistanceAhead: 5
   shipPositionWeight: 1
+  adjustRate: 0.5
 --- !u!114 &2046305892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8719,8 +8722,14 @@ MonoBehaviour:
   whaleOrganic: {fileID: 1528466089}
   shipInorganic: {fileID: 466515163}
   shipOrganic: {fileID: 1303496226}
+  toolTipText: {fileID: 0}
   playerHealthSlider: {fileID: 35880058}
   whaleHealthSlider: {fileID: 449368426}
+  toolTipAnimator: {fileID: 0}
+  organicPickupAnimator: {fileID: 0}
+  organicPickupText: {fileID: 0}
+  metalPickupAnimator: {fileID: 0}
+  metalPickupText: {fileID: 0}
 --- !u!114 &2058266833
 MonoBehaviour:
   m_ObjectHideFlags: 0
