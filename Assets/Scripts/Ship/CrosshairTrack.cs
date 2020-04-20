@@ -17,7 +17,7 @@ public class CrosshairTrack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mouseUI = GetComponentInParent<PlayerShip>().mouseUI;
+        //mouseUI = GetComponentInParent<PlayerShip>().mouseUI;
         camera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
         stick = GetComponentInParent<SpaceshipController>();
         
