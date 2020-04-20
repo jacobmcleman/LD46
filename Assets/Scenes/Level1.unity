@@ -233,14 +233,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
-      propertyPath: mouseUI
-      value: 
-      objectReference: {fileID: 1827882844}
-    - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
       propertyPath: speedSlider
       value: 
       objectReference: {fileID: 1607969692}
+    - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: mouseUI
+      value: 
+      objectReference: {fileID: 1827882844}
     - target: {fileID: 7136200531599415538, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -301,51 +301,11 @@ PrefabInstance:
       propertyPath: Whale
       value: 
       objectReference: {fileID: 316140576}
-    - target: {fileID: 7136200531608324901, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136200531612908817, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136200532298944980, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7136200532907075633, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: mouseUI
       value: 
       objectReference: {fileID: 1827882844}
-    - target: {fileID: 7136200532907075633, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: stick
-      value: 
-      objectReference: {fileID: 275857439}
-    - target: {fileID: 7136200532986951190, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136200533129869784, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136200533254528012, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136200533558067292, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
-      propertyPath: stick
-      value: 
-      objectReference: {fileID: 275857439}
     - target: {fileID: 7136200533558067292, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: mouseUI
@@ -353,18 +313,6 @@ PrefabInstance:
       objectReference: {fileID: 1827882844}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02478d8fb3516745afe2c0909327b73, type: 3}
---- !u!114 &275857439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7136200531599415436, guid: d02478d8fb3516745afe2c0909327b73,
-    type: 3}
-  m_PrefabInstance: {fileID: 275857438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &316140576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2497883373052722492, guid: 55ae2ab32b573b247b1c84849f3e2f16,
@@ -2056,7 +2004,7 @@ MonoBehaviour:
   forwardWeight: 4
   forwardDistanceAhead: 5
   shipPositionWeight: 1
-  adjustRate: 0.5
+  adjustRate: 240
 --- !u!114 &2001440148
 MonoBehaviour:
   m_ObjectHideFlags: 0
