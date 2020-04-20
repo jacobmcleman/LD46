@@ -183,6 +183,7 @@ Transform:
   - {fileID: 2806510211757404879}
   - {fileID: 3290989811907859561}
   - {fileID: 1873148287779641177}
+  - {fileID: 9038720843728883543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,8 +278,8 @@ MonoBehaviour:
   playerPosition: {fileID: 0}
   fireDistance: 100
   fireAngle: 30
-  weapon1: {fileID: 0}
-  weapon2: {fileID: 0}
+  weapon1: {fileID: 6490679688381138777}
+  weapon2: {fileID: 8173604626163043024}
 --- !u!114 &479608131559658001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1873148287779641177}
+  - component: {fileID: 4355154141088700181}
   m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
@@ -470,6 +472,23 @@ Transform:
   m_Father: {fileID: 5205907624439822299}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4355154141088700181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6490679688381138777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
+  projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
+    type: 3}
+  firePeriod: 0.25
 --- !u!1 &6558952496758068455
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,8 +635,56 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!64 &5127805078756863108
-MeshCollider:
+--- !u!1 &8173604626163043024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9038720843728883543}
+  - component: {fileID: 6367246186040993786}
+  m_Layer: 9
+  m_Name: Gun (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9038720843728883543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173604626163043024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.865, y: 0.057, z: 0.865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5205907624439822299}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6367246186040993786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173604626163043024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
+  projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
+    type: 3}
+  firePeriod: 0.25
+--- !u!65 &8302270947540826369
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -626,10 +693,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8940753769281750248, guid: cc09f8c86a13feb4486f37137687f1b1, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.212781, y: 1, z: 2.2010722}
+  m_Center: {x: 0.0046868324, y: 0, z: -0.42517686}
 --- !u!33 &7285181014079185992
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -715,7 +781,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6259940230068617974, guid: cc09f8c86a13feb4486f37137687f1b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cc09f8c86a13feb4486f37137687f1b1, type: 3}
 --- !u!1 &9223129575962023926 stripped
 GameObject:

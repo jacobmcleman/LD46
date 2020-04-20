@@ -17,7 +17,7 @@ public class Pickupables : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         Debug.Log("Collision with: " + collider.gameObject.name);
-        if (collider.transform.parent.tag == "Player" || collider.transform.tag == "Whale")
+        if (collider.transform.tag == "Player" || collider.transform.tag == "Whale")
         {
             GameObject col;
             if (collider.transform.parent.tag == "Player") { col = collider.transform.parent.gameObject; }
