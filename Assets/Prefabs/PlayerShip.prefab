@@ -27,7 +27,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4868,7 +4868,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -16425,11 +16425,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}
