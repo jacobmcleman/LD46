@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     public int maxHeat = 15;
     private float heatClock = 0;
     public float maxCooldownTime = 2f;
+    public float spread = .01f;
     public Teams team 
     {
         get => _team;
@@ -84,6 +85,9 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float parentSpeed = gameObject.GetComponentInParent<SpaceshipController>()
             .Velocity.magnitude;
         proj.direction = fireVec;
+        proj.direction.x += Random.Range(-spread, spread);
+        proj.direction.y += Random.Range(-spread, spread);
+        proj.direction.z += Random.Range(-spread, spread);
         proj.speed += parentSpeed;
 
         heat++;
