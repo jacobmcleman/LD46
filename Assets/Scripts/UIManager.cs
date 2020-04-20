@@ -177,7 +177,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {
-        SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
+        //SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
         rocketFill.Fill = 0.0f;
         while (rocketFill.Fill < 1f)
         {
