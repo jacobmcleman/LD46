@@ -53,7 +53,7 @@ public class SceneController : MonoBehaviour
     {
         ChangeScene("Intro");
         MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
+        StartCoroutine(ChangeSceneAfterDelay("Level1", 7));
     }
 
     public void WinLevel()
@@ -75,7 +75,7 @@ public class SceneController : MonoBehaviour
 
     public void NextLevel()
     {
-        ChangeScene("The_Other_Level");
+        ChangeScene("An_Actual_Level");
     }
 
     public void FinalLevel()

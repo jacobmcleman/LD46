@@ -40,46 +40,47 @@ public class WhaleStats : MonoBehaviour
         }
     }
 
-    public bool UpgradeLevel (Upgrade up)
+    public bool UpgradeLevel (string up)
     {
+        Debug.Log(up);
         switch (up)
         {
-            case Upgrade.HealthPool:
+            case "HealthPool":
                 if (HealthPoolLevel + 1 >= MaxLevel) { return false; }
                 else
                 {
                     HealthPoolLevel++;
                     return true;
                 }
-            case Upgrade.Regen:
+            case "Regen":
                 if (RegenLevel + 1 >= MaxLevel) { return false; }
                 else
                 {
                     RegenLevel++;
                     return true;
                 }
-            case Upgrade.Decoy:
+            case "Decoy":
                 if (DecoyLevel + 1 >= MaxLevel) { return false; }
                 else
                 {
                     DecoyLevel++;
                     return true;
                 }
-            case Upgrade.Armor:
+            case "Armor":
                 if (ArmorLevel + 1 >= MaxLevel) { return false; }
                 else
                 {
                     ArmorLevel++;
                     return true;
                 }
-            case Upgrade.Turrets:
+            case "Turrets":
                 if (TurretsLevel + 1 >= MaxLevel) { return false; }
                 else
                 {
                     TurretsLevel++;
                     return true;
                 }
-            case Upgrade.Tesla:
+            case "Tesla":
                 if (TeslaLevel + 1 >= MaxLevel) { return false; }
                 else
                 {

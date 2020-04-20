@@ -45,12 +45,16 @@ public class TutorialPopUps : MonoBehaviour
                     step++;
                     if (step == 7)
                     {   
-                        UIManager.instance.DisplayToolTip((inputTips[step] + PlayerPrefs.GetString("whale_name") + " safe!"), 0.000000000004f);
+                        UIManager.instance.DisplayToolTip((inputTips[step] + " " + PlayerPrefs.GetString("whale_name") + " safe!"), 0.000000000004f);
                         FindObjectsOfType<Spawner>()[0].SpawnTutBot();
                     }
                     else
                     {
                         UIManager.instance.DisplayToolTip(inputTips[step], 0.000000000004f);
+                    }
+                    if (step > 4)
+                    {
+                        MusicController.instance.PlayBloodSacrificeNextSound();
                     }
                     Debug.Log("there ya go, nextx one nowww");
                     coroutineRunning = false;
@@ -62,6 +66,7 @@ public class TutorialPopUps : MonoBehaviour
                 {
                     UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!", 0.000000000004f);
                     step++;
+                    SceneController.instance.ChangeScene("WhaleUpgrade");
                 }
             }
         }
