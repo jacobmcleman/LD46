@@ -8,7 +8,7 @@ public class TargetHud : MonoBehaviour
     private SpaceshipController targetShip;
     private SpaceshipController myShip;
 
-    public Transform InitialTarget;
+    public string InitialTargetTag = "";
 
     public Transform Target
     {
@@ -28,13 +28,20 @@ public class TargetHud : MonoBehaviour
     private GameObject OnScreenIndicator;
     private GameObject OffScreenIndicator;
     private GameObject TargetLeadIndicator;
+    private GameObject TargetDistanceText;
 
     private void Start()
     {
-        Target = InitialTarget;
+        if(InitialTargetTag != "")
+        {
+            GameObject initialTargetObj = GameObject.FindGameObjectWithTag(InitialTargetTag);
+            Target = initialTargetObj != null ? initialTargetObj.transform : null;
+        }
+
         OnScreenIndicator = IndicatorUI.transform.Find("OnScreenIndicator").gameObject;
         OffScreenIndicator = IndicatorUI.transform.Find("OffScreenDirection").gameObject;
         TargetLeadIndicator = IndicatorUI.transform.Find("LeadPip").gameObject;
+        TargetDistanceText = IndicatorUI.transform.Find("DistanceText").gameObject;
 
         myShip = GetComponent<SpaceshipController>();
     }
@@ -49,6 +56,7 @@ public class TargetHud : MonoBehaviour
             {
                 OnScreenIndicator.SetActive(true);
                 OffScreenIndicator.SetActive(false);
+                TargetDistanceText.SetActive(true);
 
                 hudPos = ScreenSpaceObjPos;
 
@@ -67,6 +75,7 @@ public class TargetHud : MonoBehaviour
                 OnScreenIndicator.SetActive(false);
                 OffScreenIndicator.SetActive(true);
                 TargetLeadIndicator.SetActive(false);
+                TargetDistanceText.SetActive(true);
 
                 hudPos = ScreenSpaceObjPos;
                 float angle = -Vector2.SignedAngle(CamBounds.center - hudPos, Vector2.down);
@@ -75,12 +84,16 @@ public class TargetHud : MonoBehaviour
 
             Vector3 hudPos3 = new Vector3(hudPos.x, hudPos.y, IndicatorUI.transform.position.z);
             IndicatorUI.transform.position = hudPos3;
+
+            float distance = Vector3.Distance(transform.position, Target.position);
+            TargetDistanceText.GetComponent<UnityEngine.UI.Text>().text = string.Format("{0:F1}m", distance);
         }
         else
         {
             OnScreenIndicator.SetActive(false);
             OffScreenIndicator.SetActive(false);
             TargetLeadIndicator.SetActive(false);
+            TargetDistanceText.SetActive(false);
         }
     }
 
