@@ -16,11 +16,7 @@ GameObject:
   - component: {fileID: 1234938370010617051}
   m_Layer: 0
   m_Name: OrganicChunk
-<<<<<<< HEAD
   m_TagString: Resource
-=======
-  m_TagString: Lootz
->>>>>>> d2bbb41f3b2dff59acc4b9b3bd354f529dfd1e83
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
