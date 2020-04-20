@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,8 @@ public class AIShip : MonoBehaviour
     private Vector3 approachDirection = Vector3.zero;
 
     private SpaceshipController shipControls;
+    
+    public float maxThrottle = 1.0f;
 
     public float acceptableApproachDirError = 0.2f;
     public float largeDeflectionThreshold = 30.0f;
@@ -22,6 +24,8 @@ public class AIShip : MonoBehaviour
     public float rollSlowDown = 360;
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
+
+    public float magicThreshold = 0.1f;
 
     public bool doCollisionAvoidance = true;
     public float lookAheadTime = 4.0f;
@@ -84,7 +88,6 @@ public class AIShip : MonoBehaviour
             }
         }
 
-
         return Vector3.Normalize(realTargetPos - transform.position);
     }
 
@@ -96,8 +99,7 @@ public class AIShip : MonoBehaviour
         // Take a look at a few possibilities for where the ship could be in a few seconds
         DoSolutionScoring(desiredForward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
         //DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        //DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
+        DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
         DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
@@ -137,7 +139,7 @@ public class AIShip : MonoBehaviour
     private float ScoreSolution(Vector3 testVel, Vector3 desiredDirection)
     {
         float collisionDistance = TestPotentialPath(testVel);
-        float closenessToDesiredDirection = -Vector3.Dot(testVel, desiredDirection);
+        float closenessToDesiredDirection = Vector3.Dot(testVel, desiredDirection);
         float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
         float targetProx = -Vector3.Distance(transform.position + lookAheadTime * testVel, targetPosition) / 1000;
 
@@ -168,11 +170,16 @@ public class AIShip : MonoBehaviour
 
         if (isSignificantDeflection)
         {
-            // For significany deflections the ship should roll to allow the maneuver to be completed with pitch
+            // For significant deflections the ship should roll to allow the maneuver to be completed with pitch
             Vector3 currentUp = transform.up;
-            Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward).normalized;
+            Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward);
+            float neededRollAngle = 0;
+            if(desiredRollUp.sqrMagnitude > magicThreshold)
+            {
+                desiredRollUp.Normalize();
+                neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
+            }
 
-            float neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
             roll = -1 * neededRollAngle / rollAttack;
             throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
 
@@ -187,20 +194,22 @@ public class AIShip : MonoBehaviour
         else
         {
             Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, transform.up);
-            Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
-
-            float neededYawAngle = Vector3.SignedAngle(yawDesForward, currentForward, transform.up);
-            float neededPitchAngle = Vector3.SignedAngle(pitchDesForward, currentForward, transform.right);
-
-            pitch = neededPitchAngle / pitchAttack;
+            float neededYawAngle = yawDesForward.sqrMagnitude > magicThreshold ? -Vector3.SignedAngle(yawDesForward, transform.forward, transform.up) : 0;
             yaw = neededYawAngle / yawAttack;
-
-            throttle += 1;
-            throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
             throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
+
+            Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
+            float neededPitchAngle = pitchDesForward.sqrMagnitude > magicThreshold ? -Vector3.SignedAngle(pitchDesForward, transform.forward, transform.right) : 0;
+            pitch = neededPitchAngle / pitchAttack;
+            throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
+            throttle += 1;
         }
 
         shipControls.StickInput = new Vector3(pitch, yaw, roll);
-        shipControls.ThrottleInput = throttle;
+
+        if(shipControls.Throttle + throttle < maxThrottle)
+        {
+            shipControls.ThrottleInput = throttle;
+        }
     }
 }

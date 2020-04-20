@@ -52,7 +52,13 @@ public class SceneController : MonoBehaviour
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
-        StartCoroutine(ChangeSceneAfterDelay("spaceship_test1", 7));
+        MusicController.instance.PlayBloodSacrificeNextSound();
+        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
+    }
+
+    public void WinLevel()
+    {
+        ChangeScene("WhaleUpgrade");
     }
 
     //Go to the winner screen
