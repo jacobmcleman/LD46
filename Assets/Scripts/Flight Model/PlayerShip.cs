@@ -18,7 +18,7 @@ public class PlayerShip : MonoBehaviour
 
     void Start()
     {
-        _stick = GetComponent<SpaceshipController>();
+        stick = GetComponent<SpaceshipController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
