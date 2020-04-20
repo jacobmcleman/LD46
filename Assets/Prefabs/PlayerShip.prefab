@@ -15318,7 +15318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElementSize: 75
+  InitialTarget: {fileID: 0}
+  uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 0
   projPrefab: {fileID: 3424269064070619108, guid: 837fbc15da6b74645b3e491a762b91b2,
@@ -15335,7 +15336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiElementSize: 75
+  InitialTarget: {fileID: 0}
+  uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 1
   projPrefab: {fileID: 3424269064070619108, guid: 837fbc15da6b74645b3e491a762b91b2,
