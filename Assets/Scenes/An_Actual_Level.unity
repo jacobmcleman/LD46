@@ -214,6 +214,7 @@ MonoBehaviour:
   yawDelta: 20
   rollDelta: 90
   steerGravity: 0.1
+  collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!54 &63186204
 Rigidbody:
@@ -2389,7 +2390,7 @@ MonoBehaviour:
   forwardWeight: 4
   forwardDistanceAhead: 5
   shipPositionWeight: 1
-  adjustRate: 0.1
+  adjustRate: 240
 --- !u!114 &2046305892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2576,14 +2577,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
-      propertyPath: mouseUI
-      value: 
-      objectReference: {fileID: 2082814933}
-    - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
-        type: 3}
       propertyPath: speedSlider
       value: 
       objectReference: {fileID: 56477943}
+    - target: {fileID: 7136200531599415536, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: mouseUI
+      value: 
+      objectReference: {fileID: 2082814933}
     - target: {fileID: 7136200531599415538, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: m_LocalPosition.x
