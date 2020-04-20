@@ -1014,9 +1014,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
   projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
     type: 3}
-  cooldownTime: 0.25
+  firePeriod: 0.25
 --- !u!1 &290030394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,9 +1067,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeat: 15
+  maxCooldownTime: 2
   projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
     type: 3}
-  cooldownTime: 0.25
+  firePeriod: 0.25
 --- !u!1 &344513519
 GameObject:
   m_ObjectHideFlags: 0
