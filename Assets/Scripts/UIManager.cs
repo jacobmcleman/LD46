@@ -142,7 +142,7 @@ public class UIManager : MonoBehaviour
         toolTipText.text = tip;
         toolTipAnimator.SetFloat("Duration", durationMultiplier);
         toolTipAnimator.SetTrigger("DisplayMessage");
-        SFXController.instance.PlayToolTipSFX(sfxAudio);
+        if(SFXController.instance) SFXController.instance.PlayToolTipSFX(sfxAudio);
     }
 
     public void PickupOrganic (string amount)
@@ -154,7 +154,7 @@ public class UIManager : MonoBehaviour
         } 
         organicPickupText.text = "+" + amount;
         organicPickupAnimator.SetTrigger("Play");
-        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
+        if (SFXController.instance) SFXController.instance.PlayResourcePickupSFX(sfxAudio);
     }
 
     public void PickupMetal (string amount)
