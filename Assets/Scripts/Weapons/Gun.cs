@@ -35,6 +35,8 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     private AudioSource sfxAudio;
     private bool warned = false;
 
+    public float overheatBlinkRate = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +77,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             if (heatClock > 0)
             {
                 heatClock -= Time.deltaTime;
-
+                UIManager.instance.UpdateOverheatUI(((int)(heatClock / overheatBlinkRate) % 2));
             }
             if (heatClock <= 0)
             {
