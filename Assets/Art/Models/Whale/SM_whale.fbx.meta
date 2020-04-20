@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SM_Whale_05_defaultMat1
+      name: SM_Whale_05_defaultMat2
     second: {fileID: 2100000, guid: f2cc26164e703c948ae60268af036f1b, type: 2}
   materials:
     materialImportMode: 1
@@ -72,7 +72,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - d9ed628295db4c944b1c2ebb63a31cd8
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
