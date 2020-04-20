@@ -320,8 +320,9 @@ GameObject:
   - component: {fileID: 550608261}
   - component: {fileID: 550608260}
   - component: {fileID: 550608262}
+  - component: {fileID: 550608263}
   m_Layer: 0
-  m_Name: MusicController
+  m_Name: AudioController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,7 +337,8 @@ AudioSource:
   m_GameObject: {fileID: 550608259}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2464572909860212142, guid: 9136029f821104b4fa786e9bd8f47946,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d93a2136c3aad1e4698fa254bcf1e8b4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -462,6 +464,42 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3300a26be3adea44f836b9f76cc691ad, type: 3}
   - {fileID: 8300000, guid: 84ea629345ce5b14ebcb8894e0d3cc39, type: 3}
   - {fileID: 8300000, guid: c3a1f97244511a94abb3bcaa75fe72fd, type: 3}
+--- !u!114 &550608263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550608259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120e6da2a4542ae4b98318c82330a032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instance: {fileID: 0}
+  beeps:
+  - {fileID: 8300000, guid: d642744084da07e469c26730a8f16779, type: 3}
+  - {fileID: 8300000, guid: e35ce9c81255d76429ceb44f791fdef5, type: 3}
+  - {fileID: 8300000, guid: 37f564d3a4dce5b4686a63818ad80b39, type: 3}
+  - {fileID: 8300000, guid: 114ad752e1d4fa441ac308cd0d612569, type: 3}
+  - {fileID: 8300000, guid: b64c479da85b75546abc0f305287b426, type: 3}
+  - {fileID: 8300000, guid: affb33a94fb879a44bd817d847fce214, type: 3}
+  - {fileID: 8300000, guid: 7da1c99930813014f9652508e2091b10, type: 3}
+  - {fileID: 8300000, guid: fcf1d14d6d5843f4798e0628c0ef1446, type: 3}
+  - {fileID: 8300000, guid: da6baff699631514f98366f1097db8d4, type: 3}
+  - {fileID: 8300000, guid: 0c210afdc6a040c46820390fea7cb1e0, type: 3}
+  - {fileID: 8300000, guid: 47793f8538391204a911dc521dd3cdaa, type: 3}
+  - {fileID: 8300000, guid: 23b505073fb96ae409aa1ad200604121, type: 3}
+  cargoLauncherSounds: []
+  combatSounds:
+  - {fileID: 8300000, guid: 5a70274d5737bf6429352d0b2ba614e0, type: 3}
+  - {fileID: 8300000, guid: 2d1b764973b213547be56c5d96353b02, type: 3}
+  - {fileID: 8300000, guid: 447ff82b7e2cb1e4ea9aa46f0231ccb3, type: 3}
+  overheatSounds: []
+  gunSounds: []
+  organicExplosions: []
+  inorganicExplosions: []
+  collisions: []
 --- !u!1 &671462426
 GameObject:
   m_ObjectHideFlags: 1

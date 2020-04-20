@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
 
     private bool pauseToggle = false;
 
+    private AudioSource sfxAudio;
+
     //Singleton isntance
     public static UIManager instance;
 
@@ -79,6 +81,7 @@ public class UIManager : MonoBehaviour
         PlayerHealth = Player.GetComponent<IHealth>();
         WhaleHealth = Whale.GetComponent<IHealth>();
         SpawnerCS = Spawner.GetComponent<Spawner>();
+        sfxAudio = GameObject.Find("OtherSFX").GetComponent<AudioSource>();
 
         StartCoroutine(StartRocketCooldown(2f));
     }
@@ -128,6 +131,7 @@ public class UIManager : MonoBehaviour
         toolTipText.text = tip;
         toolTipAnimator.SetFloat("Duration", durationMultiplier);
         toolTipAnimator.SetTrigger("DisplayMessage");
+        SFXController.instance.PlayToolTipSFX(sfxAudio);
     }
 
     public void PickupOrganic (string amount)
@@ -139,6 +143,7 @@ public class UIManager : MonoBehaviour
         } 
         organicPickupText.text = "+" + amount;
         organicPickupAnimator.SetTrigger("Play");
+        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
     }
 
     public void PickupMetal (string amount)
@@ -150,6 +155,7 @@ public class UIManager : MonoBehaviour
         }
         metalPickupText.text = "+" + amount;
         metalPickupAnimator.SetTrigger("Play");
+        SFXController.instance.PlayResourcePickupSFX(sfxAudio);
     }
 
     public void HandleRocketLaunch (float cooldown)
@@ -165,6 +171,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {
+        SFXController.instance.PlayRocketLaunchCooldownSFX(sfxAudio);
         rocketFill.Fill = 0.0f;
         while (rocketFill.Fill < 1f)
         {
