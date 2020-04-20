@@ -75,7 +75,7 @@ public class SceneController : MonoBehaviour
 
     public void NextLevel()
     {
-        ChangeScene("The_Other_Level");
+        ChangeScene("An_Actual_Level");
     }
 
     public void FinalLevel()
