@@ -115,7 +115,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         fireClock = 0;
         float heatMod = heat;
         float maxHeatMod = maxHeat;
-        float pitchBend = heatMod / maxHeatMod;
+        float pitchBend = heatMod / maxHeatMod + 0.5f;
         Debug.Log(pitchBend);
         SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;

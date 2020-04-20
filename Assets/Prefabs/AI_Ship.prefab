@@ -258,8 +258,8 @@ MonoBehaviour:
   doCollisionAvoidance: 1
   lookAheadTime: 4
   castRadius: 6
-  safeDistanceValue: 2
-  onTargetValue: 10
+  safeDistanceValue: 5
+  onTargetValue: 5
   minimalSteerValue: 0
   targetProxValue: 3
 --- !u!114 &855317569644099482
@@ -485,7 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 15
+  heatDecayRate: 15
+  shotHeatCost: 1
   maxCooldownTime: 2
+  spread: 0.01
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.25
@@ -679,7 +682,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeat: 15
+  heatDecayRate: 15
+  shotHeatCost: 1
   maxCooldownTime: 2
+  spread: 0.01
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.25
