@@ -20,11 +20,17 @@ public class ShipCam : MonoBehaviour
     private Rigidbody followRb;
     private Transform followTransform;
 
+    private Vector3 curLookDir;
+    private Vector3 curUp;
+    public float adjustRate = 0.5f;
+
+
     private void Start()
     {
         followShip = GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceshipController>();
         followRb = followShip.GetComponent<Rigidbody>();
         followTransform = followShip.GetComponent<Transform>();
+        curLookDir = transform.forward;
     }
 
     void Update()
@@ -38,7 +44,10 @@ public class ShipCam : MonoBehaviour
 
         Vector3 lookDir = (lookPoint - followTransform.position).normalized;
 
-        transform.position = followTransform.position - (lookDistance * lookDir) + (followTransform.up * verticalOffset);
-        transform.LookAt(lookPoint, followTransform.up);
+        curLookDir = (adjustRate * lookDir) + ((1 - adjustRate) * curLookDir);
+        curUp = (adjustRate * followTransform.up) + ((1 - adjustRate) * curUp);
+
+        transform.position = followTransform.position - (lookDistance * curLookDir) + (followTransform.up * verticalOffset);
+        transform.LookAt(lookPoint, curUp);
     }
 }

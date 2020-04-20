@@ -20,9 +20,9 @@ TagManager:
   - 
   - PostProcessing
   - Enemy
-  - 
-  - 
-  - 
+  - PlayerProjectile
+  - EnemyProjectile
+  - Player
   - 
   - 
   - 
