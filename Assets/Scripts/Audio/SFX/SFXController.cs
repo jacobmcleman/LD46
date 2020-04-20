@@ -86,6 +86,12 @@ public class SFXController : MonoBehaviour
         AudioSource.PlayClipAtPoint(overheatSounds[1], position, 1.3f);
     }
 
+    public void PlayRNGCrashNoise (AudioSource source)
+    {
+        source.Stop();
+        source.Play();
+    }
+
     private IEnumerator PlayAfterDelay (AudioSource source, float delay)
     {
         yield return new WaitForSeconds(delay);
