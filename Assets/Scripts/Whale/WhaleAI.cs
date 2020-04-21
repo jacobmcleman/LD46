@@ -20,7 +20,7 @@ public class WhaleAI : MonoBehaviour
         RailPoints = WhaleRail.GetComponent<WhaleRail>().RailPoints;
         flightController = gameObject.GetComponent<AIShip>();
         WhaleMouth = GameObject.FindGameObjectWithTag("WhaleMouth").transform;
-        if (SceneManager.GetActiveScene().name == "The_Other_Level")
+        if (SceneManager.GetActiveScene().name == "An_Actual_Level")
         {
             curPoint = GameObject.FindGameObjectWithTag("Spawner").GetComponent<LevelSetup>().RailIndex + 1;
         }

@@ -82,6 +82,8 @@ public class UIManager : MonoBehaviour
         Whale = GameObject.FindGameObjectWithTag("Whale");
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
 
+        GameObject.Find("WhaleName").GetComponent<Text>().text = PlayerPrefs.GetString("whale_name");
+
         PlayerInventory = Player.GetComponent<IInventory>();
         Ship = Player.GetComponent<PlayerShip>();
         WhaleInventory = Whale.GetComponent<IInventory>();
@@ -99,7 +101,7 @@ public class UIManager : MonoBehaviour
         whaleInorganic.text = $"{WhaleInventory.Mechanicals}";
         whaleOrganic.text = $"{WhaleInventory.Organics}";
         playerHealthText.text = $"{PlayerHealth.Health}/{PlayerHealth.MaxHealth}";
-        //playerHealthSlider.Fill = PlayerHealth.Health;
+        playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
@@ -116,12 +118,14 @@ public class UIManager : MonoBehaviour
                 pauseMenu.SetActive(false);
                 notPauseMenu.SetActive(true);
                 Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 pauseMenu.SetActive(true);
                 notPauseMenu.SetActive(false);
                 Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
             }
             pauseToggle = !pauseToggle;
         }

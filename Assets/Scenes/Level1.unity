@@ -634,8 +634,10 @@ MonoBehaviour:
   finished: 0
   coroutineRunning: 0
   neededInputs:
-  - Left Shift
-  - Left Ctrl
+  - left shift
+  - left ctrl
+  - w
+  - s
   - a
   - d
   - Fire1
@@ -643,12 +645,14 @@ MonoBehaviour:
   - 1
   - KillEnemy
   inputTips:
-  - Press Shift to speed up
-  - Press Ctrl to slow down
+  - Press Shift to increase throttle.  The blue line is your throttle.
+  - Press Ctrl to decrease throttle.  The blue line is your throttle.
+  - Press W to pitch forwards
+  - Press S to pitch backwards
   - Press A to roll left
   - Press D to roll right
-  - Left Click to fire your lazerz
-  - Right Click to fire a homing miss-eye-le
+  - Press Left Click to fire your lasers
+  - Press Right Click to fire a heat seeking missle
   - Press 1 to lock on to nearest target.  Press 2 to cycle targets.
   - Kill enemies to keep
 --- !u!4 &726613147

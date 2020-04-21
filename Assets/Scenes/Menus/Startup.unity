@@ -452,10 +452,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songs:
-  - {fileID: 8300000, guid: 2385c75e2e4284f478e33d4bf86d3770, type: 3}
   - {fileID: 8300000, guid: ff8184a6c92acd14bb7b50c22ff48809, type: 3}
-  - {fileID: 8300000, guid: 704c80f42d6cad348954ef2ba0ea89c6, type: 3}
   - {fileID: 8300000, guid: 87b1ea59cc721034e8a2e656f97948aa, type: 3}
+  - {fileID: 8300000, guid: 2385c75e2e4284f478e33d4bf86d3770, type: 3}
+  - {fileID: 8300000, guid: 704c80f42d6cad348954ef2ba0ea89c6, type: 3}
   song: 0
 --- !u!114 &550608263
 MonoBehaviour:
@@ -926,7 +926,7 @@ MonoBehaviour:
   ArmorLevel: 1
   TurretsLevel: 1
   TeslaLevel: 1
-  MaxLevel: 1
+  MaxLevel: 100
   Organics: 0
   Mechanicals: 0
   Waves: 01000000

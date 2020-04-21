@@ -52,7 +52,7 @@ public class SceneController : MonoBehaviour
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
-        StartCoroutine(ChangeSceneAfterDelay("Level1", 14));
+        StartCoroutine(ChangeSceneAfterDelay("Level1", 15));
     }
 
     public void WinLevel()
@@ -69,6 +69,7 @@ public class SceneController : MonoBehaviour
     //Go to the loser screen
     public void LoseGame ()
     {
+        Cursor.lockState = CursorLockMode.None;
         ChangeScene("Loser");
     }
 

@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
     public void MemeOnEm ()
     {
         //Set new name in prfs
-        PlayerPrefs.SetString("whale_name", "Why did you wanna rename me :(");
+        PlayerPrefs.SetString("whale_name", "Your mom");
         //Berate the player for being an ass pee
         GameObject.Find("MemePromptHeader").GetComponent<Text>().text = "Wtf bro, why you tryna rename your whale?";
         //Hide the buttons because they are not needed
