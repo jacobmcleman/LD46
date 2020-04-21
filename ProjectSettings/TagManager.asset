@@ -14,6 +14,7 @@ TagManager:
   - Canvas
   - Lootz
   - Resource
+  - MechUpBit
   layers:
   - Default
   - TransparentFX
