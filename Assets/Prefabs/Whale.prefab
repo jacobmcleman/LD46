@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61676c9559a70cd4cb73814d6ac45211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxOrganics: 100
-  MaxMechanicals: 100
+  MaxOrganics: 3000
+  MaxMechanicals: 3000
 --- !u!114 &2497883373052722491
 MonoBehaviour:
   m_ObjectHideFlags: 0
