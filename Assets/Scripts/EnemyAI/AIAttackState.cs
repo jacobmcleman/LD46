@@ -34,6 +34,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
     public float runRange = 150f;
     public float breakOffRange = 600f;
 
+    public float targetChaseDistance = 30.0f;
+
+    private SpaceshipController myShip;
     private AIShip shipAI;
     public GameObject weapon1;
     private IFireable weaponScript1;
@@ -56,9 +59,10 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     void Start() // set ship to start with Whale as target
     {
-        Whale = GameObject.FindGameObjectWithTag("Whale");
+        Whale = GameObject.FindGameObjectWithTag("WhaleMouth");
         Player = GameObject.FindGameObjectWithTag("Player");
         shipAI = GetComponent<AIShip>();
+        myShip = GetComponent<SpaceshipController>();
         //shipAI.TargetPosition = whalePosition.position;
         weaponScript1 = weapon1.GetComponent<IFireable>();
         weaponScript1.team = team;
@@ -78,6 +82,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
         playerPosition = Player.transform;
 
         float distToPlayer = Vector3.Distance(transform.position, playerPosition.position); //check distance from this Enemy to Player
+
+        CheckFire(playerPosition);
+        CheckFire(whalePosition);
         
         switch(curState)
         {
@@ -89,7 +96,6 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     shipAI.ApproachDirection = Vector3.zero;
                     float angle = Vector3.Angle(transform.position, decoyPosition);
                     float checkDist = Vector3.Distance(transform.position, decoyPosition);
-                    CheckFire(checkDist, angle);
                     decoyTimer -= Time.deltaTime;
                 }
                 if (distToPlayer < attackRange) // pursue player instead of Whale
@@ -143,11 +149,8 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     private void ChaseThing(Vector3 thing, Vector3 forwardDir)
     {
-        shipAI.TargetPosition = thing + (-forwardDir * 30);
+        shipAI.TargetPosition = thing + (-forwardDir * targetChaseDistance);
         shipAI.ApproachDirection = forwardDir;
-        float angle = Vector3.Angle(transform.position, thing);
-        float checkDist = Vector3.Distance(transform.position, thing);
-        CheckFire(checkDist, angle);
     }
 
 
@@ -157,15 +160,31 @@ public class AIAttackState : MonoBehaviour, IWieldable
         return target.position + (-target.forward * followDistance);
     }
 
+    private Vector3 getLeadPosition(Transform target)
+    {
+        SpaceshipController targetShip = target.GetComponent<SpaceshipController>();
+        if (targetShip == null) return target.position;
+
+        Vector3 relativeVelocity = myShip.Velocity + targetShip.Velocity;
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        float projectileSpeed = weaponScript1.GetProjectileSpeed() + myShip.Velocity.magnitude;
+        float timeToTarget = distanceToTarget / weaponScript1.GetProjectileSpeed();
+        Vector3 aheadVector = timeToTarget * relativeVelocity;
+        return target.position + aheadVector;
+    }
+
     /**
      * Check if a target is close enough, and fires if appropriate
      */
-    private void CheckFire(float dist, float angle)
+    private void CheckFire(Transform target)
     {
+        Vector3 leadPos = getLeadPosition(target);
+        float angle = Vector3.Angle(transform.position, leadPos);
+        float dist = Vector3.Distance(transform.position, leadPos);
         if (dist < fireDistance && angle < fireAngle)
         {
-            weaponScript1.Fire(this);
-            weaponScript2.Fire(this);
+            if (weaponScript1 != null) weaponScript1.Fire(this);
+            if (weaponScript2 != null) weaponScript2.Fire(this);
         }
     }
 }

@@ -20,6 +20,8 @@ public interface IFireable
      */
     bool CanFire();
 
+    float GetProjectileSpeed();
+
     /** Type of weapon. See below */
     FireableType type { get; }
 

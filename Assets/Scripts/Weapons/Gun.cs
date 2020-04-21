@@ -89,6 +89,13 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         }
     }
 
+    public float GetProjectileSpeed()
+    {
+        Projectile proj = projectilePrefab.GetComponent<Projectile>();
+        if (proj == null) return 0.0f;
+        else return proj.speed;
+    }
+
     public bool CanFire() 
     {
         //Debug.Log(heatClock);
