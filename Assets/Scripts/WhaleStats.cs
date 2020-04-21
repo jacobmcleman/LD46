@@ -57,17 +57,19 @@ public class WhaleStats : MonoBehaviour
         switch (up)
         {
             case "HealthPool":
-                if (HealthPoolLevel + 1 > MaxLevel) { return false; }
+                if (HealthPoolLevel + 1 > MaxLevel || (Mechanicals - 100) < 0 ) { return false; }
                 else
                 {
                     HealthPoolLevel++;
+                    Mechanicals -= 100;
                     return true;
                 }
             case "Regen":
-                if (RegenLevel + 1 > MaxLevel) { return false; }
+                if (RegenLevel + 1 > MaxLevel || (Organics - 100) < 0) { return false; }
                 else
                 {
                     RegenLevel++;
+                    Organics -= 100;
                     return true;
                 }
             case "Decoy":
