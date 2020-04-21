@@ -47,6 +47,10 @@ public class MusicController : MonoBehaviour
     {
         AudioSource source = GetComponent<AudioSource>();
         source.Stop();
+        if (song == songs.Length)
+        {
+            song = 0;
+        }
         source.clip = songs[song];
         source.Play();
         song++;

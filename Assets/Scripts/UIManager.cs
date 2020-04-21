@@ -119,6 +119,7 @@ public class UIManager : MonoBehaviour
                 notPauseMenu.SetActive(true);
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else
             {
@@ -126,6 +127,7 @@ public class UIManager : MonoBehaviour
                 notPauseMenu.SetActive(false);
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             pauseToggle = !pauseToggle;
         }

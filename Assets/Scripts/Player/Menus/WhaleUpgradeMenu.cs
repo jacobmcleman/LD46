@@ -15,6 +15,7 @@ public class WhaleUpgradeMenu : MonoBehaviour
     {
         GameObject.Find("Header").GetComponent<Text>().text += PlayerPrefs.GetString("whale_name");
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         sfxAudio = GetComponent<AudioSource>();
     }
 
