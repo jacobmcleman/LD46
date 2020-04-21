@@ -219,14 +219,14 @@ MonoBehaviour:
   bounceModifier: 2
   bounceAngularDrag: 20
   acceleration: 15
-  lateralAcceleration: 30
-  verticalAcceleration: 70
+  lateralAcceleration: 25
+  verticalAcceleration: 60
   minSpeed: 10
-  maxSpeed: 40
+  maxSpeed: 30
   throttleChangeRate: 0.75
-  maxPitchRate: 40
-  maxYawRate: 20
-  maxRollRate: 70
+  maxPitchRate: 30
+  maxYawRate: 15
+  maxRollRate: 50
   pitchDelta: 40
   yawDelta: 10
   rollDelta: 80
@@ -502,6 +502,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.25
+  overheatBlinkRate: 0.2
 --- !u!82 &8671747706329486545
 AudioSource:
   m_ObjectHideFlags: 0
@@ -797,6 +798,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
   firePeriod: 0.25
+  overheatBlinkRate: 0.2
 --- !u!82 &3751668158717457720
 AudioSource:
   m_ObjectHideFlags: 0
