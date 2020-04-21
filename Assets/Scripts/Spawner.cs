@@ -130,7 +130,7 @@ public class Spawner : MonoBehaviour
         Debug.Log("That's all folks!!!");
         if (SceneController.instance != null)
         {
-            UIManager.instance.DisplayToolTip("Waves Clear! Hit G to continue...", 0.5f);
+            UIManager.instance.DisplayToolTip("Waves Clear! Hit G to continue...", 0.00000000004f);
             
         }
         else { Debug.Log("That's all folks!!! No SceneController"); }
