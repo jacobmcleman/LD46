@@ -140,12 +140,12 @@ MonoBehaviour:
   realteam: 0
   maxHeat: 30
   heatDecayRate: 15
-  shotHeatCost: 0.2
+  shotHeatCost: 1
   maxCooldownTime: 2
   spread: 0.02
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
-  firePeriod: 0.02
+  firePeriod: 0.08
   overheatBlinkRate: 0.2
 --- !u!82 &7247166200797147798
 AudioSource:
@@ -520,7 +520,7 @@ MonoBehaviour:
   whalePosition: {fileID: 0}
   playerPosition: {fileID: 0}
   fireDistance: 500
-  fireAngle: 60
+  fireAngle: 15
   attackRange: 200
   runRange: 150
   breakOffRange: 600

@@ -64,6 +64,6 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     void Update()
     {
-        if (WhaleStats.instance != null) { Heal(WhaleStats.instance.RegenLevel * Time.deltaTime); }
+        if (WhaleStats.instance != null) { Heal((WhaleStats.instance.RegenLevel - 1) * Time.deltaTime); }
     }
 }

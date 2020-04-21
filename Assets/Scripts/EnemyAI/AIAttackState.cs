@@ -179,8 +179,10 @@ public class AIAttackState : MonoBehaviour, IWieldable
     private void CheckFire(Transform target)
     {
         Vector3 leadPos = getLeadPosition(target);
+
         float angle = Vector3.Angle(transform.position, leadPos);
         float dist = Vector3.Distance(transform.position, leadPos);
+
         if (dist < fireDistance && angle < fireAngle)
         {
             if (weaponScript1 != null)
