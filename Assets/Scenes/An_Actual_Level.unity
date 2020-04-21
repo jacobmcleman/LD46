@@ -1181,6 +1181,10 @@ MonoBehaviour:
   Organics: 0
   Mechanicals: 0
   Waves: 
+  OrganicUpgradeBits: []
+  MechanicalUpgradeBits:
+  - {fileID: 1346470348}
+  - {fileID: 1346470347}
 --- !u!4 &1028028638
 Transform:
   m_ObjectHideFlags: 0
@@ -1651,6 +1655,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 27783407003925659, guid: 09eec9dc13d958e478364c327f42b42e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 154091373022312685, guid: 09eec9dc13d958e478364c327f42b42e,
         type: 3}
       propertyPath: m_IsActive
@@ -1661,6 +1670,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 481139335791536866, guid: 09eec9dc13d958e478364c327f42b42e,
+        type: 3}
+      propertyPath: m_TagString
+      value: MechUpBit
+      objectReference: {fileID: 0}
     - target: {fileID: 5036654992152232172, guid: 09eec9dc13d958e478364c327f42b42e,
         type: 3}
       propertyPath: m_IsActive
@@ -1670,6 +1684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113916436055657209, guid: 09eec9dc13d958e478364c327f42b42e,
+        type: 3}
+      propertyPath: m_TagString
+      value: MechUpBit
       objectReference: {fileID: 0}
     - target: {fileID: 5966294627942535402, guid: 09eec9dc13d958e478364c327f42b42e,
         type: 3}
@@ -1738,6 +1757,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09eec9dc13d958e478364c327f42b42e, type: 3}
+--- !u!1 &1346470347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 481139335791536866, guid: 09eec9dc13d958e478364c327f42b42e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1346470346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1346470348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5113916436055657209, guid: 09eec9dc13d958e478364c327f42b42e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1346470346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476110389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7994865967578530891, guid: 09eec9dc13d958e478364c327f42b42e,
