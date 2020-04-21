@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
         //playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.Fill = WhaleHealth.Health;
-        waveText.text = $"Wave {SpawnerCS.CurWave + 1}/{SpawnerCS.Waves.Count}";
+        waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
         if (Input.GetKeyDown("j")) {
             PickupMetal("14");
