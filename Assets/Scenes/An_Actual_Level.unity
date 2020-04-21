@@ -2041,12 +2041,12 @@ MonoBehaviour:
   MaxAsteriods: 300
   avoidDistance: 200
   retryAmount: 20
-  MapXMin: -1000
-  MapXMax: 1000
-  MapYMin: -1000
-  MapYMax: 1000
-  MapZMin: -1000
-  MapZMax: 1000
+  MapXMin: -700
+  MapXMax: 700
+  MapYMin: -700
+  MapYMax: 700
+  MapZMin: -700
+  MapZMax: 700
   Waves: 030000000500000008000000
   CurWave: 0
   startedSpawningEnemy: 0
