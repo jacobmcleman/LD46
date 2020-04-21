@@ -28,6 +28,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         if (health - damage <= 0)
         {
             Debug.Log("Dead Hit :: EnemyHealth");
+            UIManager.instance.DisplayToolTip("Enemy Defeated", 1);
             //Die
             if (!hasSpawned)
             {
