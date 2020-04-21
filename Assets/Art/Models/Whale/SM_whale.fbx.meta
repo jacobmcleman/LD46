@@ -2,13 +2,21 @@ fileFormatVersion: 2
 guid: 94c67eb0bf3309d46b5d60658e38de90
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SM_Whale_05_defaultMat1
+      name: SM_Whale_05_defaultMat2
     second: {fileID: 2100000, guid: f2cc26164e703c948ae60268af036f1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wale_Regen_mtl
+    second: {fileID: 2100000, guid: 174fd9a6bad20ec469f7c9b03ea7c1b4, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -72,7 +80,8 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
+  referencedClips:
+  - d9ed628295db4c944b1c2ebb63a31cd8
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
