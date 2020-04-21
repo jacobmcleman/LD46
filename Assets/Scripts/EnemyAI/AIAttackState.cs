@@ -65,9 +65,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
         myShip = GetComponent<SpaceshipController>();
         //shipAI.TargetPosition = whalePosition.position;
         weaponScript1 = weapon1.GetComponent<IFireable>();
-        weaponScript1.team = team;
+        weaponScript1.team = Teams.enemyTeam;
         weaponScript2 = weapon2.GetComponent<IFireable>();
-        weaponScript2.team = team;
+        weaponScript2.team = Teams.enemyTeam;
 
         chaseTimer = 0;
         runTimer = 0;
@@ -91,12 +91,12 @@ public class AIAttackState : MonoBehaviour, IWieldable
             case AIState.AttackingWhale:
                 if (decoyTimer > 0)
                 {
-                    Vector3 decoyPosition = Whale.transform.GetChild(1).transform.position;
-                    shipAI.TargetPosition = decoyPosition;
-                    shipAI.ApproachDirection = Vector3.zero;
-                    float angle = Vector3.Angle(transform.position, decoyPosition);
-                    float checkDist = Vector3.Distance(transform.position, decoyPosition);
-                    decoyTimer -= Time.deltaTime;
+                    //Vector3 decoyPosition = Whale.transform.GetChild(1).transform.position;
+                    //shipAI.TargetPosition = decoyPosition;
+                    //shipAI.ApproachDirection = Vector3.zero;
+                    //float angle = Vector3.Angle(transform.position, decoyPosition);
+                    //float checkDist = Vector3.Distance(transform.position, decoyPosition);
+                    //decoyTimer -= Time.deltaTime;
                 }
                 if (distToPlayer < attackRange) // pursue player instead of Whale
                 {
@@ -183,8 +183,14 @@ public class AIAttackState : MonoBehaviour, IWieldable
         float dist = Vector3.Distance(transform.position, leadPos);
         if (dist < fireDistance && angle < fireAngle)
         {
-            if (weaponScript1 != null) weaponScript1.Fire(this);
-            if (weaponScript2 != null) weaponScript2.Fire(this);
+            if (weaponScript1 != null)
+            {
+                weaponScript1.Fire(this);
+            }
+            if (weaponScript2 != null)
+            {
+                weaponScript2.Fire(this);
+            }
         }
     }
 }

@@ -137,14 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeat: 15
+  realteam: 0
+  maxHeat: 30
   heatDecayRate: 15
-  shotHeatCost: 1
+  shotHeatCost: 0.2
   maxCooldownTime: 2
-  spread: 0.01
+  spread: 0.02
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
-  firePeriod: 0.25
+  firePeriod: 0.02
   overheatBlinkRate: 0.2
 --- !u!82 &7247166200797147798
 AudioSource:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IFireable, IWieldable
 {
-    private Teams _team = Teams.playerTeam;
+    public Teams realteam = Teams.playerTeam;
     private bool firing;
     private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
@@ -16,10 +16,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     public float spread = .01f;
     public Teams team 
     {
-        get => _team;
+        get => realteam;
         set 
         { 
-            _team = team;
+            realteam = value;
         }
     }
 
@@ -109,6 +109,9 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         {  
             return false;
         }
+
+        Debug.Log("Shooting projectile for team " + team);
+
         firing = true;
         Vector3 fireVec = transform.forward;
         GameObject projectile = GameObject.Instantiate(projectilePrefab);
