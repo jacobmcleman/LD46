@@ -278,7 +278,7 @@ MonoBehaviour:
   whalePosition: {fileID: 0}
   playerPosition: {fileID: 0}
   fireDistance: 500
-  fireAngle: 15
+  fireAngle: 5
   attackRange: 200
   runRange: 150
   breakOffRange: 600
