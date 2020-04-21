@@ -89,6 +89,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: WhaleArmor_lambert3
     second: {fileID: 2100000, guid: 9ea320a38a62b6f49a0eb2aeced06508, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard
+    second: {fileID: 2100000, guid: e3c28edd3a355504996928ddc6348f5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whale_lure_mtl
+    second: {fileID: 2100000, guid: 686ad656ba6287446a736c83e9e0830e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
