@@ -53,8 +53,13 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     void Awake()
     {
-        if (WhaleStats.instance != null) { health = WhaleStats.instance.HealthPoolLevel * MaxHealth; }
+        
         health = MaxHealth;
+    }
+
+    void Start()
+    {
+        if (WhaleStats.instance != null) { health = WhaleStats.instance.HealthPoolLevel * MaxHealth; }
     }
 
     void Update()
