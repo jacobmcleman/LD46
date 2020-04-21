@@ -63,6 +63,8 @@ public class SceneController : MonoBehaviour
     //Go to the winner screen
     public void WinGame ()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ChangeScene("Winner");
     }
 
@@ -70,6 +72,7 @@ public class SceneController : MonoBehaviour
     public void LoseGame ()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ChangeScene("Loser");
     }
 
