@@ -277,9 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whalePosition: {fileID: 0}
   playerPosition: {fileID: 0}
-  fireDistance: 200
-  fireAngle: 40
-  attackRange: 400
+  fireDistance: 500
+  fireAngle: 60
   runRange: 150
   breakOffRange: 600
   weapon1: {fileID: 6490679688381138777}
