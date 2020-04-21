@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67f3f7ec0ab45d449ab9efbab269d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthPoolLevel: 0
+  HealthPoolLevel: 1
   RegenLevel: 0
   DecoyLevel: 0
   ArmorLevel: 0
