@@ -2,10 +2,7 @@ fileFormatVersion: 2
 guid: 94c67eb0bf3309d46b5d60658e38de90
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: 1827226128182048838
-    second: Take 001
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -15,8 +12,93 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: TeslaTowers_copper
+    second: {fileID: 2100000, guid: 6543668f44675ee4382a34dece520a45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TeslaTowers_glass
+    second: {fileID: 2100000, guid: 607614b371f4f154aa95a529258b39d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TeslaTowers_metal_a
+    second: {fileID: 2100000, guid: fec78b88e7999064cbbc41ecb04a28de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TeslaTowers_power
+    second: {fileID: 2100000, guid: 0c5f947be0f75f140bca4678191a1a6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TeslaTowers_silver
+    second: {fileID: 2100000, guid: 174e434545bcdeb47b261e11a1023656, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tesla_metalBase
+    second: {fileID: 2100000, guid: f99c3b3659b194f4fb9a643e9c853e21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_engine_glow
+    second: {fileID: 2100000, guid: 600d047dc166cfe4db6ff9404a46dc3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_metal_a
+    second: {fileID: 2100000, guid: fec78b88e7999064cbbc41ecb04a28de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_metal_b1
+    second: {fileID: 2100000, guid: f99c3b3659b194f4fb9a643e9c853e21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_rubber_a
+    second: {fileID: 2100000, guid: 6991b24701f5efa4596c074f4ce230ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_rubber_b
+    second: {fileID: 2100000, guid: 554f183c85d52ae419e3ec05d4c31ea8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_silver
+    second: {fileID: 2100000, guid: fec78b88e7999064cbbc41ecb04a28de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TurretTowers_turret_light
+    second: {fileID: 2100000, guid: ddc325529a2c62f42a5b3bf2e94e2f38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wale_Regen_mtl
     second: {fileID: 2100000, guid: 174fd9a6bad20ec469f7c9b03ea7c1b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhaleArmorBase
+    second: {fileID: 2100000, guid: 511b1983f709169448c239770b135aad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhaleArmor_lambert3
+    second: {fileID: 2100000, guid: 9ea320a38a62b6f49a0eb2aeced06508, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard
+    second: {fileID: 2100000, guid: e3c28edd3a355504996928ddc6348f5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whale_lure_mtl
+    second: {fileID: 2100000, guid: 686ad656ba6287446a736c83e9e0830e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
