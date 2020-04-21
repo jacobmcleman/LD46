@@ -2055,6 +2055,7 @@ MonoBehaviour:
   WhaleRail: {fileID: 917961801}
   EnemyPrefabs:
   - {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
+  - {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92, type: 3}
   AsteroidWeighting:
   - 0.2
   - 0.2
