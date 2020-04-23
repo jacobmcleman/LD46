@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WhaleAI : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class WhaleAI : MonoBehaviour
         RailPoints = WhaleRail.GetComponent<WhaleRail>().RailPoints;
         flightController = gameObject.GetComponent<AIShip>();
         WhaleMouth = GameObject.FindGameObjectWithTag("WhaleMouth").transform;
-
-        curPoint = 0;
+        if (SceneManager.GetActiveScene().name == "An_Actual_Level")
+        {
+            curPoint = GameObject.FindGameObjectWithTag("Spawner").GetComponent<LevelSetup>().RailIndex + 1;
+        }
         flightController.TargetPosition = RailPoints[curPoint].position;
     }
 
@@ -28,13 +31,11 @@ public class WhaleAI : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(WhaleMouth.position, RailPoints[curPoint].position) < acceptableDistance)
-        {          
-            Debug.Log("Whale at " + RailPoints[curPoint].name + " now going to " + RailPoints[curPoint + 1]);
-
-            curPoint++;
+        {
             //Loop check
-            if (curPoint == RailPoints.Length) { curPoint = 0; } 
-
+            int nextPoint = (curPoint < RailPoints.Length - 1) ? curPoint + 1 : 0;
+            Debug.Log("Whale at " + RailPoints[curPoint].name + " now going to " + RailPoints[curPoint]);
+            curPoint = nextPoint;
             flightController.TargetPosition = RailPoints[curPoint].position;
         }
     }

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class WhaleHealth : MonoBehaviour, IHealth
 {
-    public float _MaxHealth = 100;
+    public float _MaxHealth = 10000;
 
-    public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
+    public float MaxHealth { 
+        get { return _MaxHealth; } 
+        set { _MaxHealth = value; } 
+    }
     public float Health { get { return health; } }
     public Teams team { get { return Teams.playerTeam; } }
 
@@ -14,22 +17,25 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
-        Debug.Log("HIT :: WhaleHealth");
+        if (WhaleStats.instance != null) { damage = damage * (1 - (.1f * (float)WhaleStats.instance.ArmorLevel)); }
+        
         if (team == attackerTeam) {
             // Friendly fire
             Debug.Log("Friendly Hit :: WhaleHealth");
-            return true;
+            return false;
         }
         if (health - damage <= 0)
         {
+            Debug.Log("Not Friendly && Ded :: WhaleHealth");
             //Die
             Destroy(gameObject);
-            return false;
+            return true;
         }
         else
         {
+            Debug.Log("Not Friendly && Not Ded :: WhaleHealth");
             health -= damage;
-            return true;
+            return false;
         }
     }
 
@@ -50,17 +56,13 @@ public class WhaleHealth : MonoBehaviour, IHealth
         health = MaxHealth;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        if (WhaleStats.instance != null) { health = WhaleStats.instance.HealthPoolLevel * MaxHealth; }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (WhaleStats.instance != null) { Heal((WhaleStats.instance.RegenLevel - 1) * Time.deltaTime); }
     }
-
-
 }

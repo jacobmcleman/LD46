@@ -9,6 +9,12 @@ TagManager:
   - Whale
   - Spawner
   - WhaleMouth
+  - PlayerCol
+  - WhaleCol
+  - Canvas
+  - Lootz
+  - Resource
+  - MechUpBit
   layers:
   - Default
   - TransparentFX

@@ -265,7 +265,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 1
-  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
+  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 1}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -320,8 +320,9 @@ GameObject:
   - component: {fileID: 550608261}
   - component: {fileID: 550608260}
   - component: {fileID: 550608262}
+  - component: {fileID: 550608263}
   m_Layer: 0
-  m_Name: MusicController
+  m_Name: AudioController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,12 +337,13 @@ AudioSource:
   m_GameObject: {fileID: 550608259}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2464572909860212142, guid: 9136029f821104b4fa786e9bd8f47946,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: d93a2136c3aad1e4698fa254bcf1e8b4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -449,19 +451,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e354a9283a7033342b837d17972c694a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop: 0
-  bsClips:
-  - {fileID: 8300000, guid: 06b04211b45bb8e43b4b796d39c6335d, type: 3}
-  - {fileID: 8300000, guid: bd4493aaaebd02345a39d8886f7cb521, type: 3}
-  - {fileID: 8300000, guid: 5b428b086c74d03408facf526a2dfdbf, type: 3}
-  - {fileID: 8300000, guid: c0aaebbf0a845a143941380d61a186fc, type: 3}
-  - {fileID: 8300000, guid: 86f2ff604d666ad44ba1244ce2a9acf8, type: 3}
-  - {fileID: 8300000, guid: 75a9a82ba6b7c0747b30e8646e2f2d62, type: 3}
-  dc2Clips:
-  - {fileID: 8300000, guid: 8d9e690353b6dc441873b5582b79225b, type: 3}
-  - {fileID: 8300000, guid: 3300a26be3adea44f836b9f76cc691ad, type: 3}
-  - {fileID: 8300000, guid: 84ea629345ce5b14ebcb8894e0d3cc39, type: 3}
-  - {fileID: 8300000, guid: c3a1f97244511a94abb3bcaa75fe72fd, type: 3}
+  songs:
+  - {fileID: 8300000, guid: ff8184a6c92acd14bb7b50c22ff48809, type: 3}
+  - {fileID: 8300000, guid: 87b1ea59cc721034e8a2e656f97948aa, type: 3}
+  - {fileID: 8300000, guid: 2385c75e2e4284f478e33d4bf86d3770, type: 3}
+  - {fileID: 8300000, guid: 704c80f42d6cad348954ef2ba0ea89c6, type: 3}
+  song: 0
+--- !u!114 &550608263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550608259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120e6da2a4542ae4b98318c82330a032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beeps:
+  - {fileID: 8300000, guid: d642744084da07e469c26730a8f16779, type: 3}
+  - {fileID: 8300000, guid: e35ce9c81255d76429ceb44f791fdef5, type: 3}
+  - {fileID: 8300000, guid: 37f564d3a4dce5b4686a63818ad80b39, type: 3}
+  - {fileID: 8300000, guid: 114ad752e1d4fa441ac308cd0d612569, type: 3}
+  - {fileID: 8300000, guid: b64c479da85b75546abc0f305287b426, type: 3}
+  - {fileID: 8300000, guid: affb33a94fb879a44bd817d847fce214, type: 3}
+  - {fileID: 8300000, guid: 7da1c99930813014f9652508e2091b10, type: 3}
+  - {fileID: 8300000, guid: fcf1d14d6d5843f4798e0628c0ef1446, type: 3}
+  - {fileID: 8300000, guid: da6baff699631514f98366f1097db8d4, type: 3}
+  - {fileID: 8300000, guid: 0c210afdc6a040c46820390fea7cb1e0, type: 3}
+  - {fileID: 8300000, guid: 47793f8538391204a911dc521dd3cdaa, type: 3}
+  - {fileID: 8300000, guid: 23b505073fb96ae409aa1ad200604121, type: 3}
+  cargoLauncherSounds: []
+  combatSounds:
+  - {fileID: 8300000, guid: 5a70274d5737bf6429352d0b2ba614e0, type: 3}
+  - {fileID: 8300000, guid: 2d1b764973b213547be56c5d96353b02, type: 3}
+  - {fileID: 8300000, guid: 447ff82b7e2cb1e4ea9aa46f0231ccb3, type: 3}
+  overheatSounds:
+  - {fileID: 8300000, guid: 58713f43268d5de409475d8f4a2fa5e3, type: 3}
+  - {fileID: 8300000, guid: d9a8ecad5a9763940980d80d4a900d91, type: 3}
+  missileSounds:
+  - {fileID: 8300000, guid: 9a983df56488695449b276e3da3d96be, type: 3}
+  - {fileID: 8300000, guid: 8b37309f5f103ca4d9a4d867c340bcd5, type: 3}
+  gunSounds:
+  - {fileID: 8300000, guid: 10a1f9e20b8030741901fc2bb767ffd2, type: 3}
+  - {fileID: 8300000, guid: cda281dfa13d931499b55069fe566a46, type: 3}
+  organicExplosions: []
+  inorganicExplosions:
+  - {fileID: 8300000, guid: ecb9e607ec551f74dbb156adf39bdafd, type: 3}
+  - {fileID: 8300000, guid: 26a656aa94a38df43ad35503f6b0af24, type: 3}
+  - {fileID: 8300000, guid: 4209da6028354a347bf98ccf480055c2, type: 3}
+  - {fileID: 8300000, guid: 830a1a90864f1ae499cb8ad5d89805e0, type: 3}
+  - {fileID: 8300000, guid: 4b080ece91853e140bb15a5ac3a596e3, type: 3}
+  collisions: []
+  mixer: {fileID: 24100000, guid: 9136029f821104b4fa786e9bd8f47946, type: 2}
 --- !u!1 &671462426
 GameObject:
   m_ObjectHideFlags: 1
@@ -847,6 +890,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1465698362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465698364}
+  - component: {fileID: 1465698363}
+  m_Layer: 0
+  m_Name: WhaleStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1465698363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465698362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67f3f7ec0ab45d449ab9efbab269d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthPoolLevel: 1
+  RegenLevel: 1
+  DecoyLevel: 1
+  ArmorLevel: 1
+  TurretsLevel: 1
+  TeslaLevel: 1
+  MaxLevel: 100
+  Organics: 0
+  Mechanicals: 0
+  Waves: 01000000
+--- !u!4 &1465698364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465698362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 688.1765, y: -257.05212, z: 84.73149}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603791253
 GameObject:

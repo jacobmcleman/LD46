@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
-{ 
+{
     //*
     //// Fields
     //*
@@ -28,7 +28,7 @@ public class SceneController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
+            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
             //Add scene loaded callback function
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -51,9 +51,10 @@ public class SceneController : MonoBehaviour
     //Play the intro cinematic and change scene to fly
     public void LoadIntroCinematic ()
     {
-        ChangeScene("Intro");
-        MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("An_Actual_Level", 7));
+        ChangeScene("Level1");
+        // Temp removal to speed up debugging by 15 seconds
+        //ChangeScene("Intro");
+        //StartCoroutine(ChangeSceneAfterDelay("Level1", 15));
     }
 
     public void WinLevel()
@@ -64,13 +65,27 @@ public class SceneController : MonoBehaviour
     //Go to the winner screen
     public void WinGame ()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ChangeScene("Winner");
     }
 
     //Go to the loser screen
     public void LoseGame ()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ChangeScene("Loser");
+    }
+
+    public void NextLevel()
+    {
+        ChangeScene("An_Actual_Level");
+    }
+
+    public void FinalLevel()
+    {
+        ChangeScene("Final_Level");
     }
 
     //Quit game ez
@@ -79,7 +94,7 @@ public class SceneController : MonoBehaviour
         //Quitting is different in editor vs in game, so check to see what to do
         if (Application.isEditor)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+           // UnityEditor.EditorApplication.isPlaying = false;
         } 
         else
         {
