@@ -51,8 +51,10 @@ public class SceneController : MonoBehaviour
     //Play the intro cinematic and change scene to fly
     public void LoadIntroCinematic ()
     {
-        ChangeScene("Intro");
-        StartCoroutine(ChangeSceneAfterDelay("Level1", 15));
+        ChangeScene("Level1");
+        // Temp removal to speed up debugging by 15 seconds
+        //ChangeScene("Intro");
+        //StartCoroutine(ChangeSceneAfterDelay("Level1", 15));
     }
 
     public void WinLevel()

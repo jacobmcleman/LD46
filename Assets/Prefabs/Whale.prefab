@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhaleRail: {fileID: 0}
-  acceptableDistance: 10
+  acceptableDistance: 50
 --- !u!54 &2497883373052722489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -169,17 +169,17 @@ MonoBehaviour:
   bounceModifier: 2
   bounceAngularDrag: 20
   acceleration: 10
-  lateralAcceleration: 100
-  verticalAcceleration: 100
+  lateralAcceleration: 10
+  verticalAcceleration: 10
   minSpeed: 10
   maxSpeed: 20
   throttleChangeRate: 0.3
   maxPitchRate: 10
   maxYawRate: 3
   maxRollRate: 15
-  pitchDelta: 60
-  yawDelta: 20
-  rollDelta: 90
+  pitchDelta: 10
+  yawDelta: 10
+  rollDelta: 10
   steerGravity: 0.1
   collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}

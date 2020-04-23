@@ -525,10 +525,8 @@ MonoBehaviour:
   runRange: 150
   breakOffRange: 600
   targetChaseDistance: 5
-  weapon1: {fileID: 5105007279458345246}
-  weapon2: {fileID: 0}
-  notPlayerPrefab: {fileID: 1636438497980443139, guid: 4eca8efb85be80540ba96536ac2737a1,
-    type: 3}
+  weapons:
+  - {fileID: 5105007279458345246}
   chaseTime: 100
   runTime: 100
   runAngle: 135

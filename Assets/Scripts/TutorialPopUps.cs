@@ -69,7 +69,7 @@ public class TutorialPopUps : MonoBehaviour
             }
             else
             {
-                Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
+                //Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 9)
                 {
                     UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);

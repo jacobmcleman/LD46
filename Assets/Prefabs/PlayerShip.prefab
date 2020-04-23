@@ -15240,6 +15240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxOrganics: 100
   MaxMechanicals: 100
+  feedDistance: 200
   OrganicChunk: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
   MechanicalChunk: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
@@ -16454,6 +16455,10 @@ PrefabInstance:
       propertyPath: shotHeatCost
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: realteam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
       value: 5
@@ -16461,6 +16466,10 @@ PrefabInstance:
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: shotHeatCost
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: realteam
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1587413145, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: stick

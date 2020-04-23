@@ -8,7 +8,7 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     public float MaxHealth { 
         get { return _MaxHealth; } 
-        set { _MaxHealth = MaxHealth; } 
+        set { _MaxHealth = value; } 
     }
     public float Health { get { return health; } }
     public Teams team { get { return Teams.playerTeam; } }
@@ -22,20 +22,20 @@ public class WhaleHealth : MonoBehaviour, IHealth
         if (team == attackerTeam) {
             // Friendly fire
             Debug.Log("Friendly Hit :: WhaleHealth");
-            return true;
+            return false;
         }
         if (health - damage <= 0)
         {
             Debug.Log("Not Friendly && Ded :: WhaleHealth");
             //Die
             Destroy(gameObject);
-            return false;
+            return true;
         }
         else
         {
             Debug.Log("Not Friendly && Not Ded :: WhaleHealth");
             health -= damage;
-            return true;
+            return false;
         }
     }
 
@@ -53,7 +53,6 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     void Awake()
     {
-        
         health = MaxHealth;
     }
 
