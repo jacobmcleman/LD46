@@ -31,13 +31,11 @@ public class WhaleAI : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(WhaleMouth.position, RailPoints[curPoint].position) < acceptableDistance)
-        {          
-            Debug.Log("Whale at " + RailPoints[curPoint].name + " now going to " + RailPoints[curPoint + 1]);
-
-            curPoint++;
+        {
             //Loop check
-            if (curPoint == RailPoints.Length) { curPoint = 0; } 
-
+            int nextPoint = (curPoint < RailPoints.Length - 1) ? curPoint + 1 : 0;
+            Debug.Log("Whale at " + RailPoints[curPoint].name + " now going to " + RailPoints[curPoint]);
+            curPoint = nextPoint;
             flightController.TargetPosition = RailPoints[curPoint].position;
         }
     }

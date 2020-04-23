@@ -11,13 +11,15 @@ public class AIAttackState : MonoBehaviour, IWieldable
     public Transform playerPosition;
     public float fireDistance = 100f;
     public float fireAngle = 30f;
+
     private Teams _team = Teams.enemyTeam;
+
     public Teams team 
     { 
         get { return _team; } 
         set 
         {
-            _team = team;
+            _team = value;
         }
 
     }
@@ -38,15 +40,11 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     private SpaceshipController myShip;
     private AIShip shipAI;
-    public GameObject weapon1;
-    private IFireable weaponScript1;
-    public GameObject weapon2;
-    private IFireable weaponScript2;
+    public GameObject[] weapons;
+    private List<IFireable> weaponScripts;
 
     private GameObject Whale;
     private GameObject Player;
-
-    public GameObject notPlayerPrefab;
 
     private float decoyTimer;
     private float chaseTimer;
@@ -59,16 +57,22 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     void Start() // set ship to start with Whale as target
     {
-        Whale = GameObject.FindGameObjectWithTag("WhaleMouth");
+        Whale = GameObject.FindGameObjectWithTag("Whale");
         Player = GameObject.FindGameObjectWithTag("Player");
         shipAI = GetComponent<AIShip>();
         myShip = GetComponent<SpaceshipController>();
+        weaponScripts = new List<IFireable>();
         //shipAI.TargetPosition = whalePosition.position;
-        weaponScript1 = weapon1.GetComponent<IFireable>();
-        weaponScript1.team = Teams.enemyTeam;
-        weaponScript2 = weapon2.GetComponent<IFireable>();
-        weaponScript2.team = Teams.enemyTeam;
-
+        foreach(GameObject weap in weapons)
+        {
+            IFireable weapon = weap.GetComponent<IFireable>();
+            if (weapon == null) Debug.LogWarning("Weapon was attached with no IFireable");
+            else
+            {
+                weaponScripts.Add(weapon);
+                weapon.team = team;
+            }
+        }
         chaseTimer = 0;
         runTimer = 0;
 
@@ -167,8 +171,8 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
         Vector3 relativeVelocity = myShip.Velocity + targetShip.Velocity;
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
-        float projectileSpeed = weaponScript1.GetProjectileSpeed() + myShip.Velocity.magnitude;
-        float timeToTarget = distanceToTarget / weaponScript1.GetProjectileSpeed();
+        float projectileSpeed = weaponScripts.Count > 0 ? (weaponScripts[0].GetProjectileSpeed() + myShip.Velocity.magnitude) : 0;
+        float timeToTarget = distanceToTarget / projectileSpeed;
         Vector3 aheadVector = timeToTarget * relativeVelocity;
         return target.position + aheadVector;
     }
@@ -185,13 +189,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
         if (dist < fireDistance && angle < fireAngle)
         {
-            if (weaponScript1 != null)
+            foreach (IFireable weap in weaponScripts)
             {
-                weaponScript1.Fire(this);
-            }
-            if (weaponScript2 != null)
-            {
-                weaponScript2.Fire(this);
+                weap.Fire(this);
             }
         }
     }

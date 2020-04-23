@@ -110,11 +110,11 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             return false;
         }
 
-        Debug.Log("Shooting projectile for team " + team);
+        //Debug.Log("Shooting projectile for team " + team);
 
         firing = true;
         Vector3 fireVec = transform.forward;
-        GameObject projectile = GameObject.Instantiate(projectilePrefab);
+        GameObject projectile = Instantiate(projectilePrefab);
         Projectile proj = projectile.GetComponent<Projectile>();
         if (proj == null) Debug.LogError("Tried to shoot not a projectile");
         projectile.transform.position = transform.position + transform.forward;
@@ -131,7 +131,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float heatMod = heat;
         float maxHeatMod = maxHeat;
         float pitchBend = heatMod / maxHeatMod + 0.3f;
-        SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
+        if(SFXController.instance != null) SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }
 }
