@@ -87,9 +87,11 @@ public class Targeting : MonoBehaviour
     private Transform GetNextTarget()
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
+        if (loots.Length == 0) return null;
+
         if (enemyIndex < loots.Length - 1) { enemyIndex++; }
         else { enemyIndex = 0; }
-        Debug.Log("Enemy Index: " + enemyIndex);
+
         return loots[enemyIndex].transform;
     }
 }

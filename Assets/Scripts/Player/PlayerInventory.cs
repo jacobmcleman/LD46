@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerInventory : MonoBehaviour, IInventory
 {
@@ -45,7 +47,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
                 Debug.Log("Mechanicals: " + mechanicals + " pickedup: " + value);
             }
         }
-    } 
+    }
 
     public GameObject OrganicChunk;
     public GameObject MechanicalChunk;
@@ -67,7 +69,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
     {
         regurgTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.F) && regurgTimer <= 0) 
+        if (Input.GetKeyDown(KeyCode.F) && regurgTimer <= 0)
         {
             Regurgitate();
             regurgTimer = regurgitateCooldown;
@@ -95,7 +97,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
                 Mechanicals = 0;
             }
         }
-        else
+        else if(SceneManager.GetActiveScene().name != "Level1")
         {
             UIManager.instance.DisplayToolTip("Get closer to "+PlayerPrefs.GetString("whale_name")+" to feed "+PlayerPrefs.GetString("whale_name"), 0.5f);
         }

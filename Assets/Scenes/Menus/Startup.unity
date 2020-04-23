@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Version: 7
   m_ObsoleteRenderingPath: 0
   m_ObsoleteFrameSettings:
@@ -265,7 +265,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 1
-  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
+  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 1}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -343,7 +343,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -449,21 +449,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e354a9283a7033342b837d17972c694a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loop: 0
-  bsClips:
-  - {fileID: 8300000, guid: 06b04211b45bb8e43b4b796d39c6335d, type: 3}
-  - {fileID: 8300000, guid: bd4493aaaebd02345a39d8886f7cb521, type: 3}
-  - {fileID: 8300000, guid: 5b428b086c74d03408facf526a2dfdbf, type: 3}
-  - {fileID: 8300000, guid: c0aaebbf0a845a143941380d61a186fc, type: 3}
-  - {fileID: 8300000, guid: 86f2ff604d666ad44ba1244ce2a9acf8, type: 3}
-  - {fileID: 8300000, guid: 75a9a82ba6b7c0747b30e8646e2f2d62, type: 3}
-  dc2Clips:
-  - {fileID: 8300000, guid: 8d9e690353b6dc441873b5582b79225b, type: 3}
-  - {fileID: 8300000, guid: 3300a26be3adea44f836b9f76cc691ad, type: 3}
-  - {fileID: 8300000, guid: 84ea629345ce5b14ebcb8894e0d3cc39, type: 3}
-  - {fileID: 8300000, guid: c3a1f97244511a94abb3bcaa75fe72fd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  songs:
+  - {fileID: 8300000, guid: ff8184a6c92acd14bb7b50c22ff48809, type: 3}
+  - {fileID: 8300000, guid: 87b1ea59cc721034e8a2e656f97948aa, type: 3}
+  - {fileID: 8300000, guid: 2385c75e2e4284f478e33d4bf86d3770, type: 3}
+  - {fileID: 8300000, guid: 704c80f42d6cad348954ef2ba0ea89c6, type: 3}
+  song: 0
 --- !u!114 &550608263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,8 +467,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 120e6da2a4542ae4b98318c82330a032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   beeps:
   - {fileID: 8300000, guid: d642744084da07e469c26730a8f16779, type: 3}
   - {fileID: 8300000, guid: e35ce9c81255d76429ceb44f791fdef5, type: 3}
@@ -539,8 +532,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Profile: {fileID: 0}
   m_StaticLightingSkyUniqueID: 0
   m_SkySettings: {fileID: 0}
@@ -662,8 +655,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Version: 10
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
@@ -823,7 +816,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -860,8 +853,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -879,8 +872,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -925,18 +918,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f67f3f7ec0ab45d449ab9efbab269d56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   HealthPoolLevel: 1
-  RegenLevel: 0
-  DecoyLevel: 0
-  ArmorLevel: 0
-  TurretsLevel: 0
-  TeslaLevel: 0
-  MaxLevel: 1
+  RegenLevel: 1
+  DecoyLevel: 1
+  ArmorLevel: 1
+  TurretsLevel: 1
+  TeslaLevel: 1
+  MaxLevel: 100
   Organics: 0
   Mechanicals: 0
-  Waves: 
+  Waves: 01000000
 --- !u!4 &1465698364
 Transform:
   m_ObjectHideFlags: 0
@@ -978,8 +971,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672475691e12d4f4fac551a9a963689b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &1603791255
 Transform:
   m_ObjectHideFlags: 0

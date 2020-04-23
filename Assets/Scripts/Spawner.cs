@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
     public bool startedSpawningEnemy = false;
 
-    public List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near 
+    public List<Transform> Avoids = new List<Transform>(); //List of points to avoid spawning near
     public List<GameObject> Enemies = new List<GameObject>();
     public List<GameObject> Asteriods = new List<GameObject>();
 
@@ -119,7 +119,7 @@ public class Spawner : MonoBehaviour
                         SceneController.instance.WinLevel();
                     }
                 }
-                
+
             }
         }
     }
@@ -130,8 +130,8 @@ public class Spawner : MonoBehaviour
         Debug.Log("That's all folks!!!");
         if (SceneController.instance != null)
         {
-            UIManager.instance.DisplayToolTip("Waves Clear! Hit G to continue...", 0.5f);
-            
+            UIManager.instance.DisplayToolTip("Waves Clear! Hit G to continue...", 0.00000000004f);
+
         }
         else { Debug.Log("That's all folks!!! No SceneController"); }
 
@@ -177,7 +177,7 @@ public class Spawner : MonoBehaviour
 
         Quaternion randRotate = Quaternion.Euler(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)); //Make a random rotation
         GameObject roid = Instantiate(AsteroidPrefabs[prefabIndex], point, randRotate); //Instantiate that bitch
-        roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that 
+        roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that
         Asteriods.Add(roid); //Add it to the asteroid list
         Avoids.Add(roid.transform); //Add it to the avoid list
     }
@@ -225,7 +225,7 @@ public class Spawner : MonoBehaviour
         int prefabIndex = Random.Range(0, EnemyPrefabs.Length); //Select prefab
         Quaternion randRotate = Quaternion.Euler(Random.Range(0, 180), Random.Range(0, 180), Random.Range(0, 180)); //Make a random rotation
         GameObject roid = Instantiate(EnemyPrefabs[prefabIndex], point, randRotate); //Instantiate that bitch
-        roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that 
+        roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that
         Enemies.Add(roid); //Add it to the enemy list
         Avoids.Add(roid.transform); //Add it to the avoid list
     }

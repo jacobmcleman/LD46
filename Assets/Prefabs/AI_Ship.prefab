@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Bouncer: 1
   bounceModifier: 2
   bounceAngularDrag: 20
@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c056d81f54bed0448ad56c742bfa885a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxThrottle: 1
   acceptableApproachDirError: 0.2
   largeDeflectionThreshold: 45
@@ -273,18 +273,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b89f09363767eb146a9cde1aeba44ea8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   whalePosition: {fileID: 0}
   playerPosition: {fileID: 0}
   fireDistance: 500
-  fireAngle: 60
+  fireAngle: 5
+  attackRange: 200
   runRange: 150
   breakOffRange: 600
-  weapon1: {fileID: 6490679688381138777}
-  weapon2: {fileID: 8173604626163043024}
-  notPlayerPrefab: {fileID: 1636438497980443139, guid: 4eca8efb85be80540ba96536ac2737a1,
-    type: 3}
+  targetChaseDistance: 30
+  weapons:
+  - {fileID: 6490679688381138777}
+  - {fileID: 8173604626163043024}
   chaseTime: 100
   runTime: 100
   runAngle: 135
@@ -298,8 +299,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84260b68e96f2ba42b941247a14a0759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _MaxHealth: 100
   resourceDrop: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
     type: 3}
@@ -491,16 +492,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
+  realteam: 1
   maxHeat: 15
   heatDecayRate: 15
   shotHeatCost: 1
   maxCooldownTime: 2
-  spread: 0.01
+  spread: 0.003
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
-  firePeriod: 0.25
+  firePeriod: 0.2
   overheatBlinkRate: 0.2
 --- !u!82 &8671747706329486545
 AudioSource:
@@ -787,16 +789,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
+  realteam: 1
   maxHeat: 15
   heatDecayRate: 15
   shotHeatCost: 1
   maxCooldownTime: 2
-  spread: 0.01
+  spread: 0.003
   projectilePrefab: {fileID: 6305352307955354936, guid: f2058ed7308cfd745884f99973879afb,
     type: 3}
-  firePeriod: 0.25
+  firePeriod: 0.2
   overheatBlinkRate: 0.2
 --- !u!82 &3751668158717457720
 AudioSource:

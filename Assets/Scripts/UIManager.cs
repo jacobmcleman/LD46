@@ -82,6 +82,8 @@ public class UIManager : MonoBehaviour
         Whale = GameObject.FindGameObjectWithTag("Whale");
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
 
+        GameObject.Find("WhaleName").GetComponent<Text>().text = PlayerPrefs.GetString("whale_name");
+
         PlayerInventory = Player.GetComponent<IInventory>();
         Ship = Player.GetComponent<PlayerShip>();
         WhaleInventory = Whale.GetComponent<IInventory>();
@@ -99,13 +101,13 @@ public class UIManager : MonoBehaviour
         whaleInorganic.text = $"{WhaleInventory.Mechanicals}";
         whaleOrganic.text = $"{WhaleInventory.Organics}";
         playerHealthText.text = $"{PlayerHealth.Health}/{PlayerHealth.MaxHealth}";
-        //playerHealthSlider.Fill = PlayerHealth.Health;
+        playerHealthSlider.Fill = PlayerHealth.Health;
         whaleHealthText.text = $"{WhaleHealth.Health}/{WhaleHealth.MaxHealth}";
         whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
         if (Input.GetKeyDown("j")) {
-            PickupMetal("14");
+            WhaleHealth.TakeDamage(10f, Teams.enemyTeam);
         } else if (Input.GetKeyDown("k")) {
             PickupOrganic("6");
         } else if (Input.GetKeyDown("l")) {
@@ -116,12 +118,16 @@ public class UIManager : MonoBehaviour
                 pauseMenu.SetActive(false);
                 notPauseMenu.SetActive(true);
                 Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else
             {
                 pauseMenu.SetActive(true);
                 notPauseMenu.SetActive(false);
                 Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             pauseToggle = !pauseToggle;
         }
@@ -138,7 +144,7 @@ public class UIManager : MonoBehaviour
         {
             toolTipAnimator.ResetTrigger("DisplayMessage");
             toolTipAnimator.SetTrigger("Restart");
-        } 
+        }
         toolTipText.text = tip;
         toolTipAnimator.SetFloat("Duration", durationMultiplier);
         toolTipAnimator.SetTrigger("DisplayMessage");
@@ -151,7 +157,7 @@ public class UIManager : MonoBehaviour
         {
             organicPickupAnimator.ResetTrigger("Play");
             organicPickupAnimator.SetTrigger("Restart");
-        } 
+        }
         organicPickupText.text = "+" + amount;
         organicPickupAnimator.SetTrigger("Play");
         if (SFXController.instance) SFXController.instance.PlayResourcePickupSFX(sfxAudio);

@@ -22,7 +22,7 @@ public class TutorialPopUps : MonoBehaviour
         StartCoroutine(Begin());
     }
 
-    private IEnumerator Begin () 
+    private IEnumerator Begin ()
     {
         yield return new WaitForSeconds(1);
         UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
@@ -37,7 +37,7 @@ public class TutorialPopUps : MonoBehaviour
             {
                 finished = true;
 
-            } 
+            }
             else if ( step < neededInputs.Length && (neededInputs[step] == "Fire1" || neededInputs[step] == "Fire2"))
             {
                 if (Input.GetButtonDown(neededInputs[step]))
@@ -48,13 +48,13 @@ public class TutorialPopUps : MonoBehaviour
                     coroutineRunning = false;
                 }
             }
-            else if (step < 7)
+            else if (step < 9)
             {
                 if (Input.GetKeyDown(neededInputs[step]))
                 {
                     step++;
-                    if (step == 7)
-                    {   
+                    if (step == 9)
+                    {
 
                         UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy. Destroy all enemies to continue.", 0.000000000004f);
                     }
@@ -69,19 +69,19 @@ public class TutorialPopUps : MonoBehaviour
             }
             else
             {
-                Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 7)
+                //Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 9)
                 {
                     UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
                     step++;
-                    
+
                 }
-                else if (GameObject.FindGameObjectsWithTag("Resource").Length == 0 && step == 8)
+                else if (GameObject.FindGameObjectsWithTag("Resource").Length == 0 && step == 10)
                 {
-                    UIManager.instance.DisplayToolTip("Finally, drop off the resources at " + PlayerPrefs.GetString("whale_name"), 0.000000000004f);
+                    UIManager.instance.DisplayToolTip("Finally, fly up next to " + PlayerPrefs.GetString("whale_name") + " and press F to deposit your resources!", 0.000000000004f);
                     step++;
                 }
-                else if (step == 9)
+                else if (step == 11)
                 {
                     if (GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Mechanicals == 0 && GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Organics == 0)
                     {
@@ -89,7 +89,7 @@ public class TutorialPopUps : MonoBehaviour
                         step++;
                     }
                 }
-                else if (step == 10)
+                else if (step == 12)
                 {
                     if (Input.GetKeyDown("g"))
                     {
@@ -111,7 +111,7 @@ public class TutorialPopUps : MonoBehaviour
             StartCoroutine(IncrementTutorial());
             coroutineRunning = true;
         }
-        
+
 /* commented out for debuging
 
         while (Input.GetKeyDown(KeyCode.t"))

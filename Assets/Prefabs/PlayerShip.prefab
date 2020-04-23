@@ -14721,8 +14721,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Version: 10
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
@@ -14832,7 +14832,7 @@ GameObject:
   - component: {fileID: 410093988718563573}
   - component: {fileID: 5318151711480079339}
   m_Layer: 12
-  m_Name: Trail (2)
+  m_Name: Trail (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14850,7 +14850,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7136200531599415538}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &5318151711480079339
 TrailRenderer:
@@ -15176,8 +15176,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474166195d2ae1b48a6e0fdc7d26b2e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Bouncer: 1
   bounceModifier: 2
   bounceAngularDrag: 20
@@ -15206,8 +15206,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cc52291f906e346adbc4019ceb614f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _MaxHealth: 100
 --- !u!114 &7136200531599415536
 MonoBehaviour:
@@ -15219,8 +15219,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9ea7520f7b87eb4ca36b8599af354db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   speedSlider: {fileID: 0}
   speedText: {fileID: 0}
   mouseUI: {fileID: 0}
@@ -15236,10 +15236,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 513b3456bb825cb419e0acf43b5bd928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   MaxOrganics: 100
   MaxMechanicals: 100
+  feedDistance: 200
   OrganicChunk: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
   MechanicalChunk: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
@@ -15256,8 +15257,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   weapon1: {fileID: 3306749232337220564}
   weapon2: {fileID: 623143629380421134}
 --- !u!114 &7136200531599415541
@@ -15270,8 +15271,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9a13b7ed82e306438ea288ed5ece67d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   upSrc: {fileID: 7136200532596110970}
   downSrc: {fileID: 7136200531895547229}
   idleSrc: {fileID: 7136200531579236137}
@@ -15286,8 +15287,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fae6f3171935734d92964da9f80217a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   Target: {fileID: 0}
   targettingHud: {fileID: 1885469770}
   closeDebrisHud: {fileID: 182130676186911423}
@@ -15303,8 +15304,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a30a25133c38ac4c86dab2085df2749, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   missileAppearPoint: {fileID: 5939399451844627150}
   Missile: {fileID: 1523545946267039166, guid: 14526ebb962668b4c930fff1c47128bc, type: 3}
   TargetTag: Enemy
@@ -15320,8 +15321,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   InitialTargetTag: Whale
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
@@ -15338,9 +15339,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialTargetTag: 
+  m_Name:
+  m_EditorClassIdentifier:
+  InitialTargetTag:
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 1
@@ -15356,8 +15357,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1e453d3431892d429d737da293aee0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!114 &182130676186911423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15368,8 +15369,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   InitialTargetTag: Resource
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
@@ -16008,8 +16009,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Version: 10
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
@@ -16211,8 +16212,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Version: 10
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
@@ -16454,6 +16455,10 @@ PrefabInstance:
       propertyPath: shotHeatCost
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: realteam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
       value: 5
@@ -16462,13 +16467,17 @@ PrefabInstance:
       propertyPath: shotHeatCost
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: realteam
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1587413145, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: stick
-      value: 
+      value:
       objectReference: {fileID: 7136200531599415436}
     - target: {fileID: 2010228980, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: stick
-      value: 
+      value:
       objectReference: {fileID: 7136200531599415436}
     - target: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
         type: 3}

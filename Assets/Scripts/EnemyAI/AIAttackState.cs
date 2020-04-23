@@ -11,13 +11,15 @@ public class AIAttackState : MonoBehaviour, IWieldable
     public Transform playerPosition;
     public float fireDistance = 100f;
     public float fireAngle = 30f;
+
     private Teams _team = Teams.enemyTeam;
-    public Teams team 
-    { 
-        get { return _team; } 
-        set 
+
+    public Teams team
+    {
+        get { return _team; }
+        set
         {
-            _team = team;
+            _team = value;
         }
 
     }
@@ -34,16 +36,15 @@ public class AIAttackState : MonoBehaviour, IWieldable
     public float runRange = 150f;
     public float breakOffRange = 600f;
 
+    public float targetChaseDistance = 30.0f;
+
+    private SpaceshipController myShip;
     private AIShip shipAI;
-    public GameObject weapon1;
-    private IFireable weaponScript1;
-    public GameObject weapon2;
-    private IFireable weaponScript2;
+    public GameObject[] weapons;
+    private List<IFireable> weaponScripts;
 
     private GameObject Whale;
     private GameObject Player;
-
-    public GameObject notPlayerPrefab;
 
     private float decoyTimer;
     private float chaseTimer;
@@ -59,12 +60,19 @@ public class AIAttackState : MonoBehaviour, IWieldable
         Whale = GameObject.FindGameObjectWithTag("Whale");
         Player = GameObject.FindGameObjectWithTag("Player");
         shipAI = GetComponent<AIShip>();
+        myShip = GetComponent<SpaceshipController>();
+        weaponScripts = new List<IFireable>();
         //shipAI.TargetPosition = whalePosition.position;
-        weaponScript1 = weapon1.GetComponent<IFireable>();
-        weaponScript1.team = team;
-        weaponScript2 = weapon2.GetComponent<IFireable>();
-        weaponScript2.team = team;
-
+        foreach(GameObject weap in weapons)
+        {
+            IFireable weapon = weap.GetComponent<IFireable>();
+            if (weapon == null) Debug.LogWarning("Weapon was attached with no IFireable");
+            else
+            {
+                weaponScripts.Add(weapon);
+                weapon.team = team;
+            }
+        }
         chaseTimer = 0;
         runTimer = 0;
 
@@ -78,19 +86,21 @@ public class AIAttackState : MonoBehaviour, IWieldable
         playerPosition = Player.transform;
 
         float distToPlayer = Vector3.Distance(transform.position, playerPosition.position); //check distance from this Enemy to Player
-        
+
+        CheckFire(playerPosition);
+        CheckFire(whalePosition);
+
         switch(curState)
         {
             case AIState.AttackingWhale:
                 if (decoyTimer > 0)
                 {
-                    Vector3 decoyPosition = Whale.transform.GetChild(1).transform.position;
-                    shipAI.TargetPosition = decoyPosition;
-                    shipAI.ApproachDirection = Vector3.zero;
-                    float angle = Vector3.Angle(transform.position, decoyPosition);
-                    float checkDist = Vector3.Distance(transform.position, decoyPosition);
-                    CheckFire(checkDist, angle);
-                    decoyTimer -= Time.deltaTime;
+                    //Vector3 decoyPosition = Whale.transform.GetChild(1).transform.position;
+                    //shipAI.TargetPosition = decoyPosition;
+                    //shipAI.ApproachDirection = Vector3.zero;
+                    //float angle = Vector3.Angle(transform.position, decoyPosition);
+                    //float checkDist = Vector3.Distance(transform.position, decoyPosition);
+                    //decoyTimer -= Time.deltaTime;
                 }
                 if (distToPlayer < attackRange) // pursue player instead of Whale
                 {
@@ -126,7 +136,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 }
                 break;
             case AIState.RunningFromPlayer:
-                
+
                 if (runTimer > 0)
                 {
                     ChaseThing((playerPosition.position - transform.position) * 100, Vector3.zero);
@@ -138,16 +148,13 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     Debug.Log("Enemy State now: " + curState);
                 }
                 break;
-        }  
+        }
     }
 
     private void ChaseThing(Vector3 thing, Vector3 forwardDir)
     {
-        shipAI.TargetPosition = thing + (-forwardDir * 30);
+        shipAI.TargetPosition = thing + (-forwardDir * targetChaseDistance);
         shipAI.ApproachDirection = forwardDir;
-        float angle = Vector3.Angle(transform.position, thing);
-        float checkDist = Vector3.Distance(transform.position, thing);
-        CheckFire(checkDist, angle);
     }
 
 
@@ -157,15 +164,35 @@ public class AIAttackState : MonoBehaviour, IWieldable
         return target.position + (-target.forward * followDistance);
     }
 
+    private Vector3 getLeadPosition(Transform target)
+    {
+        SpaceshipController targetShip = target.GetComponent<SpaceshipController>();
+        if (targetShip == null) return target.position;
+
+        Vector3 relativeVelocity = myShip.Velocity + targetShip.Velocity;
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        float projectileSpeed = weaponScripts.Count > 0 ? (weaponScripts[0].GetProjectileSpeed() + myShip.Velocity.magnitude) : 0;
+        float timeToTarget = distanceToTarget / projectileSpeed;
+        Vector3 aheadVector = timeToTarget * relativeVelocity;
+        return target.position + aheadVector;
+    }
+
     /**
      * Check if a target is close enough, and fires if appropriate
      */
-    private void CheckFire(float dist, float angle)
+    private void CheckFire(Transform target)
     {
+        Vector3 leadPos = getLeadPosition(target);
+
+        float angle = Vector3.Angle(transform.position, leadPos);
+        float dist = Vector3.Distance(transform.position, leadPos);
+
         if (dist < fireDistance && angle < fireAngle)
         {
-            weaponScript1.Fire(this);
-            weaponScript2.Fire(this);
+            foreach (IFireable weap in weaponScripts)
+            {
+                weap.Fire(this);
+            }
         }
     }
 }

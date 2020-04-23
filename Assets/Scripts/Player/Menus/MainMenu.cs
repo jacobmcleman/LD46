@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     //*
     //// Public Methods
     //*
-    
+
     //Set the whales name and go to normal menu
     public void SetWhaleName ()
     {
@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
     public void MemeOnEm ()
     {
         //Set new name in prfs
-        PlayerPrefs.SetString("whale_name", "Why did you wanna rename me :(");
+        PlayerPrefs.SetString("whale_name", "Your mom");
         //Berate the player for being an ass pee
         GameObject.Find("MemePromptHeader").GetComponent<Text>().text = "Wtf bro, why you tryna rename your whale?";
         //Hide the buttons because they are not needed
@@ -95,7 +95,7 @@ public class MainMenu : MonoBehaviour
             {
                 t.gameObject.SetActive(false);
             }
-          
+
         }
         //Enable the new one
         menu.SetActive(true);
@@ -104,7 +104,7 @@ public class MainMenu : MonoBehaviour
         {
             GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
             //Also add this method from the scene controller onto our start game button
-            //We can't assign this manually in scene because the scene controller gets 
+            //We can't assign this manually in scene because the scene controller gets
             //Instantiated in the previous scene
             GameObject.Find("Go").GetComponent<Button>().onClick.AddListener(SceneController.instance.LoadIntroCinematic);
         }

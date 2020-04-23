@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IFireable, IWieldable
 {
-    private Teams _team = Teams.playerTeam;
+    public Teams realteam = Teams.playerTeam;
     private bool firing;
     private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
@@ -14,19 +14,19 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     private float heatClock = 0;
     public float maxCooldownTime = 1f;
     public float spread = .01f;
-    public Teams team 
+    public Teams team
     {
-        get => _team;
-        set 
-        { 
-            _team = team;
+        get => realteam;
+        set
+        {
+            realteam = value;
         }
     }
 
     public GameObject projectilePrefab;
     public FireableType type { get { return FireableType.Gun; } }
     public string name { get { return "name"; } }
-    
+
     /** clock that limits the fire rate */
     private float fireClock = 0f;
     /** "time" it takes to fire one shot. */
@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         {
             heat -= Time.deltaTime * heatDecayRate;
         }
-        
+
         if(firing)
         {
             if(heat > maxHeat)
@@ -89,22 +89,32 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         }
     }
 
-    public bool CanFire() 
+    public float GetProjectileSpeed()
+    {
+        Projectile proj = projectilePrefab.GetComponent<Projectile>();
+        if (proj == null) return 0.0f;
+        else return proj.speed;
+    }
+
+    public bool CanFire()
     {
         //Debug.Log(heatClock);
-        return (fireClock >= firePeriod) 
+        return (fireClock >= firePeriod)
             && (heatClock <= 0);
     }
 
-    public bool Fire(IWieldable firer) 
+    public bool Fire(IWieldable firer)
     {
         if(!CanFire())
-        {  
+        {
             return false;
         }
+
+        //Debug.Log("Shooting projectile for team " + team);
+
         firing = true;
         Vector3 fireVec = transform.forward;
-        GameObject projectile = GameObject.Instantiate(projectilePrefab);
+        GameObject projectile = Instantiate(projectilePrefab);
         Projectile proj = projectile.GetComponent<Projectile>();
         if (proj == null) Debug.LogError("Tried to shoot not a projectile");
         projectile.transform.position = transform.position + transform.forward;
@@ -121,8 +131,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float heatMod = heat;
         float maxHeatMod = maxHeat;
         float pitchBend = heatMod / maxHeatMod + 0.3f;
-        //Debug.Log(pitchBend);
-        // SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
+        if(SFXController.instance != null) SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }
 }

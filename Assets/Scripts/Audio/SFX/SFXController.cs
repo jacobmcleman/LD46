@@ -57,7 +57,7 @@ public class SFXController : MonoBehaviour
         source.Stop();
         source.clip = missileSounds[0];
         source.Play();
-        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .5f));
+        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .3f));
     }
 
     public void PlayRocketExplosionSFX (AudioSource source)
