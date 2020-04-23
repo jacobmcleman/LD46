@@ -13,10 +13,16 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
             _team = team;
         }
     }
+
+    private Controls controls;
+
+    private float shooting = 0f;
+
     public GameObject weapon1;
     private IFireable weaponScript1;
     public GameObject weapon2;
     private IFireable weaponScript2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +32,28 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
         weaponScript2.team = team;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake ()
     {
-        if (Input.GetButton("Fire1"))
+        controls = new Controls();
+        controls.PlayerControls.PrimaryFire.performed += ctx => shooting = ctx.ReadValue<float>();
+    }
+
+    void Update ()
+    {
+        if(shooting == 1f)
         {
             weaponScript1.Fire(this);
             weaponScript2.Fire(this);
         }
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }
