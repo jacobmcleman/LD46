@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6972372212382892874}
   - component: {fileID: 5835819077958476507}
   - component: {fileID: 6746882966598717410}
-  - component: {fileID: 8250490598799637138}
   - component: {fileID: 4946497889760138742}
   - component: {fileID: 5467819497891814796}
+  - component: {fileID: 6823638455864032876}
   m_Layer: 0
   m_Name: MechanicalChunk
   m_TagString: Resource
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8250490598799637138
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321897666370553892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1.4272491
-  m_Height: 5.708995
-  m_Direction: 1
-  m_Center: {x: 0.00000011920929, y: 0, z: -0.9272491}
 --- !u!114 &4946497889760138742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +93,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ab73fdbb0339fe49bced9ffe042c12d, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   pickType: 1
   myvalue: 10
   ui: {fileID: 0}
@@ -128,6 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &6823638455864032876
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321897666370553892}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1001 &6346515547582925356
 PrefabInstance:
   m_ObjectHideFlags: 0
