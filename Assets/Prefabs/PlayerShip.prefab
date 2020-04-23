@@ -1177,7 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a30a25133c38ac4c86dab2085df2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missileAppearPoint: {fileID: 5939399451844627150}
+  leftMissileAppearPoint: {fileID: 0}
+  rightMissileAppearPoint: {fileID: 0}
   Missile: {fileID: 1523545946267039166, guid: 14526ebb962668b4c930fff1c47128bc, type: 3}
   TargetTag: Enemy
   cooldown: 2
@@ -1924,6 +1925,10 @@ PrefabInstance:
       propertyPath: realteam
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 287460790, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: overheatEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: heatDecayRate
       value: 5
@@ -1935,6 +1940,10 @@ PrefabInstance:
     - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: realteam
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 296064647, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
+      propertyPath: overheatEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1587413145, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
       propertyPath: stick
@@ -2011,12 +2020,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
---- !u!1 &623143629380421134 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7758920711715663526, guid: 588015fe0e105944797e0ad197ebfc86,
-    type: 3}
-  m_PrefabInstance: {fileID: 7136200531793356968}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5433522412288846402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2913652261821776618, guid: 588015fe0e105944797e0ad197ebfc86,
@@ -2035,9 +2038,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7136200531793356968}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5939399451844627150 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
+--- !u!1 &623143629380421134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7758920711715663526, guid: 588015fe0e105944797e0ad197ebfc86,
     type: 3}
   m_PrefabInstance: {fileID: 7136200531793356968}
   m_PrefabAsset: {fileID: 0}
