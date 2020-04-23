@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1752109802895267347}
   - component: {fileID: 7027696199118600221}
   - component: {fileID: 7848090406005009124}
-  - component: {fileID: 8496629756514880079}
   - component: {fileID: 2695020568656855023}
   - component: {fileID: 1234938370010617051}
+  - component: {fileID: 1385908191093759178}
   m_Layer: 0
   m_Name: OrganicChunk
   m_TagString: Resource
@@ -83,20 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8496629756514880079
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742321630679069900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &2695020568656855023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &1385908191093759178
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742321630679069900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1001 &4479751273498103759
 PrefabInstance:
   m_ObjectHideFlags: 0
