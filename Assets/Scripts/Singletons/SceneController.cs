@@ -53,6 +53,7 @@ public class SceneController : MonoBehaviour
     {
         ChangeScene("Intro");
         StartCoroutine(ChangeSceneAfterDelay("IntroCutscene", 15));
+        StartCoroutine(ChangeSceneAfterDelay("Level1", 61));
         MusicController.instance.PlayNextSong();
     }
 
