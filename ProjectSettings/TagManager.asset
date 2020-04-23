@@ -15,6 +15,7 @@ TagManager:
   - Lootz
   - Resource
   - MechUpBit
+  - Teammate
   layers:
   - Default
   - TransparentFX

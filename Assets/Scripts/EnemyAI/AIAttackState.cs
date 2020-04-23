@@ -28,7 +28,9 @@ public class AIAttackState : MonoBehaviour, IWieldable
     {
         AttackingWhale,
         ChasingPlayer,
-        RunningFromPlayer
+        RunningFromPlayer,
+        AttackingEnemy,
+        ChasingEnemy
     }
     private AIState curState;
 
@@ -45,12 +47,18 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     private GameObject Whale;
     private GameObject Player;
+    private GameObject Enemy;
+
+    private Transform enemyPosition;
 
     private float decoyTimer;
     private float chaseTimer;
     private float runTimer;
     public float chaseTime;
     public float runTime = 100;
+
+    public bool whaleOnly = false;
+    public bool friendly = false;
 
     public float runAngle = 135f;
 
@@ -59,6 +67,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
     {
         Whale = GameObject.FindGameObjectWithTag("Whale");
         Player = GameObject.FindGameObjectWithTag("Player");
+        if (friendly) Enemy = GameObject.FindGameObjectsWithTag("Enemy")[12];
         shipAI = GetComponent<AIShip>();
         myShip = GetComponent<SpaceshipController>();
         weaponScripts = new List<IFireable>();
@@ -82,9 +91,40 @@ public class AIAttackState : MonoBehaviour, IWieldable
 
     void Update()
     {
+        if (friendly)
+        {
+            DoFriendlyAI();
+        }
+        else
+        {
+            DoEnemyAI();
+        }
+    }
+
+    void DoFriendlyAI ()
+    {
+        enemyPosition = Enemy.transform;
+        float distToTarg = Vector3.Distance(transform.position, enemyPosition.position); //check distance from this Enemy to Player
+        Debug.Log(Enemy.gameObject.name);
+        CheckFire(enemyPosition);
+
+        if (distToTarg < attackRange)
+        {
+            curState = AIState.AttackingEnemy;
+            Debug.Log("Friendly State now: " + curState);
+        }
+        else
+        {
+            curState = AIState.ChasingEnemy;
+            ChaseThing(enemyPosition.position, enemyPosition.forward);
+        }
+        
+    }
+
+    void DoEnemyAI ()
+    {
         whalePosition = Whale.transform; //find Whale position
         playerPosition = Player.transform;
-
         float distToPlayer = Vector3.Distance(transform.position, playerPosition.position); //check distance from this Enemy to Player
 
         CheckFire(playerPosition);
@@ -104,8 +144,16 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 }
                 if (distToPlayer < attackRange) // pursue player instead of Whale
                 {
-                    curState = AIState.ChasingPlayer;
-                    Debug.Log("Enemy State now: " + curState);
+                    if (!whaleOnly)
+                    {
+                        curState = AIState.ChasingPlayer;
+                    }
+                    else
+                    {
+                        curState = AIState.AttackingWhale;
+                        ChaseThing(whalePosition.position, whalePosition.forward);
+                    }
+                    //Debug.Log("Enemy State now: " + curState);
                 }
                 else
                 {
@@ -122,7 +170,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                     {
                         curState = AIState.RunningFromPlayer;
                         runTimer = runTime;
-                        Debug.Log("Enemy State now: " + curState);
+                        //Debug.Log("Enemy State now: " + curState);
                     }
                     else
                     {
@@ -132,7 +180,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 else
                 {
                     curState = AIState.AttackingWhale;
-                    Debug.Log("Enemy State now: " + curState);
+                    //Debug.Log("Enemy State now: " + curState);
                 }
                 break;
             case AIState.RunningFromPlayer:
@@ -145,10 +193,11 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 else
                 {
                     curState = AIState.AttackingWhale;
-                    Debug.Log("Enemy State now: " + curState);
+                    //Debug.Log("Enemy State now: " + curState);
                 }
                 break;
         }  
+        if(whaleOnly) curState = AIState.AttackingWhale;
     }
 
     private void ChaseThing(Vector3 thing, Vector3 forwardDir)

@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/Main Menu.unity
     guid: 1f205451e87e6bf46b02fa21ebdcc4a0
-  - enabled: 1
-    path: Assets/Scenes/spaceship_test1.unity
-    guid: 04d51363dc587fc44ae6561928ed3a33
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menus/Intro.unity
     guid: 34de352ed52890b4a9ddaa0fd4b6eb5b
@@ -36,9 +36,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 29c9c6d14ab3c2247933852319c3b22a
   - enabled: 1
-    path: Assets/Scenes/The_Other_Level.unity
-    guid: 5c9979602c2c2bd43918aa82e84f0824
-  - enabled: 1
+    path: Assets/Scenes/Menus/IntroCutscene.unity
+    guid: 5ef68a3d75c6f1a4aba91e5aafeb747c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/COMBATTEST.unity
     guid: 9dbb96bc7a5f3bf439487a64ce82b96a
   m_configObjects: {}

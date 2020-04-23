@@ -32,13 +32,13 @@ public class MusicController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             DontDestroyOnLoad(this.gameObject);
             song = 0;
-            PlayNextSong();
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
     //* Public Methods
     //// 
     //*
@@ -51,12 +51,12 @@ public class MusicController : MonoBehaviour
         {
             song = 0;
         }
+        Debug.Log("pooper");
         source.clip = songs[song];
         source.Play();
         song++;
         StartCoroutine(StageRiser((source.clip.length - source.time) + 5f));
     }
-
 
     //*
     //// Private Methods
