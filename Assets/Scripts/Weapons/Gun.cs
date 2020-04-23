@@ -53,7 +53,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             heat -= Time.deltaTime * heatDecayRate;
         }
         
-        if(firing)
+        if(firing && realteam == Teams.playerTeam)
         {
             if(heat > maxHeat)
             {
@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
                 UIManager.instance.UpdateOverheatUI(heat / maxHeat);
             }
         }
-        else
+        else if (realteam == Teams.playerTeam)
         {
             if (heatClock > 0)
             {
@@ -130,7 +130,11 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         fireClock = 0;
         float heatMod = heat;
         float maxHeatMod = maxHeat;
-        float pitchBend = heatMod / maxHeatMod + 0.3f;
+        float pitchBend = Random.Range(.1f, 1f);
+        if (realteam == Teams.playerTeam)
+        {
+            pitchBend = heatMod / maxHeatMod + 0.3f;
+        }     
         if(SFXController.instance != null) SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }

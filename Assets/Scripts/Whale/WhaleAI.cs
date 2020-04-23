@@ -9,7 +9,7 @@ public class WhaleAI : MonoBehaviour
     private Transform[] RailPoints;
     private AIShip flightController;
 
-    private int curPoint = 0;
+    public int curPoint = 0;
     public int acceptableDistance = 10;
 
     private Transform WhaleMouth;
