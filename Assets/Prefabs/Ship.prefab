@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5088477128757078857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609930463174128024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realteam: 0
+  maxHeat: 15
+  heatDecayRate: 0.5
+  shotHeatCost: 0.6
+  maxCooldownTime: 2
+  spread: 0.01
+  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
+    type: 3}
+  firePeriod: 0.25
+  overheatBlinkRate: 0.2
+  overheatEnabled: 0
+--- !u!114 &5088477130223112136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813659148260258458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon1: {fileID: 3256348521228076098}
+  weapon2: {fileID: 609930463174128024}
+--- !u!114 &5088477130408332811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2446797042737755526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseUI: {fileID: 0}
+  maxWeaponAimAdjustRange: 100
+  stick: {fileID: 0}
+--- !u!114 &5088477128765485176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256348521228076098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realteam: 0
+  maxHeat: 15
+  heatDecayRate: 0.5
+  shotHeatCost: 0.6
+  maxCooldownTime: 2
+  spread: 0.01
+  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
+    type: 3}
+  firePeriod: 0.25
+  overheatBlinkRate: 0.2
+  overheatEnabled: 0
 --- !u!1 &5088477128328146074
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,40 +438,6 @@ MonoBehaviour:
   showAdditionalSettings: 0
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
---- !u!114 &5088477128757078857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609930463174128024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeat: 15
-  maxCooldownTime: 2
-  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
-    type: 3}
-  firePeriod: 0.25
---- !u!114 &5088477128765485176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3256348521228076098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf80cf2708f87754da890d43743e9312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHeat: 15
-  maxCooldownTime: 2
-  projectilePrefab: {fileID: 8966419697214341808, guid: 837fbc15da6b74645b3e491a762b91b2,
-    type: 3}
-  firePeriod: 0.25
 --- !u!1 &5088477128827690562
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,21 +2093,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5088477129725683302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7841940087050991146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseUI: {fileID: 0}
-  maxWeaponAimAdjustRange: 100
-  stick: {fileID: 0}
 --- !u!1 &5088477129852818451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,20 +2659,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5088477130223112136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813659148260258458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon1: {fileID: 3256348521228076098}
-  weapon2: {fileID: 609930463174128024}
 --- !u!1 &5088477130346486465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,19 +2741,20 @@ MonoBehaviour:
   Bouncer: 1
   bounceModifier: 2
   bounceAngularDrag: 20
-  acceleration: 30
-  lateralAcceleration: 30
-  verticalAcceleration: 70
+  acceleration: 10
+  lateralAcceleration: 10
+  verticalAcceleration: 4
   minSpeed: 10
   maxSpeed: 100
   throttleChangeRate: 0.75
-  maxPitchRate: 60
-  maxYawRate: 30
-  maxRollRate: 120
-  pitchDelta: 60
-  yawDelta: 10
-  rollDelta: 100
+  maxPitchRate: 40
+  maxYawRate: 20
+  maxRollRate: 60
+  pitchDelta: 5
+  yawDelta: 5
+  rollDelta: 10
   steerGravity: 0.1
+  collisionDamageMult: 1
   RotationEulers: {x: 0, y: 0, z: 0}
 --- !u!114 &5088477130346486461
 MonoBehaviour:
@@ -2787,6 +2800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxOrganics: 100
   MaxMechanicals: 100
+  feedDistance: 200
   OrganicChunk: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
   MechanicalChunk: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
@@ -2836,7 +2850,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  targettingHud: {fileID: 0}
+  closeDebrisHud: {fileID: 0}
   TargetTag: Enemy
+  DebrisTag: Lootz
 --- !u!114 &5088477130346486455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2849,10 +2866,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a30a25133c38ac4c86dab2085df2749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missileAppearPoint: {fileID: 8645216091892009090}
+  leftMissileAppearPoint: {fileID: 0}
+  rightMissileAppearPoint: {fileID: 0}
   Missile: {fileID: 1523545946267039166, guid: 14526ebb962668b4c930fff1c47128bc, type: 3}
   TargetTag: Enemy
   cooldown: 2
+  additionalFireSpeed: 10
 --- !u!1 &5088477130368773479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,21 +3223,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5088477130408332811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2446797042737755526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseUI: {fileID: 0}
-  maxWeaponAimAdjustRange: 100
-  stick: {fileID: 0}
 --- !u!1 &5088477130428491769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,6 +3316,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5088477129725683302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841940087050991146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf3e7d41f03fe34584f296e3a0bc9c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseUI: {fileID: 0}
+  maxWeaponAimAdjustRange: 100
+  stick: {fileID: 0}
 --- !u!1001 &5088477130288835300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3396,27 +3415,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 588015fe0e105944797e0ad197ebfc86, type: 3}
---- !u!4 &8645216091892009090 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3559001243418780262, guid: 588015fe0e105944797e0ad197ebfc86,
-    type: 3}
-  m_PrefabInstance: {fileID: 5088477130288835300}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2446797042737755526 stripped
+--- !u!1 &7841940087050991146 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7451524507074600802, guid: 588015fe0e105944797e0ad197ebfc86,
-    type: 3}
-  m_PrefabInstance: {fileID: 5088477130288835300}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &609930463174128024 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5686654876562381692, guid: 588015fe0e105944797e0ad197ebfc86,
-    type: 3}
-  m_PrefabInstance: {fileID: 5088477130288835300}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3418285693471178889 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7632992545013164653, guid: 588015fe0e105944797e0ad197ebfc86,
+  m_CorrespondingSourceObject: {fileID: 3047190959772228814, guid: 588015fe0e105944797e0ad197ebfc86,
     type: 3}
   m_PrefabInstance: {fileID: 5088477130288835300}
   m_PrefabAsset: {fileID: 0}
@@ -3426,15 +3427,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5088477130288835300}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7841940087050991146 stripped
+--- !u!4 &3418285693471178889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7632992545013164653, guid: 588015fe0e105944797e0ad197ebfc86,
+    type: 3}
+  m_PrefabInstance: {fileID: 5088477130288835300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2446797042737755526 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3047190959772228814, guid: 588015fe0e105944797e0ad197ebfc86,
+  m_CorrespondingSourceObject: {fileID: 7451524507074600802, guid: 588015fe0e105944797e0ad197ebfc86,
     type: 3}
   m_PrefabInstance: {fileID: 5088477130288835300}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3256348521228076098 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7758920711715663526, guid: 588015fe0e105944797e0ad197ebfc86,
+    type: 3}
+  m_PrefabInstance: {fileID: 5088477130288835300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &609930463174128024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5686654876562381692, guid: 588015fe0e105944797e0ad197ebfc86,
     type: 3}
   m_PrefabInstance: {fileID: 5088477130288835300}
   m_PrefabAsset: {fileID: 0}

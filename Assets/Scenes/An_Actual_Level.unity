@@ -1697,6 +1697,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: acceleration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: lateralAcceleration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: verticalAcceleration
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: pitchDelta
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: yawDelta
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: rollDelta
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: maxPitchRate
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: maxYawRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088477130346486464, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
+        type: 3}
+      propertyPath: maxRollRate
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5088477130346486465, guid: 3c8bd468fa59c5047a67f9f9de1cf3c5,
         type: 3}
       propertyPath: m_Name
@@ -2204,12 +2249,12 @@ MonoBehaviour:
   followShip: {fileID: 0}
   lookDistance: 10
   verticalOffset: 3
-  velocityWeight: 2
+  velocityWeight: 1
   velocitySecondsAhead: 1
-  forwardWeight: 4
+  forwardWeight: 8
   forwardDistanceAhead: 5
   shipPositionWeight: 1
-  adjustRate: 240
+  adjustRate: 180
   orbitSpeed: 30
   curMode: 0
 --- !u!114 &2046305892

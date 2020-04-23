@@ -83,6 +83,6 @@ public class PlayerShip : MonoBehaviour
 
         stick.StickInput = new Vector3(smoothedPitch, smoothedYaw, smoothedRoll);
 
-        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 100, effectivePitch * -100);
+        mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(effectiveYaw * 250, effectivePitch * -250);
     }
 }
