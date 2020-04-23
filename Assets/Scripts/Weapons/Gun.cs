@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     private bool warned = false;
 
     public float overheatBlinkRate = 0.2f;
+    public bool overheatEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             heat -= Time.deltaTime * heatDecayRate;
         }
         
-        if(firing && realteam == Teams.playerTeam)
+        if(firing && overheatEnabled)
         {
             if(heat > maxHeat)
             {
@@ -131,7 +132,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         float heatMod = heat;
         float maxHeatMod = maxHeat;
         float pitchBend = Random.Range(.1f, 1f);
-        if (realteam == Teams.playerTeam)
+        if (overheatEnabled)
         {
             pitchBend = heatMod / maxHeatMod + 0.3f;
         }     
