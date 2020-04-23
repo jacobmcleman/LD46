@@ -191,7 +191,7 @@ AudioMixerController:
   - {fileID: 24500006}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: 0
-  m_EnableSuspend: 1
+  m_EnableSuspend: 0
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 6b798116b66638a41926c8e04b93fb25
@@ -267,7 +267,7 @@ AudioMixerSnapshotController:
     2d506ff3e511ef841ad16b55eb1b2421: 1
     6b798116b66638a41926c8e04b93fb25: 1
     acc15cb7c42d0204282e4f2d34bc2905: 4.165108
-    b0fe5cf849661424bbe945f7d85946da: -46.2
+    b0fe5cf849661424bbe945f7d85946da: -0.083222695
     acf2cd59d53b60847be9844c133b7c79: 72
     ac700e5ade18cb3418e34e8071c1f879: 4.165108
     c1a14d6ad04c1ed4d8eddee580744d44: -5417
