@@ -52,6 +52,8 @@ public class AIAttackState : MonoBehaviour, IWieldable
     public float chaseTime;
     public float runTime = 100;
 
+    public bool whaleOnly = false;
+
     public float runAngle = 135f;
 
 
@@ -149,6 +151,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
                 }
                 break;
         }  
+        if(whaleOnly) curState = AIState.AttackingWhale;
     }
 
     private void ChaseThing(Vector3 thing, Vector3 forwardDir)

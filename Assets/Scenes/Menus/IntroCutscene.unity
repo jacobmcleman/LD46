@@ -291,6 +291,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -381,6 +386,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -549,6 +559,21 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: fireDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: targetChaseDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -562,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1426.6
+      value: -1434.4
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -617,7 +642,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -679,6 +714,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -687,7 +727,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1456.6
+      value: -1464.4
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -742,7 +782,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -774,6 +824,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -782,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1490.8
+      value: -1498.6001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -837,7 +892,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -1267,7 +1332,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248783261}
-  m_LocalRotation: {x: 0.28507325, y: 0.21967588, z: -0.067296624, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507322, y: 0.21967585, z: -0.06729661, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1330,6 +1395,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -1338,7 +1408,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1406
+      value: -1413.8
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -1393,7 +1463,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -1425,6 +1505,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -1433,7 +1518,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1460.8
+      value: -1468.6001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -1488,7 +1573,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -1532,6 +1627,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -1540,7 +1640,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1390.8
+      value: -1398.6001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -1595,7 +1695,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -1964,6 +2074,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -1972,7 +2087,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1412.4
+      value: -1420.2001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -2027,7 +2142,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -2126,6 +2251,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -2134,7 +2264,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1361.8
+      value: -1369.6001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -2189,7 +2319,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -2375,6 +2515,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -2383,7 +2528,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1441.4
+      value: -1449.2001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -2438,7 +2583,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -2637,6 +2792,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -2645,7 +2805,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1477.2
+      value: -1485
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -2700,7 +2860,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -2992,6 +3162,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -3087,6 +3262,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -3095,7 +3275,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1511.4
+      value: -1519.2001
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -3150,7 +3330,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -3182,6 +3372,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 814922719}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -3190,7 +3385,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1440.2
+      value: -1448
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -3245,7 +3440,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -3272,6 +3477,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -3859,6 +4069,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -3867,7 +4082,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1374.6
+      value: -1382.4
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -3922,7 +4137,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -3999,8 +4224,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381496706}
-  m_LocalRotation: {x: -0.011709913, y: 0.089598656, z: 0.0010535028, w: 0.99590856}
-  m_LocalPosition: {x: -471.59998, y: -23.400013, z: -257.5}
+  m_LocalRotation: {x: -0.011709913, y: 0.089598656, z: 0.0010535023, w: 0.99590856}
+  m_LocalPosition: {x: -479.40002, y: -23.400013, z: -257.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 968043163}
@@ -4087,7 +4312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhaleRail: {fileID: 804462048}
-  Player: {fileID: 814922718}
+  Player: {fileID: 0}
   Whale: {fileID: 351446476}
   RailIndex: 0
 --- !u!114 &1449567753
@@ -4215,7 +4440,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565213890}
-  m_LocalRotation: {x: 0.28507325, y: 0.21967588, z: -0.067296624, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507322, y: 0.21967585, z: -0.06729661, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4280,6 +4505,11 @@ PrefabInstance:
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 855317569644099482, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_Name
@@ -4288,7 +4518,7 @@ PrefabInstance:
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1425.2
+      value: -1433
       objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
@@ -4343,7 +4573,17 @@ PrefabInstance:
     - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: maxSpeed
-      value: 55
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822301, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: Bouncer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822302, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: largeDeflectionThreshold
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb2486cc31fd964d916dc0ee8cbd31b, type: 3}
@@ -4430,6 +4670,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -4690,6 +4935,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
@@ -4926,6 +5176,11 @@ PrefabInstance:
       propertyPath: whalePosition
       value: 
       objectReference: {fileID: 351446484}
+    - target: {fileID: 1663399565142888925, guid: 085a24c3201104b4b83b74976078ee92,
+        type: 3}
+      propertyPath: whaleOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6121586771266589079, guid: 085a24c3201104b4b83b74976078ee92,
         type: 3}
       propertyPath: m_Name
