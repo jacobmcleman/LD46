@@ -237,6 +237,16 @@ PrefabInstance:
       propertyPath: IndicatorUI
       value: 
       objectReference: {fileID: 169103082}
+    - target: {fileID: 3642977817424079632, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409851211164831756, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7136200531599415437, guid: d02478d8fb3516745afe2c0909327b73,
         type: 3}
       propertyPath: m_Name
@@ -322,6 +332,11 @@ PrefabInstance:
       propertyPath: mouseUI
       value: 
       objectReference: {fileID: 1827882844}
+    - target: {fileID: 7784269892177222227, guid: d02478d8fb3516745afe2c0909327b73,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02478d8fb3516745afe2c0909327b73, type: 3}
 --- !u!1 &316140576 stripped

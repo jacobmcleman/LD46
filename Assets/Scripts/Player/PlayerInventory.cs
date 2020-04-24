@@ -59,21 +59,23 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public float regurgitateCooldown = 0.7f;
     private float regurgTimer;
 
+    private Controls controls;
+
     private void Start()
     {
         h = gameObject.GetComponent<PlayerHealth>();
         Whale = GameObject.FindGameObjectWithTag("Whale");
     }
 
+    void Awake ()
+    {
+        controls = new Controls();
+        controls.PlayerControls.Regurgitate.performed += ctx => Regurgitate();
+    }
+
     private void Update()
     {
         regurgTimer -= Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.F) && regurgTimer <= 0) 
-        {
-            Regurgitate();
-            regurgTimer = regurgitateCooldown;
-        }
 
         if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance)
         {
@@ -83,8 +85,9 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     void Regurgitate()
     {
-        if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance)
+        if (Vector3.Distance(transform.position, Whale.transform.position) < feedDistance  && regurgTimer <= 0) 
         {
+            regurgTimer = regurgitateCooldown;
             if (organics > 0)
             {
                 Whale.GetComponent<IInventory>().Organics += organics;
@@ -93,7 +96,6 @@ public class PlayerInventory : MonoBehaviour, IInventory
             else if (mechanicals > 0)
             {
                 Whale.GetComponent<IInventory>().Mechanicals += mechanicals;
-                Debug.Log("Feed " + mechanicals + " to whale now " + Whale.GetComponent<IInventory>().Mechanicals);
                 Mechanicals = 0;
             }
         }
@@ -115,5 +117,15 @@ public class PlayerInventory : MonoBehaviour, IInventory
             chunk.AddComponent<VomitChunk>();
         }
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

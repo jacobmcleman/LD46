@@ -20,14 +20,22 @@ public class MissileLauncher : MonoBehaviour
 
     public float additionalFireSpeed = 10.0f;
 
+    private Controls controls;
+
     void Start ()
     {
         StartCoroutine(EnableFiring());
     }
 
-    void Update()
+    void Awake ()
     {
-        if(Input.GetButtonDown("Fire2") && canFire)
+        controls = new Controls();
+        controls.PlayerControls.SecondaryFire.performed += ctx => Shoot();
+    }
+
+    void Shoot()
+    {
+        if(canFire)
         {
             Target = GetBestTarget();
             LaunchMissile();
@@ -71,5 +79,15 @@ public class MissileLauncher : MonoBehaviour
         {
             missile.GetComponent<SpaceshipController>().Velocity = myRb.velocity + (transform.forward * additionalFireSpeed);
         }
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

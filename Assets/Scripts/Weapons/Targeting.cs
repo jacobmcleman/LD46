@@ -16,21 +16,22 @@ public class Targeting : MonoBehaviour
     private GameObject[] loots;
     private int enemyIndex = 0;
 
+    private Controls controls;
+
     private void Start()
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
     }
 
+    void Awake ()
+    {
+        controls = new Controls();
+        controls.PlayerControls.GetBestTarget.performed += ctx => Target = GetBestTarget();
+        controls.PlayerControls.GetNextTarget.performed += ctx => Target = GetNextTarget();
+    }
+
     private void Update()
     {
-        if (Input.GetButtonDown("GetBestTarget"))
-        {
-            Target = GetBestTarget();
-        }
-        if (Input.GetButtonDown("GetNextTarget"))
-        {
-            Target = GetNextTarget();
-        }
         if (Target == null && SceneManager.GetActiveScene().name != "Level1")
         {
             Target = GetNextTarget();
@@ -93,5 +94,15 @@ public class Targeting : MonoBehaviour
         else { enemyIndex = 0; }
 
         return loots[enemyIndex].transform;
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }
