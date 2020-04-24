@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour, IInventory
 {
@@ -15,6 +15,8 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public int MaxMechanicals = 100;
 
     public int feedDistance = 200;
+
+    public InputActionAsset controls;
 
     [SerializeField]
     public int Organics
@@ -59,8 +61,6 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public float regurgitateCooldown = 0.7f;
     private float regurgTimer;
 
-    private Controls controls;
-
     private void Start()
     {
         h = gameObject.GetComponent<PlayerHealth>();
@@ -69,8 +69,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.Regurgitate.performed += ctx => Regurgitate();
+        controls.actionMaps[0].FindAction("Regurgitate", true).performed += ctx => Regurgitate();
     }
 
     private void Update()
@@ -119,13 +118,4 @@ public class PlayerInventory : MonoBehaviour, IInventory
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

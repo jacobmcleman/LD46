@@ -15,7 +15,10 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// A reusable component with a self-contained UI for rebinding a single action.
     /// </summary>
     public class RebindActionUI : MonoBehaviour
-    {
+    {   
+
+        //This is janky workaround for changing binds in new system courtesy of unity forums guy
+        
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>
@@ -185,6 +188,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             return true;
         }
 
+        void Start ()
+        {
+            UpdateBindingDisplay();
+        }
+
         /// <summary>
         /// Trigger a refresh of the currently displayed binding.
         /// </summary>
@@ -209,6 +217,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             // Give listeners a chance to configure UI in response.
             m_UpdateBindingUIEvent?.Invoke(this, displayString, deviceLayoutName, controlPath);
+            //SAVE HERE
+
         }
 
         /// <summary>

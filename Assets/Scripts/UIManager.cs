@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class UIManager : MonoBehaviour
     //Singleton isntance
     public static UIManager instance;
 
-    private Controls controls;
+    public InputActionAsset controls;
 
     public bool Paused
     {
@@ -71,8 +72,7 @@ public class UIManager : MonoBehaviour
         {
             //Set the instance to this
             instance = this;
-            controls  = new Controls();
-            controls.PlayerControls.Pause.performed += ctx => TogglePause();
+            controls.actionMaps[0].FindAction("Pause", true).performed += ctx => TogglePause();
         }
         else
         {
@@ -197,13 +197,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

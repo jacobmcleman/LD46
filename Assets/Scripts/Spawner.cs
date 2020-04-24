@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Spawner : MonoBehaviour
 {
@@ -34,14 +35,13 @@ public class Spawner : MonoBehaviour
 
     private IInventory WhaleInventory;
 
-    private Controls controls;
+    public InputActionAsset controls;
 
     private bool won;
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.Continue.performed += ctx => Continue();
+        controls.actionMaps[0].FindAction("Continue", true).performed += ctx => Continue();
     }
 
     // Start is called before the first frame update
@@ -239,13 +239,4 @@ public class Spawner : MonoBehaviour
         Avoids.Add(roid.transform); //Add it to the avoid list
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

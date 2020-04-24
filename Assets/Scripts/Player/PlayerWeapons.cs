@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWeapons : MonoBehaviour, IWieldable
 {
@@ -14,7 +15,7 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
         }
     }
 
-    private Controls controls;
+    public InputActionAsset controls;
 
     private float shooting = 0f;
 
@@ -34,8 +35,7 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.PrimaryFire.performed += ctx => shooting = ctx.ReadValue<float>();
+       controls.actionMaps[0].FindAction("PrimaryFire",  true).performed += ctx => shooting = ctx.ReadValue<float>();
     }
 
     void Update ()
@@ -45,15 +45,5 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
             weaponScript1.Fire(this);
             weaponScript2.Fire(this);
         }
-    }
-
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
     }
 }

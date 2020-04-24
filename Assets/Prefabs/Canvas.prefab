@@ -1301,10 +1301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 9136029f821104b4fa786e9bd8f47946, type: 2}
-  sliderz:
-  - {fileID: 6576354828507333502}
-  - {fileID: 627040854754742539}
-  - {fileID: 2463890784902781227}
+  masterSlider: {fileID: 6576354828507333502}
+  musicSlider: {fileID: 627040854754742539}
+  sfxSlider: {fileID: 2463890784902781227}
+  body: {fileID: 0}
 --- !u!1 &5344528724885851039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4770,6 +4770,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 5344528724826844777}
   notPauseMenu: {fileID: 5344528725782740798}
   overheatSlider: {fileID: 6391559928243779696}
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
 --- !u!1 &5344528726776569166
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Targeting : MonoBehaviour
 {
@@ -10,13 +11,13 @@ public class Targeting : MonoBehaviour
     public TargetHud targettingHud;
     public TargetHud closeDebrisHud;
 
+    public InputActionAsset controls;
+
     public string TargetTag = "Enemy";
     public string DebrisTag = "Lootz";
 
     private GameObject[] loots;
     private int enemyIndex = 0;
-
-    private Controls controls;
 
     private void Start()
     {
@@ -25,9 +26,8 @@ public class Targeting : MonoBehaviour
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.GetBestTarget.performed += ctx => Target = GetBestTarget();
-        controls.PlayerControls.GetNextTarget.performed += ctx => Target = GetNextTarget();
+        controls.actionMaps[0].FindAction("GetBestTarget", true).performed += ctx => Target = GetBestTarget();
+        controls.actionMaps[0].FindAction("GetNextTarget", true).performed += ctx => Target = GetNextTarget();
     }
 
     private void Update()
@@ -94,15 +94,5 @@ public class Targeting : MonoBehaviour
         else { enemyIndex = 0; }
 
         return loots[enemyIndex].transform;
-    }
-
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
     }
 }

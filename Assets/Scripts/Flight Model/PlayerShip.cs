@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SpaceshipController))]
 public class PlayerShip : MonoBehaviour
@@ -15,17 +16,16 @@ public class PlayerShip : MonoBehaviour
     private float curYaw;
     private float curRoll;
 
+    public InputActionAsset controls;
+
     public float mouseSensitivity = 0.01f;
 
-    private Controls controls;
-
     void Awake ()
-    {
-        controls = new Controls();
-        controls.PlayerControls.Throttle.performed += ctx => stick.ThrottleInput = ctx.ReadValue<float>();
-        controls.PlayerControls.Pitch.performed += ctx => curPitch = ctx.ReadValue<float>();
-        controls.PlayerControls.Yaw.performed += ctx => curYaw = ctx.ReadValue<float>();
-        controls.PlayerControls.Roll.performed += ctx => curRoll = ctx.ReadValue<float>();
+    {   
+        controls.actionMaps[0].FindAction("Throttle", true).performed += ctx => stick.ThrottleInput = ctx.ReadValue<float>();
+        controls.actionMaps[0].FindAction("Pitch", true).performed += ctx => curPitch = ctx.ReadValue<float>();
+        controls.actionMaps[0].FindAction("Yaw", true).performed += ctx => curYaw = ctx.ReadValue<float>();
+        controls.actionMaps[0].FindAction("Roll", true).performed += ctx => curRoll = ctx.ReadValue<float>();
     }
 
     void Start()
