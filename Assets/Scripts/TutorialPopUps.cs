@@ -135,4 +135,14 @@ public class TutorialPopUps : MonoBehaviour
             coroutineRunning = true;
         }
     }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
+    }
 }
