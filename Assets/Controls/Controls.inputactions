@@ -22,14 +22,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "MousePitch",
-                    "type": "PassThrough",
-                    "id": "b30340fa-7707-432a-a214-dbddcce17053",
-                    "expectedControlType": "Double",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Yaw",
                     "type": "PassThrough",
                     "id": "bc828117-8141-4fc5-9ba9-44eab4db60bf",
@@ -197,7 +189,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Gamepad;KBM",
                     "action": "Pitch",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -430,28 +422,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "44221b35-1f93-41a8-ad66-f48c6b6980f2",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MousePitch",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "2f46da7e-a803-4679-9863-f878b65264e9",
-                    "path": "<Mouse>/radius/y",
-                    "interactions": "",
-                    "processors": "Clamp(min=-1,max=1)",
-                    "groups": "KBM",
-                    "action": "MousePitch",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
