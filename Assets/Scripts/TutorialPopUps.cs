@@ -16,7 +16,10 @@ public class TutorialPopUps : MonoBehaviour
 
     private PlayerInput input;
 
-    // Start is called before the first frame update
+    //*
+    //// This is a fucking train wreck
+    //*
+
     void Start()
     {
         sp = FindObjectOfType<Spawner>();
@@ -35,6 +38,11 @@ public class TutorialPopUps : MonoBehaviour
 
     private IEnumerator IncrementTutorial ()
     {
+        //Good fucking luck figuring this out I wrote it and it still takes me a few seconds to explain what any given thing does
+        //How else would you do this??????? I need to wait?  And check?  and keep checking?  maybe instead of the stupid boolean
+        //triggers call on update thing I could just call the coroutine directly wherever I set coroutineRunning = false?
+        //I don't care enough to try right now I already put way too much time into this today and still need to do the fuckin
+        //rebind menu
         while (!finished)
         {
             yield return null;
