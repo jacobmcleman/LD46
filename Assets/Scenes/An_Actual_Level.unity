@@ -604,15 +604,9 @@ Transform:
   m_Father: {fileID: 917961803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!1 &382130597 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5344528725718064948, guid: e741e9954991b094f8b3ed3456f15df3,
-=======
 --- !u!1 &353939570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5344528724885851039, guid: e741e9954991b094f8b3ed3456f15df3,
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     type: 3}
   m_PrefabInstance: {fileID: 2082814930}
   m_PrefabAsset: {fileID: 0}
@@ -1136,9 +1130,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!1 &987025568 stripped
-=======
 --- !u!1 &1027242959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5344528725718064948, guid: e741e9954991b094f8b3ed3456f15df3,
@@ -1146,7 +1137,6 @@ GameObject:
   m_PrefabInstance: {fileID: 2082814930}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1028028636
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5554310319678813236, guid: e741e9954991b094f8b3ed3456f15df3,
     type: 3}
@@ -2070,11 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhaleRail: {fileID: 917961801}
-<<<<<<< HEAD
-  Player: {fileID: 1850824969}
-=======
   Player: {fileID: 516294658}
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
   Whale: {fileID: 407447089}
   RailIndex: 0
 --- !u!1 &1836530784
@@ -2124,7 +2110,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1 &1850824969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7136200531599415437, guid: d02478d8fb3516745afe2c0909327b73,
@@ -2200,20 +2185,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 680029139e7294645bbebc56ccf51479, type: 3}
-=======
---- !u!114 &1836842010 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5344528725672568671, guid: e741e9954991b094f8b3ed3456f15df3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2082814930}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 --- !u!1 &1946204207
 GameObject:
   m_ObjectHideFlags: 0
