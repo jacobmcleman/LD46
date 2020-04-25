@@ -35,14 +35,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""MousePitch"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""b30340fa-7707-432a-a214-dbddcce17053"",
-                    ""expectedControlType"": ""Double"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Yaw"",
                     ""type"": ""PassThrough"",
                     ""id"": ""bc828117-8141-4fc5-9ba9-44eab4db60bf"",
@@ -60,9 +52,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""PrimaryFire"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""00e3d55c-0761-472c-a5d0-8908bbcacfd8"",
-                    ""expectedControlType"": ""Double"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -210,7 +202,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""KBM"",
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -447,30 +439,8 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""44221b35-1f93-41a8-ad66-f48c6b6980f2"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MousePitch"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""2f46da7e-a803-4679-9863-f878b65264e9"",
-                    ""path"": ""<Mouse>/radius/y"",
-                    ""interactions"": """",
-                    ""processors"": ""Clamp(min=-1,max=1)"",
-                    ""groups"": ""KBM"",
-                    ""action"": ""MousePitch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""b1440b84-0149-4d4e-9242-7a90b7de2e5a"",
+                    ""id"": ""ffc9b8af-e273-4e27-a3ea-184acd3201d8"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -659,7 +629,6 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerControls = asset.FindActionMap("Player Controls", throwIfNotFound: true);
         m_PlayerControls_Throttle = m_PlayerControls.FindAction("Throttle", throwIfNotFound: true);
         m_PlayerControls_Pitch = m_PlayerControls.FindAction("Pitch", throwIfNotFound: true);
-        m_PlayerControls_MousePitch = m_PlayerControls.FindAction("MousePitch", throwIfNotFound: true);
         m_PlayerControls_Yaw = m_PlayerControls.FindAction("Yaw", throwIfNotFound: true);
         m_PlayerControls_Roll = m_PlayerControls.FindAction("Roll", throwIfNotFound: true);
         m_PlayerControls_PrimaryFire = m_PlayerControls.FindAction("PrimaryFire", throwIfNotFound: true);
@@ -720,7 +689,6 @@ public class @Controls : IInputActionCollection, IDisposable
     private IPlayerControlsActions m_PlayerControlsActionsCallbackInterface;
     private readonly InputAction m_PlayerControls_Throttle;
     private readonly InputAction m_PlayerControls_Pitch;
-    private readonly InputAction m_PlayerControls_MousePitch;
     private readonly InputAction m_PlayerControls_Yaw;
     private readonly InputAction m_PlayerControls_Roll;
     private readonly InputAction m_PlayerControls_PrimaryFire;
@@ -736,7 +704,6 @@ public class @Controls : IInputActionCollection, IDisposable
         public PlayerControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Throttle => m_Wrapper.m_PlayerControls_Throttle;
         public InputAction @Pitch => m_Wrapper.m_PlayerControls_Pitch;
-        public InputAction @MousePitch => m_Wrapper.m_PlayerControls_MousePitch;
         public InputAction @Yaw => m_Wrapper.m_PlayerControls_Yaw;
         public InputAction @Roll => m_Wrapper.m_PlayerControls_Roll;
         public InputAction @PrimaryFire => m_Wrapper.m_PlayerControls_PrimaryFire;
@@ -761,9 +728,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pitch.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPitch;
                 @Pitch.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPitch;
                 @Pitch.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnPitch;
-                @MousePitch.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMousePitch;
-                @MousePitch.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMousePitch;
-                @MousePitch.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMousePitch;
                 @Yaw.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnYaw;
                 @Yaw.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnYaw;
                 @Yaw.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnYaw;
@@ -801,9 +765,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Pitch.started += instance.OnPitch;
                 @Pitch.performed += instance.OnPitch;
                 @Pitch.canceled += instance.OnPitch;
-                @MousePitch.started += instance.OnMousePitch;
-                @MousePitch.performed += instance.OnMousePitch;
-                @MousePitch.canceled += instance.OnMousePitch;
                 @Yaw.started += instance.OnYaw;
                 @Yaw.performed += instance.OnYaw;
                 @Yaw.canceled += instance.OnYaw;
@@ -857,7 +818,6 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnThrottle(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
-        void OnMousePitch(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnPrimaryFire(InputAction.CallbackContext context);

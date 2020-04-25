@@ -11,6 +11,8 @@ public class MusicController : MonoBehaviour
     //Singleton instance
     public static MusicController instance;
 
+    public UnityEngine.Audio.AudioMixer mixer;
+
     public AudioClip[] songs;
     public int song;
 
@@ -36,6 +38,18 @@ public class MusicController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void Start ()
+    {
+        if(PlayerPrefs.HasKey("master_volume"))
+        {   
+            mixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("master_volume"));
+        }   
+        if(PlayerPrefs.HasKey("music_volume"))
+        {
+            mixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("music_volume"));
         }
     }
 

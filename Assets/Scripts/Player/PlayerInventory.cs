@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 
 public class PlayerInventory : MonoBehaviour, IInventory
 {
@@ -59,7 +59,8 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public float regurgitateCooldown = 0.7f;
     private float regurgTimer;
 
-    private Controls controls;
+    public InputActionAsset controls;
+    private InputAction regurgitate;
 
     private void Start()
     {
@@ -69,8 +70,18 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.Regurgitate.performed += ctx => Regurgitate();
+        regurgitate = controls.actionMaps[0].FindAction("Regurgitate", true);
+        regurgitate.performed += RegurgitateAction;
+    }
+
+    void RegurgitateAction (InputAction.CallbackContext ctx)
+    {
+        Regurgitate();
+    }
+
+    void OnDisable ()
+    {
+        regurgitate.performed -= RegurgitateAction;
     }
 
     private void Update()
@@ -119,13 +130,4 @@ public class PlayerInventory : MonoBehaviour, IInventory
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

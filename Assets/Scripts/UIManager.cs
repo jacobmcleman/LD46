@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -52,7 +53,8 @@ public class UIManager : MonoBehaviour
     //Singleton isntance
     public static UIManager instance;
 
-    private Controls controls;
+    public InputActionAsset controls;
+    private InputAction pause;
 
     public bool Paused
     {
@@ -71,13 +73,18 @@ public class UIManager : MonoBehaviour
         {
             //Set the instance to this
             instance = this;
-            controls  = new Controls();
-            controls.PlayerControls.Pause.performed += ctx => TogglePause();
+            pause =  controls.actionMaps[0].FindAction("Pause", true);
+            pause.performed += PauseAction;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnDisable ()
+    {
+        pause.performed -= PauseAction;
     }
 
     void Start()
@@ -110,6 +117,11 @@ public class UIManager : MonoBehaviour
         whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
+    }
+
+    public void PauseAction (InputAction.CallbackContext ctx)
+    {
+        TogglePause();
     }
 
     public void TogglePause ()
@@ -185,6 +197,16 @@ public class UIManager : MonoBehaviour
         Ship.speedSlider.value = Ship.stick.SpeedRatio;
     }
 
+    public void BtnQuitToMenu ()
+    {
+        SceneController.instance.ChangeScene("Main Menu");
+    }
+
+    public void BtnQuitGame ()
+    {
+        SceneController.instance.QuitGame();
+    }
+
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {
@@ -197,13 +219,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

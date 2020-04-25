@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TutorialPopUps : MonoBehaviour
 {
@@ -8,104 +9,114 @@ public class TutorialPopUps : MonoBehaviour
     public bool finished = false;
     public bool coroutineRunning = false;
 
-    public string[] neededInputs;
     public string[] inputTips;
+    public string[] expectedInputActions;
 
     private Spawner sp;
 
-    private Controls controls;
+    private PlayerInput input;
 
-    float durationMultiplier = 3;
-    private bool pressedG;
+    //*
+    //// This is a fucking train wreck
+    //*
 
-    void Awake ()
-    {
-        controls = new Controls();
-        controls.PlayerControls.Continue.performed += ctx => PressG();
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         sp = FindObjectOfType<Spawner>();
         sp.SpawnTutBot();
+        input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         StartCoroutine(Begin());
         step = 0;
-        pressedG = false;
     }
 
     private IEnumerator Begin () 
     {
         yield return new WaitForSeconds(1);
-        UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
+        DisplayPrompt(input.actions[expectedInputActions[step]].GetBindingDisplayString());
+
     }
 
     private IEnumerator IncrementTutorial ()
     {
+        //Good fucking luck figuring this out I wrote it and it still takes me a few seconds to explain what any given thing does
+        //How else would you do this??????? I need to wait?  And check?  and keep checking?  maybe instead of the stupid boolean
+        //triggers call on update thing I could just call the coroutine directly wherever I set coroutineRunning = false?
+        //I don't care enough to try right now I already put way too much time into this today and still need to do the fuckin
+        //rebind menu
         while (!finished)
         {
             yield return null;
-            if (step == neededInputs.Length + 3)
+            if (step == 12)
             {
                 finished = true;
 
-            } 
-            else if ( step < neededInputs.Length && (neededInputs[step] == "Fire1" || neededInputs[step] == "Fire2"))
-            {
-                if (Input.GetButtonDown(neededInputs[step]))
-                {
-                    step++;
-                    UIManager.instance.DisplayToolTip(inputTips[step], 0.00000000004f);
-                    Debug.Log("there ya go, nextx one nowww");
-                    coroutineRunning = false;
-                }
             }
-            else if (step < 9)
+            else if (input.actions["Continue"].triggered)
             {
-                if (Input.GetKeyDown(neededInputs[step]))
+                step = 12;
+                coroutineRunning = false;
+                sp.SetWhaleStats();
+                SceneController.instance.WinLevel();
+            }
+            else if (step <  8)
+            {
+                if (input.actions[expectedInputActions[step]].triggered)
                 {
                     step++;
-                    if (step == 9)
-                    {   
-
-                        UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy. Destroy all enemies to continue.", 0.000000000004f);
-                    }
-                    else
+                    if (step == 8) 
                     {
-                        UIManager.instance.DisplayToolTip(inputTips[step], 0.000000000004f);
+                        UIManager.instance.DisplayToolTip("Keep " + PlayerPrefs.GetString("whale_name") + " safe! Red indicators point to the nearest enemy. Destroy the enemy to continue.", 0.000000000004f);
                     }
-
-                    Debug.Log("there ya go, nextx one nowww");
+                    else 
+                    {
+                        DisplayPrompt(input.actions[expectedInputActions[step]].GetBindingDisplayString());
+                    }
                     coroutineRunning = false;
                 }
             }
             else
             {
-                //Debug.Log(GameObject.FindGameObjectsWithTag("Resource").Length);
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true && step == 9)
+                if (step == 8)
                 {
-                    UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
-                    step++;
-                    
+                    if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && sp.startedSpawningEnemy == true)
+                    {
+                        UIManager.instance.DisplayToolTip("Enemies drop resources.  Fly through them to collect them!  Blue indicators point to resource pickups.", 0.000000000004f);
+                        step++;
+                        coroutineRunning = false;
+                    }
                 }
-                else if (GameObject.FindGameObjectsWithTag("Resource").Length == 0 && step == 10)
+                else if (step == 9)
                 {
-                    UIManager.instance.DisplayToolTip("Finally, fly up next to " + PlayerPrefs.GetString("whale_name") + " and press F to deposit your resources!", 0.000000000004f);
-                    step++;
+                    if (GameObject.FindGameObjectsWithTag("Resource").Length == 0)
+                    {
+                        UIManager.instance.DisplayToolTip("Finally, fly up next to " + 
+                            PlayerPrefs.GetString("whale_name") + 
+                            " and press (" + input.actions["Regurgitate"].GetBindingDisplayString() + ") to deposit your resources!", 
+                            0.000000000004f
+                        );
+                        step++;
+                        coroutineRunning = false;
+                    }
                 }
-                else if (step == 11)
+                else if (step == 10)
                 {
                     if (GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Mechanicals == 0 && GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerInventory>().Organics == 0)
                     {
-                        UIManager.instance.DisplayToolTip("You have completed the tutorial!  Press G to continue to the upgrade screen.", 0.000000000004f);
+                        UIManager.instance.DisplayToolTip("You have completed the tutorial!  Press (" + 
+                            input.actions["Continue"].GetBindingDisplayString() + 
+                            ") to continue to the upgrade screen.",
+                             0.000000000004f
+                        );
                         step++;
+                        coroutineRunning = false;
                     }
                 }
-                else if (step == 12)
+                else if (step == 11)
                 {
-                    if (pressedG)
+                    if (input.actions["Continue"].triggered)
                     {
                         step++;
+                        coroutineRunning = false;
                         sp.SetWhaleStats();
                         SceneController.instance.WinLevel();
                     }
@@ -114,38 +125,22 @@ public class TutorialPopUps : MonoBehaviour
         }
     }
 
-    void PressG ()
+    private void DisplayPrompt (string str)
     {
-        //shut up
-        pressedG = true;
+        UIManager.instance.DisplayToolTip
+        (
+            inputTips[step].Replace("%", "(" + str + ")"
+            ), 0.00000000004f
+        );
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update ()
     {
-
         if (!coroutineRunning && !finished)
         {
             StartCoroutine(IncrementTutorial());
             coroutineRunning = true;
         }
-        
-/* commented out for debuging
-
-        while (Input.GetKeyDown(KeyCode.t"))
-        {
-            Debug.Log("T was pushed");
-        }
-*/
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

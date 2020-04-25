@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class SceneController : MonoBehaviour
 {
@@ -28,7 +29,10 @@ public class SceneController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
+            if (SceneManager.GetActiveScene().name == "Startup")
+            {
+                StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
+            }
             //Add scene loaded callback function
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
