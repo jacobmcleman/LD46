@@ -52,8 +52,9 @@ public class SceneController : MonoBehaviour
     public void LoadIntroCinematic ()
     {
         ChangeScene("Intro");
-        MusicController.instance.PlayBloodSacrificeNextSound();
-        StartCoroutine(ChangeSceneAfterDelay("Level1", 7));
+        StartCoroutine(ChangeSceneAfterDelay("IntroCutscene", 15));
+        StartCoroutine(ChangeSceneAfterDelay("Level1", 61));
+        MusicController.instance.PlayNextSong();
     }
 
     public void WinLevel()

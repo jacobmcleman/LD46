@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
     //Singleton isntance
     public static UIManager instance;
 
+    private Controls controls;
+
     public bool Paused
     {
         get { return pauseToggle; }
@@ -69,6 +71,8 @@ public class UIManager : MonoBehaviour
         {
             //Set the instance to this
             instance = this;
+            controls  = new Controls();
+            controls.PlayerControls.Pause.performed += ctx => TogglePause();
         }
         else
         {
@@ -104,27 +108,27 @@ public class UIManager : MonoBehaviour
         whaleHealthSlider.Fill = WhaleHealth.Health;
         waveText.text = $"Wave {SpawnerCS.CurWave}/{SpawnerCS.Waves.Count}";
         UpdateFlightHud();
-        if (Input.GetKeyDown("j")) {
-            PickupMetal("14");
-        } else if (Input.GetKeyDown("k")) {
-            PickupOrganic("6");
-        } else if (Input.GetKeyDown("l")) {
-            DisplayToolTip("I am a teapot I am a teapot Hello", 0.3f);
-        } else if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (pauseToggle)
-            {
-                pauseMenu.SetActive(false);
-                notPauseMenu.SetActive(true);
-                Time.timeScale = 1;
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                notPauseMenu.SetActive(false);
-                Time.timeScale = 0;
-            }
-            pauseToggle = !pauseToggle;
+    }
+
+    public void TogglePause ()
+    {
+        if (pauseToggle)
+        {
+            pauseMenu.SetActive(false);
+            notPauseMenu.SetActive(true);
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
+        else
+        {
+            pauseMenu.SetActive(true);
+            notPauseMenu.SetActive(false);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        pauseToggle = !pauseToggle;
     }
 
     public void UpdateOverheatUI (float value)
@@ -189,5 +193,15 @@ public class UIManager : MonoBehaviour
             yield return null;
             rocketFill.Fill += Time.deltaTime / cooldown;
         }
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

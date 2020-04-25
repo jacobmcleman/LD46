@@ -15,6 +15,8 @@ public class WhaleHealth : MonoBehaviour, IHealth
 
     private float health;
 
+    public bool invuln = false;
+
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
         if (WhaleStats.instance != null) { damage = damage * (1 - (.1f * (float)WhaleStats.instance.ArmorLevel)); }
@@ -24,18 +26,22 @@ public class WhaleHealth : MonoBehaviour, IHealth
             Debug.Log("Friendly Hit :: WhaleHealth");
             return true;
         }
-        if (health - damage <= 0)
+        if (health - damage <= 0 && !invuln)
         {
             Debug.Log("Not Friendly && Ded :: WhaleHealth");
             //Die
             Destroy(gameObject);
             return false;
         }
-        else
+        else if (!invuln)
         {
             Debug.Log("Not Friendly && Not Ded :: WhaleHealth");
             health -= damage;
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

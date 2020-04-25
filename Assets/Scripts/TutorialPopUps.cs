@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialPopUps : MonoBehaviour
 {
-    private int step = 0;
+    private int step;
     public bool finished = false;
     public bool coroutineRunning = false;
 
@@ -13,13 +13,25 @@ public class TutorialPopUps : MonoBehaviour
 
     private Spawner sp;
 
+    private Controls controls;
+
     float durationMultiplier = 3;
+    private bool pressedG;
+
+    void Awake ()
+    {
+        controls = new Controls();
+        controls.PlayerControls.Continue.performed += ctx => PressG();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         sp = FindObjectOfType<Spawner>();
         sp.SpawnTutBot();
         StartCoroutine(Begin());
+        step = 0;
+        pressedG = false;
     }
 
     private IEnumerator Begin () 
@@ -91,7 +103,7 @@ public class TutorialPopUps : MonoBehaviour
                 }
                 else if (step == 10)
                 {
-                    if (Input.GetKeyDown("g"))
+                    if (pressedG)
                     {
                         step++;
                         sp.SetWhaleStats();
@@ -100,6 +112,12 @@ public class TutorialPopUps : MonoBehaviour
                 }
             }
         }
+    }
+
+    void PressG ()
+    {
+        //shut up
+        pressedG = true;
     }
 
     // Update is called once per frame
@@ -119,5 +137,15 @@ public class TutorialPopUps : MonoBehaviour
             Debug.Log("T was pushed");
         }
 */
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

@@ -34,7 +34,15 @@ public class Spawner : MonoBehaviour
 
     private IInventory WhaleInventory;
 
+    private Controls controls;
+
     private bool won;
+
+    void Awake ()
+    {
+        controls = new Controls();
+        controls.PlayerControls.Continue.performed += ctx => Continue();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -104,24 +112,23 @@ public class Spawner : MonoBehaviour
             //Debug.Log("No More Enemies curwave: " + CurWave + " waves.count " + Waves.Count);
             if (CurWave < (Waves.Count)) //Still more waves
             {
-
                 SpawnEnemyWave();
             }
-            else if (SceneManager.GetActiveScene().name != "Level1") //No More waves
-            {
-                if (!won) { wonlevel(); }
-                else
-                {
-                    if (Input.GetKeyDown("g"))
-                    {
-                        SetWhaleStats();
-                        Debug.Log("Added stuff to whale stats");
-                        SceneController.instance.WinLevel();
-                    }
-                }
-                
-            }
         }
+    }
+
+    void Continue ()
+    {
+        if (Enemies.Count == 0 && startedSpawningEnemy && SceneManager.GetActiveScene().name != "Level1"  && CurWave >= (Waves.Count))
+        {
+            if (!won) { wonlevel(); }
+            else
+            {
+                SetWhaleStats();
+                SceneController.instance.WinLevel();
+            }
+             
+        }   
     }
 
     private void wonlevel()
@@ -136,6 +143,8 @@ public class Spawner : MonoBehaviour
         else { Debug.Log("That's all folks!!! No SceneController"); }
 
         won = true;
+        SetWhaleStats();
+        SceneController.instance.WinLevel();
     }
 
     public void SetWhaleStats()
@@ -228,5 +237,15 @@ public class Spawner : MonoBehaviour
         roid.transform.parent = this.transform; //Set it the child this so that we can just collapse all that 
         Enemies.Add(roid); //Add it to the enemy list
         Avoids.Add(roid.transform); //Add it to the avoid list
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

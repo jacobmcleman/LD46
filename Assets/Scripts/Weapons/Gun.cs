@@ -36,6 +36,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     private bool warned = false;
 
     public float overheatBlinkRate = 0.2f;
+    public bool overheatEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
             heat -= Time.deltaTime * heatDecayRate;
         }
         
-        if(firing)
+        if(firing && overheatEnabled)
         {
             if(heat > maxHeat)
             {
@@ -72,7 +73,7 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
                 UIManager.instance.UpdateOverheatUI(heat / maxHeat);
             }
         }
-        else
+        else if (realteam == Teams.playerTeam)
         {
             if (heatClock > 0)
             {
@@ -120,9 +121,12 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         fireClock = 0;
         float heatMod = heat;
         float maxHeatMod = maxHeat;
-        float pitchBend = heatMod / maxHeatMod + 0.3f;
-        //Debug.Log(pitchBend);
-        // SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
+        float pitchBend = Random.Range(.1f, 1f);
+        if (overheatEnabled)
+        {
+            pitchBend = heatMod / maxHeatMod + 0.3f;
+        }     
+        if(SFXController.instance != null) SFXController.instance.PlayRNGGunShot(sfxAudio, pitchBend, transform.position);
         return true;
     }
 }

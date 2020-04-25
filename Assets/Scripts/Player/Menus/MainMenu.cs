@@ -107,6 +107,7 @@ public class MainMenu : MonoBehaviour
             //We can't assign this manually in scene because the scene controller gets 
             //Instantiated in the previous scene
             GameObject.Find("Go").GetComponent<Button>().onClick.AddListener(SceneController.instance.LoadIntroCinematic);
+            GameObject.Find("Skip").GetComponent<Button>().onClick.AddListener(SceneController.instance.NextLevel);
         }
     }
 

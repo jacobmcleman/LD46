@@ -37,20 +37,11 @@ public class MusicController : MonoBehaviour
             instance = this;
             //Don't destroy the game object when we load new scenes
             DontDestroyOnLoad(this.gameObject);
-            loop = 0;
-            PlayBloodSacrificeNextSound();
+            song = 0;
         }
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    void Update ()
-    {
-        if (Input.GetKeyDown("l"))
-        {
-            PlayBloodSacrificeNextSound();
         }
     }
 
@@ -83,31 +74,11 @@ public class MusicController : MonoBehaviour
             StartCoroutine(StageLoop(source, bsClips[loop], 0f));
             loop++;
         }
-    }
-
-    //Death Cult Part 2
-    public void PlayDeathCultPart2NextSound ()
-    {
-        Debug.Log(staged);
-        AudioSource source = GetComponent<AudioSource>();
-        if (source.isPlaying  && loop < dc2Clips.Length) {
-            if (loop == dc2Clips.Length - 1 && !staged) {
-                Debug.Log(loop);
-                source.loop = false;
-                StartCoroutine(StageLoop(source, dc2Clips[loop], (source.clip.length - source.time)));
-                loop++;
-            } else if (!staged) {
-                Debug.Log(loop);
-                source.loop = false;
-                StartCoroutine(StageRiser("death cult 2", (source.clip.length - source.time), source, dc2Clips[loop]));
-                loop++;
-            }
-        } else if (!staged && loop < dc2Clips.Length) {
-            Debug.Log(loop);  
-            source.loop = false;
-            StartCoroutine(StageRiser("death cult 2", 0f, source, dc2Clips[loop]));
-            loop++;
-        }
+        Debug.Log("pooper");
+        source.clip = songs[song];
+        source.Play();
+        song++;
+        StartCoroutine(StageRiser((source.clip.length - source.time) + 5f));
     }
 
     //*

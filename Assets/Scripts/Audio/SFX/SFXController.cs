@@ -77,7 +77,7 @@ public class SFXController : MonoBehaviour
     {
         int rand = Random.Range(0, 1);
         mixer.SetFloat("GunPitch", pitch);
-        source.PlayOneShot(gunSounds[rand], .75f);
+        source.PlayOneShot(gunSounds[rand], .5f);
     }
 
     public void PlayGunOverheat (AudioSource source)
