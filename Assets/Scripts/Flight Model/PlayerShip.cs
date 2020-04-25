@@ -32,7 +32,6 @@ public class PlayerShip : MonoBehaviour
     {
         stick = GetComponent<SpaceshipController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()

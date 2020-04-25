@@ -7,8 +7,8 @@ public class WhaleInventory : MonoBehaviour, IInventory
     private int organics = 0;
     private int mechanicals = 0;
 
-    public int MaxOrganics = 3000;
-    public int MaxMechanicals = 3000;
+    public int MaxOrganics = 100;
+    public int MaxMechanicals = 100;
 
     public int Organics
     {

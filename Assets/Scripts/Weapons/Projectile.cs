@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         get => _team;
         set
         {
-            _team = value;
+            _team = team;
         }
     }
     private void Start()
@@ -74,18 +74,14 @@ public class Projectile : MonoBehaviour
      */
     private void OnHitSomething(GameObject other, Vector3 hitPoint)
     {
+        Debug.Log("HIT");
         // At point of writing, assuming object has TakeDamage method that 
         // triggers sound and other things.
         bool isDead = false;
         IHealth health = other.GetComponent<IHealth>();
-
-        while(health == null && other.transform.parent != null) {
-            other = other.transform.parent.gameObject;
-            health = other.GetComponent<IHealth>();
-        }
-
         if(health != null)
         {
+            Debug.Log("takin damag");
             isDead = health.TakeDamage(projectileDamage, team);
         }
         if (isDead)

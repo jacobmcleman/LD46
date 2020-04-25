@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class PlayerInventory : MonoBehaviour, IInventory
 {
@@ -99,7 +97,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
                 Mechanicals = 0;
             }
         }
-        else if(SceneManager.GetActiveScene().name != "Level1")
+        else
         {
             UIManager.instance.DisplayToolTip("Get closer to "+PlayerPrefs.GetString("whale_name")+" to feed "+PlayerPrefs.GetString("whale_name"), 0.5f);
         }

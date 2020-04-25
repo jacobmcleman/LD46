@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour, IFireable, IWieldable
 {
-    public Teams realteam = Teams.playerTeam;
+    private Teams _team = Teams.playerTeam;
     private bool firing;
     private float heat;
     /** effectively the number of consecutive shots the weapon can fire */
@@ -16,10 +16,10 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
     public float spread = .01f;
     public Teams team 
     {
-        get => realteam;
+        get => _team;
         set 
         { 
-            realteam = value;
+            _team = team;
         }
     }
 
@@ -90,13 +90,6 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         }
     }
 
-    public float GetProjectileSpeed()
-    {
-        Projectile proj = projectilePrefab.GetComponent<Projectile>();
-        if (proj == null) return 0.0f;
-        else return proj.speed;
-    }
-
     public bool CanFire() 
     {
         //Debug.Log(heatClock);
@@ -110,12 +103,9 @@ public class Gun : MonoBehaviour, IFireable, IWieldable
         {  
             return false;
         }
-
-        //Debug.Log("Shooting projectile for team " + team);
-
         firing = true;
         Vector3 fireVec = transform.forward;
-        GameObject projectile = Instantiate(projectilePrefab);
+        GameObject projectile = GameObject.Instantiate(projectilePrefab);
         Projectile proj = projectile.GetComponent<Projectile>();
         if (proj == null) Debug.LogError("Tried to shoot not a projectile");
         projectile.transform.position = transform.position + transform.forward;

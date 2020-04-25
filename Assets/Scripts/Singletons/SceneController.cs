@@ -28,7 +28,7 @@ public class SceneController : MonoBehaviour
             //Don't destroy the game object when we load new scenes
             //Make this 7 seconds for real life game
             DontDestroyOnLoad(this.gameObject);
-            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 7));
+            StartCoroutine(ChangeSceneAfterDelay("Main Menu", 1));
             //Add scene loaded callback function
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -65,16 +65,12 @@ public class SceneController : MonoBehaviour
     //Go to the winner screen
     public void WinGame ()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         ChangeScene("Winner");
     }
 
     //Go to the loser screen
     public void LoseGame ()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         ChangeScene("Loser");
     }
 
@@ -94,7 +90,7 @@ public class SceneController : MonoBehaviour
         //Quitting is different in editor vs in game, so check to see what to do
         if (Application.isEditor)
         {
-           // UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         } 
         else
         {

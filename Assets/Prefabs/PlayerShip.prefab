@@ -1171,7 +1171,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxOrganics: 100
   MaxMechanicals: 100
-  feedDistance: 200
   OrganicChunk: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
   MechanicalChunk: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,

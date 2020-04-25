@@ -343,7 +343,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -451,12 +451,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e354a9283a7033342b837d17972c694a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songs:
-  - {fileID: 8300000, guid: ff8184a6c92acd14bb7b50c22ff48809, type: 3}
-  - {fileID: 8300000, guid: 87b1ea59cc721034e8a2e656f97948aa, type: 3}
-  - {fileID: 8300000, guid: 2385c75e2e4284f478e33d4bf86d3770, type: 3}
-  - {fileID: 8300000, guid: 704c80f42d6cad348954ef2ba0ea89c6, type: 3}
-  song: 0
+  loop: 0
+  bsClips:
+  - {fileID: 8300000, guid: 06b04211b45bb8e43b4b796d39c6335d, type: 3}
+  - {fileID: 8300000, guid: bd4493aaaebd02345a39d8886f7cb521, type: 3}
+  - {fileID: 8300000, guid: 5b428b086c74d03408facf526a2dfdbf, type: 3}
+  - {fileID: 8300000, guid: c0aaebbf0a845a143941380d61a186fc, type: 3}
+  - {fileID: 8300000, guid: 86f2ff604d666ad44ba1244ce2a9acf8, type: 3}
+  - {fileID: 8300000, guid: 75a9a82ba6b7c0747b30e8646e2f2d62, type: 3}
+  dc2Clips:
+  - {fileID: 8300000, guid: 8d9e690353b6dc441873b5582b79225b, type: 3}
+  - {fileID: 8300000, guid: 3300a26be3adea44f836b9f76cc691ad, type: 3}
+  - {fileID: 8300000, guid: 84ea629345ce5b14ebcb8894e0d3cc39, type: 3}
+  - {fileID: 8300000, guid: c3a1f97244511a94abb3bcaa75fe72fd, type: 3}
 --- !u!114 &550608263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,15 +928,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthPoolLevel: 1
-  RegenLevel: 1
-  DecoyLevel: 1
-  ArmorLevel: 1
-  TurretsLevel: 1
-  TeslaLevel: 1
-  MaxLevel: 100
+  RegenLevel: 0
+  DecoyLevel: 0
+  ArmorLevel: 0
+  TurretsLevel: 0
+  TeslaLevel: 0
+  MaxLevel: 1
   Organics: 0
   Mechanicals: 0
-  Waves: 01000000
+  Waves: 
 --- !u!4 &1465698364
 Transform:
   m_ObjectHideFlags: 0
