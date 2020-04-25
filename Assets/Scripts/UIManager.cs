@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     public InputActionAsset controls;
+    private InputAction pause;
 
     public bool Paused
     {
@@ -72,12 +73,18 @@ public class UIManager : MonoBehaviour
         {
             //Set the instance to this
             instance = this;
-            controls.actionMaps[0].FindAction("Pause", true).performed += ctx => TogglePause();
+            pause =  controls.actionMaps[0].FindAction("Pause", true);
+            pause.performed += PauseAction;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnDisable ()
+    {
+        pause.performed -= PauseAction;
     }
 
     void Start()
@@ -112,6 +119,11 @@ public class UIManager : MonoBehaviour
         UpdateFlightHud();
     }
 
+    public void PauseAction (InputAction.CallbackContext ctx)
+    {
+        TogglePause();
+    }
+
     public void TogglePause ()
     {
         if (pauseToggle)
@@ -121,7 +133,6 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            controls.Enable();
         }
         else
         {
@@ -130,7 +141,6 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            controls.Disable();
         }
         pauseToggle = !pauseToggle;
     }

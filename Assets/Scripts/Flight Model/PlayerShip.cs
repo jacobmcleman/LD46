@@ -17,15 +17,53 @@ public class PlayerShip : MonoBehaviour
     private float curRoll;
 
     public InputActionAsset controls;
+    private InputAction throttle;
+    private InputAction pitch;
+    private InputAction yaw;
+    private InputAction roll;
 
     public float mouseSensitivity = 0.01f;
 
+
     void Awake ()
     {   
-        controls.actionMaps[0].FindAction("Throttle", true).performed += ctx => stick.ThrottleInput = ctx.ReadValue<float>();
-        controls.actionMaps[0].FindAction("Pitch", true).performed += ctx => curPitch = ctx.ReadValue<float>();
-        controls.actionMaps[0].FindAction("Yaw", true).performed += ctx => curYaw = ctx.ReadValue<float>();
-        controls.actionMaps[0].FindAction("Roll", true).performed += ctx => curRoll = ctx.ReadValue<float>();
+        throttle = controls.actionMaps[0].FindAction("Throttle", true);
+        pitch = controls.actionMaps[0].FindAction("Pitch", true);
+        yaw = controls.actionMaps[0].FindAction("Yaw", true);
+        roll = controls.actionMaps[0].FindAction("Roll", true);
+        
+        throttle.performed += ThrottleAction;
+        pitch.performed += PitchAction;
+        yaw.performed += YawAction;
+        roll.performed += RollAction;
+    }
+
+    void OnDisable ()
+    {
+        throttle.performed -= ThrottleAction;
+        pitch.performed -= PitchAction;
+        yaw.performed -= YawAction;
+        roll.performed -= RollAction;
+    }
+
+    void ThrottleAction (InputAction.CallbackContext ctx)
+    {
+        stick.ThrottleInput = ctx.ReadValue<float>();
+    }
+
+    void PitchAction (InputAction.CallbackContext ctx)
+    {
+        curPitch = ctx.ReadValue<float>();
+    }
+
+    void YawAction (InputAction.CallbackContext ctx)
+    {
+        curYaw = ctx.ReadValue<float>();
+    }
+
+    void RollAction (InputAction.CallbackContext ctx)
+    {
+        curRoll = ctx.ReadValue<float>();
     }
 
     void Start()

@@ -8,6 +8,22 @@ public class BindingSaver : MonoBehaviour
 {   
         public InputActionAsset controls;
 
+        public static BindingSaver instance;
+
+        void Awake ()
+        {
+            if (instance == null)
+            {
+                //Set the instance to this
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         void Start ()
         {
             DontDestroyOnLoad(this.gameObject);

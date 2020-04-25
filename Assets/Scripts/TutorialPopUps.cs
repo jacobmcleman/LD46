@@ -50,7 +50,14 @@ public class TutorialPopUps : MonoBehaviour
             {
                 finished = true;
 
-            } 
+            }
+            else if (input.actions["Continue"].triggered)
+            {
+                step = 12;
+                coroutineRunning = false;
+                sp.SetWhaleStats();
+                SceneController.instance.WinLevel();
+            }
             else if (step <  8)
             {
                 if (input.actions[expectedInputActions[step]].triggered)

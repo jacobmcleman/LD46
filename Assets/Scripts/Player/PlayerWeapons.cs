@@ -16,6 +16,7 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
     }
 
     public InputActionAsset controls;
+    private InputAction fire;
 
     private bool shooting = false;
 
@@ -35,8 +36,26 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
 
     void Awake ()
     {
-       controls.actionMaps[0].FindAction("PrimaryFire",  true).started += ctx => shooting = true;
-       controls.actionMaps[0].FindAction("PrimaryFire",  true).canceled += ctx => shooting = false;
+        
+       fire = controls.actionMaps[0].FindAction("PrimaryFire",  true);
+       fire.started += StartShootingAction;
+       fire.canceled += StopShootingAction;
+    }
+
+    void StartShootingAction (InputAction.CallbackContext ctx)
+    {
+        shooting = true;
+    }
+
+    void StopShootingAction (InputAction.CallbackContext ctx)
+    {
+        shooting = false;
+    }
+
+    void OnDisable ()
+    {
+        fire.started -= StartShootingAction;
+        fire.canceled -= StopShootingAction;
     }
 
     void Update ()

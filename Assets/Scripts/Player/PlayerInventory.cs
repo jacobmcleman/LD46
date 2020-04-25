@@ -60,6 +60,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
     private float regurgTimer;
 
     public InputActionAsset controls;
+    private InputAction regurgitate;
 
     private void Start()
     {
@@ -69,7 +70,18 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     void Awake ()
     {
-        controls.actionMaps[0].FindAction("Regurgitate", true).performed += ctx => Regurgitate();
+        regurgitate = controls.actionMaps[0].FindAction("Regurgitate", true);
+        regurgitate.performed += RegurgitateAction;
+    }
+
+    void RegurgitateAction (InputAction.CallbackContext ctx)
+    {
+        Regurgitate();
+    }
+
+    void OnDisable ()
+    {
+        regurgitate.performed -= RegurgitateAction;
     }
 
     private void Update()

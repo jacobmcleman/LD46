@@ -12,6 +12,8 @@ public class Targeting : MonoBehaviour
     public TargetHud closeDebrisHud;
 
     public InputActionAsset controls;
+    private InputAction getBestAction;
+    private InputAction getNextAction;
 
     public string TargetTag = "Enemy";
     public string DebrisTag = "Lootz";
@@ -26,8 +28,26 @@ public class Targeting : MonoBehaviour
 
     void Awake ()
     {
-        controls.actionMaps[0].FindAction("GetBestTarget", true).performed += ctx => Target = GetBestTarget();
-        controls.actionMaps[0].FindAction("GetNextTarget", true).performed += ctx => Target = GetNextTarget();
+        getBestAction = controls.actionMaps[0].FindAction("GetBestTarget", true);
+        getNextAction = controls.actionMaps[0].FindAction("GetNextTarget", true);
+        getBestAction.performed += GetBestTargetAction;
+        getNextAction.performed += GetNextTargetAction;
+    }
+
+    void GetBestTargetAction (InputAction.CallbackContext ctx)
+    {
+        GetBestTarget();
+    }
+
+    void GetNextTargetAction (InputAction.CallbackContext ctx)
+    {
+        GetNextTarget();
+    }
+
+    void OnDisable ()
+    {
+        getBestAction.performed -= GetBestTargetAction;
+        getNextAction.performed -= GetNextTargetAction;
     }
 
     private void Update()

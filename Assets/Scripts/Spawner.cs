@@ -36,12 +36,19 @@ public class Spawner : MonoBehaviour
     private IInventory WhaleInventory;
 
     public InputActionAsset controls;
+    private InputAction continuea;
 
     private bool won;
 
     void Awake ()
     {
-        controls.actionMaps[0].FindAction("Continue", true).performed += ctx => Continue();
+        continuea = controls.actionMaps[0].FindAction("Continue", true);
+        continuea.performed += ContinueAction;
+    }
+
+    void OnDisable ()
+    {
+        continuea.performed -= ContinueAction;
     }
 
     // Start is called before the first frame update
@@ -118,6 +125,11 @@ public class Spawner : MonoBehaviour
                 SpawnEnemyWave();
             }
         }
+    }
+
+    void ContinueAction (InputAction.CallbackContext ctx)
+    {
+        Continue();
     }
 
     void Continue ()
