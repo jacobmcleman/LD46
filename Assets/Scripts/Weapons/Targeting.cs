@@ -25,8 +25,7 @@ public class Targeting : MonoBehaviour
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
     }
-
-    void Awake ()
+     void Awake ()
     {
         getBestAction = controls.actionMaps[0].FindAction("GetBestTarget", true);
         getNextAction = controls.actionMaps[0].FindAction("GetNextTarget", true);
@@ -36,12 +35,12 @@ public class Targeting : MonoBehaviour
 
     void GetBestTargetAction (InputAction.CallbackContext ctx)
     {
-        GetBestTarget();
+        Target = GetBestTarget();
     }
 
     void GetNextTargetAction (InputAction.CallbackContext ctx)
     {
-        GetNextTarget();
+        Target = GetNextTarget();
     }
 
     void OnDisable ()
