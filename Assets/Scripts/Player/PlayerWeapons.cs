@@ -15,9 +15,15 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
         }
     }
 
+<<<<<<< HEAD
     public InputActionAsset controls;
 
     private bool shooting = false;
+=======
+    private Controls controls;
+
+    private float shooting = 0f;
+>>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 
     public GameObject weapon1;
     private IFireable weaponScript1;
@@ -35,16 +41,35 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
 
     void Awake ()
     {
+<<<<<<< HEAD
        controls.actionMaps[0].FindAction("PrimaryFire",  true).started += ctx => shooting = true;
        controls.actionMaps[0].FindAction("PrimaryFire",  true).canceled += ctx => shooting = false;
+=======
+        controls = new Controls();
+        controls.PlayerControls.PrimaryFire.performed += ctx => shooting = ctx.ReadValue<float>();
+>>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     }
 
     void Update ()
     {
+<<<<<<< HEAD
         if(shooting)
+=======
+        if(shooting == 1f)
+>>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
         {
             weaponScript1.Fire(this);
             weaponScript2.Fire(this);
         }
+    }
+
+    void OnEnable ()
+    {
+        controls.Enable();
+    }
+
+    void OnDisable ()
+    {
+        controls.Disable();
     }
 }

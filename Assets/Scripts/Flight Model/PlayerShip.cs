@@ -15,6 +15,7 @@ public class PlayerShip : MonoBehaviour
     private float curPitch;
     private float curYaw;
     private float curRoll;
+<<<<<<< HEAD
 
     public InputActionAsset controls;
 
@@ -26,6 +27,20 @@ public class PlayerShip : MonoBehaviour
         controls.actionMaps[0].FindAction("Pitch", true).performed += ctx => curPitch = ctx.ReadValue<float>();
         controls.actionMaps[0].FindAction("Yaw", true).performed += ctx => curYaw = ctx.ReadValue<float>();
         controls.actionMaps[0].FindAction("Roll", true).performed += ctx => curRoll = ctx.ReadValue<float>();
+=======
+
+    public float mouseSensitivity = 0.01f;
+
+    private Controls controls;
+
+    void Awake ()
+    {
+        controls = new Controls();
+        controls.PlayerControls.Throttle.performed += ctx => stick.ThrottleInput = ctx.ReadValue<float>();
+        controls.PlayerControls.Pitch.performed += ctx => curPitch = ctx.ReadValue<float>();
+        controls.PlayerControls.Yaw.performed += ctx => curYaw = ctx.ReadValue<float>();
+        controls.PlayerControls.Roll.performed += ctx => curRoll = ctx.ReadValue<float>();
+>>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     }
 
     void Start()
