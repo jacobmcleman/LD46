@@ -14,27 +14,12 @@ public class TutorialPopUps : MonoBehaviour
 
     private Spawner sp;
 
-<<<<<<< HEAD
     private PlayerInput input;
 
     //*
     //// This is a fucking train wreck
     //*
 
-=======
-    private Controls controls;
-
-    float durationMultiplier = 3;
-    private bool pressedG;
-
-    void Awake ()
-    {
-        controls = new Controls();
-        controls.PlayerControls.Continue.performed += ctx => PressG();
-    }
-
-    // Start is called before the first frame update
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     void Start()
     {
         sp = FindObjectOfType<Spawner>();
@@ -42,10 +27,6 @@ public class TutorialPopUps : MonoBehaviour
         input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         StartCoroutine(Begin());
         step = 0;
-<<<<<<< HEAD
-=======
-        pressedG = false;
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     }
 
     private IEnumerator Begin () 
@@ -125,11 +106,7 @@ public class TutorialPopUps : MonoBehaviour
                 }
                 else if (step == 11)
                 {
-<<<<<<< HEAD
                     if (input.actions["Continue"].triggered)
-=======
-                    if (pressedG)
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
                     {
                         step++;
                         coroutineRunning = false;
@@ -141,18 +118,7 @@ public class TutorialPopUps : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
     private void DisplayPrompt (string str)
-=======
-    void PressG ()
-    {
-        //shut up
-        pressedG = true;
-    }
-
-    // Update is called once per frame
-    void Update()
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     {
         UIManager.instance.DisplayToolTip
         (
@@ -170,13 +136,4 @@ public class TutorialPopUps : MonoBehaviour
         }
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

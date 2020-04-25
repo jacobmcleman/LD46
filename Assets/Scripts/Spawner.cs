@@ -35,22 +35,13 @@ public class Spawner : MonoBehaviour
 
     private IInventory WhaleInventory;
 
-<<<<<<< HEAD
     public InputActionAsset controls;
-=======
-    private Controls controls;
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 
     private bool won;
 
     void Awake ()
     {
-<<<<<<< HEAD
         controls.actionMaps[0].FindAction("Continue", true).performed += ctx => Continue();
-=======
-        controls = new Controls();
-        controls.PlayerControls.Continue.performed += ctx => Continue();
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     }
 
     // Start is called before the first frame update
@@ -248,16 +239,4 @@ public class Spawner : MonoBehaviour
         Avoids.Add(roid.transform); //Add it to the avoid list
     }
 
-<<<<<<< HEAD
-=======
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 }

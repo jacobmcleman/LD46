@@ -16,8 +16,6 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     public int feedDistance = 200;
 
-    public InputActionAsset controls;
-
     [SerializeField]
     public int Organics
     {
@@ -61,7 +59,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
     public float regurgitateCooldown = 0.7f;
     private float regurgTimer;
 
-    private Controls controls;
+    public InputActionAsset controls;
 
     private void Start()
     {
@@ -71,12 +69,7 @@ public class PlayerInventory : MonoBehaviour, IInventory
 
     void Awake ()
     {
-<<<<<<< HEAD
         controls.actionMaps[0].FindAction("Regurgitate", true).performed += ctx => Regurgitate();
-=======
-        controls = new Controls();
-        controls.PlayerControls.Regurgitate.performed += ctx => Regurgitate();
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
     }
 
     private void Update()
@@ -125,16 +118,4 @@ public class PlayerInventory : MonoBehaviour, IInventory
         chunk.GetComponent<VomitChunk>().StartCoroutine("HuntWhale", Whale);
     }
 
-<<<<<<< HEAD
-=======
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 }

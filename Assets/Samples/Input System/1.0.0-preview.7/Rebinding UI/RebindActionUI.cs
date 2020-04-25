@@ -15,14 +15,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// A reusable component with a self-contained UI for rebinding a single action.
     /// </summary>
     public class RebindActionUI : MonoBehaviour
-<<<<<<< HEAD
     {   
-
-        //This is janky workaround for changing binds in new system courtesy of unity forums guy
         
-=======
-    {
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
         /// <summary>
         /// Reference to the action that is to be rebound.
         /// </summary>

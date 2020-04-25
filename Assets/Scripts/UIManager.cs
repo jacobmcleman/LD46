@@ -53,11 +53,7 @@ public class UIManager : MonoBehaviour
     //Singleton isntance
     public static UIManager instance;
 
-<<<<<<< HEAD
     public InputActionAsset controls;
-=======
-    private Controls controls;
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 
     public bool Paused
     {
@@ -76,12 +72,7 @@ public class UIManager : MonoBehaviour
         {
             //Set the instance to this
             instance = this;
-<<<<<<< HEAD
             controls.actionMaps[0].FindAction("Pause", true).performed += ctx => TogglePause();
-=======
-            controls  = new Controls();
-            controls.PlayerControls.Pause.performed += ctx => TogglePause();
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
         }
         else
         {
@@ -216,16 +207,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-=======
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
->>>>>>> 9726370544427b0d99a69202f3a358bc65fea15e
 }
