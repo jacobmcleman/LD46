@@ -50,7 +50,10 @@ public class Spawner : MonoBehaviour
         won = false;
         CurWave = 0;
         Whale = GameObject.FindGameObjectWithTag("Whale");
-
+        if (Whale == null)
+        {
+            Debug.LogError("No whale wtf");
+        }
         if (AsteroidPrefabs.Length == 0)
         {
             Debug.LogError("No asteroids you dummy");
@@ -119,7 +122,12 @@ public class Spawner : MonoBehaviour
 
     void Continue ()
     {
-        if (Enemies.Count == 0 && startedSpawningEnemy && SceneManager.GetActiveScene().name != "Level1"  && CurWave >= (Waves.Count))
+        if (
+            Enemies.Count == 0 && startedSpawningEnemy && 
+            SceneManager.GetActiveScene().name != "Level1" && 
+            SceneManager.GetActiveScene().name != "IntroCutscene" && 
+            CurWave >= (Waves.Count)
+        )
         {
             if (!won) { wonlevel(); }
             else
@@ -150,7 +158,6 @@ public class Spawner : MonoBehaviour
     public void SetWhaleStats()
     {
         WhaleInventory = Whale.GetComponent<IInventory>();
-        Debug.Log("Adding Organics: " + WhaleInventory.Organics + " Adding Mechanics: " + WhaleInventory.Mechanicals);
         WhaleStats.instance.Organics += WhaleInventory.Organics;
         WhaleStats.instance.Mechanicals += WhaleInventory.Mechanicals;
         WhaleStats.instance.Waves = Waves;

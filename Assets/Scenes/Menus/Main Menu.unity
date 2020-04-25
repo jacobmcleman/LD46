@@ -452,79 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &282577255
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 282577256}
-  - component: {fileID: 282577258}
-  - component: {fileID: 282577257}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &282577256
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282577255}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 764824917}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &282577257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282577255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &282577258
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 282577255}
-  m_CullTransparentMesh: 0
 --- !u!1 &294319835
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +667,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361981902}
-  m_LocalRotation: {x: 0.005532677, y: 0.3613889, z: -0.008905191, w: -0.9323563}
+  m_LocalRotation: {x: 0.0055326535, y: 0.36138892, z: -0.0089052, w: -0.9323563}
   m_LocalPosition: {x: -474.7644, y: -21.7, z: 196.80756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1347,43 +1274,6 @@ MonoBehaviour:
   namingPromptPrefab: {fileID: 455405625}
   namingMemePrefab: {fileID: 2092786563}
   baseMenuPrefab: {fileID: 674546364}
---- !u!1 &764824916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 764824917}
-  m_Layer: 5
-  m_Name: RebindConfirmation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &764824917
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764824916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 282577256}
-  - {fileID: 1460640042}
-  m_Father: {fileID: 1541973562}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &824348612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,7 +2106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057782797}
-  m_LocalRotation: {x: 0.005532677, y: 0.3613889, z: -0.008905191, w: -0.9323563}
+  m_LocalRotation: {x: 0.0055326535, y: 0.36138892, z: -0.0089052, w: -0.9323563}
   m_LocalPosition: {x: -474.7644, y: -21.7, z: 196.80756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2857,83 +2747,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456089696}
   m_CullTransparentMesh: 0
---- !u!1 &1460640041
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1460640042}
-  - component: {fileID: 1460640044}
-  - component: {fileID: 1460640043}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1460640042
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460640041}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 764824917}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1359.07, y: 402.5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1460640043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460640041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: e35cd064ea9a7364a86de74c7628cda2, type: 3}
-    m_FontSize: 54
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 80
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Are you sure you want to rebind ur mom?
---- !u!222 &1460640044
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460640041}
-  m_CullTransparentMesh: 0
 --- !u!1 &1541973558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,7 +2843,6 @@ RectTransform:
   - {fileID: 455405626}
   - {fileID: 2092786564}
   - {fileID: 913881077}
-  - {fileID: 764824917}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4940,12 +4752,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654457617968, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654457617971, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4980,12 +4792,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654559547944, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654559547947, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5050,22 +4862,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654601509670, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654630717857, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654630717857, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654630717858, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5100,12 +4912,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654687095412, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654687095415, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5170,22 +4982,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654708834459, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654737066693, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654737066693, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654737066694, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5250,12 +5062,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654771414746, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654793801956, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5290,22 +5102,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654793801959, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654919835213, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820654919835213, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820654919835214, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5370,22 +5182,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655001406282, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655073010997, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655073010997, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655073010998, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5420,12 +5232,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655083890468, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655083890471, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5460,12 +5272,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655216232861, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655216232862, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5530,12 +5342,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655235533090, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655269191996, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5570,12 +5382,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655269191999, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655610350369, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5610,22 +5422,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655610350370, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655774409237, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655774409237, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655774409238, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5690,22 +5502,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655776547722, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655829481696, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655829481696, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655829481699, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5740,12 +5552,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655884475984, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655884475987, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5780,12 +5592,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655912090821, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655912090822, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5820,12 +5632,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820655972230625, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820655972230626, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5890,12 +5702,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656017460646, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656266525088, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5930,22 +5742,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656266525091, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656268667217, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656268667217, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656268667218, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6010,12 +5822,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656384250318, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656483169332, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6050,22 +5862,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656483169335, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656556067380, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656556067380, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656556067383, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6100,12 +5912,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RebindOverlay
       value: 
-      objectReference: {fileID: 764824916}
+      objectReference: {fileID: 143445035799583211}
     - target: {fileID: 6721820656580009484, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_RebindText
       value: 
-      objectReference: {fileID: 1460640043}
+      objectReference: {fileID: 143445035799583210}
     - target: {fileID: 6721820656580009487, guid: fbb2bcbd32362664399f99529d07e145,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6138,6 +5950,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbb2bcbd32362664399f99529d07e145, type: 3}
+--- !u!114 &143445035799583210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2064399101107535587, guid: fbb2bcbd32362664399f99529d07e145,
+    type: 3}
+  m_PrefabInstance: {fileID: 143445035799583209}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &143445035799583211 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5601217022662698411, guid: fbb2bcbd32362664399f99529d07e145,
+    type: 3}
+  m_PrefabInstance: {fileID: 143445035799583209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2586226720437020683
 PrefabInstance:
   m_ObjectHideFlags: 0

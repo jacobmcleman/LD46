@@ -1037,6 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e354a9283a7033342b837d17972c694a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 0}
   songs:
   - {fileID: 8300000, guid: ff8184a6c92acd14bb7b50c22ff48809, type: 3}
   - {fileID: 8300000, guid: 87b1ea59cc721034e8a2e656f97948aa, type: 3}
@@ -1378,7 +1379,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248783261}
-  m_LocalRotation: {x: 0.28507322, y: 0.21967585, z: -0.06729661, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507322, y: 0.21967588, z: -0.06729661, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4670,7 +4671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WhaleRail: {fileID: 804462048}
-  Player: {fileID: 0}
+  Player: {fileID: 4058257816072068057}
   Whale: {fileID: 351446476}
   RailIndex: 0
 --- !u!114 &1449567753
@@ -4718,6 +4719,8 @@ MonoBehaviour:
   Avoids: []
   Enemies: []
   Asteriods: []
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
 --- !u!4 &1449567754
 Transform:
   m_ObjectHideFlags: 0
@@ -4798,7 +4801,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565213890}
-  m_LocalRotation: {x: 0.28507325, y: 0.21967585, z: -0.06729661, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507322, y: 0.21967588, z: -0.06729661, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6715,6 +6718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: {fileID: 0}
   weapon1: {fileID: 6051970093515457882}
   weapon2: {fileID: 8555393985122873472}
 --- !u!114 &4058257815299648357
@@ -7175,6 +7179,7 @@ MonoBehaviour:
     type: 3}
   firePeriod: 0.1
   overheatBlinkRate: 0.2
+  overheatEnabled: 0
 --- !u!114 &4058257816121048443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7197,6 +7202,7 @@ MonoBehaviour:
     type: 3}
   firePeriod: 0.1
   overheatBlinkRate: 0.2
+  overheatEnabled: 0
 --- !u!2083052967 &4240965235888806856
 VisualEffect:
   m_ObjectHideFlags: 0
