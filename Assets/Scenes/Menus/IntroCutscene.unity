@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248783261}
-  m_LocalRotation: {x: 0.28507325, y: 0.21967585, z: -0.06729661, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507325, y: 0.21967587, z: -0.06729662, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4818,7 +4818,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565213890}
-  m_LocalRotation: {x: 0.28507325, y: 0.21967585, z: -0.06729661, w: 0.93056273}
+  m_LocalRotation: {x: 0.28507325, y: 0.21967587, z: -0.06729662, w: 0.93056273}
   m_LocalPosition: {x: -689.99994, y: 106, z: 204.99997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6727,21 +6727,6 @@ MonoBehaviour:
   mouseUI: {fileID: 0}
   maxWeaponAimAdjustRange: 100
   stick: {fileID: 4058257816072068056}
---- !u!114 &4058257814659334859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487054493521900418}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controls: {fileID: 0}
-  weapon1: {fileID: 6051970093515457882}
-  weapon2: {fileID: 8555393985122873472}
 --- !u!114 &4058257815299648357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7539,7 +7524,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5889588718306296209}
-  - component: {fileID: 4058257814659334859}
   m_Layer: 12
   m_Name: SM_PlayerShip_Rotating_Gimbals
   m_TagString: Untagged
