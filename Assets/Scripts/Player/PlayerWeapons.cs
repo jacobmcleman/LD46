@@ -17,7 +17,7 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
 
     public InputActionAsset controls;
 
-    private float shooting = 0f;
+    private bool shooting = false;
 
     public GameObject weapon1;
     private IFireable weaponScript1;
@@ -35,12 +35,13 @@ public class PlayerWeapons : MonoBehaviour, IWieldable
 
     void Awake ()
     {
-       controls.actionMaps[0].FindAction("PrimaryFire",  true).performed += ctx => shooting = ctx.ReadValue<float>();
+       controls.actionMaps[0].FindAction("PrimaryFire",  true).started += ctx => shooting = true;
+       controls.actionMaps[0].FindAction("PrimaryFire",  true).canceled += ctx => shooting = false;
     }
 
     void Update ()
     {
-        if(shooting == 1f)
+        if(shooting)
         {
             weaponScript1.Fire(this);
             weaponScript2.Fire(this);

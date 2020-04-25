@@ -185,6 +185,16 @@ public class UIManager : MonoBehaviour
         Ship.speedSlider.value = Ship.stick.SpeedRatio;
     }
 
+    public void BtnQuitToMenu ()
+    {
+        SceneController.instance.ChangeScene("Main Menu");
+    }
+
+    public void BtnQuitGame ()
+    {
+        SceneController.instance.QuitGame();
+    }
+
 
     private IEnumerator StartRocketCooldown (float cooldown)
     {

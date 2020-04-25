@@ -12,40 +12,54 @@ public class Settingz : MonoBehaviour
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    public Slider pitchSens;
+    public Slider rollSens;
+    public Slider yawSens;
+    public Slider mouseSens;
+
     public GameObject body;
+
+    public string[] floatSettingsKeys;
+
+    private bool init = false;
 
     void Start ()
     {
-        if (PlayerPrefs.HasKey("master_volume"))
+        if (PlayerPrefs.HasKey("MasterVol"))  masterSlider.value = PlayerPrefs.GetFloat("MasterVol");
+        if (PlayerPrefs.HasKey("MusicVol")) musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
+        if (PlayerPrefs.HasKey("SfxVol")) sfxSlider.value = PlayerPrefs.GetFloat("SfxVol");
+        if (PlayerPrefs.HasKey("pitch_sensitivity")) pitchSens.value = PlayerPrefs.GetFloat("pitch_sensitivity");
+        if (PlayerPrefs.HasKey("roll_sensitivity")) rollSens.value = PlayerPrefs.GetFloat("roll_sensitivity");
+        if (PlayerPrefs.HasKey("yaw_sensitivity")) yawSens.value = PlayerPrefs.GetFloat("yaw_sensitivity");
+        if (PlayerPrefs.HasKey("mouse_sensitivity")) mouseSens.value = PlayerPrefs.GetFloat("mouse_sensitivity");
+        foreach (string key in floatSettingsKeys)
         {
-            masterSlider.value = PlayerPrefs.GetFloat("master_volume");
+            GameObject.Find(key).GetComponent<Slider>().onValueChanged.AddListener(value => HandleFloatSettingChange(key, value));
         }
-        if (PlayerPrefs.HasKey("music_volume"))
+        foreach (Transform t in gameObject.transform)
         {
-            musicSlider.value = PlayerPrefs.GetFloat("music_volume");
+            if (t.gameObject.name == "Body")
+            {
+                foreach (Transform t2 in t.gameObject.transform)
+                {
+                    if (t2.gameObject.name != "Audio")
+                    {
+                        t2.gameObject.SetActive(false);
+                    }
+                }
+                continue;
+            }
         }
-        if (PlayerPrefs.HasKey("sfx_volume"))
-        {
-            sfxSlider.value = PlayerPrefs.GetFloat("sfx_volume");
-        }
+        this.gameObject.SetActive(false);
     }
 
-    public void HandleMasterChange (float vol)
+    public void HandleFloatSettingChange (string key, float value)
     {
-        mixer.SetFloat("MasterVol", vol);
-        PlayerPrefs.SetFloat("master_volume", vol);
-    }
-
-    public void HandleMusicChange (float vol)
-    {
-        mixer.SetFloat("MusicVol", vol);
-        PlayerPrefs.SetFloat("music_volume", vol);
-    }
-
-    public void HandleSfxChange (float vol)
-    {
-        mixer.SetFloat("SfxVol", vol);
-        PlayerPrefs.SetFloat("sfx_volume", vol);
+        PlayerPrefs.SetFloat(key, value);
+        if (key == "MasterVol" || key == "MusicVol" || key == "SfxVol")
+        {
+            mixer.SetFloat(key, value);
+        }
     }
 
     public void DisplaySettingsSubMenu (string setting)
