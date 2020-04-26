@@ -16,6 +16,7 @@ TagManager:
   - Resource
   - MechUpBit
   - Teammate
+  - BindingManager
   layers:
   - Default
   - TransparentFX
