@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Jobs;
+using Unity.Collections;
 
 [RequireComponent(typeof(SpaceshipController))]
 public class AIShip : MonoBehaviour
@@ -25,7 +27,7 @@ public class AIShip : MonoBehaviour
     public float pitchSlowDown = 180;
     public float yawSlowDown = 480;
 
-    public float magicThreshold = 0.1f;
+    private float magicThreshold = 0.1f;
 
     public bool doCollisionAvoidance = true;
     public float lookAheadTime = 4.0f;
@@ -35,6 +37,22 @@ public class AIShip : MonoBehaviour
     public float onTargetValue = 10.0f;
     public float minimalSteerValue = 1.0f;
     public float targetProxValue = 3.0f;
+
+    private JobHandle steeringJobHandle;
+    bool firstFrame;
+
+    private Vector3 lastTargetDirection;
+
+    private struct SteeringNativeData
+    {
+        public NativeArray<SpherecastCommand> castCommands;
+        public NativeArray<RaycastHit> castResults;
+        public NativeArray<Vector3> nativeSteeringOptions;
+        public NativeArray<float> scores;
+        public NativeArray<Vector3> bestSolution;
+        public NativeArray<float> controlValues;
+    }
+    private SteeringNativeData steeringNativeData;
 
     public Vector3 TargetPosition
     {
@@ -55,19 +73,106 @@ public class AIShip : MonoBehaviour
     private void Start()
     {
         shipControls = GetComponent<SpaceshipController>();
+        firstFrame = true;
+
+        steeringNativeData.bestSolution = new NativeArray<Vector3>(1, Allocator.Persistent);
+        steeringNativeData.controlValues = new NativeArray<float>(4, Allocator.Persistent);
+
+        lastTargetDirection = transform.forward;
     }
 
     private void Update()
     {
+        if(firstFrame)
+        {
+            firstFrame = false;
+        }
+        else
+        {
+            steeringJobHandle.Complete();
+            float pitch = steeringNativeData.controlValues[0];
+            float yaw = steeringNativeData.controlValues[1];
+            float roll = steeringNativeData.controlValues[2];
+            float throttle = steeringNativeData.controlValues[3];
+
+            shipControls.StickInput = new Vector3(pitch, yaw, roll);
+
+            if (shipControls.Throttle + throttle < maxThrottle)
+            {
+                shipControls.ThrottleInput = throttle;
+            }
+
+            lastTargetDirection = steeringNativeData.bestSolution[0];
+
+            FreeEphemeralNativeData();
+        }
+
         Vector3 desiredForward = GetIdealDirection();
-        if(doCollisionAvoidance) desiredForward = LookAheadCheck(desiredForward);
-        SteerTowardsDirection(desiredForward);
+        JobHandle dependent;
+
+        if (doCollisionAvoidance)
+        {
+            dependent = LookAheadCheck(desiredForward, ref steeringNativeData);
+        }
+        else
+        {
+            steeringNativeData.bestSolution[0] = desiredForward;
+            dependent = default;
+        }
+
+        GetSteerInputJob getSteerInputJob = new GetSteerInputJob();
+        getSteerInputJob.desiredForwardNative = steeringNativeData.bestSolution;
+        getSteerInputJob.controlValues = steeringNativeData.controlValues;
+        getSteerInputJob.currentForward = transform.forward;
+        getSteerInputJob.currentUp = transform.up;
+        getSteerInputJob.currentRight = transform.right;
+        getSteerInputJob.rollAttack = rollAttack;
+        getSteerInputJob.rollSlowDown = rollSlowDown;
+        getSteerInputJob.acceptableRollWindow = acceptableRollWindow;
+        getSteerInputJob.pitchAttack = pitchAttack;
+        getSteerInputJob.pitchSlowDown = pitchSlowDown;
+        getSteerInputJob.yawAttack = yawAttack;
+        getSteerInputJob.yawSlowDown = yawSlowDown;
+        getSteerInputJob.largeDeflectionThreshold = largeDeflectionThreshold;
+        getSteerInputJob.magicThresholdValue = magicThreshold;
+
+        steeringJobHandle = getSteerInputJob.Schedule(dependent);
+    }
+
+    private void OnDestroy()
+    {
+        // Need to complete all the jobs before it is safe to free the data
+        steeringJobHandle.Complete();
+        FreeAllNativeData();
     }
 
     private void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(targetPosition, 1.0f);
         Gizmos.DrawRay(targetPosition, -approachDirection);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(transform.position, targetPosition);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, lastTargetDirection);
+    }
+
+    private void FreeAllNativeData()
+    {
+        steeringNativeData.bestSolution.Dispose(); 
+        steeringNativeData.controlValues.Dispose();
+
+        FreeEphemeralNativeData();
+    }
+
+    private void FreeEphemeralNativeData()
+    {
+        steeringNativeData.castCommands.Dispose();
+        steeringNativeData.castResults.Dispose();
+        steeringNativeData.nativeSteeringOptions.Dispose();
+        steeringNativeData.scores.Dispose();
     }
 
     private Vector3 GetIdealDirection()
@@ -91,125 +196,199 @@ public class AIShip : MonoBehaviour
         return Vector3.Normalize(realTargetPos - transform.position);
     }
 
-    private Vector3 LookAheadCheck(Vector3 desiredForward)
+    private struct ScoreAllSolutionsJob : IJobParallelFor
     {
-        //if (TestPotentialPath(desiredForward) > shipControls.ForwardSpeed * lookAheadTime) return desiredForward;
+        [ReadOnly]
+        public NativeArray<RaycastHit> hitResults;
+        [ReadOnly]
+        public NativeArray<Vector3> steeringOptions;
+        public NativeArray<float> scores;
+        public Vector3 targetPosition;
+        public Vector3 idealDirection;
+        public Vector3 currentVelocity;
+        public Vector3 currentForward;
+        public float lookAheadTime;
+        public float castRadius;
 
-        List<KeyValuePair<Vector3, float>> solutionScores = new List<KeyValuePair<Vector3, float>>();
-        // Take a look at a few possibilities for where the ship could be in a few seconds
-        DoSolutionScoring(desiredForward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        //DoSolutionScoring(transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        DoSolutionScoring(-transform.forward * shipControls.ForwardSpeed, desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity, desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity + (transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
-        DoSolutionScoring(shipControls.Velocity + (-transform.right * 0.5f * shipControls.ForwardSpeed), desiredForward, ref solutionScores);
+        public float onTargetValue;
+        public float safeDistanceValue;
+        public float targetProxValue;
+        public float minimalSteerValue;
 
-        // Pick the maximum score
-        float maxScore = float.MinValue;
-        Vector3 bestDirection = desiredForward;
-
-        foreach(KeyValuePair<Vector3, float> solution in solutionScores)
+        private float TestPotentialPath(RaycastHit hit, float noHitFoundDistance)
         {
-            if(solution.Value > maxScore)
-            {
-                maxScore = solution.Value;
-                bestDirection = solution.Key;
-            }
+            // Hack because apparently can't check for collider's existence on not-main-thread
+            bool didHit = hit.point != default;
+            return didHit ? hit.distance : noHitFoundDistance; // Can't guarantee an option is good beyond as far as we looked
         }
+        public void Execute(int index)
+        {
+            Vector3 testVel = steeringOptions[index];
+            float collisionDistance = TestPotentialPath(hitResults[index], (testVel.magnitude * lookAheadTime) + castRadius);
+            float closenessToDesiredDirection = Vector3.Dot(testVel, idealDirection);
+            float steeringEffort = Vector3.Dot(currentVelocity, testVel) + Vector3.Dot(currentForward, testVel);
+            float targetProx = -Vector3.Distance(targetPosition + lookAheadTime * testVel, targetPosition) / 1000;
 
-        return bestDirection;
-    }
-
-    private float TestPotentialPath(Vector3 testVel)
-    {
-        Vector3 toTarget = targetPosition - transform.position;
-
-        float distanceToTarget = toTarget.magnitude;
-        float curSpeed = testVel.magnitude;
-
-        float castLength = Mathf.Min(distanceToTarget, lookAheadTime * curSpeed);
-
-        RaycastHit hit;
-        bool didHit = Physics.SphereCast(transform.position, castRadius, testVel.normalized, out hit, castLength, ~(1 << 9));
-        return didHit ? hit.distance : (castLength + castRadius); // Can't guarantee an option is good beyond as far as we looked
-    }
-
-    private float ScoreSolution(Vector3 testVel, Vector3 desiredDirection)
-    {
-        float collisionDistance = TestPotentialPath(testVel);
-        float closenessToDesiredDirection = Vector3.Dot(testVel, desiredDirection);
-        float steeringEffort = Vector3.Dot(shipControls.Velocity, testVel) + Vector3.Dot(transform.forward, testVel);
-        float targetProx = -Vector3.Distance(transform.position + lookAheadTime * testVel, targetPosition) / 1000;
-
-        return (closenessToDesiredDirection * onTargetValue) 
+            float score = (closenessToDesiredDirection * onTargetValue)
             + (collisionDistance * safeDistanceValue)
             + (targetProx * targetProxValue)
             + (steeringEffort * minimalSteerValue);
+
+            scores[index] = score;
+        }
     }
 
-    private void DoSolutionScoring(Vector3 testVel, Vector3 desiredDirection, ref List<KeyValuePair<Vector3, float>> solutionScores)
+    private struct TakeBestSolutionJob : IJob
     {
-        solutionScores.Add(new KeyValuePair<Vector3, float>(testVel, ScoreSolution(testVel, desiredDirection)));
-    }
+        [ReadOnly]
+        public NativeArray<Vector3> steeringOptions;
+        [ReadOnly]
+        public NativeArray<float> scores;
+        public NativeArray<Vector3> result;
 
-    private void SteerTowardsDirection(Vector3 desiredForward)
-    {
-        Vector3 currentForward = transform.forward;
-
-        float deflectionAmount = Mathf.Abs(Vector3.Dot(currentForward, desiredForward));
-        float angleFromTarget = Vector3.Angle(currentForward, desiredForward);
-
-        bool isSignificantDeflection = angleFromTarget > largeDeflectionThreshold;
-
-        float pitch = 0;
-        float yaw = 0;
-        float roll = 0;
-        float throttle = 0;
-
-        if (isSignificantDeflection)
+        public void Execute()
         {
-            // For significant deflections the ship should roll to allow the maneuver to be completed with pitch
-            Vector3 currentUp = transform.up;
-            Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward);
-            float neededRollAngle = 0;
-            if(desiredRollUp.sqrMagnitude > magicThreshold)
+            float maxScore = float.MinValue;
+            Vector3 bestDirection = Vector3.forward;
+
+            for(int i = 0; i < scores.Length; ++i)
             {
-                desiredRollUp.Normalize();
-                neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, transform.forward);
+                if (scores[i] > maxScore)
+                {
+                    maxScore = scores[i];
+                    bestDirection = steeringOptions[i];
+                }
             }
 
-            roll = -1 * neededRollAngle / rollAttack;
-            throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
+            result[0] = bestDirection;
+        }
+    }
 
-            if (Mathf.Abs(neededRollAngle) < acceptableRollWindow)
+    private JobHandle LookAheadCheck(Vector3 desiredForward, ref SteeringNativeData nativeData)
+    {
+        //if (TestPotentialPath(desiredForward) > shipControls.ForwardSpeed * lookAheadTime) return desiredForward;
+
+        Vector3[] steeringOptions =
+        {
+            desiredForward * shipControls.ForwardSpeed,
+            -transform.forward * shipControls.ForwardSpeed,
+            shipControls.Velocity,
+            shipControls.Velocity + (transform.up * 0.5f * shipControls.ForwardSpeed),
+            shipControls.Velocity + (-transform.up * 0.5f * shipControls.ForwardSpeed),
+            shipControls.Velocity + (transform.right * 0.5f * shipControls.ForwardSpeed),
+            shipControls.Velocity + (-transform.right * 0.5f * shipControls.ForwardSpeed)
+        };
+
+        nativeData.castCommands = new NativeArray<SpherecastCommand>(steeringOptions.Length, Allocator.TempJob);
+        nativeData.castResults = new NativeArray<RaycastHit>(steeringOptions.Length, Allocator.TempJob);
+        nativeData.nativeSteeringOptions = new NativeArray<Vector3>(steeringOptions, Allocator.TempJob);
+        nativeData.scores = new NativeArray<float>(steeringOptions.Length, Allocator.TempJob);
+
+        for(int i = 0; i < steeringOptions.Length; ++i)
+        {
+            nativeData.castCommands[i] = new SpherecastCommand(transform.position, castRadius, steeringOptions[i].normalized, steeringOptions[i].magnitude * lookAheadTime, ~(1 << 9));
+        }
+
+        JobHandle castJobHandle = SpherecastCommand.ScheduleBatch(nativeData.castCommands, nativeData.castResults, 1, default);
+        
+        ScoreAllSolutionsJob scoreJobData = new ScoreAllSolutionsJob();
+        scoreJobData.hitResults = nativeData.castResults;
+        scoreJobData.steeringOptions = nativeData.nativeSteeringOptions;
+        scoreJobData.scores = nativeData.scores;
+        scoreJobData.targetPosition = targetPosition;
+        scoreJobData.idealDirection = desiredForward;
+        scoreJobData.currentVelocity = shipControls.Velocity;
+        scoreJobData.currentForward = transform.forward;
+        scoreJobData.lookAheadTime = lookAheadTime;
+        scoreJobData.castRadius = castRadius;
+        scoreJobData.onTargetValue = onTargetValue;
+        scoreJobData.safeDistanceValue = safeDistanceValue;
+        scoreJobData.targetProxValue = targetProxValue;
+        scoreJobData.minimalSteerValue = minimalSteerValue;
+
+        // Do score job after cast job
+        JobHandle scoreJobHandle = scoreJobData.Schedule(steeringOptions.Length, 1, castJobHandle);
+
+        TakeBestSolutionJob takeBestJob = new TakeBestSolutionJob();
+        takeBestJob.scores = nativeData.scores;
+        takeBestJob.steeringOptions = nativeData.nativeSteeringOptions;
+        takeBestJob.result = nativeData.bestSolution;
+
+        // Do take best job after score job
+        JobHandle takeBestHandle = takeBestJob.Schedule(scoreJobHandle);
+
+        return takeBestHandle;
+    }
+
+    private struct GetSteerInputJob : IJob
+    {
+        [ReadOnly]
+        public NativeArray<Vector3> desiredForwardNative;
+
+        public Vector3 currentForward;
+        public Vector3 currentUp;
+        public Vector3 currentRight;
+        public float largeDeflectionThreshold;
+        public float magicThresholdValue;
+         
+        public float rollAttack, rollSlowDown, acceptableRollWindow;
+        public float pitchAttack, pitchSlowDown;
+        public float yawAttack, yawSlowDown;
+
+        public NativeArray<float> controlValues; // pitch, yaw, roll, throttle
+
+        public void Execute()
+        {
+            Vector3 desiredForward = desiredForwardNative[0];
+            float angleFromTarget = Vector3.Angle(currentForward, desiredForward);
+
+            bool isSignificantDeflection = angleFromTarget > largeDeflectionThreshold;
+
+            float pitch = 0;
+            float yaw = 0;
+            float roll = 0;
+            float throttle = 0;
+
+            if (isSignificantDeflection)
             {
-                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
-                float neededPitchAngle = Vector3.SignedAngle(currentForward, pitchDesForward, transform.right);
+                // For significant deflections the ship should roll to allow the maneuver to be completed with pitch
+                Vector3 desiredRollUp = Vector3.ProjectOnPlane(desiredForward, currentForward);
+                float neededRollAngle = 0;
+                if (desiredRollUp.sqrMagnitude > magicThresholdValue)
+                {
+                    desiredRollUp.Normalize();
+                    neededRollAngle = Vector3.SignedAngle(currentUp, desiredRollUp, currentForward);
+                }
+
+                roll = -1 * neededRollAngle / rollAttack;
+                throttle -= Mathf.Abs(neededRollAngle / rollSlowDown);
+
+                if (Mathf.Abs(neededRollAngle) < acceptableRollWindow)
+                {
+                    Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, currentRight);
+                    float neededPitchAngle = Vector3.SignedAngle(currentForward, pitchDesForward, currentRight);
+                    pitch = neededPitchAngle / pitchAttack;
+                    throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
+                }
+            }
+            else
+            {
+                Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, currentUp);
+                float neededYawAngle = yawDesForward.sqrMagnitude > magicThresholdValue ? -Vector3.SignedAngle(yawDesForward, currentForward, currentUp) : 0;
+                yaw = neededYawAngle / yawAttack;
+                throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
+
+                Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, currentRight);
+                float neededPitchAngle = pitchDesForward.sqrMagnitude > magicThresholdValue ? -Vector3.SignedAngle(pitchDesForward, currentForward, currentRight) : 0;
                 pitch = neededPitchAngle / pitchAttack;
                 throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
+                throttle += 1;
             }
-        }
-        else
-        {
-            Vector3 yawDesForward = Vector3.ProjectOnPlane(desiredForward, transform.up);
-            float neededYawAngle = yawDesForward.sqrMagnitude > magicThreshold ? -Vector3.SignedAngle(yawDesForward, transform.forward, transform.up) : 0;
-            yaw = neededYawAngle / yawAttack;
-            throttle -= Mathf.Abs(neededYawAngle / yawSlowDown);
 
-            Vector3 pitchDesForward = Vector3.ProjectOnPlane(desiredForward, transform.right);
-            float neededPitchAngle = pitchDesForward.sqrMagnitude > magicThreshold ? -Vector3.SignedAngle(pitchDesForward, transform.forward, transform.right) : 0;
-            pitch = neededPitchAngle / pitchAttack;
-            throttle -= Mathf.Abs(neededPitchAngle / pitchSlowDown);
-            throttle += 1;
-        }
-
-        shipControls.StickInput = new Vector3(pitch, yaw, roll);
-
-        if(shipControls.Throttle + throttle < maxThrottle)
-        {
-            shipControls.ThrottleInput = throttle;
+            controlValues[0] = pitch;
+            controlValues[1] = yaw;
+            controlValues[2] = roll;
+            controlValues[3] = throttle;
         }
     }
 }

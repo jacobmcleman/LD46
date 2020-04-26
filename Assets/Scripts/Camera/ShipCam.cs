@@ -36,7 +36,7 @@ public class ShipCam : MonoBehaviour
 
     private void Start()
     {
-        followShip = GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceshipController>();
+        //followShip = GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceshipController>();
         followRb = followShip.GetComponent<Rigidbody>();
         followTransform = followShip.GetComponent<Transform>();
         curLookDir = transform.forward;
@@ -83,7 +83,7 @@ public class ShipCam : MonoBehaviour
         transform.position = followTransform.position - (lookDistance * curLookDir) + (followTransform.up * verticalOffset);
         transform.LookAt(lookPoint, curUp);
 
-        if (UIManager.instance.Paused) curMode = CameraState.Orbit;
+        if (UIManager.instance != null && UIManager.instance.Paused) curMode = CameraState.Orbit;
 
     }
 }
