@@ -34881,6 +34881,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AI_Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 5205907624439822288, guid: abb2486cc31fd964d916dc0ee8cbd31b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5205907624439822299, guid: abb2486cc31fd964d916dc0ee8cbd31b,
         type: 3}
       propertyPath: m_LocalPosition.x

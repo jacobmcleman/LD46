@@ -112,7 +112,7 @@ public class AIShip : MonoBehaviour
 
         if (doCollisionAvoidance)
         {
-            dependent = LookAheadCheck(desiredForward, ref steeringNativeData);
+            dependent = LookAheadCheck(desiredForward);
         }
         else
         {
@@ -120,21 +120,7 @@ public class AIShip : MonoBehaviour
             dependent = default;
         }
 
-        GetSteerInputJob getSteerInputJob = new GetSteerInputJob();
-        getSteerInputJob.desiredForwardNative = steeringNativeData.bestSolution;
-        getSteerInputJob.controlValues = steeringNativeData.controlValues;
-        getSteerInputJob.currentForward = transform.forward;
-        getSteerInputJob.currentUp = transform.up;
-        getSteerInputJob.currentRight = transform.right;
-        getSteerInputJob.rollAttack = rollAttack;
-        getSteerInputJob.rollSlowDown = rollSlowDown;
-        getSteerInputJob.acceptableRollWindow = acceptableRollWindow;
-        getSteerInputJob.pitchAttack = pitchAttack;
-        getSteerInputJob.pitchSlowDown = pitchSlowDown;
-        getSteerInputJob.yawAttack = yawAttack;
-        getSteerInputJob.yawSlowDown = yawSlowDown;
-        getSteerInputJob.largeDeflectionThreshold = largeDeflectionThreshold;
-        getSteerInputJob.magicThresholdValue = magicThreshold;
+        GetSteerInputJob getSteerInputJob = GetSteerJob();
 
         steeringJobHandle = getSteerInputJob.Schedule(dependent);
     }
@@ -157,6 +143,27 @@ public class AIShip : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position, lastTargetDirection);
+    }
+
+    private GetSteerInputJob GetSteerJob()
+    {
+        GetSteerInputJob getSteerInputJob = new GetSteerInputJob();
+        getSteerInputJob.desiredForwardNative = steeringNativeData.bestSolution;
+        getSteerInputJob.controlValues = steeringNativeData.controlValues;
+        getSteerInputJob.currentForward = transform.forward;
+        getSteerInputJob.currentUp = transform.up;
+        getSteerInputJob.currentRight = transform.right;
+        getSteerInputJob.rollAttack = rollAttack;
+        getSteerInputJob.rollSlowDown = rollSlowDown;
+        getSteerInputJob.acceptableRollWindow = acceptableRollWindow;
+        getSteerInputJob.pitchAttack = pitchAttack;
+        getSteerInputJob.pitchSlowDown = pitchSlowDown;
+        getSteerInputJob.yawAttack = yawAttack;
+        getSteerInputJob.yawSlowDown = yawSlowDown;
+        getSteerInputJob.largeDeflectionThreshold = largeDeflectionThreshold;
+        getSteerInputJob.magicThresholdValue = magicThreshold;
+
+        return getSteerInputJob;
     }
 
     private void FreeAllNativeData()
@@ -264,7 +271,7 @@ public class AIShip : MonoBehaviour
         }
     }
 
-    private JobHandle LookAheadCheck(Vector3 desiredForward, ref SteeringNativeData nativeData)
+    private JobHandle LookAheadCheck(Vector3 desiredForward)
     {
         //if (TestPotentialPath(desiredForward) > shipControls.ForwardSpeed * lookAheadTime) return desiredForward;
 
@@ -279,22 +286,40 @@ public class AIShip : MonoBehaviour
             shipControls.Velocity + (-transform.right * 0.5f * shipControls.ForwardSpeed)
         };
 
-        nativeData.castCommands = new NativeArray<SpherecastCommand>(steeringOptions.Length, Allocator.TempJob);
-        nativeData.castResults = new NativeArray<RaycastHit>(steeringOptions.Length, Allocator.TempJob);
-        nativeData.nativeSteeringOptions = new NativeArray<Vector3>(steeringOptions, Allocator.TempJob);
-        nativeData.scores = new NativeArray<float>(steeringOptions.Length, Allocator.TempJob);
+        steeringNativeData.castCommands = new NativeArray<SpherecastCommand>(steeringOptions.Length, Allocator.TempJob);
+        steeringNativeData.castResults = new NativeArray<RaycastHit>(steeringOptions.Length, Allocator.TempJob);
+        steeringNativeData.nativeSteeringOptions = new NativeArray<Vector3>(steeringOptions, Allocator.TempJob);
+        steeringNativeData.scores = new NativeArray<float>(steeringOptions.Length, Allocator.TempJob);
 
         for(int i = 0; i < steeringOptions.Length; ++i)
         {
-            nativeData.castCommands[i] = new SpherecastCommand(transform.position, castRadius, steeringOptions[i].normalized, steeringOptions[i].magnitude * lookAheadTime, ~(1 << 9));
+            steeringNativeData.castCommands[i] = new SpherecastCommand(transform.position, castRadius, steeringOptions[i].normalized, steeringOptions[i].magnitude * lookAheadTime, ~(1 << 9));
         }
 
-        JobHandle castJobHandle = SpherecastCommand.ScheduleBatch(nativeData.castCommands, nativeData.castResults, 1, default);
-        
+        JobHandle castJobHandle = SpherecastCommand.ScheduleBatch(steeringNativeData.castCommands, steeringNativeData.castResults, 1, default);
+
+        ScoreAllSolutionsJob scoreJobData = GetScoringJob(desiredForward);
+
+        // Do score job after cast job
+        JobHandle scoreJobHandle = scoreJobData.Schedule(steeringOptions.Length, 1, castJobHandle);
+
+        TakeBestSolutionJob takeBestJob = new TakeBestSolutionJob();
+        takeBestJob.scores = steeringNativeData.scores;
+        takeBestJob.steeringOptions = steeringNativeData.nativeSteeringOptions;
+        takeBestJob.result = steeringNativeData.bestSolution;
+
+        // Do take best job after score job
+        JobHandle takeBestHandle = takeBestJob.Schedule(scoreJobHandle);
+
+        return takeBestHandle;
+    }
+
+    private ScoreAllSolutionsJob GetScoringJob(Vector3 desiredForward)
+    {
         ScoreAllSolutionsJob scoreJobData = new ScoreAllSolutionsJob();
-        scoreJobData.hitResults = nativeData.castResults;
-        scoreJobData.steeringOptions = nativeData.nativeSteeringOptions;
-        scoreJobData.scores = nativeData.scores;
+        scoreJobData.hitResults = steeringNativeData.castResults;
+        scoreJobData.steeringOptions = steeringNativeData.nativeSteeringOptions;
+        scoreJobData.scores = steeringNativeData.scores;
         scoreJobData.targetPosition = targetPosition;
         scoreJobData.idealDirection = desiredForward;
         scoreJobData.currentVelocity = shipControls.Velocity;
@@ -306,18 +331,7 @@ public class AIShip : MonoBehaviour
         scoreJobData.targetProxValue = targetProxValue;
         scoreJobData.minimalSteerValue = minimalSteerValue;
 
-        // Do score job after cast job
-        JobHandle scoreJobHandle = scoreJobData.Schedule(steeringOptions.Length, 1, castJobHandle);
-
-        TakeBestSolutionJob takeBestJob = new TakeBestSolutionJob();
-        takeBestJob.scores = nativeData.scores;
-        takeBestJob.steeringOptions = nativeData.nativeSteeringOptions;
-        takeBestJob.result = nativeData.bestSolution;
-
-        // Do take best job after score job
-        JobHandle takeBestHandle = takeBestJob.Schedule(scoreJobHandle);
-
-        return takeBestHandle;
+        return scoreJobData;
     }
 
     private struct GetSteerInputJob : IJob
