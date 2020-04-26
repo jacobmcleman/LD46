@@ -89,7 +89,7 @@ public class AIAttackState : MonoBehaviour, IWieldable
         else { decoyTimer = 0; }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (friendly)
         {
