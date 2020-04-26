@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Targeting : MonoBehaviour
 {
@@ -10,24 +11,42 @@ public class Targeting : MonoBehaviour
     public TargetHud targettingHud;
     public TargetHud closeDebrisHud;
 
+    public InputActionAsset controls;
+    private InputAction getBestAction;
+    private InputAction getNextAction;
+
     public string TargetTag = "Enemy";
     public string DebrisTag = "Lootz";
 
     private GameObject[] loots;
     private int enemyIndex = 0;
 
-    private Controls controls;
-
     private void Start()
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
     }
-
-    void Awake ()
+     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.GetBestTarget.performed += ctx => Target = GetBestTarget();
-        controls.PlayerControls.GetNextTarget.performed += ctx => Target = GetNextTarget();
+        getBestAction = controls.actionMaps[0].FindAction("GetBestTarget", true);
+        getNextAction = controls.actionMaps[0].FindAction("GetNextTarget", true);
+        getBestAction.performed += GetBestTargetAction;
+        getNextAction.performed += GetNextTargetAction;
+    }
+
+    void GetBestTargetAction (InputAction.CallbackContext ctx)
+    {
+        Target = GetBestTarget();
+    }
+
+    void GetNextTargetAction (InputAction.CallbackContext ctx)
+    {
+        Target = GetNextTarget();
+    }
+
+    void OnDisable ()
+    {
+        getBestAction.performed -= GetBestTargetAction;
+        getNextAction.performed -= GetNextTargetAction;
     }
 
     private void Update()
@@ -96,13 +115,4 @@ public class Targeting : MonoBehaviour
         return loots[enemyIndex].transform;
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

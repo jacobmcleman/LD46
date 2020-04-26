@@ -37,6 +37,14 @@ public class SFXController : MonoBehaviour
         }
     }
 
+    void Start ()
+    {
+        if(PlayerPrefs.HasKey("sfx_volume"))
+        {
+            mixer.SetFloat("SfxVol", PlayerPrefs.GetFloat("sfx_volume"));
+        }
+    }
+
     public void PlayToolTipSFX (AudioSource source)
     {
         source.Stop();

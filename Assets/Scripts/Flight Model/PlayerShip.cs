@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(SpaceshipController))]
 public class PlayerShip : MonoBehaviour
@@ -15,17 +16,54 @@ public class PlayerShip : MonoBehaviour
     private float curYaw;
     private float curRoll;
 
+    public InputActionAsset controls;
+    private InputAction throttle;
+    private InputAction pitch;
+    private InputAction yaw;
+    private InputAction roll;
+
     public float mouseSensitivity = 0.01f;
 
-    private Controls controls;
 
     void Awake ()
+    {   
+        throttle = controls.actionMaps[0].FindAction("Throttle", true);
+        pitch = controls.actionMaps[0].FindAction("Pitch", true);
+        yaw = controls.actionMaps[0].FindAction("Yaw", true);
+        roll = controls.actionMaps[0].FindAction("Roll", true);
+        
+        throttle.performed += ThrottleAction;
+        pitch.performed += PitchAction;
+        yaw.performed += YawAction;
+        roll.performed += RollAction;
+    }
+
+    void OnDisable ()
     {
-        controls = new Controls();
-        controls.PlayerControls.Throttle.performed += ctx => stick.ThrottleInput = ctx.ReadValue<float>();
-        controls.PlayerControls.Pitch.performed += ctx => curPitch = ctx.ReadValue<float>();
-        controls.PlayerControls.Yaw.performed += ctx => curYaw = ctx.ReadValue<float>();
-        controls.PlayerControls.Roll.performed += ctx => curRoll = ctx.ReadValue<float>();
+        throttle.performed -= ThrottleAction;
+        pitch.performed -= PitchAction;
+        yaw.performed -= YawAction;
+        roll.performed -= RollAction;
+    }
+
+    void ThrottleAction (InputAction.CallbackContext ctx)
+    {
+        stick.ThrottleInput = ctx.ReadValue<float>();
+    }
+
+    void PitchAction (InputAction.CallbackContext ctx)
+    {
+        curPitch = ctx.ReadValue<float>();
+    }
+
+    void YawAction (InputAction.CallbackContext ctx)
+    {
+        curYaw = ctx.ReadValue<float>();
+    }
+
+    void RollAction (InputAction.CallbackContext ctx)
+    {
+        curRoll = ctx.ReadValue<float>();
     }
 
     void Start()
@@ -63,13 +101,4 @@ public class PlayerShip : MonoBehaviour
         mouseUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(curYaw * 100, curPitch * -100);
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

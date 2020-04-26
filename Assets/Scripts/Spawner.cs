@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Spawner : MonoBehaviour
 {
@@ -34,14 +35,20 @@ public class Spawner : MonoBehaviour
 
     private IInventory WhaleInventory;
 
-    private Controls controls;
+    public InputActionAsset controls;
+    private InputAction continuea;
 
     private bool won;
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.Continue.performed += ctx => Continue();
+        continuea = controls.actionMaps[0].FindAction("Continue", true);
+        continuea.performed += ContinueAction;
+    }
+
+    void OnDisable ()
+    {
+        continuea.performed -= ContinueAction;
     }
 
     // Start is called before the first frame update
@@ -50,7 +57,10 @@ public class Spawner : MonoBehaviour
         won = false;
         CurWave = 0;
         Whale = GameObject.FindGameObjectWithTag("Whale");
-
+        if (Whale == null)
+        {
+            Debug.LogError("No whale wtf");
+        }
         if (AsteroidPrefabs.Length == 0)
         {
             Debug.LogError("No asteroids you dummy");
@@ -117,9 +127,19 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    void ContinueAction (InputAction.CallbackContext ctx)
+    {
+        Continue();
+    }
+
     void Continue ()
     {
-        if (Enemies.Count == 0 && startedSpawningEnemy && SceneManager.GetActiveScene().name != "Level1"  && CurWave >= (Waves.Count))
+        if (
+            Enemies.Count == 0 && startedSpawningEnemy && 
+            SceneManager.GetActiveScene().name != "Level1" && 
+            SceneManager.GetActiveScene().name != "IntroCutscene" && 
+            CurWave >= (Waves.Count)
+        )
         {
             if (!won) { wonlevel(); }
             else
@@ -150,7 +170,6 @@ public class Spawner : MonoBehaviour
     public void SetWhaleStats()
     {
         WhaleInventory = Whale.GetComponent<IInventory>();
-        Debug.Log("Adding Organics: " + WhaleInventory.Organics + " Adding Mechanics: " + WhaleInventory.Mechanicals);
         WhaleStats.instance.Organics += WhaleInventory.Organics;
         WhaleStats.instance.Mechanicals += WhaleInventory.Mechanicals;
         WhaleStats.instance.Waves = Waves;
@@ -239,13 +258,4 @@ public class Spawner : MonoBehaviour
         Avoids.Add(roid.transform); //Add it to the avoid list
     }
 
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
-    }
 }

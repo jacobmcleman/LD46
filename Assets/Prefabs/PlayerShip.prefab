@@ -1048,6 +1048,7 @@ GameObject:
   - component: {fileID: 1885469770}
   - component: {fileID: 1885469771}
   - component: {fileID: 182130676186911423}
+  - component: {fileID: 1106710272}
   m_Layer: 12
   m_Name: PlayerShip
   m_TagString: Player
@@ -1156,6 +1157,8 @@ MonoBehaviour:
   speedText: {fileID: 0}
   mouseUI: {fileID: 0}
   stick: {fileID: 7136200531599415436}
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
   mouseSensitivity: 0.03
 --- !u!114 &7136200531599415543
 MonoBehaviour:
@@ -1172,6 +1175,8 @@ MonoBehaviour:
   MaxOrganics: 100
   MaxMechanicals: 100
   feedDistance: 200
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
   OrganicChunk: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
   MechanicalChunk: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
@@ -1190,6 +1195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e266b7362f58b4f8573055afe06114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
   weapon1: {fileID: 3306749232337220564}
   weapon2: {fileID: 623143629380421134}
 --- !u!114 &7136200531599415541
@@ -1223,6 +1230,8 @@ MonoBehaviour:
   Target: {fileID: 0}
   targettingHud: {fileID: 1885469770}
   closeDebrisHud: {fileID: 182130676186911423}
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
   TargetTag: Enemy
   DebrisTag: Resource
 --- !u!114 &7136200531599415547
@@ -1243,6 +1252,8 @@ MonoBehaviour:
   TargetTag: Enemy
   cooldown: 2
   additionalFireSpeed: 20
+  controls: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
 --- !u!114 &1885469760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,7 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066fbf269c31f70498ea44f241d724e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTargetTag: 
+  InitialTargetTag: Enemy
   uiElementSize: 100
   IndicatorUI: {fileID: 0}
   LeadPip: 1
@@ -1308,6 +1319,37 @@ MonoBehaviour:
   IndicatorUI: {fileID: 0}
   LeadPip: 0
   projPrefab: {fileID: 0}
+--- !u!114 &1106710272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136200531599415437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c012dfe65137dbe47979dcf479049300,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player Controls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7136200531895547231
 GameObject:
   m_ObjectHideFlags: 0

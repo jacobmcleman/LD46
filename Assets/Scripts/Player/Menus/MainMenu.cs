@@ -29,14 +29,15 @@ public class MainMenu : MonoBehaviour
     void Start ()
     {
         //Make sure whale isn't name and we haven't been memed yet
-        if (PlayerPrefs.HasKey("whale_name") && PlayerPrefs.GetString("whale_name") != "Why did you wanna rename me :("){
+        if (PlayerPrefs.HasKey("whale_name") && PlayerPrefs.GetString("whale_name") != "Your Mom"){
             //Whale is already named, trigger meme sequence
             DisplayMenu(namingMemePrefab);
-            GameObject.Find("MemePromptHeader").GetComponent<Text>().text = $"You have named you whale {PlayerPrefs.GetString("whale_name")}";
+            GameObject.Find("MemePromptHeader").GetComponent<Text>().text = $"You have named your whale {PlayerPrefs.GetString("whale_name")}";
         } else {
             //Whale is not yet named, let them name the whale
             DisplayMenu(namingPromptPrefab);
         }
+        GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
     }
 
     //*
@@ -58,6 +59,7 @@ public class MainMenu : MonoBehaviour
             //Show base menu
             DisplayMenu(baseMenuPrefab);
         }
+        GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
     }
 
     //This player tried to rename their whale, we must meme on them
@@ -91,7 +93,7 @@ public class MainMenu : MonoBehaviour
         //Disable all current menu items
         foreach (Transform t in GameObject.Find("Canvas").transform)
         {
-            if (t.gameObject.name != "background_image")
+            if (t.gameObject.name != "Whalestrom" && t.gameObject.name != "BaseMenuSub")
             {
                 t.gameObject.SetActive(false);
             }
@@ -102,12 +104,13 @@ public class MainMenu : MonoBehaviour
         //If its the base menu scene, upate the sub header with the whale name
         if (menu.gameObject.name == "BaseMenu")
         {
-            GameObject.Find("BaseMenuSub").GetComponent<Text>().text = $"Your whale is named {PlayerPrefs.GetString("whale_name")}";
             //Also add this method from the scene controller onto our start game button
             //We can't assign this manually in scene because the scene controller gets 
             //Instantiated in the previous scene
             GameObject.Find("Go").GetComponent<Button>().onClick.AddListener(SceneController.instance.LoadIntroCinematic);
             GameObject.Find("Skip").GetComponent<Button>().onClick.AddListener(SceneController.instance.NextLevel);
+            GameObject.Find("Skip").GetComponent<Button>().onClick.AddListener(MusicController.instance.PlayNextSong);
+            GameObject.Find("Quit").GetComponent<Button>().onClick.AddListener(SceneController.instance.QuitGame);
         }
     }
 

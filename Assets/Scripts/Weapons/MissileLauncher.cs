@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MissileLauncher : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class MissileLauncher : MonoBehaviour
 
     public float additionalFireSpeed = 10.0f;
 
-    private Controls controls;
+    public InputActionAsset controls;
+    private InputAction fire;
 
     void Start ()
     {
@@ -29,8 +31,18 @@ public class MissileLauncher : MonoBehaviour
 
     void Awake ()
     {
-        controls = new Controls();
-        controls.PlayerControls.SecondaryFire.performed += ctx => Shoot();
+        fire = controls.actionMaps[0].FindAction("SecondaryFire", true);
+        fire.performed += ShootAction;
+    }
+
+    private void OnDisable ()
+    {
+        fire.performed -= ShootAction;
+    }
+
+    void ShootAction (InputAction.CallbackContext ctx)
+    {
+        Shoot();
     }
 
     void Shoot()
@@ -79,15 +91,5 @@ public class MissileLauncher : MonoBehaviour
         {
             missile.GetComponent<SpaceshipController>().Velocity = myRb.velocity + (transform.forward * additionalFireSpeed);
         }
-    }
-
-    void OnEnable ()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable ()
-    {
-        controls.Disable();
     }
 }
