@@ -176,10 +176,13 @@ public class AIShip : MonoBehaviour
 
     private void FreeEphemeralNativeData()
     {
-        steeringNativeData.castCommands.Dispose();
-        steeringNativeData.castResults.Dispose();
-        steeringNativeData.nativeSteeringOptions.Dispose();
-        steeringNativeData.scores.Dispose();
+        if (!firstFrame && doCollisionAvoidance)
+        {
+            steeringNativeData.castCommands.Dispose();
+            steeringNativeData.castResults.Dispose();
+            steeringNativeData.scores.Dispose();
+            steeringNativeData.nativeSteeringOptions.Dispose();
+        }
     }
 
     private Vector3 GetIdealDirection()
