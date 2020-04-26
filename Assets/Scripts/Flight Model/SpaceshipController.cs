@@ -194,7 +194,7 @@ public class SpaceshipController : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         HandleVelocity();
         HandleRotation();
