@@ -57,7 +57,7 @@ public class AIShip : MonoBehaviour
         shipControls = GetComponent<SpaceshipController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 desiredForward = GetIdealDirection();
         if(doCollisionAvoidance) desiredForward = LookAheadCheck(desiredForward);
