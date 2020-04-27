@@ -46,7 +46,7 @@ public class TargetHud : MonoBehaviour
         myShip = GetComponent<SpaceshipController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Target != null)
         {
