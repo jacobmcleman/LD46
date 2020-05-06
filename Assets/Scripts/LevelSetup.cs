@@ -33,6 +33,7 @@ public class LevelSetup : MonoBehaviour
 
             Spawner sp = gameObject.GetComponent<Spawner>();
             sp.Waves = WhaleStats.instance.Waves;
+            Debug.Log(WhaleStats.instance.Waves.Count);
             sp.Waves.Add(sp.Waves[sp.Waves.Count - 1]);
             for (int i = 0; i < sp.Waves.Count; i++)
             {

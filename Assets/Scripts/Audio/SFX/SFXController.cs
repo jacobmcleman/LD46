@@ -87,7 +87,7 @@ public class SFXController : MonoBehaviour
         //this is probably bad
         if (source == null) return;
         int rand = Random.Range(0, crashSounds.Length);
-        source.PlayOneShot(crashSounds[rand], 3f);
+        source.PlayOneShot(crashSounds[rand], 4f);
     }
 
     public void PlayHitmarkerSound (AudioSource source)
@@ -97,18 +97,23 @@ public class SFXController : MonoBehaviour
 
     public void PlayKillConfirmedSound (AudioSource source)
     {
-        source.PlayOneShot(combatSounds[0], 1f);
+        source.PlayOneShot(combatSounds[0], 3f);
     }
 
     public void PlayNewTargetSound (AudioSource source)
     {
         int rand = Random.Range(0, blipSounds.Length);
-        source.PlayOneShot(blipSounds[rand], 3f);
+        source.PlayOneShot(blipSounds[rand], 2f);
     }
 
-    public void PlayGetShotSound (AudioSource source)
+    public void PlayPlayerDamagedSound (AudioSource source)
     {
+        source.PlayOneShot(beeps[9], 2f);
+    }
 
+    public void PlayPlayerDeathSound (AudioSource source)
+    {
+        source.PlayOneShot(beeps[10], 3f);
     }
 
     public void PlayRandomDeathSound (AudioSource source, string type)
@@ -117,7 +122,7 @@ public class SFXController : MonoBehaviour
         AudioClip[] deathSounds = type == "organic" ? organicExplosions : inorganicExplosions;
         int rand = Random.Range(0, deathSounds.Length);
         Debug.Log(rand);
-        source.PlayOneShot(deathSounds[rand], 10f);
+        source.PlayOneShot(deathSounds[rand], 2f);
     }
 
     public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)
