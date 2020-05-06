@@ -12,10 +12,10 @@ public class SFXController : MonoBehaviour
     public AudioClip[] overheatSounds;
     public AudioClip[] crashSounds;
     public AudioClip[] missileSounds;
-
     public AudioClip[] gunSounds;
     public AudioClip[] organicExplosions;
     public AudioClip[] inorganicExplosions;
+    public AudioClip[] blipSounds;
 
     public UnityEngine.Audio.AudioMixer mixer;
 
@@ -64,7 +64,7 @@ public class SFXController : MonoBehaviour
         source.Stop();
         source.clip = missileSounds[0];
         source.Play();
-        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .3f));
+        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .1f));
     }
 
     public void PlayRocketExplosionSFX (AudioSource source)
@@ -82,6 +82,10 @@ public class SFXController : MonoBehaviour
 
     public void PlayRNGCrashNoise (AudioSource source)
     {
+        //Sometimes we crash into a dead enemy with no existing audio source anymore
+        //so I check if it's null
+        //this is probably bad
+        if (source == null) return;
         int rand = Random.Range(0, crashSounds.Length);
         source.PlayOneShot(crashSounds[rand], 3f);
     }
@@ -98,7 +102,8 @@ public class SFXController : MonoBehaviour
 
     public void PlayNewTargetSound (AudioSource source)
     {
-        source.PlayOneShot(combatSounds[3], 1f);
+        int rand = Random.Range(0, blipSounds.Length);
+        source.PlayOneShot(blipSounds[rand], 3f);
     }
 
     public void PlayGetShotSound (AudioSource source)
