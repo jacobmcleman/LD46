@@ -16,6 +16,12 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     private bool hasSpawned;
 
+    //If you are seeing this I forgot to go look for an enemy type enum
+    public string enemyType;
+
+    private AudioSource deathSfx;
+    private AudioSource hitmarkerSfx;
+
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
         if (team == attackerTeam) 
@@ -28,7 +34,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
         if (health - damage <= 0)
         {
             Debug.Log("Dead Hit :: EnemyHealth");
-            UIManager.instance.DisplayToolTip("Enemy Defeated", 1);
+            SFXController.instance.PlayKillConfirmedSound(hitmarkerSfx);
+            SFXController.instance.PlayRandomDeathSound(deathSfx, enemyType);
             //Die
             if (!hasSpawned)
             {
@@ -44,6 +51,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         {
             Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
+            SFXController.instance.PlayHitmarkerSound(hitmarkerSfx);
             return false;
         }
     }
@@ -66,17 +74,22 @@ public class EnemyHealth : MonoBehaviour, IHealth
         hasSpawned = false;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
-        
+        foreach (Transform t in GameObject.FindGameObjectWithTag("Player").transform)
+        {
+            if (t.gameObject.tag == "RandSFX")
+            {
+                hitmarkerSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+        }
+        foreach (Transform t in gameObject.transform)
+        {
+            if (t.gameObject.tag == "RandSFX")
+            {
+                deathSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
 }

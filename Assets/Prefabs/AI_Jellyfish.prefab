@@ -731,6 +731,7 @@ MonoBehaviour:
   _MaxHealth: 250
   resourceDrop: {fileID: 3742321630679069900, guid: 108cb835534714b4ab9a538ae674df9e,
     type: 3}
+  enemyType: organic
 --- !u!1001 &3415377523435965588
 PrefabInstance:
   m_ObjectHideFlags: 0

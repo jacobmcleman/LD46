@@ -87,8 +87,8 @@ public class SFXController : MonoBehaviour
     }
 
     public void PlayHitmarkerSound (AudioSource source)
-    {
-        source.PlayOneShot(combatSounds[2], 1f);
+    {   
+        source.PlayOneShot(combatSounds[2], 2f);
     }
 
     public void PlayKillConfirmedSound (AudioSource source)
@@ -99,6 +99,20 @@ public class SFXController : MonoBehaviour
     public void PlayNewTargetSound (AudioSource source)
     {
         source.PlayOneShot(combatSounds[3], 1f);
+    }
+
+    public void PlayGetShotSound (AudioSource source)
+    {
+
+    }
+
+    public void PlayRandomDeathSound (AudioSource source, string type)
+    {
+        //This should change to an enum
+        AudioClip[] deathSounds = type == "organic" ? organicExplosions : inorganicExplosions;
+        int rand = Random.Range(0, deathSounds.Length);
+        Debug.Log(rand);
+        source.PlayOneShot(deathSounds[rand], 10f);
     }
 
     public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)

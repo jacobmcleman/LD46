@@ -195,7 +195,11 @@ MonoBehaviour:
   gunSounds:
   - {fileID: 8300000, guid: 10a1f9e20b8030741901fc2bb767ffd2, type: 3}
   - {fileID: 8300000, guid: cda281dfa13d931499b55069fe566a46, type: 3}
-  organicExplosions: []
+  organicExplosions:
+  - {fileID: 8300000, guid: d0cac6411ffe9d94c83cdc6948f6729f, type: 3}
+  - {fileID: 8300000, guid: 3935c84a9c970974ba7b0fa5f9efe66c, type: 3}
+  - {fileID: 8300000, guid: 76dd2a88a1fa2d64cb94c6efa8f7d6ae, type: 3}
+  - {fileID: 8300000, guid: 6cd83f89daf9a3440833da4347a69e1c, type: 3}
   inorganicExplosions:
   - {fileID: 8300000, guid: ecb9e607ec551f74dbb156adf39bdafd, type: 3}
   - {fileID: 8300000, guid: 26a656aa94a38df43ad35503f6b0af24, type: 3}
