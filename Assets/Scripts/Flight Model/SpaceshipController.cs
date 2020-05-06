@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,6 +90,8 @@ public class SpaceshipController : MonoBehaviour
         get { return 1 - (Vector3.Dot(transform.forward, Velocity) / 2) + 0.5f;  }
     }
 
+    private AudioSource randSfx;
+
     private void Awake()
     {
         DoDumbConfigChecks();
@@ -105,6 +107,13 @@ public class SpaceshipController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         oldAD = rb.angularDrag;
+        foreach (Transform t in gameObject.transform)
+        {
+            if (t.gameObject.tag == "RandSFX")
+            {
+                randSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+        }
     }
 
     private void DoDumbConfigChecks()
@@ -165,7 +174,7 @@ public class SpaceshipController : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-       //SFXController.instance.PlayRNGCrashNoise();
+        SFXController.instance.PlayRNGCrashNoise(randSfx);
         if (Bouncer)
         {
             Vector3 collisionNormal = col.contacts[0].normal;

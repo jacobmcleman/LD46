@@ -17,6 +17,7 @@ TagManager:
   - MechUpBit
   - Teammate
   - BindingManager
+  - RandSFX
   layers:
   - Default
   - TransparentFX

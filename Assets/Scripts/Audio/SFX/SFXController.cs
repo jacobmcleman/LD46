@@ -10,13 +10,12 @@ public class SFXController : MonoBehaviour
     public AudioClip[] cargoLauncherSounds;
     public AudioClip[] combatSounds;
     public AudioClip[] overheatSounds;
+    public AudioClip[] crashSounds;
     public AudioClip[] missileSounds;
 
     public AudioClip[] gunSounds;
     public AudioClip[] organicExplosions;
     public AudioClip[] inorganicExplosions;
-
-    public AudioClip[] collisions;
 
     public UnityEngine.Audio.AudioMixer mixer;
 
@@ -81,6 +80,27 @@ public class SFXController : MonoBehaviour
         source.PlayOneShot(beeps[11] , 1f);
     }
 
+    public void PlayRNGCrashNoise (AudioSource source)
+    {
+        int rand = Random.Range(0, crashSounds.Length);
+        source.PlayOneShot(crashSounds[rand], 3f);
+    }
+
+    public void PlayHitmarkerSound (AudioSource source)
+    {
+        source.PlayOneShot(combatSounds[2], 1f);
+    }
+
+    public void PlayKillConfirmedSound (AudioSource source)
+    {
+        source.PlayOneShot(combatSounds[0], 1f);
+    }
+
+    public void PlayNewTargetSound (AudioSource source)
+    {
+        source.PlayOneShot(combatSounds[3], 1f);
+    }
+
     public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)
     {
         int rand = Random.Range(0, 1);
@@ -99,12 +119,6 @@ public class SFXController : MonoBehaviour
     public void PlayOverheatWarning (AudioSource source, Vector3 position)
     {
         AudioSource.PlayClipAtPoint(overheatSounds[1], position, 1.3f);
-    }
-
-    public void PlayRNGCrashNoise (AudioSource source)
-    {
-        source.Stop();
-        source.Play();
     }
 
     private IEnumerator PlayAfterDelay (AudioSource source, AudioClip clip, float delay, float vol)

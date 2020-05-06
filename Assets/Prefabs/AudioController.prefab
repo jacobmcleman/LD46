@@ -179,9 +179,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a70274d5737bf6429352d0b2ba614e0, type: 3}
   - {fileID: 8300000, guid: 2d1b764973b213547be56c5d96353b02, type: 3}
   - {fileID: 8300000, guid: 447ff82b7e2cb1e4ea9aa46f0231ccb3, type: 3}
+  - {fileID: 8300000, guid: e35ce9c81255d76429ceb44f791fdef5, type: 3}
   overheatSounds:
   - {fileID: 8300000, guid: 58713f43268d5de409475d8f4a2fa5e3, type: 3}
   - {fileID: 8300000, guid: d9a8ecad5a9763940980d80d4a900d91, type: 3}
+  crashSounds:
+  - {fileID: 8300000, guid: a28bebc0b3229504d8ab41ce82b1ade0, type: 3}
+  - {fileID: 8300000, guid: f492ec0b3477e2e499a6690baee26c8d, type: 3}
+  - {fileID: 8300000, guid: fc354a5a4efbf234f9402c72fb7f683d, type: 3}
+  - {fileID: 8300000, guid: c879dad391033f54494e9db182b78e56, type: 3}
+  - {fileID: 8300000, guid: 8fca80c259dc4ba46a7e9d4fe74ad89c, type: 3}
   missileSounds:
   - {fileID: 8300000, guid: 9a983df56488695449b276e3da3d96be, type: 3}
   - {fileID: 8300000, guid: 8b37309f5f103ca4d9a4d867c340bcd5, type: 3}
@@ -195,5 +202,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4209da6028354a347bf98ccf480055c2, type: 3}
   - {fileID: 8300000, guid: 830a1a90864f1ae499cb8ad5d89805e0, type: 3}
   - {fileID: 8300000, guid: 4b080ece91853e140bb15a5ac3a596e3, type: 3}
-  collisions: []
   mixer: {fileID: 24100000, guid: 9136029f821104b4fa786e9bd8f47946, type: 2}
