@@ -8,15 +8,21 @@ public class SFXController : MonoBehaviour
 
     public AudioClip[] beeps;
     public AudioClip[] cargoLauncherSounds;
-    public AudioClip[] combatSounds;
-    public AudioClip[] overheatSounds;
-    public AudioClip[] missileSounds;
-
+    public AudioClip[] crashSounds;
     public AudioClip[] gunSounds;
     public AudioClip[] organicExplosions;
     public AudioClip[] inorganicExplosions;
+    public AudioClip[] blipSounds;
 
-    public AudioClip[] collisions;
+    public AudioClip hitmarkerSound;
+    public AudioClip cooldownSound;
+    public AudioClip confirmedKillSound;
+    public AudioClip toolTipSound;
+    public AudioClip resourcePickupSound;
+    public AudioClip upgradePurchasedSound;
+    public AudioClip overheatCooldownSound;
+    public AudioClip overheatWarningSound;
+    public AudioClip missileLaunchSound;
 
     public UnityEngine.Audio.AudioMixer mixer;
 
@@ -48,24 +54,22 @@ public class SFXController : MonoBehaviour
     public void PlayToolTipSFX (AudioSource source)
     {
         source.Stop();
-        source.clip = beeps[6];
+        source.clip = toolTipSound;
         source.Play();
     }
 
     public void PlayResourcePickupSFX (AudioSource source)
     {
         source.Stop();
-        source.clip = beeps[7];
+        source.clip = resourcePickupSound;
         source.Play();
 
     }
 
     public void PlayRocketLaunchCooldownSFX (AudioSource source)
     {
-        source.Stop();
-        source.clip = missileSounds[0];
-        source.Play();
-        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .3f));
+        source.PlayOneShot(missileLaunchSound, 1f);
+        StartCoroutine(PlayAfterDelay(source, cooldownSound, 1f, .1f));
     }
 
     public void PlayRocketExplosionSFX (AudioSource source)
@@ -78,7 +82,52 @@ public class SFXController : MonoBehaviour
 
     public void PlayUpgradedSound (AudioSource source)
     {
-        source.PlayOneShot(beeps[11] , 1f);
+        source.PlayOneShot(upgradePurchasedSound, 1f);
+    }
+
+    public void PlayRNGCrashNoise (AudioSource source)
+    {
+        //Sometimes we crash into a dead enemy with no existing audio source anymore
+        //so I check if it's null
+        //this is probably bad?? idk but if this was javascript this wouldn't be good
+        if (source == null) return;
+        int rand = Random.Range(0, crashSounds.Length);
+        source.PlayOneShot(crashSounds[rand], 4f);
+    }
+
+    public void PlayHitmarkerSound (AudioSource source, float pitch)
+    {   
+        mixer.SetFloat("HitmarkerPitch", pitch);
+        source.PlayOneShot(hitmarkerSound, 1.5f);
+    }
+
+    public void PlayKillConfirmedSound (AudioSource source)
+    {
+        mixer.SetFloat("HitmarkerPitch", 1f);
+        source.PlayOneShot(confirmedKillSound, 3f);
+    }
+
+    public void PlayNewTargetSound (AudioSource source)
+    {
+        int rand = Random.Range(0, blipSounds.Length);
+        source.PlayOneShot(blipSounds[rand], 2f);
+    }
+
+    public void PlayPlayerDamagedSound (AudioSource source)
+    {
+        source.PlayOneShot(beeps[9], 2f);
+    }
+
+    public void PlayPlayerDeathSound (AudioSource source)
+    {
+        source.PlayOneShot(beeps[10], 3f);
+    }
+
+    public void PlayRandomDeathSound (AudioSource source, EnemyType type)
+    {
+        AudioClip[] deathSounds = type == EnemyType.Organic ? organicExplosions : inorganicExplosions;
+        int rand = Random.Range(0, deathSounds.Length);
+        source.PlayOneShot(deathSounds[rand], 2f);
     }
 
     public void PlayRNGGunShot (AudioSource source, float pitch, Vector3 position)
@@ -91,20 +140,14 @@ public class SFXController : MonoBehaviour
     public void PlayGunOverheat (AudioSource source)
     {
         source.Stop();
-        source.clip = overheatSounds[0];
+        source.clip = overheatCooldownSound;
         mixer.SetFloat("GunPitch", 1f);
         source.Play();
     }
 
     public void PlayOverheatWarning (AudioSource source, Vector3 position)
     {
-        AudioSource.PlayClipAtPoint(overheatSounds[1], position, 1.3f);
-    }
-
-    public void PlayRNGCrashNoise (AudioSource source)
-    {
-        source.Stop();
-        source.Play();
+        AudioSource.PlayClipAtPoint(overheatWarningSound, position, 1.3f);
     }
 
     private IEnumerator PlayAfterDelay (AudioSource source, AudioClip clip, float delay, float vol)

@@ -21,9 +21,18 @@ public class Targeting : MonoBehaviour
     private GameObject[] loots;
     private int enemyIndex = 0;
 
+    private AudioSource targetingSfx;
+
     private void Start()
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
+        foreach (Transform t in GameObject.FindGameObjectWithTag("PlayerSFX").transform)
+        {
+            if (t.gameObject.tag == "RandSFX")
+            {
+                targetingSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+        }
     }
      void Awake ()
     {
@@ -36,11 +45,13 @@ public class Targeting : MonoBehaviour
     void GetBestTargetAction (InputAction.CallbackContext ctx)
     {
         Target = GetBestTarget();
+        SFXController.instance.PlayNewTargetSound(targetingSfx);
     }
 
     void GetNextTargetAction (InputAction.CallbackContext ctx)
     {
         Target = GetNextTarget();
+        SFXController.instance.PlayNewTargetSound(targetingSfx);
     }
 
     void OnDisable ()
