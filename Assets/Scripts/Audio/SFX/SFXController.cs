@@ -98,7 +98,6 @@ public class SFXController : MonoBehaviour
     public void PlayHitmarkerSound (AudioSource source, float pitch)
     {   
         mixer.SetFloat("HitmarkerPitch", pitch);
-        Debug.Log(pitch);
         source.PlayOneShot(hitmarkerSound, 1.5f);
     }
 
