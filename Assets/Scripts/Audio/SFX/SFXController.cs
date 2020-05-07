@@ -116,10 +116,9 @@ public class SFXController : MonoBehaviour
         source.PlayOneShot(beeps[10], 3f);
     }
 
-    public void PlayRandomDeathSound (AudioSource source, string type)
+    public void PlayRandomDeathSound (AudioSource source, EnemyType type)
     {
-        //This should change to an enum
-        AudioClip[] deathSounds = type == "organic" ? organicExplosions : inorganicExplosions;
+        AudioClip[] deathSounds = type == EnemyType.Organic ? organicExplosions : inorganicExplosions;
         int rand = Random.Range(0, deathSounds.Length);
         Debug.Log(rand);
         source.PlayOneShot(deathSounds[rand], 2f);

@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    Organic,
+    Inorganic
+}
+
 public class EnemyHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
@@ -16,8 +22,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     private bool hasSpawned;
 
-    //If you are seeing this I forgot to go look for an enemy type enum
-    public string enemyType;
+    public EnemyType enemyType;
 
     private AudioSource deathSfx;
     private AudioSource hitmarkerSfx;
