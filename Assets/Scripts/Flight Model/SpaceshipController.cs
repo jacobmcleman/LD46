@@ -107,7 +107,10 @@ public class SpaceshipController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         oldAD = rb.angularDrag;
-        foreach (Transform t in gameObject.transform)
+        GameObject sfxDad = this.gameObject.tag == "Player" 
+            ? GameObject.FindGameObjectWithTag("PlayerSFX")
+            : this.gameObject;
+        foreach (Transform t in sfxDad.transform)
         {
             if (t.gameObject.tag == "RandSFX")
             {

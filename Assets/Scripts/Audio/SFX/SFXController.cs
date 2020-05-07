@@ -61,9 +61,7 @@ public class SFXController : MonoBehaviour
 
     public void PlayRocketLaunchCooldownSFX (AudioSource source)
     {
-        source.Stop();
-        source.clip = missileSounds[0];
-        source.Play();
+        source.PlayOneShot(missileSounds[0], 1f);
         StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .1f));
     }
 
@@ -84,19 +82,22 @@ public class SFXController : MonoBehaviour
     {
         //Sometimes we crash into a dead enemy with no existing audio source anymore
         //so I check if it's null
-        //this is probably bad
+        //this is probably bad?? idk but if this was javascript this wouldn't be good
         if (source == null) return;
         int rand = Random.Range(0, crashSounds.Length);
         source.PlayOneShot(crashSounds[rand], 4f);
     }
 
-    public void PlayHitmarkerSound (AudioSource source)
+    public void PlayHitmarkerSound (AudioSource source, float pitch)
     {   
-        source.PlayOneShot(combatSounds[2], 2f);
+        mixer.SetFloat("HitmarkerPitch", pitch);
+        Debug.Log(pitch);
+        source.PlayOneShot(combatSounds[2], 1.5f);
     }
 
     public void PlayKillConfirmedSound (AudioSource source)
     {
+        mixer.SetFloat("HitmarkerPitch", 1f);
         source.PlayOneShot(combatSounds[0], 3f);
     }
 
@@ -120,7 +121,6 @@ public class SFXController : MonoBehaviour
     {
         AudioClip[] deathSounds = type == EnemyType.Organic ? organicExplosions : inorganicExplosions;
         int rand = Random.Range(0, deathSounds.Length);
-        Debug.Log(rand);
         source.PlayOneShot(deathSounds[rand], 2f);
     }
 

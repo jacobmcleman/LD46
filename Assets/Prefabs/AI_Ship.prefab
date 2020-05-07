@@ -821,7 +821,7 @@ MonoBehaviour:
   _MaxHealth: 100
   resourceDrop: {fileID: 1321897666370553892, guid: 6b6e60c5bbc664f4c800c8ae43cc9706,
     type: 3}
-  enemyType: inorganic
+  enemyType: 1
 --- !u!114 &-7012445760594830742
 MonoBehaviour:
   m_ObjectHideFlags: 0

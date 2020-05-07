@@ -15,6 +15,7 @@ AudioMixerGroupController:
   - {fileID: 3123723270253507364}
   - {fileID: -960158301151742140}
   - {fileID: 5355766042191226501}
+  - {fileID: 7988661809580116465}
   m_Volume: e642cda2338cbb249a097d86fd1090ad
   m_Pitch: 1d5cc2b4cc6c35840be2d220bb05a1a2
   m_Send: 00000000000000000000000000000000
@@ -64,6 +65,28 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-5901863954724416948
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ef56611fbd89b81499f000699a8e963c
+  m_EffectName: Pitch Shifter
+  m_MixLevel: feb67b7e5547bfb4bb520830afe6be56
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: 60b59d19ee833f34491607f2462aeaf6
+  - m_ParameterName: FFT size
+    m_GUID: 7a54ae7e858ab94459e45b6e82335446
+  - m_ParameterName: Overlap
+    m_GUID: 19dd0a1cdd2065c4a92bd785275f7b0d
+  - m_ParameterName: Max channels
+    m_GUID: 2575430837b7e4f498ef6666b3c8e0a1
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-4696904429394068691
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -144,6 +167,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-2325869357566282568
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 688cacc10e3723d41866f232c31a7e68
+  m_EffectName: Attenuation
+  m_MixLevel: cbef17066770ddd4d97383f22e726a2f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-1639495286672402715
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -196,6 +233,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 6b798116b66638a41926c8e04b93fb25
     name: GunPitch
+  - guid: 60b59d19ee833f34491607f2462aeaf6
+    name: HitmarkerPitch
   - guid: b0fe5cf849661424bbe945f7d85946da
     name: MasterVol
   - guid: d0539fda7f2d2254ba7af6994ec76cef
@@ -213,6 +252,7 @@ AudioMixerController:
     - 933d70325923f2b4dab586e8667c59d2
     - d0257bf0bd19e3045964a53113e834a6
     - dd0afeeea4ba51e4a895bb67f16d9b77
+    - 68534e005b5ae3c4bba5cf1d18ee210d
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -459,6 +499,26 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &7988661809580116465
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hitmarkers
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 68534e005b5ae3c4bba5cf1d18ee210d
+  m_Children: []
+  m_Volume: 203089719c5d6c648af8c12f8fdb62b8
+  m_Pitch: aa69fba9e4df9b940b775650ea0e762d
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2325869357566282568}
+  - {fileID: -5901863954724416948}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &8099009126461678673
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

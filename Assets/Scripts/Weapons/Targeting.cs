@@ -26,7 +26,7 @@ public class Targeting : MonoBehaviour
     private void Start()
     {
         loots = GameObject.FindGameObjectsWithTag(TargetTag);
-        foreach (Transform t in GameObject.FindGameObjectWithTag("Player").transform)
+        foreach (Transform t in GameObject.FindGameObjectWithTag("PlayerSFX").transform)
         {
             if (t.gameObject.tag == "RandSFX")
             {

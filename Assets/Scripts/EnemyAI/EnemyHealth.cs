@@ -11,21 +11,23 @@ public enum EnemyType
 public class EnemyHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
-
     public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
     public float Health { get { return health; } }
+    
     public Teams team { get { return Teams.enemyTeam; } }
 
-    private float health;
-
     public GameObject resourceDrop;
-
-    private bool hasSpawned;
-
+    
     public EnemyType enemyType;
 
+    private float health;
+    
+    private bool hasSpawned;
+   
     private AudioSource deathSfx;
     private AudioSource hitmarkerSfx;
+    private int hitStack = 0;
+    private bool hitStackDecayActive = false;
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
@@ -56,8 +58,26 @@ public class EnemyHealth : MonoBehaviour, IHealth
         {
             Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
-            SFXController.instance.PlayHitmarkerSound(hitmarkerSfx);
+            hitStack++;
+            float hitmarkerPitch = 1f + (0.2f * hitStack);
+            SFXController.instance.PlayHitmarkerSound(hitmarkerSfx, hitmarkerPitch);
+            hitStackDecayActive = true;
             return false;
+        }
+    }
+
+    private IEnumerator DecayHitStack ()
+    {
+        yield return new WaitForSeconds(1);
+        if (hitStack > 1)
+        {
+            hitStackDecayActive = true;
+            hitStack--;
+        }
+        else
+        {
+            hitStackDecayActive = false;
+            hitStack = 0;
         }
     }
 
@@ -73,6 +93,15 @@ public class EnemyHealth : MonoBehaviour, IHealth
         }
     }
 
+    void Update ()
+    {
+        if (hitStackDecayActive)
+        {
+            hitStackDecayActive = false;
+            StartCoroutine(DecayHitStack());
+        }
+    }
+
     void Awake()
     {
         health = MaxHealth;
@@ -81,18 +110,19 @@ public class EnemyHealth : MonoBehaviour, IHealth
 
     void Start ()
     {
-        foreach (Transform t in GameObject.FindGameObjectWithTag("Player").transform)
+        foreach (Transform t in GameObject.FindGameObjectWithTag("PlayerSFX").transform)
         {
-            if (t.gameObject.tag == "RandSFX")
+            if (t.gameObject.tag == "HitmarkerSFX")
             {
                 hitmarkerSfx = t.gameObject.GetComponent<AudioSource>();
             }
-        }
-        foreach (Transform t in gameObject.transform)
-        {
             if (t.gameObject.tag == "RandSFX")
             {
                 deathSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+            if (deathSfx != null && hitmarkerSfx != null)
+            {
+                return;
             }
         }
     }

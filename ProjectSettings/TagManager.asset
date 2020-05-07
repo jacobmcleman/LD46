@@ -18,6 +18,9 @@ TagManager:
   - Teammate
   - BindingManager
   - RandSFX
+  - HitmarkerSFX
+  - MissileSFX
+  - PlayerSFX
   layers:
   - Default
   - TransparentFX
