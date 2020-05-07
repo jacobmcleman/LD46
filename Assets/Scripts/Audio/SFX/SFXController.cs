@@ -8,14 +8,21 @@ public class SFXController : MonoBehaviour
 
     public AudioClip[] beeps;
     public AudioClip[] cargoLauncherSounds;
-    public AudioClip[] combatSounds;
-    public AudioClip[] overheatSounds;
     public AudioClip[] crashSounds;
-    public AudioClip[] missileSounds;
     public AudioClip[] gunSounds;
     public AudioClip[] organicExplosions;
     public AudioClip[] inorganicExplosions;
     public AudioClip[] blipSounds;
+
+    public AudioClip hitmarkerSound;
+    public AudioClip cooldownSound;
+    public AudioClip confirmedKillSound;
+    public AudioClip toolTipSound;
+    public AudioClip resourcePickupSound;
+    public AudioClip upgradePurchasedSound;
+    public AudioClip overheatCooldownSound;
+    public AudioClip overheatWarningSound;
+    public AudioClip missileLaunchSound;
 
     public UnityEngine.Audio.AudioMixer mixer;
 
@@ -47,22 +54,22 @@ public class SFXController : MonoBehaviour
     public void PlayToolTipSFX (AudioSource source)
     {
         source.Stop();
-        source.clip = beeps[6];
+        source.clip = toolTipSound;
         source.Play();
     }
 
     public void PlayResourcePickupSFX (AudioSource source)
     {
         source.Stop();
-        source.clip = beeps[7];
+        source.clip = resourcePickupSound;
         source.Play();
 
     }
 
     public void PlayRocketLaunchCooldownSFX (AudioSource source)
     {
-        source.PlayOneShot(missileSounds[0], 1f);
-        StartCoroutine(PlayAfterDelay(source, combatSounds[1], 1f, .1f));
+        source.PlayOneShot(missileLaunchSound, 1f);
+        StartCoroutine(PlayAfterDelay(source, cooldownSound, 1f, .1f));
     }
 
     public void PlayRocketExplosionSFX (AudioSource source)
@@ -75,7 +82,7 @@ public class SFXController : MonoBehaviour
 
     public void PlayUpgradedSound (AudioSource source)
     {
-        source.PlayOneShot(beeps[11] , 1f);
+        source.PlayOneShot(upgradePurchasedSound, 1f);
     }
 
     public void PlayRNGCrashNoise (AudioSource source)
@@ -92,13 +99,13 @@ public class SFXController : MonoBehaviour
     {   
         mixer.SetFloat("HitmarkerPitch", pitch);
         Debug.Log(pitch);
-        source.PlayOneShot(combatSounds[2], 1.5f);
+        source.PlayOneShot(hitmarkerSound, 1.5f);
     }
 
     public void PlayKillConfirmedSound (AudioSource source)
     {
         mixer.SetFloat("HitmarkerPitch", 1f);
-        source.PlayOneShot(combatSounds[0], 3f);
+        source.PlayOneShot(confirmedKillSound, 3f);
     }
 
     public void PlayNewTargetSound (AudioSource source)
@@ -134,14 +141,14 @@ public class SFXController : MonoBehaviour
     public void PlayGunOverheat (AudioSource source)
     {
         source.Stop();
-        source.clip = overheatSounds[0];
+        source.clip = overheatCooldownSound;
         mixer.SetFloat("GunPitch", 1f);
         source.Play();
     }
 
     public void PlayOverheatWarning (AudioSource source, Vector3 position)
     {
-        AudioSource.PlayClipAtPoint(overheatSounds[1], position, 1.3f);
+        AudioSource.PlayClipAtPoint(overheatWarningSound, position, 1.3f);
     }
 
     private IEnumerator PlayAfterDelay (AudioSource source, AudioClip clip, float delay, float vol)
