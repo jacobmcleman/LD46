@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyType
+{
+    Organic,
+    Inorganic
+}
+
 public class EnemyHealth : MonoBehaviour, IHealth
 {
     public float _MaxHealth = 100;
-
     public float MaxHealth { get { return _MaxHealth; } set { _MaxHealth = value; } }
     public float Health { get { return health; } }
+    
     public Teams team { get { return Teams.enemyTeam; } }
 
-    private float health;
-
     public GameObject resourceDrop;
+    
+    public EnemyType enemyType;
 
+    private float health;
+    
     private bool hasSpawned;
+   
+    private AudioSource deathSfx;
+    private AudioSource hitmarkerSfx;
+    private int hitStack = 0;
+    private bool hitStackDecayActive = false;
 
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
@@ -28,7 +41,8 @@ public class EnemyHealth : MonoBehaviour, IHealth
         if (health - damage <= 0)
         {
             Debug.Log("Dead Hit :: EnemyHealth");
-            UIManager.instance.DisplayToolTip("Enemy Defeated", 1);
+            SFXController.instance.PlayKillConfirmedSound(hitmarkerSfx);
+            SFXController.instance.PlayRandomDeathSound(deathSfx, enemyType);
             //Die
             if (!hasSpawned)
             {
@@ -44,7 +58,26 @@ public class EnemyHealth : MonoBehaviour, IHealth
         {
             Debug.Log("Enemy Hit :: EnemyHealth");
             health -= damage;
+            hitStack++;
+            float hitmarkerPitch = 1f + (0.2f * hitStack);
+            SFXController.instance.PlayHitmarkerSound(hitmarkerSfx, hitmarkerPitch);
+            hitStackDecayActive = true;
             return false;
+        }
+    }
+
+    private IEnumerator DecayHitStack ()
+    {
+        yield return new WaitForSeconds(1);
+        if (hitStack > 1)
+        {
+            hitStackDecayActive = true;
+            hitStack--;
+        }
+        else
+        {
+            hitStackDecayActive = false;
+            hitStack = 0;
         }
     }
 
@@ -60,23 +93,38 @@ public class EnemyHealth : MonoBehaviour, IHealth
         }
     }
 
+    void Update ()
+    {
+        if (hitStackDecayActive)
+        {
+            hitStackDecayActive = false;
+            StartCoroutine(DecayHitStack());
+        }
+    }
+
     void Awake()
     {
         health = MaxHealth;
         hasSpawned = false;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Start ()
     {
-        
+        foreach (Transform t in GameObject.FindGameObjectWithTag("PlayerSFX").transform)
+        {
+            if (t.gameObject.tag == "HitmarkerSFX")
+            {
+                hitmarkerSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+            if (t.gameObject.tag == "RandSFX")
+            {
+                deathSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+            if (deathSfx != null && hitmarkerSfx != null)
+            {
+                return;
+            }
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
 }

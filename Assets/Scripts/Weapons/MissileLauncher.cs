@@ -24,9 +24,19 @@ public class MissileLauncher : MonoBehaviour
     public InputActionAsset controls;
     private InputAction fire;
 
+    private AudioSource missileSfx;
+
     void Start ()
     {
         StartCoroutine(EnableFiring());
+        foreach (Transform t in GameObject.FindGameObjectWithTag("PlayerSFX").transform)
+        {
+            if (t.gameObject.tag == "MissileSFX")
+            {
+                missileSfx = t.gameObject.GetComponent<AudioSource>();
+                return;
+            }
+        }
     }
 
     void Awake ()
@@ -71,7 +81,7 @@ public class MissileLauncher : MonoBehaviour
     private void LaunchMissile()
     {
         UIManager.instance.HandleRocketLaunch(cooldown);
-
+        SFXController.instance.PlayRocketLaunchCooldownSFX(missileSfx);
         GameObject missile;
         if (didLeftLast)
         {

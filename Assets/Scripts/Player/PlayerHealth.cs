@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     private float health;
 
+    private AudioSource ouchSfx;
+
     public bool TakeDamage(float damage, Teams attackerTeam)
     {
         if (team == attackerTeam) 
@@ -27,6 +29,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         }
         else
         {
+            SFXController.instance.PlayPlayerDamagedSound(ouchSfx);
             health -= damage;
             return true;
         }
@@ -49,15 +52,14 @@ public class PlayerHealth : MonoBehaviour, IHealth
         health = MaxHealth;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (Transform t in GameObject.FindGameObjectWithTag("Player").transform)
+        {
+            if (t.gameObject.tag == "RandSFX")
+            {
+                ouchSfx = t.gameObject.GetComponent<AudioSource>();
+            }
+        }
     }
 }
