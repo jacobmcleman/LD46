@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxHealth: 1000
+  invuln: 0
 --- !u!114 &2497883373052722488
 MonoBehaviour:
   m_ObjectHideFlags: 0
